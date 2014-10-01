@@ -1,0 +1,111 @@
+@()
+
+@templates.main("Promoter") {
+    <p>
+        The SBOL Promoter symbol is an arrow with a horizontal and vertical segment.
+    </p>
+
+    <div>
+        <div style="display: inline-block">
+            <div>Top strand</div>
+            <svg width = 110 height = 110>
+                <rect x="5" y="5" width="100" height="100" fill="ivory" stroke = "darkgrey" stroke-dasharray="4 1"/>
+                <path d="M55 55 V20 H80" stroke="black" stroke-width="3px" stroke-linejoin="round" fill="none"></path>
+                <path d="M70 10 L80 20 L70 30" stroke="black" stroke-width="3px" stroke-linejoin="round" fill="none"></path>
+            </svg>
+        </div>
+
+        <div style="display: inline-block">
+            <div>Bottom strand</div>
+            <svg width = 110 height = 110>
+                <rect x="5" y="5" width="100" height="100" fill="ivory" stroke = "darkgrey" stroke-dasharray="4 1"/>
+                <path d="M55 55 V90 H30" stroke="black" stroke-width="3px" stroke-linejoin="round" fill="none"></path>
+                <path d="M40 80 L30 90 L40 100" stroke="black" stroke-width="3px" stroke-linejoin="round" fill="none"></path>
+            </svg>
+        </div>
+    </div>
+
+    <div id="scaled_example">
+        <p>
+            The Promoter symbol has a variable vertical size, horizontal size, arrow height and arrow width.
+        </p>
+
+        <div>
+            <div style="display: inline-block">
+                <p>Vertical: <span class="vertical"></span></p>
+                <input type="range" name="vertical" min="20" max="150" value="40" class="vertical_slider">
+            </div>
+            <div style="display: inline-block">
+                <p>Horizontal: <span class="horizontal"></span></p>
+                <input type="range" name="horizontal" min="20" max="150" value="40" class="horizontal_slider">
+            </div>
+            <div style="display: inline-block">
+                <p>Arrow Height: <span class="arrowHeight"></span></p>
+                <input type="range" name="arrowHeight" min="1" max="50" value="10" class="arrowHeight_slider">
+            </div>
+            <div style="display: inline-block">
+                <p>Arrow Width: <span class="arrowWidth"></span></p>
+                <input type="range" name="arrowWidth" min="1" max="50" value="10" class="arrowWidth_slider">
+            </div>
+        </div>
+        <div>
+            <div style="display: inline-block">
+                <div>Top strand</div>
+                <svg width = 320 height = 320>
+                    <g class="scaled_promoter_top"></g>
+                </svg>
+            </div>
+
+            <div style="display: inline-block">
+                <div>Bottom strand</div>
+                <svg width = 320 height = 320>
+                    <g class="scaled_promoter_bottom"></g>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <div id="alignment_example">
+        <p>
+            The Promoter symbol can be aligned to the backbone in four modes: backbone-centred, strand-relative,
+            above-strand and below-strand. The strand-centred CDS is centred on the backbone line.
+            The strand-relative Promoter is placed above the backbone for forward-direction symbols, and under the backbone
+            for reverse-direction symbols. For above-strand and below-strand, it is always placed that side. The outside
+            label is always placed furthest from the strand. The arrow always points to the right for forward-strand and
+            to the left for backward-strand glyphs.
+        </p>
+
+        <div>
+            <div style="display: inline-block">
+                <svg width = 100 height = 150>
+                    <g class="promoter_on_backbone" transform="translate(0 75)"></g>
+                </svg>
+            </div>
+
+            <div style="display: inline-block">
+                <p>Direction:</p>
+                <p><span class="direction"></span></p>
+                <form>
+                    <div><input type="radio" name="direction" value="forward">Forward</div>
+                    <div><input type="radio" name="direction" value="reverse">Reverse</div>
+                </form>
+            </div>
+
+            <div style="display: inline-block">
+                <p>Alignment mode:</p>
+                <p><span class="alignment"></span></p>
+                <form>
+                    <div><input type="radio" name="alignment" value="backbone-centred">Backbone-centred</div>
+                    <div><input type="radio" name="alignment" value="strand-relative">Strand-relative</div>
+                    <div><input type="radio" name="alignment" value="above-strand">Above-strand</div>
+                    <div><input type="radio" name="alignment" value="below-strand">Below-strand</div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    PromoterDemo().wireScaledExample("scaled_example");
+    PromoterDemo().wireAlignmentExample("alignment_example");
+    </script>
+}
