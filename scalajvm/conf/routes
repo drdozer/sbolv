@@ -1,0 +1,9 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET        /cds.html                                      controllers.Application.cds
+GET        /promoter.html                                      controllers.Application.promoter
+
+GET        /public/*file                                       controllers.Assets.at(path="/public", file)
