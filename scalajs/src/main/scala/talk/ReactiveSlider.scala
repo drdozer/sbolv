@@ -9,8 +9,8 @@ import rx.core.Var
  * @author Matthew Pocock
  */
 case class ReactiveSlider(slider: HTMLInputElement) {
-  val value = Var("")
-  val valueAsNumber = Var(0)
+  val value = Var(slider.value)
+  val valueAsNumber = Var(slider.valueAsNumber)
 
   slider.oninput = (e: Event) => {
     value() = slider.value

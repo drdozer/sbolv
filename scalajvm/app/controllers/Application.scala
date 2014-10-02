@@ -15,4 +15,8 @@ object Application extends Controller {
   def promoter = Action {
     Ok(views.html.promoter())
   }
+
+  def fixedOrProportional = Action {
+    Ok(views.html.fixedOrProportional())
+  }
 }

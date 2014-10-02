@@ -69,7 +69,7 @@ object CdsDemo {
             "height" -> s"${widthHeight()}")
       }
 
-      val cds = Cds(Var(Forward), Var(BackboneCentred), Var(None), Var(None), Var(0.0), cdsMetrics)
+      val cds = Cds(Var(Rightwards), Var(CentredOnBackbone), Var(None), Var(None), Var(0.0), cdsMetrics)
       val centred = "g".asSVGElement[SVGGElement](cds.glyph)
 
       Obs(centre) {
@@ -88,7 +88,7 @@ object CdsDemo {
             "height" -> s"${widthHeight()}")
       }
 
-      val cds = Cds(Var(Reverse), Var(BackboneCentred), Var(None), Var(None), Var(0.0), cdsMetrics)
+      val cds = Cds(Var(Leftwards), Var(CentredOnBackbone), Var(None), Var(None), Var(0.0), cdsMetrics)
       val centred = "g".asSVGElement[SVGGElement](cds.glyph)
 
       Obs(centre) {
@@ -112,26 +112,22 @@ object CdsDemo {
     val directionSpan = div.getElementsByClassName("direction").elements
     val exampleG = div.getElementsByClassName("cds_on_backbone").elements.head
 
-    var direction = Var(Forward : Direction)
+    var direction = Var(Rightwards : Direction)
     for(i <- directionRadio) i.onclick = { (me: MouseEvent) =>
       direction() = i.value match {
-        case "forward" => Forward
-        case "reverse" => Reverse
+        case "rightwards" => Rightwards
+        case "leftwards" => Leftwards
       }
     }
     Obs(direction) {
       directionSpan.foreach(_.textContent = direction().toString)
     }
 
-    var alignment = Var(BackboneCentred : Alignment)
+    var alignment = Var(CentredOnBackbone : BackboneAlignment)
     for(i <- alignmentRadio) i.onclick = { (me: MouseEvent) =>
-      alignment() = i.value match {
-        case "backbone-centred" => BackboneCentred
-        case "strand-relative" => BackboneStrandRelative
-        case "above-strand" => BackboneAbove
-        case "below-strand" => BackboneBelow
-      }
+      alignment() = BackboneAlignment.parse(i.value)
     }
+    for(i <- alignmentRadio) if(i.checked) alignment() = BackboneAlignment.parse(i.value)
     Obs(alignment) {
       alignmentSpan.foreach(_.textContent = alignment().toString)
     }
