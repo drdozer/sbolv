@@ -1,0 +1,39 @@
+@()
+
+@templates.main("Fixed width and proportional width") {
+    <p>
+        SBOL Visual symbols can be rendered fixed-width or proportional width.
+        In Fixed width, all symbols take up the same horizontal space and are drawn one next to the other.
+        In proportional width, symbols are scaled horizontally relative to the underlying DNA, and are spaced out along the DNA.
+    </p>
+
+    <div id="fixed_width_example">
+        <p>
+            This is a fixed-width SBOLv display. You can add new items by clicking on the buttons.
+        </p>
+
+        <div>
+            <div style="display: inline-block">
+                <p>Length: <span class="length"></span></p>
+                <input type="range" name="length" min="40" max="100" value="40" class="length_slider">
+            </div>
+
+            <div style="display: inline-block">
+                <button value="promoter_rightwards">Promoter (>)</button>
+                <button value="promoter_leftwards">Promoter (<)</button>
+                <button value="cds_rightwards">CDS (>)</button>
+                <button value="cds_leftwards">CDS (<)</button>
+            </div>
+        </div>
+        <div>
+            <svg width = 600 height = 300 class="glyphs">
+                <g class="track" transform="translate(0, 150)"></g>
+            </svg>
+        </div>
+    </div>
+
+
+    <script>
+    FixedOrProportionalDemo().wireFixdWidthExample("fixed_width_example");
+    </script>
+}

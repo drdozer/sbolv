@@ -7,7 +7,7 @@
 
     <div>
         <div style="display: inline-block">
-            <div>Top strand</div>
+            <div>Rightwards: represents a Promoter on the forward/top strand.</div>
             <svg width = 110 height = 110>
                 <rect x="5" y="5" width="100" height="100" fill="ivory" stroke = "darkgrey" stroke-dasharray="4 1"/>
                 <path d="M55 55 V20 H80" stroke="black" stroke-width="3px" stroke-linejoin="round" fill="none"></path>
@@ -16,7 +16,7 @@
         </div>
 
         <div style="display: inline-block">
-            <div>Bottom strand</div>
+            <div>Leftwards: represents a Promoter on the backwards/reverse-complement/bottom strand.</div>
             <svg width = 110 height = 110>
                 <rect x="5" y="5" width="100" height="100" fill="ivory" stroke = "darkgrey" stroke-dasharray="4 1"/>
                 <path d="M55 55 V90 H30" stroke="black" stroke-width="3px" stroke-linejoin="round" fill="none"></path>
@@ -67,12 +67,10 @@
 
     <div id="alignment_example">
         <p>
-            The Promoter symbol can be aligned to the backbone in four modes: backbone-centred, strand-relative,
+            The Promoter symbol can be aligned to the backbone in three modes: backbone-centred,
             above-strand and below-strand. The strand-centred CDS is centred on the backbone line.
-            The strand-relative Promoter is placed above the backbone for forward-direction symbols, and under the backbone
-            for reverse-direction symbols. For above-strand and below-strand, it is always placed that side. The outside
-            label is always placed furthest from the strand. The arrow always points to the right for forward-strand and
-            to the left for backward-strand glyphs.
+            For above-strand and below-strand, it is always placed that side. The outside
+            label is always placed furthest from the strand.
         </p>
 
         <div>
@@ -86,8 +84,8 @@
                 <p>Direction:</p>
                 <p><span class="direction"></span></p>
                 <form>
-                    <div><input type="radio" name="direction" value="forward">Forward</div>
-                    <div><input type="radio" name="direction" value="reverse">Reverse</div>
+                    <div><input type="radio" name="direction" value="rightwards" checked="true">Forward</div>
+                    <div><input type="radio" name="direction" value="leftwards">Reverse</div>
                 </form>
             </div>
 
@@ -95,10 +93,9 @@
                 <p>Alignment mode:</p>
                 <p><span class="alignment"></span></p>
                 <form>
-                    <div><input type="radio" name="alignment" value="backbone-centred">Backbone-centred</div>
-                    <div><input type="radio" name="alignment" value="strand-relative">Strand-relative</div>
-                    <div><input type="radio" name="alignment" value="above-strand">Above-strand</div>
-                    <div><input type="radio" name="alignment" value="below-strand">Below-strand</div>
+                    <div><input type="radio" name="alignment" value="above_backbone" checked="true">Above</div>
+                    <div><input type="radio" name="alignment" value="centred_on_backbone">Centred</div>
+                    <div><input type="radio" name="alignment" value="below_backbone">Below</div>
                 </form>
             </div>
         </div>

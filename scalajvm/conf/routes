@@ -3,7 +3,8 @@
 # ~~~~
 
 # Home page
-GET        /cds.html                                      controllers.Application.cds
-GET        /promoter.html                                      controllers.Application.promoter
+GET        /cds.html             controllers.Application.cds
+GET        /promoter.html        controllers.Application.promoter
+GET         /fixedOrProportional.html controllers.Application.fixedOrProportional
 
-GET        /public/*file                                       controllers.Assets.at(path="/public", file)
+GET        /public/*file         controllers.Assets.at(path="/public", file)

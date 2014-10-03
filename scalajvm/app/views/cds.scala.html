@@ -7,7 +7,7 @@
 
     <div>
         <div style="display: inline-block">
-            <div>Top strand</div>
+            <div>Rightwards: represents a CDS on the forward/top strand.</div>
             <svg width = 110 height = 110>
                 <rect x="5" y="5" width="100" height="100" fill="ivory" stroke = "darkgrey" stroke-dasharray="4 1"/>
                 <path d="M90 55 L70 35 H20 V75 H70 L90 55 Z" fill="aqua" stroke="black" stroke-width="3px" stroke-linejoin="round"></path>
@@ -15,7 +15,7 @@
         </div>
 
         <div style="display: inline-block">
-            <div>Bottom strand</div>
+            <div>Leftwards: represents a CDS on the backwards/reverse-complement/bottom strand.</div>
             <svg width = 110 height = 110>
                 <rect x="5" y="5" width="100" height="100" fill="ivory" stroke = "darkgrey" stroke-dasharray="4 1"/>
                 <path d="M20 55 L40 35 H90 V75 H40 L20 55 Z" fill="aqua" stroke="black" stroke-width="3px" stroke-linejoin="round"></path>
@@ -61,10 +61,9 @@
 
     <div id="alignment_example">
         <p>
-            The CDS symbol can be aligned to the backbone in four modes: backbone-centred, strand-relative,
+            The CDS symbol can be aligned to the backbone in three modes: backbone-centred,
             above-strand and below-strand. The strand-centred CDS is centred on the backbone line.
-            The strand-relative CDS is placed above the backbone for forward-direction symbols, and under the backbone
-            for reverse-direction symbols. For above-strand and below-strand, it is always placed that side. The outside
+            For above-strand and below-strand, it is always placed that side. The outside
             label is always placed furthest from the strand.
         </p>
 
@@ -79,8 +78,8 @@
                 <p>Direction:</p>
                 <p><span class="direction"></span></p>
                 <form>
-                    <div><input type="radio" name="direction" value="forward">Forward</div>
-                    <div><input type="radio" name="direction" value="reverse">Reverse</div>
+                    <div><input type="radio" name="direction" value="rightwards">Forward</div>
+                    <div><input type="radio" name="direction" value="leftwards">Reverse</div>
                 </form>
             </div>
 
@@ -88,10 +87,9 @@
                 <p>Alignment mode:</p>
                 <p><span class="alignment"></span></p>
                 <form>
-                    <div><input type="radio" name="alignment" value="backbone-centred">Backbone-centred</div>
-                    <div><input type="radio" name="alignment" value="strand-relative">Strand-relative</div>
-                    <div><input type="radio" name="alignment" value="above-strand">Above-strand</div>
-                    <div><input type="radio" name="alignment" value="below-strand">Below-strand</div>
+                    <div><input type="radio" name="alignment" value="above_backbone">Above</div>
+                    <div><input type="radio" name="alignment" value="centred_on_backbone">Centred</div>
+                    <div><input type="radio" name="alignment" value="below_backbone">Below</div>
                 </form>
             </div>
         </div>

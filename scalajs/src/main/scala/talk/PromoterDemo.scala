@@ -72,7 +72,7 @@ object PromoterDemo {
             "height" -> s"${widthHeight()}")
       }
 
-      val promoter = Promoter(Var(Forward), Var(BackboneCentred), Var(None), Var(0.0), promoterMetrics)
+      val promoter = Promoter(Var(Rightwards), Var(CentredOnBackbone), Var(None), Var(0.0), promoterMetrics)
       val centred = "g".asSVGElement[SVGGElement](promoter.glyph)
 
       Obs(centre) {
@@ -91,7 +91,7 @@ object PromoterDemo {
             "height" -> s"${widthHeight()}")
       }
 
-      val promoter = Promoter(Var(Reverse), Var(BackboneCentred), Var(None), Var(0.0), promoterMetrics)
+      val promoter = Promoter(Var(Leftwards), Var(CentredOnBackbone), Var(None), Var(0.0), promoterMetrics)
       val centred = "g".asSVGElement[SVGGElement](promoter.glyph)
 
       Obs(centre) {
@@ -115,25 +115,22 @@ object PromoterDemo {
     val directionSpan = div.getElementsByClassName("direction").elements
     val exampleG = div.getElementsByClassName("promoter_on_backbone").elements.head
 
-    var direction = Var(Forward : Direction)
+    var direction = Var(Rightwards : Direction)
     for(i <- directionRadio) i.onclick = { (me: MouseEvent) =>
       direction() = i.value match {
-        case "forward" => Forward
-        case "reverse" => Reverse
+        case "rightwards" => Rightwards
+        case "leftwards" => Leftwards
       }
     }
     Obs(direction) {
       directionSpan.foreach(_.textContent = direction().toString)
     }
 
-    var alignment = Var(BackboneCentred : Alignment)
+    var alignment = Var(CentredOnBackbone : BackboneAlignment)
+    for(i <- alignmentRadio) if(i.checked) alignment() = BackboneAlignment.parse(i.value)
+
     for(i <- alignmentRadio) i.onclick = { (me: MouseEvent) =>
-      alignment() = i.value match {
-        case "backbone-centred" => BackboneCentred
-        case "strand-relative" => BackboneStrandRelative
-        case "above-strand" => BackboneAbove
-        case "below-strand" => BackboneBelow
-      }
+      alignment() = BackboneAlignment.parse(i.value)
     }
     Obs(alignment) {
       alignmentSpan.foreach(_.textContent = alignment().toString)
