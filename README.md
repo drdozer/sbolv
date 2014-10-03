@@ -1,11 +1,12 @@
-# Play Framework with Scala.js
+# SBOLv Web Widgets
 
-This is a simple example application showing how you can integrate a Play project with a Scala.js project.
+This is a library of web widgets for SBOLv. It is structured as a demo Play! application. The widgets can all be used
+from javascript by including the `sbolv_js-fastopt.js` javascript file, and calling the entry points you need. This
+provides the following:
 
-The application contains three directories:
-* `scalajvm` Play application (server side)
-* `scalajs` Scala.js application (client side)
-* `scala` scala code that you want to share between scalajs and scalajvm (both client and server sides)
+* Javascript factories for programatically creating and modifying SBOLv widgets representing genetic parts and laying
+ these out as genetic designs
+* Shortcodes for displaying parts and designs in-line within the normal flow of text.
 
 ## Run the application
 ```shell
@@ -14,18 +15,14 @@ $ sbt
 $ open http://localhost:9000
 ```
 
-## IDE integration
+## Stand-alone build
+```shell
+$ sbt
+> dist
+```
 
-### Eclipse
+This will build an archive named something like `./target/universal/sbolv_jvm-0.1.0-SNAPSHOT.zip`. Unzip this and run
+the script in `./bin/` to launch the web server. It will print out the URL you need to put into your browser to try the
+widgets out. This will typically be:
 
-1. `$ sbt eclipse`
-2. Inside Eclipse, `File/Import/General/Existing project...`, choose the root folder to import the projects
-
-### IntelliJ
-
-1. `$ sbt idea`
-2. Inside IntelliJ, `File/Open...`, choose the root folder to import all the projects
-
-## Notes
-* `fastOptJS` is triggered when compiling (works with `compile`, `~compile`, `run`, `~run`)
-* `fullOptJS` is triggered when calling Play `start` and `dist` commands
+http://localhost:9000/index.html
