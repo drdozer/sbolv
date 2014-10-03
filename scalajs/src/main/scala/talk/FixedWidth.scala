@@ -87,8 +87,8 @@ case object DataDiff {
   def apply[D, K](items: Rx[Seq[D]], byKey: D => K): DataDiff[D, K] = DataDiff(items, byKey, _ == _)
 
   case class Updates[D](entered: Seq[(D, Int)],
-                              exited: Seq[(D, Int)],
-                              updated: Seq[(D, (Int, Int))],
-                              unchanged: Seq[(D, Int)])
+                        exited: Seq[(D, Int)],
+                        updated: Seq[(D, (Int, Int))],
+                        unchanged: Seq[(D, Int)])
 }
 
