@@ -78,7 +78,7 @@
                 <p>Direction:</p>
                 <p><span class="direction"></span></p>
                 <form>
-                    <div><input type="radio" name="direction" value="rightwards">Forward</div>
+                    <div><input type="radio" name="direction" value="rightwards" checked="true">Forward</div>
                     <div><input type="radio" name="direction" value="leftwards">Reverse</div>
                 </form>
             </div>
@@ -88,11 +88,31 @@
                 <p><span class="alignment"></span></p>
                 <form>
                     <div><input type="radio" name="alignment" value="above_backbone">Above</div>
-                    <div><input type="radio" name="alignment" value="centred_on_backbone">Centred</div>
+                    <div><input type="radio" name="alignment" value="centred_on_backbone" checked="true">Centred</div>
                     <div><input type="radio" name="alignment" value="below_backbone">Below</div>
                 </form>
             </div>
         </div>
+    </div>
+
+    <div id="shortcode_example">
+        <p>You can embed CDS symbols directly into the flow of text by using SBOLv the CDS shortcode
+            <code>[cds]fish[/cds]</code> within normal text. If you don't need a label you can either use an empty
+            shortcode ([cds][/cds]) or a self-closing shortcode ([cds/]). The width of the symbol can be set
+            manually as in [cds width="100"]looong[/cds] and [cds width="20"/] and the orientation with
+            [cds dir="<"/] and [cds dir=">"/].</p>
+
+        <div style="border-color: black; border-style: solid;">
+            <p>You can embed CDS symbols directly into the flow of text by using SBOLv the CDS shortcode
+                <code>[cds]fish[/cds]</code> within normal text. If you don't need a label you can either use an empty
+                shortcode ([cds][/cds]) or a self-closing shortcode ([cds/]). The width of the symbol can be set
+                manually as in [cds width="100"]looong[/cds] and [cds width="20"/] and the orientation with
+                [cds dir="<"/] and [cds dir=">"/].</p>
+            <script>SBOLv().shortcodes()</script>
+        </div>
+
+        <p>Shortcode processing is enabled within part of your document by including <code>SBOLv().shortcodes()</code>
+        in a &lt;script&gt; element. This will apply shortcodes to all of its siblings</p>
     </div>
 
     <script>

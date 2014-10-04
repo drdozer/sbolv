@@ -93,12 +93,32 @@
                 <p>Alignment mode:</p>
                 <p><span class="alignment"></span></p>
                 <form>
-                    <div><input type="radio" name="alignment" value="above_backbone" checked="true">Above</div>
-                    <div><input type="radio" name="alignment" value="centred_on_backbone">Centred</div>
+                    <div><input type="radio" name="alignment" value="above_backbone">Above</div>
+                    <div><input type="radio" name="alignment" value="centred_on_backbone" checked="true">Centred</div>
                     <div><input type="radio" name="alignment" value="below_backbone">Below</div>
                 </form>
             </div>
         </div>
+    </div>
+
+    <div id="shortcode_example">
+        <p>You can embed promoter symbols directly into the flow of text by using SBOLv the promoter shortcode
+            <code>[promoter]fish[/promoter]</code> within normal text. If you don't need a label you can either use an empty
+            shortcode ([promoter][/promoter]) or a self-closing shortcode ([promoter/]). The width of the symbol can be set
+            manually as in [promoter width="100"]looong[/promoter] and [promoter width="20"/] and the orientation with
+            [promoter dir="<"/] and [promoter dir=">"/].</p>
+
+        <div style="border-color: black; border-style: solid;">
+            <p>You can embed promoter symbols directly into the flow of text by using SBOLv the promoter shortcode
+                <code>[promoter]fish[/promoter]</code> within normal text. If you don't need a label you can either use an empty
+                shortcode ([promoter][/promoter]) or a self-closing shortcode ([promoter/]). The width of the symbol can be set
+                manually as in [promoter width="100"]looong[/promoter] and [promoter width="20"/] and the orientation with
+                [promoter dir="<"/] and [promoter dir=">"/].</p>
+            <script>SBOLv().shortcodes()</script>
+        </div>
+
+        <p>Shortcode processing is enabled within part of your document by including <code>SBOLv().shortcodes()</code>
+        in a &lt;script&gt; element. This will apply shortcodes to all of its siblings</p>
     </div>
 
     <script>

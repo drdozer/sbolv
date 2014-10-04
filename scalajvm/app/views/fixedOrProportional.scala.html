@@ -26,12 +26,30 @@
             </div>
         </div>
         <div>
-            <svg width = 600 height = 300 class="glyphs">
+            <svg width = 600 height = 300 class="glyphs" style="background-color: whitesmoke">
                 <g class="track" transform="translate(0, 150)"></g>
             </svg>
         </div>
     </div>
 
+    <div id="shortcode_example">
+        <p>You can embed multiple elements using their shortcodes.</p>
+        <p>[promoter/][cds/]</p>
+        <p>If you use individual shortcodes, they are each laid out independently of one-another.
+            You can render a string of symbols using the [sbolv/] shortcode. The content is a series of pigeoncad
+        single-letter codes and orientation indicated with >/<, separated by spaces.</p>
+        <p>[sbolv]p> c> c< p<[/sbolv]</p>
+
+        <div style="border-color: black; border-style: solid;">
+            <p>You can embed multiple elements using their shortcodes.</p>
+            <p>[promoter/][cds/]</p>
+            <p>If you use individual shortcodes, they are each laid out independently of one-another.
+                You can render a string of symbols using the [sbolv/] shortcode. The content is a series of pigeoncad
+            single-letter codes and orientation indicated with >/<, separated by spaces.</p>
+            <p>[sbolv]p> c> c< p<[/sbolv]</p>
+            <script>SBOLv().shortcodes()</script>
+        </div>
+    </div>
 
     <script>
     FixedOrProportionalDemo().wireFixdWidthExample("fixed_width_example");

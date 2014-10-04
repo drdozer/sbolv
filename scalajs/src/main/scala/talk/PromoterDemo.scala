@@ -132,6 +132,7 @@ object PromoterDemo {
     for(i <- alignmentRadio) i.onclick = { (me: MouseEvent) =>
       alignment() = BackboneAlignment.parse(i.value)
     }
+    for(i <- alignmentRadio) if(i.checked) alignment() = BackboneAlignment.parse(i.value)
     Obs(alignment) {
       alignmentSpan.foreach(_.textContent = alignment().toString)
     }

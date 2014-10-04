@@ -1,6 +1,6 @@
 package talk
 
-import org.scalajs.dom.{SVGPathElement, SVGGElement}
+import org.scalajs.dom.{Node, SVGPathElement, SVGGElement}
 import rx.core.{Obs, Rx, Var}
 
 
@@ -86,8 +86,8 @@ case class Promoter(direction: Rx[Direction],
 }
 
 object Promoter {
-  def fixedWidth(direction: Direction): (Rx[Double], Rx[BackboneAlignment]) => GlyphFamily = (width, alignment) =>
-    Promoter(Var(direction), alignment, Var(None), Var(0), Rx {
+  def fixedWidth(direction: Direction, label: Option[String] = None): (Rx[Double], Rx[BackboneAlignment]) => GlyphFamily = (width, alignment) =>
+    Promoter(Var(direction), alignment, Var(label), Var(0), Rx {
       val w = width() * 0.9
       Metrics(w * 0.4, w * 0.4, w * 0.1, w * 0.1)
     })
@@ -105,4 +105,32 @@ object Promoter {
   }
 
   case class MetricsImpl(vertical: Double, horizontal: Double, arrowHeight: Double, arrowWidth: Double) extends Metrics
+
+  trait SCProvider extends ShortcodeProvider {
+    import scalatags.JsDom.all.{bindNode}
+    import scalatags.JsDom.{all => html}
+    import scalatags.JsDom.implicits._
+    import scalatags.JsDom.svgTags._
+    import scalatags.JsDom.svgAttrs._
+
+    private val promoterHandler: PartialFunction[Shortcode, Node] = {
+      case Shortcode("promoter", attrs, content) =>
+        val attrsM = attrs.toMap
+        val wdth = attrsM.get("width").map(_.toDouble).getOrElse(50.0)
+        val dir = asDirection(attrsM.get("dir"))
+        val promoter = fixedWidth(dir, content).apply(Var(wdth), Var(AboveBackbone))
+
+        val hoff = 0.3 * (dir match {
+          case Rightwards => -1
+          case Leftwards => 1
+        })
+
+        svg(width := wdth, height := wdth * 0.5, `class` := "sbolv_inline")(
+          g(transform := s"translate(${wdth * (0.5 + hoff)} ${wdth * 0.47})")(promoter.glyph)
+        ).render
+    }
+
+    abstract override def shortcodeHandlers(sc: Shortcode) = super.shortcodeHandlers(sc) orElse promoterHandler.lift(sc)
+
+  }
 }

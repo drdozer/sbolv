@@ -20,12 +20,13 @@ object Enhancements {
 
   implicit class EnhancedDOMList[A](val _dl: DOMList[A]) extends AnyVal {
     def indexes = 0 until _dl.length
-    def members: IndexedSeq[A] = indexes map _dl.apply
-    def elements(implicit ev: A <:< Node) = members.filter(_.nodeType == 1).map(_.asInstanceOf[HTMLElement])
+    def nodes: IndexedSeq[A] = indexes map _dl.apply
+    def elements(implicit ev: A <:< Node) = nodes.filter(_.nodeType == 1).map(_.asInstanceOf[HTMLElement])
   }
 
   implicit class EnhancedNode(val _node: Node) extends AnyVal {
     def childElements = _node.childNodes.elements
+    def childNodes = _node.childNodes.nodes
     def removeAllChildren() = while(_node.firstChild != null) {
       _node.removeChild(_node.firstChild)
     }

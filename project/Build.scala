@@ -93,7 +93,8 @@ object ApplicationBuild extends Build with UniversalKeys {
 
   lazy val sharedDependencies = Seq(
     "com.lihaoyi" %%%! "upickle" % Versions.upickle,
-    "com.scalarx" %%%! "scalarx" % Versions.scalarx )
+    "com.scalarx" %%%! "scalarx" % Versions.scalarx,
+    "org.scalajs" %%%! "scala-parser-combinators" % Versions.parserCombinators )
 
   lazy val scalajvmDependencies = Seq(
 //    "uk.ac.ebi.chebi.webapps.chebiWS.client" % "chebiWS-client" % Versions.chebiWsClient,
@@ -112,11 +113,12 @@ object ApplicationBuild extends Build with UniversalKeys {
 object Versions {
   val app = "0.1.0-SNAPSHOT"
   val scala = "2.11.1"
-  val scalatags = "0.3.8"
+  val scalatags = "0.4.1"
   val scalajsDom = "0.6"
   val scalarx = "0.2.6"
   val upickle = "0.2.0"
   val jquery = "1.9.0"
   val chebiWsClient = "2.2.1"
+  val parserCombinators = "1.0.2"
 }
 
