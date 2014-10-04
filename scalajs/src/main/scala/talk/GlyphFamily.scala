@@ -28,6 +28,9 @@ trait GlyphFamilyWithInnerLabel {
   protected final val innerLabelText = "text".asSVGElement[SVGTextElement]("class" -> "sbolv_glyph_label")
 
   private val innerLabelTick = Var(0)
+  private def tick() = innerLabelTick() = innerLabelTick() + 1
+  innerLabelText.addEventListener("DOMNodeInsertedIntoDocument", (e: Event) => tick())
+  innerLabelText.addEventListener("DOMNodeInserted", (e: Event) => tick())
 
   private val innerLabelText_transform = Rx {
     innerLabelTick() // for the temporal dependency
@@ -38,7 +41,7 @@ trait GlyphFamilyWithInnerLabel {
 
   private val innerLabelText_obs = Obs(innerLabel) {
     innerLabelText.textContent = innerLabel().getOrElse("")
-    innerLabelTick() = innerLabelTick() + 1
+    tick()
   }
 
   private val innerLabelText_transform_obs = Obs(innerLabelText_transform) {

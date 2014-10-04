@@ -1,7 +1,9 @@
 package talk
 
-import org.scalajs.dom.{SVGGElement, SVGPathElement}
+import org.scalajs.dom.{Node, SVGGElement, SVGPathElement}
 import rx.core.{Obs, Rx, Var}
+
+import scalatags.JsDom
 
 
 case class Cds(direction: Rx[Direction],
@@ -15,7 +17,7 @@ case class Cds(direction: Rx[Direction],
   override type Metrics = Cds.Metrics
 
   import Enhancements._
-
+  
   override protected def offset = Rx {
     (direction(), alignment()) match {
       case (Rightwards, AboveBackbone | CentredOnBackbone) | (Leftwards, AboveBackbone) =>
@@ -60,12 +62,12 @@ case class Cds(direction: Rx[Direction],
 }
 
 object Cds {
-  def fixedWidth(direction: Direction): (Rx[Double], Rx[BackboneAlignment]) => GlyphFamily = (width, alignment) =>
-    Cds(Var(direction), alignment, Var(None), Var(None), Var(0), Rx {
+  def fixedWidth(direction: Direction, label: Option[String] = None): (Rx[Double], Rx[BackboneAlignment]) => GlyphFamily = (width, alignment) =>
+    Cds(Var(direction), alignment, Var(label), Var(None), Var(0), Rx {
       val w = width() * 0.9
       new Metrics {
         def length = w
-        def depth = w * 0.25
+        def depth = w * 0.5
         override def head = d2
       }
     })
@@ -87,4 +89,26 @@ object Cds {
   }
 
   case class MetricsImpl(length: Double, depth: Double, override val head: Double) extends Metrics
+
+  trait SCProvider extends ShortcodeProvider {
+    import scalatags.JsDom.all.{bindNode}
+    import scalatags.JsDom.{all => html}
+    import scalatags.JsDom.implicits._
+    import scalatags.JsDom.svgTags._
+    import scalatags.JsDom.svgAttrs._
+
+    private val cdsHandler: PartialFunction[Shortcode, Node] = {
+      case Shortcode("cds", attrs, content) =>
+        val attrsM = attrs.toMap
+        val wdth = attrsM.get("width").map(_.toDouble).getOrElse(50.0)
+        val dir = asDirection(attrsM.get("dir"))
+        val cds = fixedWidth(dir, content).apply(Var(wdth), Var(AboveBackbone))
+
+        svg(width := wdth, height := wdth * 0.5, `class` := "sbolv_inline")(
+          g(transform := s"translate(${wdth * 0.5} ${wdth * 0.47})")(cds.glyph)
+        ).render
+    }
+
+    abstract override def shortcodeHandlers(sc: Shortcode) = super.shortcodeHandlers(sc) orElse cdsHandler.lift(sc)
+  }
 }

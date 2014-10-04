@@ -8,6 +8,10 @@ import scala.io.Codec
 object Application extends Controller {
   implicit val codec = Codec.UTF8
 
+  def index = Action {
+    Ok(views.html.index())
+  }
+
   def cds = Action {
     Ok(views.html.cds())
   }
