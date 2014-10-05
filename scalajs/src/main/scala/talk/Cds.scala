@@ -1,9 +1,7 @@
 package talk
 
-import org.scalajs.dom.{Node, SVGGElement, SVGPathElement}
-import rx.core.{Obs, Rx, Var}
-
-import scalatags.JsDom
+import org.scalajs.dom.Node
+import rx.core.{Rx, Var}
 
 
 case class Cds(direction: Rx[Direction],
@@ -16,8 +14,12 @@ case class Cds(direction: Rx[Direction],
 {
   override type Metrics = Cds.Metrics
 
-  import Enhancements._
-  
+  import scalatags.JsDom.all.bindNode
+  import scalatags.JsDom.implicits._
+  import scalatags.JsDom.svgTags._
+  import scalatags.JsDom.svgAttrs._
+  import Framework._
+
   override protected def offset = Rx {
     (direction(), alignment()) match {
       case (Rightwards, AboveBackbone | CentredOnBackbone) | (Leftwards, AboveBackbone) =>
@@ -27,13 +29,7 @@ case class Cds(direction: Rx[Direction],
     }
   }
 
-  private val path = "path".asSVGElement[SVGPathElement]("class" -> "sbolv_glyph")
-
-  val glyph = "g".asSVGElement[SVGGElement](
-    "class" -> "sbolv cds"
-  ) apply (path, innerLabelText, outerLabelText)
-
-  private val path_d = Rx {
+  private val glyphPath_d = Rx {
     val m = metrics()
     direction() match {
       case Rightwards => s"M${ m.l2} 0 L${ m.l2h} ${-m.d2} H${-m.l2} v${ m.depth} H${ m.l2h} L${ m.l2} 0 Z"
@@ -51,14 +47,12 @@ case class Cds(direction: Rx[Direction],
     }
   }
 
-  private val path_d_obs = Obs(path_d) {
-    path("d" -> path_d())
-  }
+  private val glyphPath = path(`class` := "sbolv_glyph", d := glyphPath_d)
 
-  private val glyph_transform_obs = Obs(glyph_transform) {
-    glyph("transform" -> glyph_transform())
-  }
-
+  val glyph = g(
+    `class` := "sbolv cds",
+    transform := glyph_transform
+  )(glyphPath, innerLabelText, outerLabelText).render
 }
 
 object Cds {
@@ -91,8 +85,7 @@ object Cds {
   case class MetricsImpl(length: Double, depth: Double, override val head: Double) extends Metrics
 
   trait SCProvider extends ShortcodeProvider {
-    import scalatags.JsDom.all.{bindNode}
-    import scalatags.JsDom.{all => html}
+    import scalatags.JsDom.all.bindNode
     import scalatags.JsDom.implicits._
     import scalatags.JsDom.svgTags._
     import scalatags.JsDom.svgAttrs._
