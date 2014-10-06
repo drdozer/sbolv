@@ -4,15 +4,15 @@ import org.scalajs.dom.Node
 import rx.core.{Rx, Var}
 
 
-case class Cds(direction: Rx[Direction],
+case class RibosomeEntrySite(direction: Rx[Direction],
                alignment: Rx[BackboneAlignment],
                innerLabel: Rx[Option[String]],
                outerLabel: Rx[Option[String]],
                backboneWidth: Rx[Double],
-               metrics: Rx[Cds.Metrics])
+               metrics: Rx[RibosomeEntrySite.Metrics])
   extends GlyphFamily with GlyphFamilyWithInnerLabel with GlyphFamilyWithOuterLabel
 {
-  override type Metrics = Cds.Metrics
+  override type Metrics = RibosomeEntrySite.Metrics
 
   import scalatags.JsDom.all.bindNode
   import scalatags.JsDom.implicits._
@@ -32,8 +32,8 @@ case class Cds(direction: Rx[Direction],
   private val glyphPath_d = Rx {
     val m = metrics()
     direction() match {
-      case Rightwards => s"M${ m.l2} 0 L${ m.l2h} ${-m.d2} H${-m.l2} v${ m.depth} H${ m.l2h} L${ m.l2} 0 Z"
-      case Leftwards => s"M${-m.l2} 0 L${-m.l2h} ${ m.d2} H${ m.l2} v${-m.depth} H${-m.l2h} L${-m.l2} 0 Z"
+      case Rightwards => s"M${-m.l2} ${m.d2} L${m.l2} ${m.d2} A${m.l2} ${m.depth} 0 1 0 ${-m.l2} ${m.d2} Z"
+      case Leftwards => s"M${-m.l2} ${-m.d2} L${m.l2} ${-m.d2} A${m.l2} ${m.depth} 0 1 1 ${-m.l2} ${-m.d2} Z"
     }
   }
 
@@ -50,19 +50,18 @@ case class Cds(direction: Rx[Direction],
   private val glyphPath = path(`class` := "sbolv_glyph", d := glyphPath_d)
 
   val glyph = g(
-    `class` := "sbolv cds",
+    `class` := "sbolv res",
     transform := glyph_transform
   )(glyphPath, innerLabelText, outerLabelText).render
 }
 
-object Cds {
+object RibosomeEntrySite {
   def fixedWidth(direction: Direction, label: Option[String] = None): (Rx[Double], Rx[BackboneAlignment]) => GlyphFamily = (width, alignment) =>
-    Cds(Var(direction), alignment, Var(label), Var(None), Var(0), Rx {
+    RibosomeEntrySite(Var(direction), alignment, Var(label), Var(None), Var(0), Rx {
       val w = width() * 0.9
       new Metrics {
         def length = w
         def depth = w * 0.5
-        override def head = d2
       }
     })
 
@@ -70,19 +69,15 @@ object Cds {
     def length: Double
     def depth: Double
 
-    def head: Double = length - body
-    def body: Double = length - head
-
-    def l2 = length / 2.0
     def d2 = depth / 2.0
-    def l2h = l2 - head
+    def l2 = length / 2.0
   }
 
   object Metrics {
-    def apply(length: Double, depth: Double, head: Double): Metrics = MetricsImpl(length, depth, head)
+    def apply(length: Double, depth: Double): Metrics = MetricsImpl(length, depth)
   }
 
-  case class MetricsImpl(length: Double, depth: Double, override val head: Double) extends Metrics
+  case class MetricsImpl(length: Double, depth: Double) extends Metrics
 
   trait SCProvider extends ShortcodeProvider {
     import scalatags.JsDom.all.bindNode
@@ -90,18 +85,18 @@ object Cds {
     import scalatags.JsDom.svgTags._
     import scalatags.JsDom.svgAttrs._
 
-    private val cdsHandler: PartialFunction[Shortcode, Node] = {
-      case Shortcode("cds", attrs, content) =>
+    private val resHandler: PartialFunction[Shortcode, Node] = {
+      case Shortcode("res", attrs, content) =>
         val attrsM = attrs.toMap
         val wdth = attrsM.get("width").map(_.toDouble).getOrElse(50.0)
         val dir = asDirection(attrsM.get("dir"))
-        val cds = fixedWidth(dir, content).apply(Var(wdth), Var(AboveBackbone))
+        val res = fixedWidth(dir, content).apply(Var(wdth), Var(AboveBackbone))
 
         svg(width := wdth, height := wdth * 0.5, `class` := "sbolv_inline")(
-          g(transform := s"translate(${wdth * 0.5} ${wdth * 0.47})")(cds.glyph)
+          g(transform := s"translate(${wdth * 0.5} ${wdth * 0.47})")(res.glyph)
         ).render
     }
 
-    abstract override def shortcodeHandlers(sc: Shortcode) = super.shortcodeHandlers(sc) orElse cdsHandler.lift(sc)
+    abstract override def shortcodeHandlers(sc: Shortcode) = super.shortcodeHandlers(sc) orElse resHandler.lift(sc)
   }
 }
