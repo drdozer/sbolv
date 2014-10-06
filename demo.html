@@ -7,13 +7,13 @@
 <html>
   <head>
     <title>SBOLv Web Widgets</title>
-    <link rel="stylesheet" media="screen" href="/public/stylesheets/main.css">
-      <link rel="stylesheet" media="screen" href="/public/stylesheets/sbolv.css">
-    <link rel="shortcut icon" type="image/png" href="/public/images/favicon.png">
+    <link rel="stylesheet" media="screen" href="./public/stylesheets/main.css">
+      <link rel="stylesheet" media="screen" href="./public/stylesheets/sbolv.css">
+    <link rel="shortcut icon" type="image/png" href="./public/images/favicon.png">
   </head>
   <body>
     <!-- for production (play dist), use the optimized version instead -->
-      <script src="/public/javascripts/sbolv_js-fastopt.js" type="text/javascript"></script>
+      <script src="./public/javascripts/sbolv_js-fastopt.js" type="text/javascript"></script>
       
     <p>
         The SBOLv Web Widgets toolkit provides SBOLv symbols directly in your browser. They are rendered as interactive
@@ -36,7 +36,7 @@
 
     <p>
         Shorcodes are easy to use. The shortcodes are written like HTML tags but with square boxes. So for example, to
-        render a cds, use [cds][/cds]. To activate shortcode handling, include <a href="http://localhost:9000/public/javascripts/sbolv_js-fastopt.js">sbolv.js</a> your page.
+        render a cds, use [cds][/cds]. To activate shortcode handling, include <a href="./public/javascripts/sbolv_js-fastopt.js">sbolv.js</a> your page.
         Then in each element were you want shortcodes to be processed, add a script that runs
         <code>SBOLv().shortcodes()</code> as the last child.
     </p>
