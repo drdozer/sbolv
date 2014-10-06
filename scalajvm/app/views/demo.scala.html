@@ -14,8 +14,10 @@
 
     <p>
         The library is under active development. At this time, there is support for
-            <a href="cds.html">cds</a> and <a href="promoter.html">promoter</a> symbols, together with
-        <a href="fixedOrProportional.html">fixed-width</a> layout.
+            <a href="ribosomeEntrySite.html">res</a>
+            <a href="cds.html">cds</a> and
+            <a href="promoter.html">promoter</a> symbols, together with
+            <a href="fixedOrProportional.html">fixed-width</a> layout.
     </p>
 
     <p>
@@ -25,8 +27,8 @@
         <code>SBOLv().shortcodes()</code> as the last child.
     </p>
     <p>
-        Shortcodes can render all supported SBOLv symbols, including [cds]cds[/cds] and [promoter]pro[/promoter].
-        It can also lay out a series of symbols [sbolv width="40"]p> c> p< c<[/sbolv] inline.
+        Shortcodes can render all supported SBOLv symbols, including [cds]cds[/cds], [promoter]pro[/promoter] and [res]res[/res].
+        It can also lay out a series of symbols [sbolv width="40"]p> r> c> c< r< p<[/sbolv] inline.
 
         <script>
         SBOLv().shortcodes()
