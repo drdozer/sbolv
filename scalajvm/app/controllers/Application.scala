@@ -8,8 +8,8 @@ import scala.io.Codec
 object Application extends Controller {
   implicit val codec = Codec.UTF8
 
-  def index = Action {
-    Ok(views.html.index())
+  def demo = Action {
+    Ok(views.html.demo())
   }
 
   def cds = Action {
@@ -18,6 +18,10 @@ object Application extends Controller {
 
   def promoter = Action {
     Ok(views.html.promoter())
+  }
+
+  def ribosomeEntrySite = Action {
+    Ok(views.html.ribosomeEntrySite())
   }
 
   def fixedOrProportional = Action {

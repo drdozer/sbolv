@@ -1,7 +1,7 @@
 package talk
 
-import org.scalajs.dom.{Node, SVGPathElement, SVGGElement}
-import rx.core.{Obs, Rx, Var}
+import org.scalajs.dom.Node
+import rx.core.{Rx, Var}
 
 
 case class Promoter(direction: Rx[Direction],
@@ -13,11 +13,11 @@ case class Promoter(direction: Rx[Direction],
 {
   override type Metrics = Promoter.Metrics
 
-  import Enhancements._
-
-  val path = "path".asSVGElement[SVGPathElement]("class" -> "sbolv_glyph")
-
-  val glyph = "g".asSVGElement[SVGGElement]("class" -> "sbolv promoter").apply(path, outerLabelText)
+  import scalatags.JsDom.all.bindNode
+  import scalatags.JsDom.implicits._
+  import scalatags.JsDom.svgTags._
+  import scalatags.JsDom.svgAttrs._
+  import Framework._
 
   override protected def offset = Rx {
     if(transMetrics != null) {
@@ -67,10 +67,6 @@ case class Promoter(direction: Rx[Direction],
     s"M0 0 V${m.vertical} H${m.horizontal} M${m.horizontal - m.arrowWidth} ${m.vertical - m.arrowHeight} L${m.horizontal} ${m.vertical} L${m.horizontal - m.arrowWidth} ${m.vertical + m.arrowHeight}"
   }
 
-  private val path_d_obs = Obs(path_d) {
-    path("d" -> path_d())
-  }
-
   private val glyph_transform = Rx {
     val offset = backboneWidth()
     alignment() match {
@@ -80,9 +76,13 @@ case class Promoter(direction: Rx[Direction],
     }
   }
 
-  private val glyph_transform_obs = Obs(glyph_transform) {
-    glyph("transform" -> glyph_transform())
-  }
+  private val glyphPath = path(
+    `class` := "sbolv_glyph",
+    d := path_d)
+
+  val glyph = g(
+    `class` := "sbolv promoter",
+    transform := glyph_transform)(glyphPath, outerLabelText).render
 }
 
 object Promoter {
@@ -107,8 +107,7 @@ object Promoter {
   case class MetricsImpl(vertical: Double, horizontal: Double, arrowHeight: Double, arrowWidth: Double) extends Metrics
 
   trait SCProvider extends ShortcodeProvider {
-    import scalatags.JsDom.all.{bindNode}
-    import scalatags.JsDom.{all => html}
+    import scalatags.JsDom.all.bindNode
     import scalatags.JsDom.implicits._
     import scalatags.JsDom.svgTags._
     import scalatags.JsDom.svgAttrs._
