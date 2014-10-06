@@ -11,7 +11,7 @@ import scala.util.parsing.combinator._
  * @author Matthew Pocock
  */
 @JSExport
-object SBOLv extends ShortcodeProvider with Cds.SCProvider with Promoter.SCProvider with FixedWidth.SCProvider {
+object SBOLv extends ShortcodeProvider with Cds.SCProvider with Promoter.SCProvider with RibosomeEntrySite.SCProvider with FixedWidth.SCProvider {
 
   import Enhancements._
 
