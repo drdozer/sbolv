@@ -1,0 +1,144 @@
+
+
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Promoter</title>
+    <link rel="stylesheet" media="screen" href="/public/stylesheets/main.css">
+      <link rel="stylesheet" media="screen" href="/public/stylesheets/sbolv.css">
+    <link rel="shortcut icon" type="image/png" href="/public/images/favicon.png">
+  </head>
+  <body>
+    <!-- for production (play dist), use the optimized version instead -->
+      <script src="/public/javascripts/sbolv_js-fastopt.js" type="text/javascript"></script>
+      
+    <p>
+        The SBOL Promoter symbol is an arrow with a horizontal and vertical segment.
+    </p>
+
+    <div>
+        <div style="display: inline-block">
+            <div>Rightwards: represents a Promoter on the forward/top strand.</div>
+            <svg width = 110 height = 110>
+                <rect x="5" y="5" width="100" height="100" fill="ivory" stroke = "darkgrey" stroke-dasharray="4 1"/>
+                <path d="M55 55 V20 H80" stroke="black" stroke-width="3px" stroke-linejoin="round" fill="none"></path>
+                <path d="M70 10 L80 20 L70 30" stroke="black" stroke-width="3px" stroke-linejoin="round" fill="none"></path>
+            </svg>
+        </div>
+
+        <div style="display: inline-block">
+            <div>Leftwards: represents a Promoter on the backwards/reverse-complement/bottom strand.</div>
+            <svg width = 110 height = 110>
+                <rect x="5" y="5" width="100" height="100" fill="ivory" stroke = "darkgrey" stroke-dasharray="4 1"/>
+                <path d="M55 55 V90 H30" stroke="black" stroke-width="3px" stroke-linejoin="round" fill="none"></path>
+                <path d="M40 80 L30 90 L40 100" stroke="black" stroke-width="3px" stroke-linejoin="round" fill="none"></path>
+            </svg>
+        </div>
+    </div>
+
+    <div id="scaled_example">
+        <p>
+            The Promoter symbol has a variable vertical size, horizontal size, arrow height and arrow width.
+        </p>
+
+        <div>
+            <div style="display: inline-block">
+                <p>Vertical: <span class="vertical"></span></p>
+                <input type="range" name="vertical" min="20" max="150" value="40" class="vertical_slider">
+            </div>
+            <div style="display: inline-block">
+                <p>Horizontal: <span class="horizontal"></span></p>
+                <input type="range" name="horizontal" min="20" max="150" value="40" class="horizontal_slider">
+            </div>
+            <div style="display: inline-block">
+                <p>Arrow Height: <span class="arrowHeight"></span></p>
+                <input type="range" name="arrowHeight" min="1" max="50" value="10" class="arrowHeight_slider">
+            </div>
+            <div style="display: inline-block">
+                <p>Arrow Width: <span class="arrowWidth"></span></p>
+                <input type="range" name="arrowWidth" min="1" max="50" value="10" class="arrowWidth_slider">
+            </div>
+        </div>
+        <div>
+            <div style="display: inline-block">
+                <div>Top strand</div>
+                <svg width = 320 height = 320>
+                    <g class="scaled_promoter_top"></g>
+                </svg>
+            </div>
+
+            <div style="display: inline-block">
+                <div>Bottom strand</div>
+                <svg width = 320 height = 320>
+                    <g class="scaled_promoter_bottom"></g>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <div id="alignment_example">
+        <p>
+            The Promoter symbol can be aligned to the backbone in three modes: backbone-centred,
+            above-strand and below-strand. The strand-centred CDS is centred on the backbone line.
+            For above-strand and below-strand, it is always placed that side. The outside
+            label is always placed furthest from the strand.
+        </p>
+
+        <div>
+            <div style="display: inline-block">
+                <svg width = 100 height = 150>
+                    <g class="promoter_on_backbone" transform="translate(0 75)"></g>
+                </svg>
+            </div>
+
+            <div style="display: inline-block">
+                <p>Direction:</p>
+                <p><span class="direction"></span></p>
+                <form>
+                    <div><input type="radio" name="direction" value="rightwards" checked="true">Forward</div>
+                    <div><input type="radio" name="direction" value="leftwards">Reverse</div>
+                </form>
+            </div>
+
+            <div style="display: inline-block">
+                <p>Alignment mode:</p>
+                <p><span class="alignment"></span></p>
+                <form>
+                    <div><input type="radio" name="alignment" value="above_backbone">Above</div>
+                    <div><input type="radio" name="alignment" value="centred_on_backbone" checked="true">Centred</div>
+                    <div><input type="radio" name="alignment" value="below_backbone">Below</div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="shortcode_example">
+        <p>You can embed promoter symbols directly into the flow of text by using SBOLv the promoter shortcode
+            <code>[promoter]fish[/promoter]</code> within normal text. If you don't need a label you can either use an empty
+            shortcode ([promoter][/promoter]) or a self-closing shortcode ([promoter/]). The width of the symbol can be set
+            manually as in [promoter width="100"]looong[/promoter] and [promoter width="20"/] and the orientation with
+            [promoter dir="<"/] and [promoter dir=">"/].</p>
+
+        <div style="border-color: black; border-style: solid;">
+            <p>You can embed promoter symbols directly into the flow of text by using SBOLv the promoter shortcode
+                <code>[promoter]fish[/promoter]</code> within normal text. If you don't need a label you can either use an empty
+                shortcode ([promoter][/promoter]) or a self-closing shortcode ([promoter/]). The width of the symbol can be set
+                manually as in [promoter width="100"]looong[/promoter] and [promoter width="20"/] and the orientation with
+                [promoter dir="<"/] and [promoter dir=">"/].</p>
+            <script>SBOLv().shortcodes()</script>
+        </div>
+
+        <p>Shortcode processing is enabled within part of your document by including <code>SBOLv().shortcodes()</code>
+        in a &lt;script&gt; element. This will apply shortcodes to all of its siblings</p>
+    </div>
+
+    <script>
+    PromoterDemo().wireScaledExample("scaled_example");
+    PromoterDemo().wireAlignmentExample("alignment_example");
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,19 @@
+.sbolv_inline {
+  display: inline-block;
+  vertical-align: middle;
+}
+.glyphBox {
+  fill: ivory;
+  stroke: darkgrey;
+  stroke-dasharray: 4 1;
+}
+.sbolv_glyph {
+  fill: #d8f8ff;
+  stroke: black;
+  stroke-width: 3px;
+  stroke-linejoin: round;
+}
+.sbolv.promoter .sbolv_glyph {
+  fill: none;
+}
+/*# sourceMappingURL=sbolv.css.map */
