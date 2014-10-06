@@ -13,6 +13,7 @@ case class ReactiveSlider(slider: HTMLInputElement) {
   val valueAsNumber = Var(slider.valueAsNumber)
 
   slider.oninput = (e: Event) => {
+    println("Updating slider to: " + slider.value)
     value() = slider.value
     valueAsNumber() = slider.valueAsNumber
   }
