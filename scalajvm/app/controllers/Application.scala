@@ -20,6 +20,10 @@ object Application extends Controller {
     Ok(views.html.promoter())
   }
 
+  def ribosomeEntrySite = Action {
+    Ok(views.html.ribosomeEntrySite())
+  }
+
   def fixedOrProportional = Action {
     Ok(views.html.fixedOrProportional())
   }
