@@ -33,13 +33,13 @@
             </div>
 
             <div style="display: inline-block">
-                <div style="rightwards">
+                <div class="rightwards">
                     <button value="promoter_rightwards">Promoter (&gt;)</button>
                     <button value="res_rightwards">Ribosome Entry Site (&gt;)</button>
                     <button value="cds_rightwards">CDS (&gt;)</button>
                     <button value="term_rightwards">Terminator (&gt;)</button>
                 </div>
-                <div style="leftwards">
+                <div class="leftwards">
                     <button value="promoter_leftwards">Promoter (&lt;)</button>
                     <button value="res_leftwards">Ribosome Entry Site (&lt;)</button>
                     <button value="cds_leftwards">CDS (&lt;)</button>
@@ -60,7 +60,7 @@
         <p>If you use individual shortcodes, they are each laid out independently of one-another.
             You can render a string of symbols using the [sbolv/] shortcode. The content is a series of pigeoncad
         single-letter codes and orientation indicated with >/<, separated by spaces.</p>
-        <p>[sbolv]p> c> c< p<[/sbolv]</p>
+        <p>[sbolv]p> r> c>"gfp" t> t< r< c<"lacI" p<[/sbolv]</p>
 
         <div style="border-color: black; border-style: solid;">
             <p>You can embed multiple elements using their shortcodes.</p>
@@ -68,7 +68,7 @@
             <p>If you use individual shortcodes, they are each laid out independently of one-another.
                 You can render a string of symbols using the [sbolv/] shortcode. The content is a series of pigeoncad
             single-letter codes and orientation indicated with >/<, separated by spaces.</p>
-            <p>[sbolv]p> r> c> c< r< p<[/sbolv]</p>
+            <p>[sbolv]p> r> c>"gfp" t> t< r< c<"lacI" p<[/sbolv]</p>
             <script>SBOLv().shortcodes()</script>
         </div>
     </div>

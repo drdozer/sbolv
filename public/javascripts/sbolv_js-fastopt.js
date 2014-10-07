@@ -1374,6 +1374,13 @@ ScalaJS.i.Lscalatags_jsdom_Tags$class__$init$__Lscalatags_jsdom_Tags__V = (funct
   $$this.option$1 = new ScalaJS.c.Lscalatags_generic_Util$ExtendedString().init___Lscalatags_generic_Util__T($$this, "option").tag__Lscalatags_generic_Namespace__Lscalatags_generic_TypedTag(ScalaJS.m.Lscalatags_generic_Namespace().htmlNamespaceConfig$1);
   $$this.textarea$1 = new ScalaJS.c.Lscalatags_generic_Util$ExtendedString().init___Lscalatags_generic_Util__T($$this, "textarea").tag__Lscalatags_generic_Namespace__Lscalatags_generic_TypedTag(ScalaJS.m.Lscalatags_generic_Namespace().htmlNamespaceConfig$1)
 });
+ScalaJS.i.Ltalk_Cds$FWSC$class__Code__Ltalk_Cds$FWSC__T__F2 = (function($$this, c) {
+  return (ScalaJS.anyRefEqEq(c, "c") ? new ScalaJS.c.sjsr_AnonFunction2().init___sjs_js_Function2((function(direction$2, label$2) {
+    var direction = ScalaJS.as.Ltalk_Direction(direction$2);
+    var label = ScalaJS.as.s_Option(label$2);
+    return new ScalaJS.c.Ltalk_Cds$$anonfun$fixedWidth$1().init___Ltalk_Direction__s_Option(direction, label)
+  })) : $$this.talk$Cds$FWSC$$super$Code__T__F2(c))
+});
 ScalaJS.i.Ltalk_Cds$Metrics$class__l2__Ltalk_Cds$Metrics__D = (function($$this) {
   return ($$this.length__D() / 2.0)
 });
@@ -1575,12 +1582,26 @@ ScalaJS.i.Ltalk_GlyphFamilyWithOuterLabel$class__talk$GlyphFamilyWithOuterLabel$
     })
   })($$this)), ScalaJS.m.Lrx_core_Propagator$Immediate())
 });
+ScalaJS.i.Ltalk_Promoter$FWSC$class__Code__Ltalk_Promoter$FWSC__T__F2 = (function($$this, c) {
+  return (ScalaJS.anyRefEqEq(c, "p") ? new ScalaJS.c.sjsr_AnonFunction2().init___sjs_js_Function2((function(direction$2, label$2) {
+    var direction = ScalaJS.as.Ltalk_Direction(direction$2);
+    var label = ScalaJS.as.s_Option(label$2);
+    return new ScalaJS.c.Ltalk_Promoter$$anonfun$fixedWidth$1().init___Ltalk_Direction__s_Option(direction, label)
+  })) : ScalaJS.c.Ltalk_FixedWidthShorcodeContent.prototype.Code__T__F2.call($$this, c))
+});
 ScalaJS.i.Ltalk_Promoter$SCProvider$class__$init$__Ltalk_Promoter$SCProvider__V = (function($$this) {
   $$this.talk$Promoter$SCProvider$$promoterHandler$2 = new ScalaJS.c.Ltalk_Promoter$SCProvider$$anonfun$3().init___Ltalk_Promoter$SCProvider($$this)
 });
 ScalaJS.i.Ltalk_Promoter$SCProvider$class__shortcodeHandlers__Ltalk_Promoter$SCProvider__Ltalk_Shortcode__s_Option = (function($$this, sc) {
   var this$1 = ScalaJS.i.Ltalk_Cds$SCProvider$class__shortcodeHandlers__Ltalk_Cds$SCProvider__Ltalk_Shortcode__s_Option($$this, sc);
   return (this$1.isEmpty__Z() ? ScalaJS.as.s_Option($$this.talk$Promoter$SCProvider$$promoterHandler$2.lift__F1().apply__O__O(sc)) : this$1)
+});
+ScalaJS.i.Ltalk_RibosomeEntrySite$FWSC$class__Code__Ltalk_RibosomeEntrySite$FWSC__T__F2 = (function($$this, c) {
+  return (ScalaJS.anyRefEqEq(c, "r") ? new ScalaJS.c.sjsr_AnonFunction2().init___sjs_js_Function2((function(direction$2, label$2) {
+    var direction = ScalaJS.as.Ltalk_Direction(direction$2);
+    var label = ScalaJS.as.s_Option(label$2);
+    return new ScalaJS.c.Ltalk_RibosomeEntrySite$$anonfun$fixedWidth$1().init___Ltalk_Direction__s_Option(direction, label)
+  })) : $$this.talk$RibosomeEntrySite$FWSC$$super$Code__T__F2(c))
 });
 ScalaJS.i.Ltalk_RibosomeEntrySite$Metrics$class__d2__Ltalk_RibosomeEntrySite$Metrics__D = (function($$this) {
   return ($$this.depth__D() / 2.0)
@@ -1905,6 +1926,13 @@ ScalaJS.i.Ltalk_ShortcodeParser$class__shortCodeOpening__Ltalk_ShortcodeParser__
     throw new ScalaJS.c.s_MatchError().init___O(x0$5)
   })))
 });
+ScalaJS.i.Ltalk_Terminator$FWSC$class__Code__Ltalk_Terminator$FWSC__T__F2 = (function($$this, c) {
+  return (ScalaJS.anyRefEqEq(c, "t") ? new ScalaJS.c.sjsr_AnonFunction2().init___sjs_js_Function2((function(direction$2, label$2) {
+    var direction = ScalaJS.as.Ltalk_Direction(direction$2);
+    var label = ScalaJS.as.s_Option(label$2);
+    return new ScalaJS.c.Ltalk_Terminator$$anonfun$fixedWidth$1().init___Ltalk_Direction__s_Option(direction, label)
+  })) : $$this.talk$Terminator$FWSC$$super$Code__T__F2(c))
+});
 ScalaJS.i.Ltalk_Terminator$Metrics$class__l2__Ltalk_Terminator$Metrics__D = (function($$this) {
   return ($$this.length__D() / 2.0)
 });
@@ -2112,7 +2140,7 @@ ScalaJS.i.s_util_parsing_combinator_RegexParsers$class__$init$__s_util_parsing_c
   var this$2 = new ScalaJS.c.sci_StringOps().init___T("\\s+");
   var groupNames = ScalaJS.m.sci_Nil();
   var $$this$1 = this$2.repr$1;
-  $$this.whiteSpace$1 = new ScalaJS.c.s_util_matching_Regex().init___T__sc_Seq($$this$1, groupNames)
+  $$this.scala$util$parsing$combinator$RegexParsers$$undsetter$und$whiteSpace$und$eq__s_util_matching_Regex__V(new ScalaJS.c.s_util_matching_Regex().init___T__sc_Seq($$this$1, groupNames))
 });
 ScalaJS.i.s_util_parsing_combinator_RegexParsers$class__parseAll__s_util_parsing_combinator_RegexParsers__s_util_parsing_combinator_Parsers$Parser__jl_CharSequence__s_util_parsing_combinator_Parsers$ParseResult = (function($$this, p, in$2) {
   var p$1 = ScalaJS.i.s_util_parsing_combinator_RegexParsers$class__phrase__s_util_parsing_combinator_RegexParsers__s_util_parsing_combinator_Parsers$Parser__s_util_parsing_combinator_Parsers$Parser($$this, p);
@@ -2125,9 +2153,13 @@ ScalaJS.i.s_util_parsing_combinator_RegexParsers$class__phrase__s_util_parsing_c
   var p$1 = p.$$less$tilde__F0__s_util_parsing_combinator_Parsers$Parser(new ScalaJS.c.s_util_parsing_combinator_RegexParsers$$anonfun$phrase$1().init___s_util_parsing_combinator_RegexParsers($$this));
   return new ScalaJS.c.s_util_parsing_combinator_Parsers$$anon$2().init___s_util_parsing_combinator_Parsers__s_util_parsing_combinator_Parsers$Parser($$this, p$1)
 });
+ScalaJS.i.s_util_parsing_combinator_RegexParsers$class__skipWhitespace__s_util_parsing_combinator_RegexParsers__Z = (function($$this) {
+  var this$1 = $$this.whiteSpace__s_util_matching_Regex();
+  return (ScalaJS.i.sjsr_RuntimeString$class__length__sjsr_RuntimeString__I(this$1.pattern$1.pattern0$1) > 0)
+});
 ScalaJS.i.s_util_parsing_combinator_RegexParsers$class__handleWhiteSpace__s_util_parsing_combinator_RegexParsers__jl_CharSequence__I__I = (function($$this, source, offset) {
-  if ($$this.skipWhitespace$1) {
-    var x1 = $$this.whiteSpace$1.findPrefixMatchOf__jl_CharSequence__s_Option(new ScalaJS.c.s_util_parsing_combinator_SubSequence().init___jl_CharSequence__I(source, offset));
+  if ($$this.skipWhitespace__Z()) {
+    var x1 = $$this.whiteSpace__s_util_matching_Regex().findPrefixMatchOf__jl_CharSequence__s_Option(new ScalaJS.c.s_util_parsing_combinator_SubSequence().init___jl_CharSequence__I(source, offset));
     if (ScalaJS.is.s_Some(x1)) {
       var x2 = ScalaJS.as.s_Some(x1);
       var matched = ScalaJS.as.s_util_matching_Regex$Match(x2.x$2);
@@ -9221,6 +9253,137 @@ ScalaJS.d.Ltalk_FixedWidth = new ScalaJS.ClassTypeData({
 });
 ScalaJS.c.Ltalk_FixedWidth.prototype.$classData = ScalaJS.d.Ltalk_FixedWidth;
 /** @constructor */
+ScalaJS.c.Ltalk_FixedWidthShorcodeContent = (function() {
+  ScalaJS.c.O.call(this);
+  this.code$1 = null;
+  this.lt$1 = null;
+  this.talk$FixedWidthShorcodeContent$$gt$1 = null;
+  this.talk$FixedWidthShorcodeContent$$dir$1 = null;
+  this.talk$FixedWidthShorcodeContent$$qt$1 = null;
+  this.talk$FixedWidthShorcodeContent$$notQt$1 = null;
+  this.talk$FixedWidthShorcodeContent$$qtStr$1 = null;
+  this.entry$1 = null;
+  this.whiteSpace$1 = null;
+  this.scala$util$parsing$combinator$Parsers$$lastNoSuccessVar$1 = null;
+  this.Success$module$1 = null;
+  this.bitmap$0$1 = false;
+  this.NoSuccess$module$1 = null;
+  this.Failure$module$1 = null;
+  this.Error$module$1 = null;
+  this.$$tilde$module$1 = null
+});
+ScalaJS.c.Ltalk_FixedWidthShorcodeContent.prototype = new ScalaJS.h.O();
+ScalaJS.c.Ltalk_FixedWidthShorcodeContent.prototype.constructor = ScalaJS.c.Ltalk_FixedWidthShorcodeContent;
+/** @constructor */
+ScalaJS.h.Ltalk_FixedWidthShorcodeContent = (function() {
+  /*<skip>*/
+});
+ScalaJS.h.Ltalk_FixedWidthShorcodeContent.prototype = ScalaJS.c.Ltalk_FixedWidthShorcodeContent.prototype;
+ScalaJS.c.Ltalk_FixedWidthShorcodeContent.prototype.init___ = (function() {
+  ScalaJS.i.s_util_parsing_combinator_RegexParsers$class__$init$__s_util_parsing_combinator_RegexParsers__V(this);
+  var this$2 = new ScalaJS.c.sci_StringOps().init___T("[a-zA-Z]");
+  var groupNames = ScalaJS.m.sci_Nil();
+  var $$this = this$2.repr$1;
+  var r = new ScalaJS.c.s_util_matching_Regex().init___T__sc_Seq($$this, groupNames);
+  this.code$1 = new ScalaJS.c.s_util_parsing_combinator_RegexParsers$$anon$2().init___s_util_parsing_combinator_RegexParsers__s_util_matching_Regex(this, r).$$up$up__F1__s_util_parsing_combinator_Parsers$Parser(new ScalaJS.c.sjsr_AnonFunction1().init___sjs_js_Function1((function(arg$outer) {
+    return (function(x0$1$2) {
+      var x0$1 = ScalaJS.as.T(x0$1$2);
+      return ScalaJS.i.Ltalk_Terminator$FWSC$class__Code__Ltalk_Terminator$FWSC__T__F2(arg$outer, x0$1)
+    })
+  })(this)));
+  this.lt$1 = new ScalaJS.c.s_util_parsing_combinator_RegexParsers$$anon$1().init___s_util_parsing_combinator_RegexParsers__T(this, "<").$$up$up$up__F0__s_util_parsing_combinator_Parsers$Parser(new ScalaJS.c.sjsr_AnonFunction0().init___sjs_js_Function0((function() {
+    return ScalaJS.m.Ltalk_Leftwards()
+  })));
+  this.talk$FixedWidthShorcodeContent$$gt$1 = new ScalaJS.c.s_util_parsing_combinator_RegexParsers$$anon$1().init___s_util_parsing_combinator_RegexParsers__T(this, ">").$$up$up$up__F0__s_util_parsing_combinator_Parsers$Parser(new ScalaJS.c.sjsr_AnonFunction0().init___sjs_js_Function0((function() {
+    return ScalaJS.m.Ltalk_Rightwards()
+  })));
+  this.talk$FixedWidthShorcodeContent$$dir$1 = this.lt$1.$$bar__F0__s_util_parsing_combinator_Parsers$Parser(new ScalaJS.c.sjsr_AnonFunction0().init___sjs_js_Function0((function(arg$outer$1) {
+    return (function() {
+      return arg$outer$1.talk$FixedWidthShorcodeContent$$gt$1
+    })
+  })(this)));
+  this.talk$FixedWidthShorcodeContent$$qt$1 = new ScalaJS.c.s_util_parsing_combinator_RegexParsers$$anon$1().init___s_util_parsing_combinator_RegexParsers__T(this, "\"");
+  var this$5 = new ScalaJS.c.sci_StringOps().init___T("[^\"]*");
+  var groupNames$1 = ScalaJS.m.sci_Nil();
+  var $$this$1 = this$5.repr$1;
+  var r$1 = new ScalaJS.c.s_util_matching_Regex().init___T__sc_Seq($$this$1, groupNames$1);
+  this.talk$FixedWidthShorcodeContent$$notQt$1 = new ScalaJS.c.s_util_parsing_combinator_RegexParsers$$anon$2().init___s_util_parsing_combinator_RegexParsers__s_util_matching_Regex(this, r$1);
+  this.talk$FixedWidthShorcodeContent$$qtStr$1 = this.talk$FixedWidthShorcodeContent$$qt$1.$$tilde$greater__F0__s_util_parsing_combinator_Parsers$Parser(new ScalaJS.c.sjsr_AnonFunction0().init___sjs_js_Function0((function(arg$outer$2) {
+    return (function() {
+      return arg$outer$2.talk$FixedWidthShorcodeContent$$notQt$1
+    })
+  })(this))).$$less$tilde__F0__s_util_parsing_combinator_Parsers$Parser(new ScalaJS.c.sjsr_AnonFunction0().init___sjs_js_Function0((function(arg$outer$3) {
+    return (function() {
+      return arg$outer$3.talk$FixedWidthShorcodeContent$$qt$1
+    })
+  })(this)));
+  this.entry$1 = this.code$1.$$tilde__F0__s_util_parsing_combinator_Parsers$Parser(new ScalaJS.c.sjsr_AnonFunction0().init___sjs_js_Function0((function(arg$outer$4) {
+    return (function() {
+      return arg$outer$4.talk$FixedWidthShorcodeContent$$dir$1
+    })
+  })(this))).$$tilde__F0__s_util_parsing_combinator_Parsers$Parser(new ScalaJS.c.sjsr_AnonFunction0().init___sjs_js_Function0((function(arg$outer$5) {
+    return (function() {
+      return arg$outer$5.talk$FixedWidthShorcodeContent$$qtStr$1.$$qmark__s_util_parsing_combinator_Parsers$Parser()
+    })
+  })(this))).$$up$up__F1__s_util_parsing_combinator_Parsers$Parser(new ScalaJS.c.sjsr_AnonFunction1().init___sjs_js_Function1((function(x0$2$2) {
+    var x0$2 = ScalaJS.as.s_util_parsing_combinator_Parsers$$tilde(x0$2$2);
+    if ((x0$2 !== null)) {
+      var p2 = ScalaJS.as.s_util_parsing_combinator_Parsers$$tilde(x0$2.$$und1$1);
+      var l = ScalaJS.as.s_Option(x0$2.$$und2$1);
+      if ((p2 !== null)) {
+        var c = ScalaJS.as.F2(p2.$$und1$1);
+        var d = ScalaJS.as.Ltalk_Direction(p2.$$und2$1);
+        return ScalaJS.as.F2(c.apply__O__O__O(d, l))
+      }
+    };
+    throw new ScalaJS.c.s_MatchError().init___O(x0$2)
+  })));
+  return this
+});
+ScalaJS.c.Ltalk_FixedWidthShorcodeContent.prototype.whiteSpace__s_util_matching_Regex = (function() {
+  return this.whiteSpace$1
+});
+ScalaJS.c.Ltalk_FixedWidthShorcodeContent.prototype.Code__T__F2 = (function(c) {
+  throw new ScalaJS.c.jl_IllegalArgumentException().init___T(new ScalaJS.c.s_StringContext().init___sc_Seq(ScalaJS.m.s_Predef().wrapRefArray__AO__scm_WrappedArray(ScalaJS.asArrayOf.O(ScalaJS.makeNativeArrayWrapper(ScalaJS.d.T.getArrayOf(), ["Unknown code: ", ""]), 1))).s__sc_Seq__T(ScalaJS.m.s_Predef().genericWrapArray__O__scm_WrappedArray(ScalaJS.makeNativeArrayWrapper(ScalaJS.d.O.getArrayOf(), [c]))))
+});
+ScalaJS.c.Ltalk_FixedWidthShorcodeContent.prototype.scala$util$parsing$combinator$Parsers$$lastNoSuccessVar$lzycompute__p1__s_util_DynamicVariable = (function() {
+  if ((!this.bitmap$0$1)) {
+    this.scala$util$parsing$combinator$Parsers$$lastNoSuccessVar$1 = new ScalaJS.c.s_util_DynamicVariable().init___O(ScalaJS.m.s_None());
+    this.bitmap$0$1 = true
+  };
+  return this.scala$util$parsing$combinator$Parsers$$lastNoSuccessVar$1
+});
+ScalaJS.c.Ltalk_FixedWidthShorcodeContent.prototype.scala$util$parsing$combinator$RegexParsers$$undsetter$und$whiteSpace$und$eq__s_util_matching_Regex__V = (function(x$1) {
+  this.whiteSpace$1 = x$1
+});
+ScalaJS.c.Ltalk_FixedWidthShorcodeContent.prototype.scala$util$parsing$combinator$Parsers$$lastNoSuccessVar__s_util_DynamicVariable = (function() {
+  return ((!this.bitmap$0$1) ? this.scala$util$parsing$combinator$Parsers$$lastNoSuccessVar$lzycompute__p1__s_util_DynamicVariable() : this.scala$util$parsing$combinator$Parsers$$lastNoSuccessVar$1)
+});
+ScalaJS.c.Ltalk_FixedWidthShorcodeContent.prototype.skipWhitespace__Z = (function() {
+  return ScalaJS.i.s_util_parsing_combinator_RegexParsers$class__skipWhitespace__s_util_parsing_combinator_RegexParsers__Z(this)
+});
+ScalaJS.is.Ltalk_FixedWidthShorcodeContent = (function(obj) {
+  return (!(!((obj && obj.$classData) && obj.$classData.ancestors.Ltalk_FixedWidthShorcodeContent)))
+});
+ScalaJS.as.Ltalk_FixedWidthShorcodeContent = (function(obj) {
+  return ((ScalaJS.is.Ltalk_FixedWidthShorcodeContent(obj) || (obj === null)) ? obj : ScalaJS.throwClassCastException(obj, "talk.FixedWidthShorcodeContent"))
+});
+ScalaJS.isArrayOf.Ltalk_FixedWidthShorcodeContent = (function(obj, depth) {
+  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.Ltalk_FixedWidthShorcodeContent)))
+});
+ScalaJS.asArrayOf.Ltalk_FixedWidthShorcodeContent = (function(obj, depth) {
+  return ((ScalaJS.isArrayOf.Ltalk_FixedWidthShorcodeContent(obj, depth) || (obj === null)) ? obj : ScalaJS.throwArrayCastException(obj, "Ltalk.FixedWidthShorcodeContent;", depth))
+});
+ScalaJS.d.Ltalk_FixedWidthShorcodeContent = new ScalaJS.ClassTypeData({
+  Ltalk_FixedWidthShorcodeContent: 0
+}, false, "talk.FixedWidthShorcodeContent", ScalaJS.d.O, {
+  Ltalk_FixedWidthShorcodeContent: 1,
+  s_util_parsing_combinator_RegexParsers: 1,
+  s_util_parsing_combinator_Parsers: 1,
+  O: 1
+});
+ScalaJS.c.Ltalk_FixedWidthShorcodeContent.prototype.$classData = ScalaJS.d.Ltalk_FixedWidthShorcodeContent;
+/** @constructor */
 ScalaJS.c.Ltalk_Framework$ = (function() {
   ScalaJS.c.O.call(this);
   this.DOMNodeInsertedIntoDocument$1 = null;
@@ -11495,6 +11658,9 @@ ScalaJS.c.Ltalk_SBOLv$shortcodeParser$.prototype.shortCodeClosing__s_util_parsin
 ScalaJS.c.Ltalk_SBOLv$shortcodeParser$.prototype.attributeList__s_util_parsing_combinator_Parsers$Parser = (function() {
   return (((this.bitmap$0$1 & 1024) === 0) ? this.attributeList$lzycompute__p1__s_util_parsing_combinator_Parsers$Parser() : this.attributeList$1)
 });
+ScalaJS.c.Ltalk_SBOLv$shortcodeParser$.prototype.whiteSpace__s_util_matching_Regex = (function() {
+  return this.whiteSpace$1
+});
 ScalaJS.c.Ltalk_SBOLv$shortcodeParser$.prototype.scala$util$parsing$combinator$Parsers$$lastNoSuccessVar$lzycompute__p1__s_util_DynamicVariable = (function() {
   if (((this.bitmap$0$1 & 524288) === 0)) {
     this.scala$util$parsing$combinator$Parsers$$lastNoSuccessVar$1 = new ScalaJS.c.s_util_DynamicVariable().init___O(ScalaJS.m.s_None());
@@ -11536,6 +11702,9 @@ ScalaJS.c.Ltalk_SBOLv$shortcodeParser$.prototype.dblQuote$lzycompute__p1__s_util
     this.bitmap$0$1 = (this.bitmap$0$1 | 8)
   };
   return this.dblQuote$1
+});
+ScalaJS.c.Ltalk_SBOLv$shortcodeParser$.prototype.scala$util$parsing$combinator$RegexParsers$$undsetter$und$whiteSpace$und$eq__s_util_matching_Regex__V = (function(x$1) {
+  this.whiteSpace$1 = x$1
 });
 ScalaJS.c.Ltalk_SBOLv$shortcodeParser$.prototype.shortCodeOpeningContent$lzycompute__p1__s_util_parsing_combinator_Parsers$Parser = (function() {
   if (((this.bitmap$0$1 & 2048) === 0)) {
@@ -11678,6 +11847,9 @@ ScalaJS.c.Ltalk_SBOLv$shortcodeParser$.prototype.shortCodeSelfClosing$lzycompute
     this.bitmap$0$1 = (this.bitmap$0$1 | 32768)
   };
   return this.shortCodeSelfClosing$1
+});
+ScalaJS.c.Ltalk_SBOLv$shortcodeParser$.prototype.skipWhitespace__Z = (function() {
+  return this.skipWhitespace$1
 });
 ScalaJS.c.Ltalk_SBOLv$shortcodeParser$.prototype.shortCodeOpening__s_util_parsing_combinator_Parsers$Parser = (function() {
   return (((this.bitmap$0$1 & 4096) === 0) ? this.shortCodeOpening$lzycompute__p1__s_util_parsing_combinator_Parsers$Parser() : this.shortCodeOpening$1)
@@ -11899,7 +12071,7 @@ ScalaJS.c.Ltalk_Terminator.prototype.equals__O__Z = (function(x$1) {
     return true
   } else if (ScalaJS.is.Ltalk_Terminator(x$1)) {
     var Terminator$1 = ScalaJS.as.Ltalk_Terminator(x$1);
-    return (((((ScalaJS.anyRefEqEq(this.direction$1, Terminator$1.direction$1) && ScalaJS.anyRefEqEq(this.alignment$1, Terminator$1.alignment$1)) && ScalaJS.anyRefEqEq(this.outerLabel$1, Terminator$1.outerLabel$1)) && ScalaJS.anyRefEqEq(this.backboneWidth$1, Terminator$1.backboneWidth$1)) && ScalaJS.anyRefEqEq(this.metrics$1, Terminator$1.metrics$1)) && Terminator$1.canEqual__O__Z(this))
+    return ((((ScalaJS.anyRefEqEq(this.direction$1, Terminator$1.direction$1) && ScalaJS.anyRefEqEq(this.alignment$1, Terminator$1.alignment$1)) && ScalaJS.anyRefEqEq(this.outerLabel$1, Terminator$1.outerLabel$1)) && ScalaJS.anyRefEqEq(this.backboneWidth$1, Terminator$1.backboneWidth$1)) && ScalaJS.anyRefEqEq(this.metrics$1, Terminator$1.metrics$1))
   } else {
     return false
   }
@@ -12017,9 +12189,6 @@ ScalaJS.c.Ltalk_Terminator.prototype.talk$GlyphFamilyWithOuterLabel$$outerLabelC
 });
 ScalaJS.c.Ltalk_Terminator.prototype.alignment__Lrx_core_Rx = (function() {
   return this.alignment$1
-});
-ScalaJS.c.Ltalk_Terminator.prototype.canEqual__O__Z = (function(x$1) {
-  return ScalaJS.is.Ltalk_Terminator(x$1)
 });
 ScalaJS.c.Ltalk_Terminator.prototype.talk$GlyphFamilyWithOuterLabel$$outerLabelClean__Lrx_core_Rx = (function() {
   return (((this.bitmap$0$1 & 1) === 0) ? this.talk$GlyphFamilyWithOuterLabel$$outerLabelClean$lzycompute__p1__Lrx_core_Rx() : this.talk$GlyphFamilyWithOuterLabel$$outerLabelClean$1)
@@ -17921,11 +18090,19 @@ ScalaJS.c.s_util_parsing_combinator_Parsers$Parser.prototype.append__F0__s_util_
   var f = new ScalaJS.c.s_util_parsing_combinator_Parsers$Parser$$anonfun$append$1().init___s_util_parsing_combinator_Parsers$Parser__F0__sr_ObjectRef__sr_VolatileByteRef(this, p0, p$lzy, bitmap$0);
   return new ScalaJS.c.s_util_parsing_combinator_Parsers$$anon$3().init___s_util_parsing_combinator_Parsers__F1(this$3, f)
 });
+ScalaJS.c.s_util_parsing_combinator_Parsers$Parser.prototype.$$up$up__F1__s_util_parsing_combinator_Parsers$Parser = (function(f) {
+  return this.map__F1__s_util_parsing_combinator_Parsers$Parser(f).named__T__s_util_parsing_combinator_Parsers$Parser((this.toString__T() + "^^"))
+});
 ScalaJS.c.s_util_parsing_combinator_Parsers$Parser.prototype.scala$util$parsing$combinator$Parsers$Parser$$p$3__F0__sr_ObjectRef__sr_VolatileByteRef__s_util_parsing_combinator_Parsers$Parser = (function(q$1, p$lzy$2, bitmap$0$2) {
   return (((bitmap$0$2.elem$1 & 1) === 0) ? this.p$lzycompute$2__p1__F0__sr_ObjectRef__sr_VolatileByteRef__s_util_parsing_combinator_Parsers$Parser(q$1, p$lzy$2, bitmap$0$2) : ScalaJS.as.s_util_parsing_combinator_Parsers$Parser(p$lzy$2.elem$1))
 });
-ScalaJS.c.s_util_parsing_combinator_Parsers$Parser.prototype.$$up$up__F1__s_util_parsing_combinator_Parsers$Parser = (function(f) {
-  return this.map__F1__s_util_parsing_combinator_Parsers$Parser(f).named__T__s_util_parsing_combinator_Parsers$Parser((this.toString__T() + "^^"))
+ScalaJS.c.s_util_parsing_combinator_Parsers$Parser.prototype.$$tilde$greater__F0__s_util_parsing_combinator_Parsers$Parser = (function(q) {
+  var p$lzy = new ScalaJS.c.sr_ObjectRef().init___O(null);
+  var bitmap$0 = new ScalaJS.c.sr_VolatileByteRef().init___B(0);
+  return this.flatMap__F1__s_util_parsing_combinator_Parsers$Parser(new ScalaJS.c.s_util_parsing_combinator_Parsers$Parser$$anonfun$$tilde$greater$1().init___s_util_parsing_combinator_Parsers$Parser__F0__sr_ObjectRef__sr_VolatileByteRef(this, q, p$lzy, bitmap$0)).named__T__s_util_parsing_combinator_Parsers$Parser("~>")
+});
+ScalaJS.c.s_util_parsing_combinator_Parsers$Parser.prototype.$$up$up$up__F0__s_util_parsing_combinator_Parsers$Parser = (function(v) {
+  return new ScalaJS.c.s_util_parsing_combinator_Parsers$Parser$$anon$5().init___s_util_parsing_combinator_Parsers$Parser__F0(this, v).named__T__s_util_parsing_combinator_Parsers$Parser((this.toString__T() + "^^^"))
 });
 ScalaJS.c.s_util_parsing_combinator_Parsers$Parser.prototype.toString__T = (function() {
   return (("Parser (" + this.name$1) + ")")
@@ -17939,13 +18116,13 @@ ScalaJS.c.s_util_parsing_combinator_Parsers$Parser.prototype.$$less$tilde__F0__s
   var bitmap$0 = new ScalaJS.c.sr_VolatileByteRef().init___B(0);
   return this.flatMap__F1__s_util_parsing_combinator_Parsers$Parser(new ScalaJS.c.s_util_parsing_combinator_Parsers$Parser$$anonfun$$less$tilde$1().init___s_util_parsing_combinator_Parsers$Parser__F0__sr_ObjectRef__sr_VolatileByteRef(this, q, p$lzy, bitmap$0)).named__T__s_util_parsing_combinator_Parsers$Parser("<~")
 });
-ScalaJS.c.s_util_parsing_combinator_Parsers$Parser.prototype.scala$util$parsing$combinator$Parsers$Parser$$p$5__F0__sr_ObjectRef__sr_VolatileByteRef__s_util_parsing_combinator_Parsers$Parser = (function(q$3, p$lzy$4, bitmap$0$4) {
-  return (((bitmap$0$4.elem$1 & 1) === 0) ? this.p$lzycompute$4__p1__F0__sr_ObjectRef__sr_VolatileByteRef__s_util_parsing_combinator_Parsers$Parser(q$3, p$lzy$4, bitmap$0$4) : ScalaJS.as.s_util_parsing_combinator_Parsers$Parser(p$lzy$4.elem$1))
-});
 ScalaJS.c.s_util_parsing_combinator_Parsers$Parser.prototype.$$tilde__F0__s_util_parsing_combinator_Parsers$Parser = (function(q) {
   var p$lzy = new ScalaJS.c.sr_ObjectRef().init___O(null);
   var bitmap$0 = new ScalaJS.c.sr_VolatileByteRef().init___B(0);
   return this.flatMap__F1__s_util_parsing_combinator_Parsers$Parser(new ScalaJS.c.s_util_parsing_combinator_Parsers$Parser$$anonfun$$tilde$1().init___s_util_parsing_combinator_Parsers$Parser__F0__sr_ObjectRef__sr_VolatileByteRef(this, q, p$lzy, bitmap$0)).named__T__s_util_parsing_combinator_Parsers$Parser("~")
+});
+ScalaJS.c.s_util_parsing_combinator_Parsers$Parser.prototype.scala$util$parsing$combinator$Parsers$Parser$$p$5__F0__sr_ObjectRef__sr_VolatileByteRef__s_util_parsing_combinator_Parsers$Parser = (function(q$3, p$lzy$4, bitmap$0$4) {
+  return (((bitmap$0$4.elem$1 & 1) === 0) ? this.p$lzycompute$4__p1__F0__sr_ObjectRef__sr_VolatileByteRef__s_util_parsing_combinator_Parsers$Parser(q$3, p$lzy$4, bitmap$0$4) : ScalaJS.as.s_util_parsing_combinator_Parsers$Parser(p$lzy$4.elem$1))
 });
 ScalaJS.c.s_util_parsing_combinator_Parsers$Parser.prototype.scala$util$parsing$combinator$Parsers$Parser$$p$2__F0__sr_ObjectRef__sr_VolatileByteRef__s_util_parsing_combinator_Parsers$Parser = (function(p0$1, p$lzy$1, bitmap$0$1) {
   return (((bitmap$0$1.elem$1 & 1) === 0) ? this.p$lzycompute$1__p1__F0__sr_ObjectRef__sr_VolatileByteRef__s_util_parsing_combinator_Parsers$Parser(p0$1, p$lzy$1, bitmap$0$1) : ScalaJS.as.s_util_parsing_combinator_Parsers$Parser(p$lzy$1.elem$1))
@@ -17983,6 +18160,9 @@ ScalaJS.c.s_util_parsing_combinator_Parsers$Parser.prototype.p$lzycompute$2__p1_
   };
   return ScalaJS.as.s_util_parsing_combinator_Parsers$Parser(p$lzy$2.elem$1)
 });
+ScalaJS.c.s_util_parsing_combinator_Parsers$Parser.prototype.scala$util$parsing$combinator$Parsers$Parser$$p$4__F0__sr_ObjectRef__sr_VolatileByteRef__s_util_parsing_combinator_Parsers$Parser = (function(q$2, p$lzy$3, bitmap$0$3) {
+  return (((bitmap$0$3.elem$1 & 1) === 0) ? this.p$lzycompute$3__p1__F0__sr_ObjectRef__sr_VolatileByteRef__s_util_parsing_combinator_Parsers$Parser(q$2, p$lzy$3, bitmap$0$3) : ScalaJS.as.s_util_parsing_combinator_Parsers$Parser(p$lzy$3.elem$1))
+});
 ScalaJS.c.s_util_parsing_combinator_Parsers$Parser.prototype.map__F1__s_util_parsing_combinator_Parsers$Parser = (function(f) {
   var this$1 = this.$$outer$f;
   var f$1 = new ScalaJS.c.sjsr_AnonFunction1().init___sjs_js_Function1((function(arg$outer, f$2) {
@@ -17992,6 +18172,13 @@ ScalaJS.c.s_util_parsing_combinator_Parsers$Parser.prototype.map__F1__s_util_par
     })
   })(this, f));
   return new ScalaJS.c.s_util_parsing_combinator_Parsers$$anon$3().init___s_util_parsing_combinator_Parsers__F1(this$1, f$1)
+});
+ScalaJS.c.s_util_parsing_combinator_Parsers$Parser.prototype.p$lzycompute$3__p1__F0__sr_ObjectRef__sr_VolatileByteRef__s_util_parsing_combinator_Parsers$Parser = (function(q$2, p$lzy$3, bitmap$0$3) {
+  if (((bitmap$0$3.elem$1 & 1) === 0)) {
+    p$lzy$3.elem$1 = ScalaJS.as.s_util_parsing_combinator_Parsers$Parser(q$2.apply__O());
+    bitmap$0$3.elem$1 = (bitmap$0$3.elem$1 | 1)
+  };
+  return ScalaJS.as.s_util_parsing_combinator_Parsers$Parser(p$lzy$3.elem$1)
 });
 ScalaJS.c.s_util_parsing_combinator_Parsers$Parser.prototype.init___s_util_parsing_combinator_Parsers = (function($$outer) {
   if (($$outer === null)) {
@@ -18009,6 +18196,9 @@ ScalaJS.c.s_util_parsing_combinator_Parsers$Parser.prototype.p$lzycompute$4__p1_
   };
   return ScalaJS.as.s_util_parsing_combinator_Parsers$Parser(p$lzy$4.elem$1)
 });
+ScalaJS.c.s_util_parsing_combinator_Parsers$Parser.prototype.$$bar__F0__s_util_parsing_combinator_Parsers$Parser = (function(q) {
+  return this.append__F0__s_util_parsing_combinator_Parsers$Parser(q).named__T__s_util_parsing_combinator_Parsers$Parser("|")
+});
 ScalaJS.c.s_util_parsing_combinator_Parsers$Parser.prototype.$$qmark__s_util_parsing_combinator_Parsers$Parser = (function() {
   var this$1 = this.$$outer$f;
   var p = new ScalaJS.c.sjsr_AnonFunction0().init___sjs_js_Function0((function(arg$outer) {
@@ -18017,9 +18207,6 @@ ScalaJS.c.s_util_parsing_combinator_Parsers$Parser.prototype.$$qmark__s_util_par
     })
   })(this));
   return ScalaJS.i.s_util_parsing_combinator_Parsers$class__opt__s_util_parsing_combinator_Parsers__F0__s_util_parsing_combinator_Parsers$Parser(this$1, p)
-});
-ScalaJS.c.s_util_parsing_combinator_Parsers$Parser.prototype.$$bar__F0__s_util_parsing_combinator_Parsers$Parser = (function(q) {
-  return this.append__F0__s_util_parsing_combinator_Parsers$Parser(q).named__T__s_util_parsing_combinator_Parsers$Parser("|")
 });
 ScalaJS.is.s_util_parsing_combinator_Parsers$Parser = (function(obj) {
   return (!(!((obj && obj.$classData) && obj.$classData.ancestors.s_util_parsing_combinator_Parsers$Parser)))
@@ -25156,7 +25343,8 @@ ScalaJS.d.Ltalk_FixedWidth$$anonfun$2$$anonfun$apply$mcV$sp$2 = new ScalaJS.Clas
 ScalaJS.c.Ltalk_FixedWidth$$anonfun$2$$anonfun$apply$mcV$sp$2.prototype.$classData = ScalaJS.d.Ltalk_FixedWidth$$anonfun$2$$anonfun$apply$mcV$sp$2;
 /** @constructor */
 ScalaJS.c.Ltalk_FixedWidth$SCProvider$$anonfun$6 = (function() {
-  ScalaJS.c.sr_AbstractPartialFunction.call(this)
+  ScalaJS.c.sr_AbstractPartialFunction.call(this);
+  this.$$outer$2 = null
 });
 ScalaJS.c.Ltalk_FixedWidth$SCProvider$$anonfun$6.prototype = new ScalaJS.h.sr_AbstractPartialFunction();
 ScalaJS.c.Ltalk_FixedWidth$SCProvider$$anonfun$6.prototype.constructor = ScalaJS.c.Ltalk_FixedWidth$SCProvider$$anonfun$6;
@@ -25166,6 +25354,11 @@ ScalaJS.h.Ltalk_FixedWidth$SCProvider$$anonfun$6 = (function() {
 });
 ScalaJS.h.Ltalk_FixedWidth$SCProvider$$anonfun$6.prototype = ScalaJS.c.Ltalk_FixedWidth$SCProvider$$anonfun$6.prototype;
 ScalaJS.c.Ltalk_FixedWidth$SCProvider$$anonfun$6.prototype.init___Ltalk_FixedWidth$SCProvider = (function($$outer) {
+  if (($$outer === null)) {
+    throw ScalaJS.unwrapJavaScriptException(null)
+  } else {
+    this.$$outer$2 = $$outer
+  };
   return this
 });
 ScalaJS.c.Ltalk_FixedWidth$SCProvider$$anonfun$6.prototype.isDefinedAt__O__Z = (function(x) {
@@ -25285,7 +25478,8 @@ ScalaJS.d.Ltalk_FixedWidth$SCProvider$$anonfun$6 = new ScalaJS.ClassTypeData({
 ScalaJS.c.Ltalk_FixedWidth$SCProvider$$anonfun$6.prototype.$classData = ScalaJS.d.Ltalk_FixedWidth$SCProvider$$anonfun$6;
 /** @constructor */
 ScalaJS.c.Ltalk_FixedWidth$SCProvider$$anonfun$6$$anonfun$9 = (function() {
-  ScalaJS.c.sr_AbstractFunction1.call(this)
+  ScalaJS.c.sr_AbstractFunction1.call(this);
+  this.$$outer$2 = null
 });
 ScalaJS.c.Ltalk_FixedWidth$SCProvider$$anonfun$6$$anonfun$9.prototype = new ScalaJS.h.sr_AbstractFunction1();
 ScalaJS.c.Ltalk_FixedWidth$SCProvider$$anonfun$6$$anonfun$9.prototype.constructor = ScalaJS.c.Ltalk_FixedWidth$SCProvider$$anonfun$6$$anonfun$9;
@@ -25295,54 +25489,29 @@ ScalaJS.h.Ltalk_FixedWidth$SCProvider$$anonfun$6$$anonfun$9 = (function() {
 });
 ScalaJS.h.Ltalk_FixedWidth$SCProvider$$anonfun$6$$anonfun$9.prototype = ScalaJS.c.Ltalk_FixedWidth$SCProvider$$anonfun$6$$anonfun$9.prototype;
 ScalaJS.c.Ltalk_FixedWidth$SCProvider$$anonfun$6$$anonfun$9.prototype.init___Ltalk_FixedWidth$SCProvider$$anonfun$6 = (function($$outer) {
+  if (($$outer === null)) {
+    throw ScalaJS.unwrapJavaScriptException(null)
+  } else {
+    this.$$outer$2 = $$outer
+  };
   return this
 });
 ScalaJS.c.Ltalk_FixedWidth$SCProvider$$anonfun$6$$anonfun$9.prototype.apply__O__O = (function(v1) {
   var c = ScalaJS.as.T(v1);
   var xs = ScalaJS.asArrayOf.O(ScalaJS.i.sjsr_RuntimeString$class__split__sjsr_RuntimeString__T__AT(c, "\\s+"), 1);
-  var this$19 = new ScalaJS.c.scm_ArrayOps$ofRef().init___AO(xs);
-  var f = new ScalaJS.c.sjsr_AnonFunction1().init___sjs_js_Function1((function(g$2) {
-    var g = ScalaJS.as.T(g$2);
-    if (ScalaJS.anyRefEqEq("p>", g)) {
-      var direction = ScalaJS.m.Ltalk_Rightwards();
-      var label = ScalaJS.m.s_None();
-      return new ScalaJS.c.Ltalk_Promoter$$anonfun$fixedWidth$1().init___Ltalk_Direction__s_Option(direction, label)
-    } else if (ScalaJS.anyRefEqEq("p<", g)) {
-      var direction$1 = ScalaJS.m.Ltalk_Leftwards();
-      var label$1 = ScalaJS.m.s_None();
-      return new ScalaJS.c.Ltalk_Promoter$$anonfun$fixedWidth$1().init___Ltalk_Direction__s_Option(direction$1, label$1)
-    } else if (ScalaJS.anyRefEqEq("c>", g)) {
-      var direction$2 = ScalaJS.m.Ltalk_Rightwards();
-      var label$2 = ScalaJS.m.s_None();
-      return new ScalaJS.c.Ltalk_Cds$$anonfun$fixedWidth$1().init___Ltalk_Direction__s_Option(direction$2, label$2)
-    } else if (ScalaJS.anyRefEqEq("c<", g)) {
-      var direction$3 = ScalaJS.m.Ltalk_Leftwards();
-      var label$3 = ScalaJS.m.s_None();
-      return new ScalaJS.c.Ltalk_Cds$$anonfun$fixedWidth$1().init___Ltalk_Direction__s_Option(direction$3, label$3)
-    } else if (ScalaJS.anyRefEqEq("r>", g)) {
-      var direction$4 = ScalaJS.m.Ltalk_Rightwards();
-      var label$4 = ScalaJS.m.s_None();
-      return new ScalaJS.c.Ltalk_RibosomeEntrySite$$anonfun$fixedWidth$1().init___Ltalk_Direction__s_Option(direction$4, label$4)
-    } else if (ScalaJS.anyRefEqEq("r<", g)) {
-      var direction$5 = ScalaJS.m.Ltalk_Leftwards();
-      var label$5 = ScalaJS.m.s_None();
-      return new ScalaJS.c.Ltalk_RibosomeEntrySite$$anonfun$fixedWidth$1().init___Ltalk_Direction__s_Option(direction$5, label$5)
-    } else if (ScalaJS.anyRefEqEq("t>", g)) {
-      var direction$6 = ScalaJS.m.Ltalk_Rightwards();
-      var label$6 = ScalaJS.m.s_None();
-      return new ScalaJS.c.Ltalk_Terminator$$anonfun$fixedWidth$1().init___Ltalk_Direction__s_Option(direction$6, label$6)
-    } else if (ScalaJS.anyRefEqEq("t<", g)) {
-      var direction$7 = ScalaJS.m.Ltalk_Leftwards();
-      var label$7 = ScalaJS.m.s_None();
-      return new ScalaJS.c.Ltalk_Terminator$$anonfun$fixedWidth$1().init___Ltalk_Direction__s_Option(direction$7, label$7)
-    } else {
-      throw new ScalaJS.c.s_MatchError().init___O(g)
-    }
-  }));
+  var this$4 = new ScalaJS.c.scm_ArrayOps$ofRef().init___AO(xs);
+  var f = new ScalaJS.c.sjsr_AnonFunction1().init___sjs_js_Function1((function(arg$outer) {
+    return (function(g$2) {
+      var g = ScalaJS.as.T(g$2);
+      var this$2 = arg$outer.$$outer$2.$$outer$2.FWSC__Ltalk_FixedWidth$SCProvider$FWSC$();
+      var p = arg$outer.$$outer$2.$$outer$2.FWSC__Ltalk_FixedWidth$SCProvider$FWSC$().entry$1;
+      return ScalaJS.as.F2(ScalaJS.i.s_util_parsing_combinator_RegexParsers$class__parseAll__s_util_parsing_combinator_RegexParsers__s_util_parsing_combinator_Parsers$Parser__jl_CharSequence__s_util_parsing_combinator_Parsers$ParseResult(this$2, p, g).get__O())
+    })
+  })(this));
   ScalaJS.m.s_Array();
   var t = ScalaJS.m.s_reflect_ClassTag().apply__jl_Class__s_reflect_ClassTag(ScalaJS.d.F2.getClassOf());
   var bf = new ScalaJS.c.s_Array$$anon$2().init___s_reflect_ClassTag(t);
-  var xs$1 = ScalaJS.asArrayOf.O(ScalaJS.i.sc_TraversableLike$class__map__sc_TraversableLike__F1__scg_CanBuildFrom__O(this$19, f, bf), 1);
+  var xs$1 = ScalaJS.asArrayOf.O(ScalaJS.i.sc_TraversableLike$class__map__sc_TraversableLike__F1__scg_CanBuildFrom__O(this$4, f, bf), 1);
   return new ScalaJS.c.scm_ArrayOps$ofRef().init___AO(xs$1)
 });
 ScalaJS.is.Ltalk_FixedWidth$SCProvider$$anonfun$6$$anonfun$9 = (function(obj) {
@@ -25368,6 +25537,55 @@ ScalaJS.d.Ltalk_FixedWidth$SCProvider$$anonfun$6$$anonfun$9 = new ScalaJS.ClassT
   O: 1
 });
 ScalaJS.c.Ltalk_FixedWidth$SCProvider$$anonfun$6$$anonfun$9.prototype.$classData = ScalaJS.d.Ltalk_FixedWidth$SCProvider$$anonfun$6$$anonfun$9;
+/** @constructor */
+ScalaJS.c.Ltalk_FixedWidth$SCProvider$FWSC$ = (function() {
+  ScalaJS.c.Ltalk_FixedWidthShorcodeContent.call(this)
+});
+ScalaJS.c.Ltalk_FixedWidth$SCProvider$FWSC$.prototype = new ScalaJS.h.Ltalk_FixedWidthShorcodeContent();
+ScalaJS.c.Ltalk_FixedWidth$SCProvider$FWSC$.prototype.constructor = ScalaJS.c.Ltalk_FixedWidth$SCProvider$FWSC$;
+/** @constructor */
+ScalaJS.h.Ltalk_FixedWidth$SCProvider$FWSC$ = (function() {
+  /*<skip>*/
+});
+ScalaJS.h.Ltalk_FixedWidth$SCProvider$FWSC$.prototype = ScalaJS.c.Ltalk_FixedWidth$SCProvider$FWSC$.prototype;
+ScalaJS.c.Ltalk_FixedWidth$SCProvider$FWSC$.prototype.talk$RibosomeEntrySite$FWSC$$super$Code__T__F2 = (function(c) {
+  return ScalaJS.i.Ltalk_Promoter$FWSC$class__Code__Ltalk_Promoter$FWSC__T__F2(this, c)
+});
+ScalaJS.c.Ltalk_FixedWidth$SCProvider$FWSC$.prototype.init___Ltalk_FixedWidth$SCProvider = (function($$outer) {
+  return (ScalaJS.c.Ltalk_FixedWidthShorcodeContent.prototype.init___.call(this), this)
+});
+ScalaJS.c.Ltalk_FixedWidth$SCProvider$FWSC$.prototype.talk$Terminator$FWSC$$super$Code__T__F2 = (function(c) {
+  return ScalaJS.i.Ltalk_Cds$FWSC$class__Code__Ltalk_Cds$FWSC__T__F2(this, c)
+});
+ScalaJS.c.Ltalk_FixedWidth$SCProvider$FWSC$.prototype.talk$Cds$FWSC$$super$Code__T__F2 = (function(c) {
+  return ScalaJS.i.Ltalk_RibosomeEntrySite$FWSC$class__Code__Ltalk_RibosomeEntrySite$FWSC__T__F2(this, c)
+});
+ScalaJS.is.Ltalk_FixedWidth$SCProvider$FWSC$ = (function(obj) {
+  return (!(!((obj && obj.$classData) && obj.$classData.ancestors.Ltalk_FixedWidth$SCProvider$FWSC$)))
+});
+ScalaJS.as.Ltalk_FixedWidth$SCProvider$FWSC$ = (function(obj) {
+  return ((ScalaJS.is.Ltalk_FixedWidth$SCProvider$FWSC$(obj) || (obj === null)) ? obj : ScalaJS.throwClassCastException(obj, "talk.FixedWidth$SCProvider$FWSC$"))
+});
+ScalaJS.isArrayOf.Ltalk_FixedWidth$SCProvider$FWSC$ = (function(obj, depth) {
+  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.Ltalk_FixedWidth$SCProvider$FWSC$)))
+});
+ScalaJS.asArrayOf.Ltalk_FixedWidth$SCProvider$FWSC$ = (function(obj, depth) {
+  return ((ScalaJS.isArrayOf.Ltalk_FixedWidth$SCProvider$FWSC$(obj, depth) || (obj === null)) ? obj : ScalaJS.throwArrayCastException(obj, "Ltalk.FixedWidth$SCProvider$FWSC$;", depth))
+});
+ScalaJS.d.Ltalk_FixedWidth$SCProvider$FWSC$ = new ScalaJS.ClassTypeData({
+  Ltalk_FixedWidth$SCProvider$FWSC$: 0
+}, false, "talk.FixedWidth$SCProvider$FWSC$", ScalaJS.d.Ltalk_FixedWidthShorcodeContent, {
+  Ltalk_FixedWidth$SCProvider$FWSC$: 1,
+  Ltalk_Terminator$FWSC: 1,
+  Ltalk_Cds$FWSC: 1,
+  Ltalk_RibosomeEntrySite$FWSC: 1,
+  Ltalk_Promoter$FWSC: 1,
+  Ltalk_FixedWidthShorcodeContent: 1,
+  s_util_parsing_combinator_RegexParsers: 1,
+  s_util_parsing_combinator_Parsers: 1,
+  O: 1
+});
+ScalaJS.c.Ltalk_FixedWidth$SCProvider$FWSC$.prototype.$classData = ScalaJS.d.Ltalk_FixedWidth$SCProvider$FWSC$;
 /** @constructor */
 ScalaJS.c.Ltalk_GlyphFamilyWithInnerLabel$$anonfun$5 = (function() {
   ScalaJS.c.sr_AbstractFunction0.call(this);
@@ -26561,7 +26779,8 @@ ScalaJS.c.Ltalk_SBOLv$ = (function() {
   this.talk$Terminator$SCProvider$$termHandler$2 = null;
   this.talk$RibosomeEntrySite$SCProvider$$resHandler$2 = null;
   this.talk$Promoter$SCProvider$$promoterHandler$2 = null;
-  this.talk$Cds$SCProvider$$cdsHandler$2 = null
+  this.talk$Cds$SCProvider$$cdsHandler$2 = null;
+  this.FWSC$module$2 = null
 });
 ScalaJS.c.Ltalk_SBOLv$.prototype = new ScalaJS.h.Ltalk_ShortcodeProvider();
 ScalaJS.c.Ltalk_SBOLv$.prototype.constructor = ScalaJS.c.Ltalk_SBOLv$;
@@ -26578,6 +26797,12 @@ ScalaJS.c.Ltalk_SBOLv$.prototype.init___ = (function() {
   ScalaJS.i.Ltalk_Terminator$SCProvider$class__$init$__Ltalk_Terminator$SCProvider__V(this);
   ScalaJS.i.Ltalk_FixedWidth$SCProvider$class__$init$__Ltalk_FixedWidth$SCProvider__V(this);
   return this
+});
+ScalaJS.c.Ltalk_SBOLv$.prototype.FWSC$lzycompute__p2__Ltalk_FixedWidth$SCProvider$FWSC$ = (function() {
+  if ((this.FWSC$module$2 === null)) {
+    this.FWSC$module$2 = new ScalaJS.c.Ltalk_FixedWidth$SCProvider$FWSC$().init___Ltalk_FixedWidth$SCProvider(this)
+  };
+  return this.FWSC$module$2
 });
 ScalaJS.c.Ltalk_SBOLv$.prototype.expandShortcodes__T__sc_Seq = (function(raw) {
   var this$1 = ScalaJS.m.Ltalk_SBOLv$shortcodeParser();
@@ -26621,6 +26846,9 @@ ScalaJS.c.Ltalk_SBOLv$.prototype.applyShortcodes__Lorg_scalajs_dom_Node__V = (fu
   } else {
     throw new ScalaJS.c.s_MatchError().init___O(x1)
   }
+});
+ScalaJS.c.Ltalk_SBOLv$.prototype.FWSC__Ltalk_FixedWidth$SCProvider$FWSC$ = (function() {
+  return ((this.FWSC$module$2 === null) ? this.FWSC$lzycompute__p2__Ltalk_FixedWidth$SCProvider$FWSC$() : this.FWSC$module$2)
 });
 ScalaJS.c.Ltalk_SBOLv$.prototype.$$js$exported$meth$shortcodes__O = (function() {
   return (this.shortcodes__V(), (void 0))
@@ -29279,6 +29507,73 @@ ScalaJS.d.s_util_parsing_combinator_Parsers$NoSuccess = new ScalaJS.ClassTypeDat
 });
 ScalaJS.c.s_util_parsing_combinator_Parsers$NoSuccess.prototype.$classData = ScalaJS.d.s_util_parsing_combinator_Parsers$NoSuccess;
 /** @constructor */
+ScalaJS.c.s_util_parsing_combinator_Parsers$Parser$$anon$5 = (function() {
+  ScalaJS.c.s_util_parsing_combinator_Parsers$Parser.call(this);
+  this.v0$2 = null;
+  this.$$outer$2 = null;
+  this.v$1$2 = null;
+  this.bitmap$0$2 = false
+});
+ScalaJS.c.s_util_parsing_combinator_Parsers$Parser$$anon$5.prototype = new ScalaJS.h.s_util_parsing_combinator_Parsers$Parser();
+ScalaJS.c.s_util_parsing_combinator_Parsers$Parser$$anon$5.prototype.constructor = ScalaJS.c.s_util_parsing_combinator_Parsers$Parser$$anon$5;
+/** @constructor */
+ScalaJS.h.s_util_parsing_combinator_Parsers$Parser$$anon$5 = (function() {
+  /*<skip>*/
+});
+ScalaJS.h.s_util_parsing_combinator_Parsers$Parser$$anon$5.prototype = ScalaJS.c.s_util_parsing_combinator_Parsers$Parser$$anon$5.prototype;
+ScalaJS.c.s_util_parsing_combinator_Parsers$Parser$$anon$5.prototype.apply__O__O = (function(v1) {
+  return this.apply__s_util_parsing_input_Reader__s_util_parsing_combinator_Parsers$ParseResult(ScalaJS.as.s_util_parsing_input_Reader(v1))
+});
+ScalaJS.c.s_util_parsing_combinator_Parsers$Parser$$anon$5.prototype.v0__O = (function() {
+  return ((!this.bitmap$0$2) ? this.v0$lzycompute__p2__O() : this.v0$2)
+});
+ScalaJS.c.s_util_parsing_combinator_Parsers$Parser$$anon$5.prototype.init___s_util_parsing_combinator_Parsers$Parser__F0 = (function($$outer, v$1) {
+  if (($$outer === null)) {
+    throw ScalaJS.unwrapJavaScriptException(null)
+  } else {
+    this.$$outer$2 = $$outer
+  };
+  this.v$1$2 = v$1;
+  ScalaJS.c.s_util_parsing_combinator_Parsers$Parser.prototype.init___s_util_parsing_combinator_Parsers.call(this, $$outer.$$outer$f);
+  return this
+});
+ScalaJS.c.s_util_parsing_combinator_Parsers$Parser$$anon$5.prototype.apply__s_util_parsing_input_Reader__s_util_parsing_combinator_Parsers$ParseResult = (function(in$2) {
+  return this.$$outer$2.apply__s_util_parsing_input_Reader__s_util_parsing_combinator_Parsers$ParseResult(in$2).map__F1__s_util_parsing_combinator_Parsers$ParseResult(new ScalaJS.c.sjsr_AnonFunction1().init___sjs_js_Function1((function(arg$outer) {
+    return (function(x$2) {
+      return arg$outer.v0__O()
+    })
+  })(this)))
+});
+ScalaJS.c.s_util_parsing_combinator_Parsers$Parser$$anon$5.prototype.v0$lzycompute__p2__O = (function() {
+  if ((!this.bitmap$0$2)) {
+    this.v0$2 = this.v$1$2.apply__O();
+    this.bitmap$0$2 = true
+  };
+  this.v$1$2 = null;
+  return this.v0$2
+});
+ScalaJS.is.s_util_parsing_combinator_Parsers$Parser$$anon$5 = (function(obj) {
+  return (!(!((obj && obj.$classData) && obj.$classData.ancestors.s_util_parsing_combinator_Parsers$Parser$$anon$5)))
+});
+ScalaJS.as.s_util_parsing_combinator_Parsers$Parser$$anon$5 = (function(obj) {
+  return ((ScalaJS.is.s_util_parsing_combinator_Parsers$Parser$$anon$5(obj) || (obj === null)) ? obj : ScalaJS.throwClassCastException(obj, "scala.util.parsing.combinator.Parsers$Parser$$anon$5"))
+});
+ScalaJS.isArrayOf.s_util_parsing_combinator_Parsers$Parser$$anon$5 = (function(obj, depth) {
+  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.s_util_parsing_combinator_Parsers$Parser$$anon$5)))
+});
+ScalaJS.asArrayOf.s_util_parsing_combinator_Parsers$Parser$$anon$5 = (function(obj, depth) {
+  return ((ScalaJS.isArrayOf.s_util_parsing_combinator_Parsers$Parser$$anon$5(obj, depth) || (obj === null)) ? obj : ScalaJS.throwArrayCastException(obj, "Lscala.util.parsing.combinator.Parsers$Parser$$anon$5;", depth))
+});
+ScalaJS.d.s_util_parsing_combinator_Parsers$Parser$$anon$5 = new ScalaJS.ClassTypeData({
+  s_util_parsing_combinator_Parsers$Parser$$anon$5: 0
+}, false, "scala.util.parsing.combinator.Parsers$Parser$$anon$5", ScalaJS.d.s_util_parsing_combinator_Parsers$Parser, {
+  s_util_parsing_combinator_Parsers$Parser$$anon$5: 1,
+  s_util_parsing_combinator_Parsers$Parser: 1,
+  F1: 1,
+  O: 1
+});
+ScalaJS.c.s_util_parsing_combinator_Parsers$Parser$$anon$5.prototype.$classData = ScalaJS.d.s_util_parsing_combinator_Parsers$Parser$$anon$5;
+/** @constructor */
 ScalaJS.c.s_util_parsing_combinator_Parsers$Parser$$anonfun$$less$tilde$1 = (function() {
   ScalaJS.c.sr_AbstractFunction1.call(this);
   this.$$outer$2 = null;
@@ -29390,6 +29685,60 @@ ScalaJS.d.s_util_parsing_combinator_Parsers$Parser$$anonfun$$tilde$1 = new Scala
   O: 1
 });
 ScalaJS.c.s_util_parsing_combinator_Parsers$Parser$$anonfun$$tilde$1.prototype.$classData = ScalaJS.d.s_util_parsing_combinator_Parsers$Parser$$anonfun$$tilde$1;
+/** @constructor */
+ScalaJS.c.s_util_parsing_combinator_Parsers$Parser$$anonfun$$tilde$greater$1 = (function() {
+  ScalaJS.c.sr_AbstractFunction1.call(this);
+  this.$$outer$2 = null;
+  this.q$2$2 = null;
+  this.p$lzy$3$2 = null;
+  this.bitmap$0$3$2 = null
+});
+ScalaJS.c.s_util_parsing_combinator_Parsers$Parser$$anonfun$$tilde$greater$1.prototype = new ScalaJS.h.sr_AbstractFunction1();
+ScalaJS.c.s_util_parsing_combinator_Parsers$Parser$$anonfun$$tilde$greater$1.prototype.constructor = ScalaJS.c.s_util_parsing_combinator_Parsers$Parser$$anonfun$$tilde$greater$1;
+/** @constructor */
+ScalaJS.h.s_util_parsing_combinator_Parsers$Parser$$anonfun$$tilde$greater$1 = (function() {
+  /*<skip>*/
+});
+ScalaJS.h.s_util_parsing_combinator_Parsers$Parser$$anonfun$$tilde$greater$1.prototype = ScalaJS.c.s_util_parsing_combinator_Parsers$Parser$$anonfun$$tilde$greater$1.prototype;
+ScalaJS.c.s_util_parsing_combinator_Parsers$Parser$$anonfun$$tilde$greater$1.prototype.apply__O__O = (function(v1) {
+  return this.$$outer$2.scala$util$parsing$combinator$Parsers$Parser$$p$4__F0__sr_ObjectRef__sr_VolatileByteRef__s_util_parsing_combinator_Parsers$Parser(this.q$2$2, this.p$lzy$3$2, this.bitmap$0$3$2).map__F1__s_util_parsing_combinator_Parsers$Parser(new ScalaJS.c.sjsr_AnonFunction1().init___sjs_js_Function1((function(b$2) {
+    return b$2
+  })))
+});
+ScalaJS.c.s_util_parsing_combinator_Parsers$Parser$$anonfun$$tilde$greater$1.prototype.init___s_util_parsing_combinator_Parsers$Parser__F0__sr_ObjectRef__sr_VolatileByteRef = (function($$outer, q$2, p$lzy$3, bitmap$0$3) {
+  if (($$outer === null)) {
+    throw ScalaJS.unwrapJavaScriptException(null)
+  } else {
+    this.$$outer$2 = $$outer
+  };
+  this.q$2$2 = q$2;
+  this.p$lzy$3$2 = p$lzy$3;
+  this.bitmap$0$3$2 = bitmap$0$3;
+  return this
+});
+ScalaJS.is.s_util_parsing_combinator_Parsers$Parser$$anonfun$$tilde$greater$1 = (function(obj) {
+  return (!(!((obj && obj.$classData) && obj.$classData.ancestors.s_util_parsing_combinator_Parsers$Parser$$anonfun$$tilde$greater$1)))
+});
+ScalaJS.as.s_util_parsing_combinator_Parsers$Parser$$anonfun$$tilde$greater$1 = (function(obj) {
+  return ((ScalaJS.is.s_util_parsing_combinator_Parsers$Parser$$anonfun$$tilde$greater$1(obj) || (obj === null)) ? obj : ScalaJS.throwClassCastException(obj, "scala.util.parsing.combinator.Parsers$Parser$$anonfun$$tilde$greater$1"))
+});
+ScalaJS.isArrayOf.s_util_parsing_combinator_Parsers$Parser$$anonfun$$tilde$greater$1 = (function(obj, depth) {
+  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.s_util_parsing_combinator_Parsers$Parser$$anonfun$$tilde$greater$1)))
+});
+ScalaJS.asArrayOf.s_util_parsing_combinator_Parsers$Parser$$anonfun$$tilde$greater$1 = (function(obj, depth) {
+  return ((ScalaJS.isArrayOf.s_util_parsing_combinator_Parsers$Parser$$anonfun$$tilde$greater$1(obj, depth) || (obj === null)) ? obj : ScalaJS.throwArrayCastException(obj, "Lscala.util.parsing.combinator.Parsers$Parser$$anonfun$$tilde$greater$1;", depth))
+});
+ScalaJS.d.s_util_parsing_combinator_Parsers$Parser$$anonfun$$tilde$greater$1 = new ScalaJS.ClassTypeData({
+  s_util_parsing_combinator_Parsers$Parser$$anonfun$$tilde$greater$1: 0
+}, false, "scala.util.parsing.combinator.Parsers$Parser$$anonfun$$tilde$greater$1", ScalaJS.d.sr_AbstractFunction1, {
+  s_util_parsing_combinator_Parsers$Parser$$anonfun$$tilde$greater$1: 1,
+  s_Serializable: 1,
+  Ljava_io_Serializable: 1,
+  sr_AbstractFunction1: 1,
+  F1: 1,
+  O: 1
+});
+ScalaJS.c.s_util_parsing_combinator_Parsers$Parser$$anonfun$$tilde$greater$1.prototype.$classData = ScalaJS.d.s_util_parsing_combinator_Parsers$Parser$$anonfun$$tilde$greater$1;
 /** @constructor */
 ScalaJS.c.s_util_parsing_combinator_Parsers$Parser$$anonfun$append$1 = (function() {
   ScalaJS.c.sr_AbstractFunction1.call(this);
