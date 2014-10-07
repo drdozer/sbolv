@@ -48,6 +48,10 @@ object FixedOrProportionalDemo {
             glyphs() = glyphs() :+ RibosomeEntrySite.fixedWidth(Rightwards)
           case "res_leftwards" =>
             glyphs() = glyphs() :+ RibosomeEntrySite.fixedWidth(Leftwards)
+          case "term_rightwards" =>
+            glyphs() = glyphs() :+ Terminator.fixedWidth(Rightwards)
+          case "term_leftwards" =>
+            glyphs() = glyphs() :+ Terminator.fixedWidth(Leftwards)
         }
       }
     }
