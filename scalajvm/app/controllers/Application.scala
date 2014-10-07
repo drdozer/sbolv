@@ -27,4 +27,8 @@ object Application extends Controller {
   def fixedOrProportional = Action {
     Ok(views.html.fixedOrProportional())
   }
+
+  def terminator = Action {
+    Ok(views.html.terminator())
+  }
 }

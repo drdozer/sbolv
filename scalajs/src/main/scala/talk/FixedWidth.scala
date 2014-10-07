@@ -74,6 +74,8 @@ object FixedWidth {
             case "c<" => Cds.fixedWidth(Leftwards)
             case "r>" => RibosomeEntrySite.fixedWidth(Rightwards)
             case "r<" => RibosomeEntrySite.fixedWidth(Leftwards)
+            case "t>" => Terminator.fixedWidth(Rightwards)
+            case "t<" => Terminator.fixedWidth(Leftwards)
           }
         }
         println(s"Adding ${glyphs.length} glyphs")
