@@ -4,7 +4,7 @@ import org.scalajs.dom.Node
 import rx.core.{Rx, Var}
 
 
-case class Terminator(direction: Rx[Direction],
+final case class Terminator(direction: Rx[Direction],
                alignment: Rx[BackboneAlignment],
                outerLabel: Rx[Option[String]],
                backboneWidth: Rx[Double],
@@ -48,7 +48,7 @@ case class Terminator(direction: Rx[Direction],
 
   private val glyphPath = path(`class` := "sbolv_glyph", d := glyphPath_d)
 
-  val glyph = g(
+  override val glyph = g(
     `class` := "sbolv term",
     transform := glyph_transform
   )(glyphPath, outerLabelText).render
@@ -97,5 +97,9 @@ object Terminator {
     }
 
     abstract override def shortcodeHandlers(sc: Shortcode) = super.shortcodeHandlers(sc) orElse termHandler.lift(sc)
+  }
+
+  trait FWSC extends FixedWidthShorcodeContent {
+    abstract override def Code(c: String) = if(c == "t") fixedWidth else super.Code(c)
   }
 }

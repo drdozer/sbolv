@@ -1,10 +1,12 @@
 package talk
 
 import org.scalajs.dom.{Node, SVGGElement}
-import rx.core.{Var, Obs, Rx}
+import rx.core.{Rx, Var, Obs}
 import rx.ops._
+import talk.{GlyphFamily, Direction}
 
 import scala.scalajs.js
+import scala.util.parsing.combinator.RegexParsers
 
 /**
  *
@@ -56,6 +58,12 @@ object FixedWidth {
     import scalatags.JsDom.svgTags._
     import scalatags.JsDom.svgAttrs._
 
+    object FWSC extends FixedWidthShorcodeContent
+        with Promoter.FWSC
+        with RibosomeEntrySite.FWSC
+        with Cds.FWSC
+        with Terminator.FWSC
+
     private val sbolvHandler: PartialFunction[Shortcode, Node] = {
       case Shortcode("sbolv", attrs, content) =>
         val attrsM = attrs.toMap
@@ -67,16 +75,7 @@ object FixedWidth {
           c <- content.to[Seq]
           g <- c.split("""\s+""")
         } yield {
-          g match {
-            case "p>" => Promoter.fixedWidth(Rightwards)
-            case "p<" => Promoter.fixedWidth(Leftwards)
-            case "c>" => Cds.fixedWidth(Rightwards)
-            case "c<" => Cds.fixedWidth(Leftwards)
-            case "r>" => RibosomeEntrySite.fixedWidth(Rightwards)
-            case "r<" => RibosomeEntrySite.fixedWidth(Leftwards)
-            case "t>" => Terminator.fixedWidth(Rightwards)
-            case "t<" => Terminator.fixedWidth(Leftwards)
-          }
+          FWSC.parseAll(FWSC.entry, g).get
         }
         println(s"Adding ${glyphs.length} glyphs")
         val glyphsV = Var(Seq.empty[(Rx[Double], Rx[BackboneAlignment]) => GlyphFamily])
@@ -91,4 +90,22 @@ object FixedWidth {
     abstract override def shortcodeHandlers(sc: Shortcode) = super.shortcodeHandlers(sc) orElse sbolvHandler.lift(sc)
 
   }
+}
+
+abstract class FixedWidthShorcodeContent extends RegexParsers {
+  private val code = """[a-zA-Z]""".r ^^ { case c => Code(c) }
+
+  private val lt: Parser[Direction] = "<" ^^^ Leftwards
+  private val gt: Parser[Direction] = ">" ^^^ Rightwards
+  private val dir = lt | gt
+
+  private val qt: Parser[String] = "\""
+  private val notQt: Parser[String] = "[^\"]*".r
+  private val qtStr = qt ~> notQt <~ qt
+
+
+  val entry = code ~ dir ~ qtStr.? ^^ { case c ~ d ~ l => c(d, l) }
+
+  def Code(c: String): (Direction, Option[String]) => (Rx[Double], Rx[BackboneAlignment]) => GlyphFamily =
+    throw new IllegalArgumentException(s"Unknown code: $c")
 }

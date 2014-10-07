@@ -132,4 +132,8 @@ object Promoter {
     abstract override def shortcodeHandlers(sc: Shortcode) = super.shortcodeHandlers(sc) orElse promoterHandler.lift(sc)
 
   }
+
+  trait FWSC extends FixedWidthShorcodeContent {
+    abstract override def Code(c: String) = if(c == "p") fixedWidth else super.Code(c)
+  }
 }

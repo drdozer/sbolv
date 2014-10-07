@@ -104,4 +104,8 @@ object Cds {
 
     abstract override def shortcodeHandlers(sc: Shortcode) = super.shortcodeHandlers(sc) orElse cdsHandler.lift(sc)
   }
+
+  trait FWSC extends FixedWidthShorcodeContent {
+    abstract override def Code(c: String) = if(c == "c") fixedWidth else super.Code(c)
+  }
 }
