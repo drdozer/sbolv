@@ -7,6 +7,7 @@ GET         /demo.html controllers.Application.demo
 GET        /cds.html             controllers.Application.cds
 GET        /promoter.html        controllers.Application.promoter
 GET        /ribosomeEntrySite.html controllers.Application.ribosomeEntrySite
+GET         /terminator.html controllers.Application.terminator
 GET         /fixedOrProportional.html controllers.Application.fixedOrProportional
 
 GET        /public/*file         controllers.Assets.at(path="/public", file)
