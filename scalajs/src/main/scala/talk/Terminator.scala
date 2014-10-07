@@ -59,7 +59,7 @@ object Terminator {
     Terminator(Var(direction), alignment, Var(label), Var(0), Rx {
       val w = width() * 0.9
       new Metrics {
-        def length = w
+        def length = w * 0.66
         def depth = w * 0.5
       }
     })
