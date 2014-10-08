@@ -1213,6 +1213,10 @@ ScalaJS.i.Lscalatags_generic_TypedTag$class__build__Lscalatags_generic_TypedTag_
     }
   }
 });
+ScalaJS.i.Lscalatags_generic_Util$class__OptionNode__Lscalatags_generic_Util__s_Option__F1__Lscalatags_generic_Util$SeqNode = (function($$this, xs, evidence$2) {
+  var this$2 = xs.toList__sci_List();
+  return new ScalaJS.c.Lscalatags_generic_Util$SeqNode().init___Lscalatags_generic_Util__sc_Seq__F1($$this, this$2, evidence$2)
+});
 ScalaJS.i.Lscalatags_jsdom_Frag$class__applyTo__Lscalatags_jsdom_Frag__Lorg_scalajs_dom_Element__V = (function($$this, b) {
   b["appendChild"]($$this.render__Lorg_scalajs_dom_Node())
 });
@@ -4226,6 +4230,9 @@ ScalaJS.i.sjsr_RuntimeString$class__toCharArray__sjsr_RuntimeString__AC = (funct
 ScalaJS.i.sjsr_RuntimeString$class__substring__sjsr_RuntimeString__I__I__T = (function($$this, beginIndex, endIndex) {
   return ScalaJS.as.T($$this["substring"](beginIndex, endIndex))
 });
+ScalaJS.i.sjsr_RuntimeString$class__trim__sjsr_RuntimeString__T = (function($$this) {
+  return ScalaJS.as.T($$this["trim"]())
+});
 ScalaJS.i.sjsr_RuntimeString$class__length__sjsr_RuntimeString__I = (function($$this) {
   return (ScalaJS.uD($$this["length"]) | 0)
 });
@@ -6620,6 +6627,48 @@ ScalaJS.m.Lscalatags_JsDom$svgTags = (function() {
   return ScalaJS.n.Lscalatags_JsDom$svgTags
 });
 /** @constructor */
+ScalaJS.c.Lscalatags_LowPriorityImplicits$$anon$1 = (function() {
+  ScalaJS.c.O.call(this);
+  this.evidence$2$1$1 = null
+});
+ScalaJS.c.Lscalatags_LowPriorityImplicits$$anon$1.prototype = new ScalaJS.h.O();
+ScalaJS.c.Lscalatags_LowPriorityImplicits$$anon$1.prototype.constructor = ScalaJS.c.Lscalatags_LowPriorityImplicits$$anon$1;
+/** @constructor */
+ScalaJS.h.Lscalatags_LowPriorityImplicits$$anon$1 = (function() {
+  /*<skip>*/
+});
+ScalaJS.h.Lscalatags_LowPriorityImplicits$$anon$1.prototype = ScalaJS.c.Lscalatags_LowPriorityImplicits$$anon$1.prototype;
+ScalaJS.c.Lscalatags_LowPriorityImplicits$$anon$1.prototype.init___Lscalatags_LowPriorityImplicits__F1 = (function($$outer, evidence$2$1) {
+  this.evidence$2$1$1 = evidence$2$1;
+  return this
+});
+ScalaJS.c.Lscalatags_LowPriorityImplicits$$anon$1.prototype.apply__Lorg_scalajs_dom_Element__Lscalatags_generic_Attr__O__V = (function(t, a, v) {
+  t[a.name$1] = this.evidence$2$1$1.apply__O__O(v)
+});
+ScalaJS.c.Lscalatags_LowPriorityImplicits$$anon$1.prototype.apply__O__Lscalatags_generic_Attr__O__V = (function(t, a, v) {
+  this.apply__Lorg_scalajs_dom_Element__Lscalatags_generic_Attr__O__V(t, a, v)
+});
+ScalaJS.is.Lscalatags_LowPriorityImplicits$$anon$1 = (function(obj) {
+  return (!(!((obj && obj.$classData) && obj.$classData.ancestors.Lscalatags_LowPriorityImplicits$$anon$1)))
+});
+ScalaJS.as.Lscalatags_LowPriorityImplicits$$anon$1 = (function(obj) {
+  return ((ScalaJS.is.Lscalatags_LowPriorityImplicits$$anon$1(obj) || (obj === null)) ? obj : ScalaJS.throwClassCastException(obj, "scalatags.LowPriorityImplicits$$anon$1"))
+});
+ScalaJS.isArrayOf.Lscalatags_LowPriorityImplicits$$anon$1 = (function(obj, depth) {
+  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.Lscalatags_LowPriorityImplicits$$anon$1)))
+});
+ScalaJS.asArrayOf.Lscalatags_LowPriorityImplicits$$anon$1 = (function(obj, depth) {
+  return ((ScalaJS.isArrayOf.Lscalatags_LowPriorityImplicits$$anon$1(obj, depth) || (obj === null)) ? obj : ScalaJS.throwArrayCastException(obj, "Lscalatags.LowPriorityImplicits$$anon$1;", depth))
+});
+ScalaJS.d.Lscalatags_LowPriorityImplicits$$anon$1 = new ScalaJS.ClassTypeData({
+  Lscalatags_LowPriorityImplicits$$anon$1: 0
+}, false, "scalatags.LowPriorityImplicits$$anon$1", ScalaJS.d.O, {
+  Lscalatags_LowPriorityImplicits$$anon$1: 1,
+  Lscalatags_generic_AttrValue: 1,
+  O: 1
+});
+ScalaJS.c.Lscalatags_LowPriorityImplicits$$anon$1.prototype.$classData = ScalaJS.d.Lscalatags_LowPriorityImplicits$$anon$1;
+/** @constructor */
 ScalaJS.c.Lscalatags_LowPriorityImplicits$bindNode = (function() {
   ScalaJS.c.O.call(this);
   this.e$1 = null;
@@ -7220,6 +7269,57 @@ ScalaJS.d.Lscalatags_generic_Util$ExtendedString = new ScalaJS.ClassTypeData({
   O: 1
 });
 ScalaJS.c.Lscalatags_generic_Util$ExtendedString.prototype.$classData = ScalaJS.d.Lscalatags_generic_Util$ExtendedString;
+/** @constructor */
+ScalaJS.c.Lscalatags_generic_Util$SeqNode = (function() {
+  ScalaJS.c.O.call(this);
+  this.xs$1 = null;
+  this.scalatags$generic$Util$SeqNode$$evidence$1$f = null;
+  this.$$outer$f = null
+});
+ScalaJS.c.Lscalatags_generic_Util$SeqNode.prototype = new ScalaJS.h.O();
+ScalaJS.c.Lscalatags_generic_Util$SeqNode.prototype.constructor = ScalaJS.c.Lscalatags_generic_Util$SeqNode;
+/** @constructor */
+ScalaJS.h.Lscalatags_generic_Util$SeqNode = (function() {
+  /*<skip>*/
+});
+ScalaJS.h.Lscalatags_generic_Util$SeqNode.prototype = ScalaJS.c.Lscalatags_generic_Util$SeqNode.prototype;
+ScalaJS.c.Lscalatags_generic_Util$SeqNode.prototype.init___Lscalatags_generic_Util__sc_Seq__F1 = (function($$outer, xs, evidence$1) {
+  this.xs$1 = xs;
+  this.scalatags$generic$Util$SeqNode$$evidence$1$f = evidence$1;
+  if (($$outer === null)) {
+    throw ScalaJS.unwrapJavaScriptException(null)
+  } else {
+    this.$$outer$f = $$outer
+  };
+  return this
+});
+ScalaJS.c.Lscalatags_generic_Util$SeqNode.prototype.applyTo__O__V = (function(t) {
+  this.xs$1.foreach__F1__V(new ScalaJS.c.sjsr_AnonFunction1().init___sjs_js_Function1((function(arg$outer, t$1) {
+    return (function(x$1$2) {
+      return (ScalaJS.as.Lscalatags_generic_Modifier(arg$outer.scalatags$generic$Util$SeqNode$$evidence$1$f.apply__O__O(x$1$2)).applyTo__O__V(t$1), (void 0))
+    })
+  })(this, t)))
+});
+ScalaJS.is.Lscalatags_generic_Util$SeqNode = (function(obj) {
+  return (!(!((obj && obj.$classData) && obj.$classData.ancestors.Lscalatags_generic_Util$SeqNode)))
+});
+ScalaJS.as.Lscalatags_generic_Util$SeqNode = (function(obj) {
+  return ((ScalaJS.is.Lscalatags_generic_Util$SeqNode(obj) || (obj === null)) ? obj : ScalaJS.throwClassCastException(obj, "scalatags.generic.Util$SeqNode"))
+});
+ScalaJS.isArrayOf.Lscalatags_generic_Util$SeqNode = (function(obj, depth) {
+  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.Lscalatags_generic_Util$SeqNode)))
+});
+ScalaJS.asArrayOf.Lscalatags_generic_Util$SeqNode = (function(obj, depth) {
+  return ((ScalaJS.isArrayOf.Lscalatags_generic_Util$SeqNode(obj, depth) || (obj === null)) ? obj : ScalaJS.throwArrayCastException(obj, "Lscalatags.generic.Util$SeqNode;", depth))
+});
+ScalaJS.d.Lscalatags_generic_Util$SeqNode = new ScalaJS.ClassTypeData({
+  Lscalatags_generic_Util$SeqNode: 0
+}, false, "scalatags.generic.Util$SeqNode", ScalaJS.d.O, {
+  Lscalatags_generic_Util$SeqNode: 1,
+  Lscalatags_generic_Modifier: 1,
+  O: 1
+});
+ScalaJS.c.Lscalatags_generic_Util$SeqNode.prototype.$classData = ScalaJS.d.Lscalatags_generic_Util$SeqNode;
 /** @constructor */
 ScalaJS.c.Ltalk_AboveBackbone$ = (function() {
   ScalaJS.c.O.call(this)
@@ -9026,7 +9126,10 @@ ScalaJS.h.Ltalk_FixedOrProportionalDemo$ = (function() {
   /*<skip>*/
 });
 ScalaJS.h.Ltalk_FixedOrProportionalDemo$.prototype = ScalaJS.c.Ltalk_FixedOrProportionalDemo$.prototype;
-ScalaJS.c.Ltalk_FixedOrProportionalDemo$.prototype.wireFixdWidthExample__T__V = (function(divId) {
+ScalaJS.c.Ltalk_FixedOrProportionalDemo$.prototype.$$js$exported$meth$wireFixedWidthExample__T__O = (function(divId) {
+  return (this.wireFixedWidthExample__T__V(divId), (void 0))
+});
+ScalaJS.c.Ltalk_FixedOrProportionalDemo$.prototype.wireFixedWidthExample__T__V = (function(divId) {
   var div = ScalaJS.g["document"]["getElementById"](divId);
   var jsx$1 = ScalaJS.m.Ltalk_Enhancements$EnhancedDOMList();
   var _dl = div["getElementsByClassName"]("length_slider");
@@ -9035,61 +9138,70 @@ ScalaJS.c.Ltalk_FixedOrProportionalDemo$.prototype.wireFixdWidthExample__T__V = 
   var _dl$1 = div["getElementsByClassName"]("length");
   var lengthSpan = jsx$2.elements$extension__Lorg_scalajs_dom_DOMList__s_Predef$$less$colon$less__sc_IndexedSeq(_dl$1, ScalaJS.m.s_Predef().singleton$und$less$colon$less$2);
   var jsx$3 = ScalaJS.m.Ltalk_Enhancements$EnhancedDOMList();
-  var _dl$2 = div["getElementsByTagName"]("button");
-  var this$5 = jsx$3.elements$extension__Lorg_scalajs_dom_DOMList__s_Predef$$less$colon$less__sc_IndexedSeq(_dl$2, ScalaJS.m.s_Predef().singleton$und$less$colon$less$2);
+  var _dl$2 = div["getElementsByClassName"]("label_editor");
+  var labelEditor = jsx$3.elements$extension__Lorg_scalajs_dom_DOMList__s_Predef$$less$colon$less__sc_IndexedSeq(_dl$2, ScalaJS.m.s_Predef().singleton$und$less$colon$less$2).head__O();
+  var jsx$4 = ScalaJS.m.Ltalk_Enhancements$EnhancedDOMList();
+  var _dl$3 = div["getElementsByTagName"]("button");
+  var this$6 = jsx$4.elements$extension__Lorg_scalajs_dom_DOMList__s_Predef$$less$colon$less__sc_IndexedSeq(_dl$3, ScalaJS.m.s_Predef().singleton$und$less$colon$less$2);
   var f = new ScalaJS.c.sjsr_AnonFunction1().init___sjs_js_Function1((function(x$1$2) {
     var x$1 = x$1$2;
     return x$1
   }));
-  var this$4 = ScalaJS.m.sc_IndexedSeq();
-  var bf = this$4.ReusableCBF$6;
-  var buttons = ScalaJS.as.sc_IndexedSeq(ScalaJS.i.sc_TraversableLike$class__map__sc_TraversableLike__F1__scg_CanBuildFrom__O(this$5, f, bf));
-  var jsx$4 = ScalaJS.m.Ltalk_Enhancements$EnhancedDOMList();
-  var _dl$3 = div["getElementsByClassName"]("glyphs");
-  var this$8 = jsx$4.elements$extension__Lorg_scalajs_dom_DOMList__s_Predef$$less$colon$less__sc_IndexedSeq(_dl$3, ScalaJS.m.s_Predef().singleton$und$less$colon$less$2);
+  var this$5 = ScalaJS.m.sc_IndexedSeq();
+  var bf = this$5.ReusableCBF$6;
+  var buttons = ScalaJS.as.sc_IndexedSeq(ScalaJS.i.sc_TraversableLike$class__map__sc_TraversableLike__F1__scg_CanBuildFrom__O(this$6, f, bf));
+  var jsx$5 = ScalaJS.m.Ltalk_Enhancements$EnhancedDOMList();
+  var _dl$4 = div["getElementsByClassName"]("glyphs");
+  var this$9 = jsx$5.elements$extension__Lorg_scalajs_dom_DOMList__s_Predef$$less$colon$less__sc_IndexedSeq(_dl$4, ScalaJS.m.s_Predef().singleton$und$less$colon$less$2);
   var f$1 = new ScalaJS.c.sjsr_AnonFunction1().init___sjs_js_Function1((function(x$2$2) {
     var x$2 = x$2$2;
     return x$2
   }));
-  var this$7 = ScalaJS.m.sc_IndexedSeq();
-  var bf$1 = this$7.ReusableCBF$6;
-  var svg = ScalaJS.as.sc_IterableLike(ScalaJS.i.sc_TraversableLike$class__map__sc_TraversableLike__F1__scg_CanBuildFrom__O(this$8, f$1, bf$1)).head__O();
-  var jsx$5 = ScalaJS.m.Ltalk_Enhancements$EnhancedDOMList();
-  var _dl$4 = svg["getElementsByClassName"]("track");
-  var this$11 = jsx$5.elements$extension__Lorg_scalajs_dom_DOMList__s_Predef$$less$colon$less__sc_IndexedSeq(_dl$4, ScalaJS.m.s_Predef().singleton$und$less$colon$less$2);
+  var this$8 = ScalaJS.m.sc_IndexedSeq();
+  var bf$1 = this$8.ReusableCBF$6;
+  var svg = ScalaJS.as.sc_IterableLike(ScalaJS.i.sc_TraversableLike$class__map__sc_TraversableLike__F1__scg_CanBuildFrom__O(this$9, f$1, bf$1)).head__O();
+  var jsx$6 = ScalaJS.m.Ltalk_Enhancements$EnhancedDOMList();
+  var _dl$5 = svg["getElementsByClassName"]("track");
+  var this$12 = jsx$6.elements$extension__Lorg_scalajs_dom_DOMList__s_Predef$$less$colon$less__sc_IndexedSeq(_dl$5, ScalaJS.m.s_Predef().singleton$und$less$colon$less$2);
   var f$2 = new ScalaJS.c.sjsr_AnonFunction1().init___sjs_js_Function1((function(x$3$2) {
     var x$3 = x$3$2;
     return x$3
   }));
-  var this$10 = ScalaJS.m.sc_IndexedSeq();
-  var bf$2 = this$10.ReusableCBF$6;
-  var track = ScalaJS.as.sc_IterableLike(ScalaJS.i.sc_TraversableLike$class__map__sc_TraversableLike__F1__scg_CanBuildFrom__O(this$11, f$2, bf$2)).head__O();
+  var this$11 = ScalaJS.m.sc_IndexedSeq();
+  var bf$2 = this$11.ReusableCBF$6;
+  var track = ScalaJS.as.sc_IterableLike(ScalaJS.i.sc_TraversableLike$class__map__sc_TraversableLike__F1__scg_CanBuildFrom__O(this$12, f$2, bf$2)).head__O();
   var es = lengthSlider.valueAsNumber$1;
-  var callback = new ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$1().init___Ltalk_ReactiveSlider__sc_IndexedSeq(lengthSlider, lengthSpan);
+  var callback = new ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$1().init___Ltalk_ReactiveSlider__sc_IndexedSeq(lengthSlider, lengthSpan);
   new ScalaJS.c.Lrx_core_Obs().init___Lrx_core_Emitter__F0__T__Z(es, callback, "", false);
   var value = new ScalaJS.c.sjsr_AnonFunction0().init___sjs_js_Function0((function() {
     return ScalaJS.as.sc_Seq(ScalaJS.m.sc_Seq().empty__sc_GenTraversable())
   }));
   var glyphs = new ScalaJS.c.Lrx_core_Var().init___F0__T(value, "");
-  var jsx$7 = ScalaJS.m.Lrx_ops_package$RxOps();
+  var jsx$8 = ScalaJS.m.Lrx_ops_package$RxOps();
   var source = lengthSlider.valueAsNumber$1;
-  var jsx$6 = jsx$7.map$extension__Lrx_core_Rx__F1__Lrx_core_Rx(source, new ScalaJS.c.sjsr_AnonFunction1().init___sjs_js_Function1((function(x$5$2) {
+  var jsx$7 = jsx$8.map$extension__Lrx_core_Rx__F1__Lrx_core_Rx(source, new ScalaJS.c.sjsr_AnonFunction1().init___sjs_js_Function1((function(x$5$2) {
     var x$5 = ScalaJS.uI(x$5$2);
     return x$5
   })));
   var value$1 = new ScalaJS.c.sjsr_AnonFunction0().init___sjs_js_Function0((function() {
     return ScalaJS.m.Ltalk_CentredOnBackbone()
   }));
-  var fw = new ScalaJS.c.Ltalk_FixedWidth().init___Lrx_core_Rx__Lrx_core_Rx__Lrx_core_Rx(jsx$6, new ScalaJS.c.Lrx_core_Var().init___F0__T(value$1, ""), glyphs);
+  var fw = new ScalaJS.c.Ltalk_FixedWidth().init___Lrx_core_Rx__Lrx_core_Rx__Lrx_core_Rx(jsx$7, new ScalaJS.c.Lrx_core_Var().init___F0__T(value$1, ""), glyphs);
   ScalaJS.m.Ltalk_Enhancements$EnhancedElement().apply$extension0__Lorg_scalajs_dom_Element__sc_Seq__Ltalk_Enhancements$Applier__Lorg_scalajs_dom_Element(track, ScalaJS.m.s_Predef().wrapRefArray__AO__scm_WrappedArray(ScalaJS.asArrayOf.O(ScalaJS.makeNativeArrayWrapper(ScalaJS.d.Lorg_scalajs_dom_SVGGElement.getArrayOf(), [fw.allGlyphs$1]), 1)), new ScalaJS.c.Ltalk_Enhancements$$anon$2().init___());
-  buttons.foreach__F1__V(new ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$2().init___Lrx_core_Var(glyphs))
+  var value$2 = new ScalaJS.c.sjsr_AnonFunction0().init___sjs_js_Function0((function() {
+    return ScalaJS.m.s_None()
+  }));
+  var selectedGlyph = new ScalaJS.c.Lrx_core_Var().init___F0__T(value$2, "");
+  var calc = new ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$8().init___Lrx_core_Var(selectedGlyph);
+  var selectedGlyphLabels = new ScalaJS.c.Lrx_core_Dynamic().init___F0__T(calc, (ScalaJS.m.Lrx_core_Dynamic(), ""));
+  var calc$1 = new ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$10().init___Lrx_core_Rx(selectedGlyphLabels);
+  var selectionWidget = new ScalaJS.c.Lrx_core_Dynamic().init___F0__T(calc$1, (ScalaJS.m.Lrx_core_Dynamic(), ""));
+  labelEditor["appendChild"](ScalaJS.as.Lscalatags_JsDom$TypedTag(ScalaJS.m.Lscalatags_JsDom$all().span$1).apply__sc_Seq__Lscalatags_JsDom$TypedTag(ScalaJS.m.s_Predef().wrapRefArray__AO__scm_WrappedArray(ScalaJS.asArrayOf.O(ScalaJS.makeNativeArrayWrapper(ScalaJS.d.Lscalatags_generic_Modifier.getArrayOf(), [ScalaJS.m.Ltalk_Framework().rxModT__Lrx_core_Rx__Lscalatags_generic_Frag(selectionWidget)]), 1))).render__Lorg_scalajs_dom_Element());
+  buttons.foreach__F1__V(new ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$2().init___Lrx_core_Var__Lrx_core_Var(glyphs, selectedGlyph))
 });
-ScalaJS.c.Ltalk_FixedOrProportionalDemo$.prototype.$$js$exported$meth$wireFixdWidthExample__T__O = (function(divId) {
-  return (this.wireFixdWidthExample__T__V(divId), (void 0))
-});
-ScalaJS.c.Ltalk_FixedOrProportionalDemo$.prototype["wireFixdWidthExample"] = (function(arg$1) {
+ScalaJS.c.Ltalk_FixedOrProportionalDemo$.prototype["wireFixedWidthExample"] = (function(arg$1) {
   arg$1 = ScalaJS.as.T(arg$1);
-  return this.$$js$exported$meth$wireFixdWidthExample__T__O(arg$1)
+  return this.$$js$exported$meth$wireFixedWidthExample__T__O(arg$1)
 });
 ScalaJS.is.Ltalk_FixedOrProportionalDemo$ = (function(obj) {
   return (!(!((obj && obj.$classData) && obj.$classData.ancestors.Ltalk_FixedOrProportionalDemo$)))
@@ -9403,6 +9515,21 @@ ScalaJS.c.Ltalk_Framework$.prototype.init___ = (function() {
   ScalaJS.i.Ltalk_DomL3$class__$init$__Ltalk_DomL3__V(this);
   return this
 });
+ScalaJS.c.Ltalk_Framework$.prototype.rxModT__Lrx_core_Rx__Lscalatags_generic_Frag = (function(r) {
+  var elem = this.talk$Framework$$rSafe$1__Lrx_core_Rx__Lorg_scalajs_dom_HTMLElement(r);
+  var last = new ScalaJS.c.sr_ObjectRef().init___O(elem);
+  var x$4 = new ScalaJS.c.sjsr_AnonFunction0().init___sjs_js_Function0((function(r$2, last$1) {
+    return (function() {
+      var newLast = ScalaJS.m.Ltalk_Framework().talk$Framework$$rSafe$1__Lrx_core_Rx__Lorg_scalajs_dom_HTMLElement(r$2);
+      last$1.elem$1["parentNode"]["replaceChild"](newLast, last$1.elem$1);
+      last$1.elem$1 = newLast
+    })
+  })(r, last));
+  new ScalaJS.c.Lrx_core_Obs().init___Lrx_core_Emitter__F0__T__Z(r, x$4, "", true);
+  var this$3 = ScalaJS.m.Lscalatags_JsDom$all();
+  var e = last.elem$1;
+  return new ScalaJS.c.Lscalatags_LowPriorityImplicits$bindNode().init___Lscalatags_LowPriorityImplicits__Lorg_scalajs_dom_Node(this$3, e)
+});
 ScalaJS.c.Ltalk_Framework$.prototype.RxStr__Lrx_core_Rx__Lscalatags_generic_Frag = (function(r) {
   ScalaJS.m.Lrx_package().Rx$1;
   var calc = new ScalaJS.c.sjsr_AnonFunction0().init___sjs_js_Function0((function(r$3) {
@@ -9430,6 +9557,27 @@ ScalaJS.c.Ltalk_Framework$.prototype.talk$Framework$$rSafe$2__Lrx_core_Rx__Lorg_
     var this$3 = ScalaJS.m.Lscalatags_JsDom$all().backgroundColor$1;
     var ev = ScalaJS.m.Lscalatags_JsDom$all().stringStyle$1;
     return ScalaJS.as.Lscalatags_JsDom$TypedTag(jsx$3).apply__sc_Seq__Lscalatags_JsDom$TypedTag(jsx$2.wrapRefArray__AO__scm_WrappedArray(ScalaJS.asArrayOf.O(ScalaJS.makeNativeArrayWrapper(ScalaJS.d.Lscalatags_generic_Modifier.getArrayOf(), [jsx$1, new ScalaJS.c.Lscalatags_generic_StylePair().init___Lscalatags_generic_Style__O__Lscalatags_generic_StyleValue(this$3, "red", ev)]), 1))).render__Lorg_scalajs_dom_Element()
+  } else {
+    throw new ScalaJS.c.s_MatchError().init___O(x1)
+  }
+});
+ScalaJS.c.Ltalk_Framework$.prototype.talk$Framework$$rSafe$1__Lrx_core_Rx__Lorg_scalajs_dom_HTMLElement = (function(r$2) {
+  var x1 = r$2.toTry__s_util_Try();
+  if (ScalaJS.is.s_util_Success(x1)) {
+    var x2 = ScalaJS.as.s_util_Success(x1);
+    var v = ScalaJS.as.Lscalatags_JsDom$TypedTag(x2.value$2);
+    return v.render__Lorg_scalajs_dom_Element()
+  } else if (ScalaJS.is.s_util_Failure(x1)) {
+    var x3 = ScalaJS.as.s_util_Failure(x1);
+    var e = x3.exception$2;
+    var jsx$3 = ScalaJS.m.Lscalatags_JsDom$all().span$1;
+    var jsx$2 = ScalaJS.m.s_Predef();
+    ScalaJS.m.Lscalatags_JsDom$all();
+    var v$1 = e.toString__T();
+    var jsx$1 = new ScalaJS.c.Lscalatags_JsDom$StringFrag().init___T(v$1);
+    var this$2 = ScalaJS.m.Lscalatags_JsDom$all().backgroundColor$1;
+    var ev = ScalaJS.m.Lscalatags_JsDom$all().stringStyle$1;
+    return ScalaJS.as.Lscalatags_JsDom$TypedTag(jsx$3).apply__sc_Seq__Lscalatags_JsDom$TypedTag(jsx$2.wrapRefArray__AO__scm_WrappedArray(ScalaJS.asArrayOf.O(ScalaJS.makeNativeArrayWrapper(ScalaJS.d.Lscalatags_generic_Modifier.getArrayOf(), [jsx$1, new ScalaJS.c.Lscalatags_generic_StylePair().init___Lscalatags_generic_Style__O__Lscalatags_generic_StyleValue(this$2, "red", ev)]), 1))).render__Lorg_scalajs_dom_Element()
   } else {
     throw new ScalaJS.c.s_MatchError().init___O(x1)
   }
@@ -9581,6 +9729,42 @@ ScalaJS.d.Ltalk_GlyphFamily = new ScalaJS.ClassTypeData({
   Ltalk_GlyphFamily: 0
 }, true, "talk.GlyphFamily", (void 0), {
   Ltalk_GlyphFamily: 1,
+  O: 1
+});
+ScalaJS.is.Ltalk_GlyphFamilyWithInnerLabel = (function(obj) {
+  return (!(!((obj && obj.$classData) && obj.$classData.ancestors.Ltalk_GlyphFamilyWithInnerLabel)))
+});
+ScalaJS.as.Ltalk_GlyphFamilyWithInnerLabel = (function(obj) {
+  return ((ScalaJS.is.Ltalk_GlyphFamilyWithInnerLabel(obj) || (obj === null)) ? obj : ScalaJS.throwClassCastException(obj, "talk.GlyphFamilyWithInnerLabel"))
+});
+ScalaJS.isArrayOf.Ltalk_GlyphFamilyWithInnerLabel = (function(obj, depth) {
+  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.Ltalk_GlyphFamilyWithInnerLabel)))
+});
+ScalaJS.asArrayOf.Ltalk_GlyphFamilyWithInnerLabel = (function(obj, depth) {
+  return ((ScalaJS.isArrayOf.Ltalk_GlyphFamilyWithInnerLabel(obj, depth) || (obj === null)) ? obj : ScalaJS.throwArrayCastException(obj, "Ltalk.GlyphFamilyWithInnerLabel;", depth))
+});
+ScalaJS.d.Ltalk_GlyphFamilyWithInnerLabel = new ScalaJS.ClassTypeData({
+  Ltalk_GlyphFamilyWithInnerLabel: 0
+}, true, "talk.GlyphFamilyWithInnerLabel", (void 0), {
+  Ltalk_GlyphFamilyWithInnerLabel: 1,
+  O: 1
+});
+ScalaJS.is.Ltalk_GlyphFamilyWithOuterLabel = (function(obj) {
+  return (!(!((obj && obj.$classData) && obj.$classData.ancestors.Ltalk_GlyphFamilyWithOuterLabel)))
+});
+ScalaJS.as.Ltalk_GlyphFamilyWithOuterLabel = (function(obj) {
+  return ((ScalaJS.is.Ltalk_GlyphFamilyWithOuterLabel(obj) || (obj === null)) ? obj : ScalaJS.throwClassCastException(obj, "talk.GlyphFamilyWithOuterLabel"))
+});
+ScalaJS.isArrayOf.Ltalk_GlyphFamilyWithOuterLabel = (function(obj, depth) {
+  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.Ltalk_GlyphFamilyWithOuterLabel)))
+});
+ScalaJS.asArrayOf.Ltalk_GlyphFamilyWithOuterLabel = (function(obj, depth) {
+  return ((ScalaJS.isArrayOf.Ltalk_GlyphFamilyWithOuterLabel(obj, depth) || (obj === null)) ? obj : ScalaJS.throwArrayCastException(obj, "Ltalk.GlyphFamilyWithOuterLabel;", depth))
+});
+ScalaJS.d.Ltalk_GlyphFamilyWithOuterLabel = new ScalaJS.ClassTypeData({
+  Ltalk_GlyphFamilyWithOuterLabel: 0
+}, true, "talk.GlyphFamilyWithOuterLabel", (void 0), {
+  Ltalk_GlyphFamilyWithOuterLabel: 1,
   O: 1
 });
 /** @constructor */
@@ -25058,66 +25242,523 @@ ScalaJS.d.Ltalk_DataDiff$$anonfun$2 = new ScalaJS.ClassTypeData({
 });
 ScalaJS.c.Ltalk_DataDiff$$anonfun$2.prototype.$classData = ScalaJS.d.Ltalk_DataDiff$$anonfun$2;
 /** @constructor */
-ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$2 = (function() {
-  ScalaJS.c.sr_AbstractFunction1.call(this);
-  this.glyphs$1$f = null
+ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$10 = (function() {
+  ScalaJS.c.sr_AbstractFunction0.call(this);
+  this.selectedGlyphLabels$1$2 = null
 });
-ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$2.prototype = new ScalaJS.h.sr_AbstractFunction1();
-ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$2.prototype.constructor = ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$2;
+ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$10.prototype = new ScalaJS.h.sr_AbstractFunction0();
+ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$10.prototype.constructor = ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$10;
 /** @constructor */
-ScalaJS.h.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$2 = (function() {
+ScalaJS.h.Ltalk_FixedOrProportionalDemo$$anonfun$10 = (function() {
   /*<skip>*/
 });
-ScalaJS.h.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$2.prototype = ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$2.prototype;
-ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$2.prototype.apply__O__O = (function(v1) {
-  var b = v1;
-  b["onclick"] = (function(f) {
-    return (function(arg1) {
-      return f.apply__O__O(arg1)
-    })
-  })(new ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$2$$anonfun$apply$1().init___Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$2__Lorg_scalajs_dom_HTMLButtonElement(this, b))
+ScalaJS.h.Ltalk_FixedOrProportionalDemo$$anonfun$10.prototype = ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$10.prototype;
+ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$10.prototype.editor$1__p2__s_Option__T__s_Option = (function(rxO, descr) {
+  var f = new ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$10$$anonfun$editor$1$1().init___Ltalk_FixedOrProportionalDemo$$anonfun$10__T(this, descr);
+  if (rxO.isEmpty__Z()) {
+    return ScalaJS.m.s_None()
+  } else {
+    var v1 = rxO.get__O();
+    var rx = ScalaJS.as.Lrx_core_Rx(v1);
+    var jsx$15 = ScalaJS.m.Lscalatags_JsDom$all().span$1;
+    var jsx$14 = ScalaJS.m.s_Predef();
+    var this$1 = ScalaJS.m.Lscalatags_JsDom$all().class$1;
+    var ev = ScalaJS.m.Lscalatags_JsDom$all().stringAttr$1;
+    var jsx$13 = ScalaJS.as.Lscalatags_JsDom$TypedTag(jsx$15).apply__sc_Seq__Lscalatags_JsDom$TypedTag(jsx$14.wrapRefArray__AO__scm_WrappedArray(ScalaJS.asArrayOf.O(ScalaJS.makeNativeArrayWrapper(ScalaJS.d.Lscalatags_generic_Modifier.getArrayOf(), [new ScalaJS.c.Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$1, "label_editor", ev)]), 1)));
+    var jsx$12 = ScalaJS.m.s_Predef();
+    var jsx$11 = ScalaJS.m.Lscalatags_JsDom$all().span$1;
+    var jsx$10 = ScalaJS.m.s_Predef();
+    var this$2 = ScalaJS.m.Lscalatags_JsDom$all().class$1;
+    var ev$1 = ScalaJS.m.Lscalatags_JsDom$all().stringAttr$1;
+    var jsx$9 = ScalaJS.as.Lscalatags_JsDom$TypedTag(jsx$11).apply__sc_Seq__Lscalatags_JsDom$TypedTag(jsx$10.wrapRefArray__AO__scm_WrappedArray(ScalaJS.asArrayOf.O(ScalaJS.makeNativeArrayWrapper(ScalaJS.d.Lscalatags_generic_Modifier.getArrayOf(), [new ScalaJS.c.Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$2, "label_description", ev$1)]), 1)));
+    var jsx$8 = ScalaJS.m.s_Predef();
+    ScalaJS.m.Lscalatags_JsDom$all();
+    var v = f.descr$1$2;
+    var jsx$7 = jsx$9.apply__sc_Seq__Lscalatags_JsDom$TypedTag(jsx$8.wrapRefArray__AO__scm_WrappedArray(ScalaJS.asArrayOf.O(ScalaJS.makeNativeArrayWrapper(ScalaJS.d.Lscalatags_generic_Modifier.getArrayOf(), [new ScalaJS.c.Lscalatags_JsDom$StringFrag().init___T(v)]), 1)));
+    var jsx$6 = ScalaJS.m.Lscalatags_JsDom$all().input$1;
+    var jsx$5 = ScalaJS.m.s_Predef();
+    var this$4 = ScalaJS.m.Lscalatags_JsDom$all().class$1;
+    var ev$2 = ScalaJS.m.Lscalatags_JsDom$all().stringAttr$1;
+    var jsx$4 = new ScalaJS.c.Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$4, "label_textField", ev$2);
+    var this$5 = ScalaJS.m.Lscalatags_JsDom$all().type$1;
+    var ev$3 = ScalaJS.m.Lscalatags_JsDom$all().stringAttr$1;
+    var jsx$3 = new ScalaJS.c.Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$5, "text", ev$3);
+    var this$8 = ScalaJS.m.Lscalatags_JsDom$all().value$1;
+    var v$1 = ScalaJS.m.Lrx_ops_package$RxOps().map$extension__Lrx_core_Rx__F1__Lrx_core_Rx(rx, new ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$10$$anonfun$editor$1$1$$anonfun$apply$2().init___Ltalk_FixedOrProportionalDemo$$anonfun$10$$anonfun$editor$1$1(f));
+    ScalaJS.m.Ltalk_Framework();
+    var evidence$1 = ScalaJS.m.Lscalatags_JsDom$all().stringAttr$1;
+    var ev$4 = new ScalaJS.c.Ltalk_Framework$$anon$1().init___Lscalatags_generic_AttrValue(evidence$1);
+    var jsx$2 = new ScalaJS.c.Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$8, v$1, ev$4);
+    var this$10 = ScalaJS.m.Lscalatags_JsDom$all().onkeypress$1;
+    var v$2 = new ScalaJS.c.sjsr_AnonFunction1().init___sjs_js_Function1((function(arg$outer, rx$1) {
+      return (function(e$2) {
+        var e = e$2;
+        arg$outer.talk$FixedOrProportionalDemo$$anonfun$$anonfun$$changeHandler$1__Lorg_scalajs_dom_Event__Lrx_core_Rx__V(e, rx$1)
+      })
+    })(f, rx));
+    var this$9 = ScalaJS.m.Lscalatags_JsDom$all();
+    var evidence$2 = new ScalaJS.c.sjsr_AnonFunction1().init___sjs_js_Function1((function(f$2) {
+      var f$1 = ScalaJS.as.F1(f$2);
+      return (function(f$3) {
+        return (function(arg1) {
+          return f$3.apply__O__O(arg1)
+        })
+      })(f$1)
+    }));
+    var ev$5 = new ScalaJS.c.Lscalatags_LowPriorityImplicits$$anon$1().init___Lscalatags_LowPriorityImplicits__F1(this$9, evidence$2);
+    var jsx$1 = new ScalaJS.c.Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$10, v$2, ev$5);
+    var this$12 = new ScalaJS.c.Lscalatags_generic_Attr().init___T("oninput");
+    var v$3 = new ScalaJS.c.sjsr_AnonFunction1().init___sjs_js_Function1((function(arg$outer$1, rx$1$1) {
+      return (function(e$2$1) {
+        var e$1 = e$2$1;
+        arg$outer$1.talk$FixedOrProportionalDemo$$anonfun$$anonfun$$changeHandler$1__Lorg_scalajs_dom_Event__Lrx_core_Rx__V(e$1, rx$1$1)
+      })
+    })(f, rx));
+    var this$11 = ScalaJS.m.Lscalatags_JsDom$all();
+    var evidence$2$1 = new ScalaJS.c.sjsr_AnonFunction1().init___sjs_js_Function1((function(f$2$1) {
+      var f$4 = ScalaJS.as.F1(f$2$1);
+      return (function(f$5) {
+        return (function(arg1$1) {
+          return f$5.apply__O__O(arg1$1)
+        })
+      })(f$4)
+    }));
+    var ev$6 = new ScalaJS.c.Lscalatags_LowPriorityImplicits$$anon$1().init___Lscalatags_LowPriorityImplicits__F1(this$11, evidence$2$1);
+    return new ScalaJS.c.s_Some().init___O(jsx$13.apply__sc_Seq__Lscalatags_JsDom$TypedTag(jsx$12.wrapRefArray__AO__scm_WrappedArray(ScalaJS.asArrayOf.O(ScalaJS.makeNativeArrayWrapper(ScalaJS.d.Lscalatags_generic_Modifier.getArrayOf(), [jsx$7, ScalaJS.as.Lscalatags_JsDom$TypedTag(jsx$6).apply__sc_Seq__Lscalatags_JsDom$TypedTag(jsx$5.wrapRefArray__AO__scm_WrappedArray(ScalaJS.asArrayOf.O(ScalaJS.makeNativeArrayWrapper(ScalaJS.d.Lscalatags_generic_Modifier.getArrayOf(), [jsx$4, jsx$3, jsx$2, jsx$1, new ScalaJS.c.Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$12, v$3, ev$6)]), 1)))]), 1))))
+  }
 });
-ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$2.prototype.init___Lrx_core_Var = (function(glyphs$1) {
-  this.glyphs$1$f = glyphs$1;
+ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$10.prototype.init___Lrx_core_Rx = (function(selectedGlyphLabels$1) {
+  this.selectedGlyphLabels$1$2 = selectedGlyphLabels$1;
   return this
 });
-ScalaJS.is.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$2 = (function(obj) {
-  return (!(!((obj && obj.$classData) && obj.$classData.ancestors.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$2)))
+ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$10.prototype.apply__O = (function() {
+  var this$1 = this.selectedGlyphLabels$1$2;
+  var x1 = ScalaJS.as.T2(ScalaJS.i.Lrx_core_Rx$class__apply__Lrx_core_Rx__O(this$1));
+  if ((x1 !== null)) {
+    var innerRxO = ScalaJS.as.s_Option(x1.$$und1__O());
+    var outerRxO = ScalaJS.as.s_Option(x1.$$und2__O());
+    var x$7_$_$$und1$f = innerRxO;
+    var x$7_$_$$und2$f = outerRxO
+  } else {
+    var x$7_$_$$und1$f;
+    var x$7_$_$$und2$f;
+    throw new ScalaJS.c.s_MatchError().init___O(x1)
+  };
+  var innerRxO$2 = ScalaJS.as.s_Option(x$7_$_$$und1$f);
+  var outerRxO$2 = ScalaJS.as.s_Option(x$7_$_$$und2$f);
+  var jsx$4 = ScalaJS.m.Lscalatags_JsDom$all().span$1;
+  var jsx$3 = ScalaJS.m.s_Predef();
+  var this$2 = ScalaJS.m.Lscalatags_JsDom$all().class$1;
+  var ev = ScalaJS.m.Lscalatags_JsDom$all().stringAttr$1;
+  var jsx$2 = new ScalaJS.c.Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$2, "labels_editor", ev);
+  var this$3 = ScalaJS.m.Lscalatags_JsDom$all();
+  var xs = this.editor$1__p2__s_Option__T__s_Option(innerRxO$2, "inner");
+  var evidence$2 = ScalaJS.m.s_Predef().singleton$und$less$colon$less$2;
+  var jsx$1 = ScalaJS.i.Lscalatags_generic_Util$class__OptionNode__Lscalatags_generic_Util__s_Option__F1__Lscalatags_generic_Util$SeqNode(this$3, xs, evidence$2);
+  var this$4 = ScalaJS.m.Lscalatags_JsDom$all();
+  var xs$1 = this.editor$1__p2__s_Option__T__s_Option(outerRxO$2, "outer");
+  var evidence$2$1 = ScalaJS.m.s_Predef().singleton$und$less$colon$less$2;
+  return ScalaJS.as.Lscalatags_JsDom$TypedTag(jsx$4).apply__sc_Seq__Lscalatags_JsDom$TypedTag(jsx$3.wrapRefArray__AO__scm_WrappedArray(ScalaJS.asArrayOf.O(ScalaJS.makeNativeArrayWrapper(ScalaJS.d.Lscalatags_generic_Modifier.getArrayOf(), [jsx$2, jsx$1, ScalaJS.i.Lscalatags_generic_Util$class__OptionNode__Lscalatags_generic_Util__s_Option__F1__Lscalatags_generic_Util$SeqNode(this$4, xs$1, evidence$2$1)]), 1)))
 });
-ScalaJS.as.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$2 = (function(obj) {
-  return ((ScalaJS.is.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$2(obj) || (obj === null)) ? obj : ScalaJS.throwClassCastException(obj, "talk.FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$2"))
+ScalaJS.is.Ltalk_FixedOrProportionalDemo$$anonfun$10 = (function(obj) {
+  return (!(!((obj && obj.$classData) && obj.$classData.ancestors.Ltalk_FixedOrProportionalDemo$$anonfun$10)))
 });
-ScalaJS.isArrayOf.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$2 = (function(obj, depth) {
-  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$2)))
+ScalaJS.as.Ltalk_FixedOrProportionalDemo$$anonfun$10 = (function(obj) {
+  return ((ScalaJS.is.Ltalk_FixedOrProportionalDemo$$anonfun$10(obj) || (obj === null)) ? obj : ScalaJS.throwClassCastException(obj, "talk.FixedOrProportionalDemo$$anonfun$10"))
 });
-ScalaJS.asArrayOf.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$2 = (function(obj, depth) {
-  return ((ScalaJS.isArrayOf.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$2(obj, depth) || (obj === null)) ? obj : ScalaJS.throwArrayCastException(obj, "Ltalk.FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$2;", depth))
+ScalaJS.isArrayOf.Ltalk_FixedOrProportionalDemo$$anonfun$10 = (function(obj, depth) {
+  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.Ltalk_FixedOrProportionalDemo$$anonfun$10)))
 });
-ScalaJS.d.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$2 = new ScalaJS.ClassTypeData({
-  Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$2: 0
-}, false, "talk.FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$2", ScalaJS.d.sr_AbstractFunction1, {
-  Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$2: 1,
+ScalaJS.asArrayOf.Ltalk_FixedOrProportionalDemo$$anonfun$10 = (function(obj, depth) {
+  return ((ScalaJS.isArrayOf.Ltalk_FixedOrProportionalDemo$$anonfun$10(obj, depth) || (obj === null)) ? obj : ScalaJS.throwArrayCastException(obj, "Ltalk.FixedOrProportionalDemo$$anonfun$10;", depth))
+});
+ScalaJS.d.Ltalk_FixedOrProportionalDemo$$anonfun$10 = new ScalaJS.ClassTypeData({
+  Ltalk_FixedOrProportionalDemo$$anonfun$10: 0
+}, false, "talk.FixedOrProportionalDemo$$anonfun$10", ScalaJS.d.sr_AbstractFunction0, {
+  Ltalk_FixedOrProportionalDemo$$anonfun$10: 1,
+  s_Serializable: 1,
+  Ljava_io_Serializable: 1,
+  sr_AbstractFunction0: 1,
+  F0: 1,
+  O: 1
+});
+ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$10.prototype.$classData = ScalaJS.d.Ltalk_FixedOrProportionalDemo$$anonfun$10;
+/** @constructor */
+ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$10$$anonfun$editor$1$1 = (function() {
+  ScalaJS.c.sr_AbstractFunction1.call(this);
+  this.descr$1$2 = null
+});
+ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$10$$anonfun$editor$1$1.prototype = new ScalaJS.h.sr_AbstractFunction1();
+ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$10$$anonfun$editor$1$1.prototype.constructor = ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$10$$anonfun$editor$1$1;
+/** @constructor */
+ScalaJS.h.Ltalk_FixedOrProportionalDemo$$anonfun$10$$anonfun$editor$1$1 = (function() {
+  /*<skip>*/
+});
+ScalaJS.h.Ltalk_FixedOrProportionalDemo$$anonfun$10$$anonfun$editor$1$1.prototype = ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$10$$anonfun$editor$1$1.prototype;
+ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$10$$anonfun$editor$1$1.prototype.init___Ltalk_FixedOrProportionalDemo$$anonfun$10__T = (function($$outer, descr$1) {
+  this.descr$1$2 = descr$1;
+  return this
+});
+ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$10$$anonfun$editor$1$1.prototype.apply__O__O = (function(v1) {
+  var rx = ScalaJS.as.Lrx_core_Rx(v1);
+  var jsx$15 = ScalaJS.m.Lscalatags_JsDom$all().span$1;
+  var jsx$14 = ScalaJS.m.s_Predef();
+  var this$1 = ScalaJS.m.Lscalatags_JsDom$all().class$1;
+  var ev = ScalaJS.m.Lscalatags_JsDom$all().stringAttr$1;
+  var jsx$13 = ScalaJS.as.Lscalatags_JsDom$TypedTag(jsx$15).apply__sc_Seq__Lscalatags_JsDom$TypedTag(jsx$14.wrapRefArray__AO__scm_WrappedArray(ScalaJS.asArrayOf.O(ScalaJS.makeNativeArrayWrapper(ScalaJS.d.Lscalatags_generic_Modifier.getArrayOf(), [new ScalaJS.c.Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$1, "label_editor", ev)]), 1)));
+  var jsx$12 = ScalaJS.m.s_Predef();
+  var jsx$11 = ScalaJS.m.Lscalatags_JsDom$all().span$1;
+  var jsx$10 = ScalaJS.m.s_Predef();
+  var this$2 = ScalaJS.m.Lscalatags_JsDom$all().class$1;
+  var ev$1 = ScalaJS.m.Lscalatags_JsDom$all().stringAttr$1;
+  var jsx$9 = ScalaJS.as.Lscalatags_JsDom$TypedTag(jsx$11).apply__sc_Seq__Lscalatags_JsDom$TypedTag(jsx$10.wrapRefArray__AO__scm_WrappedArray(ScalaJS.asArrayOf.O(ScalaJS.makeNativeArrayWrapper(ScalaJS.d.Lscalatags_generic_Modifier.getArrayOf(), [new ScalaJS.c.Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$2, "label_description", ev$1)]), 1)));
+  var jsx$8 = ScalaJS.m.s_Predef();
+  ScalaJS.m.Lscalatags_JsDom$all();
+  var v = this.descr$1$2;
+  var jsx$7 = jsx$9.apply__sc_Seq__Lscalatags_JsDom$TypedTag(jsx$8.wrapRefArray__AO__scm_WrappedArray(ScalaJS.asArrayOf.O(ScalaJS.makeNativeArrayWrapper(ScalaJS.d.Lscalatags_generic_Modifier.getArrayOf(), [new ScalaJS.c.Lscalatags_JsDom$StringFrag().init___T(v)]), 1)));
+  var jsx$6 = ScalaJS.m.Lscalatags_JsDom$all().input$1;
+  var jsx$5 = ScalaJS.m.s_Predef();
+  var this$4 = ScalaJS.m.Lscalatags_JsDom$all().class$1;
+  var ev$2 = ScalaJS.m.Lscalatags_JsDom$all().stringAttr$1;
+  var jsx$4 = new ScalaJS.c.Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$4, "label_textField", ev$2);
+  var this$5 = ScalaJS.m.Lscalatags_JsDom$all().type$1;
+  var ev$3 = ScalaJS.m.Lscalatags_JsDom$all().stringAttr$1;
+  var jsx$3 = new ScalaJS.c.Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$5, "text", ev$3);
+  var this$8 = ScalaJS.m.Lscalatags_JsDom$all().value$1;
+  var v$1 = ScalaJS.m.Lrx_ops_package$RxOps().map$extension__Lrx_core_Rx__F1__Lrx_core_Rx(rx, new ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$10$$anonfun$editor$1$1$$anonfun$apply$2().init___Ltalk_FixedOrProportionalDemo$$anonfun$10$$anonfun$editor$1$1(this));
+  ScalaJS.m.Ltalk_Framework();
+  var evidence$1 = ScalaJS.m.Lscalatags_JsDom$all().stringAttr$1;
+  var ev$4 = new ScalaJS.c.Ltalk_Framework$$anon$1().init___Lscalatags_generic_AttrValue(evidence$1);
+  var jsx$2 = new ScalaJS.c.Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$8, v$1, ev$4);
+  var this$10 = ScalaJS.m.Lscalatags_JsDom$all().onkeypress$1;
+  var v$2 = new ScalaJS.c.sjsr_AnonFunction1().init___sjs_js_Function1((function(arg$outer, rx$1) {
+    return (function(e$2) {
+      var e = e$2;
+      arg$outer.talk$FixedOrProportionalDemo$$anonfun$$anonfun$$changeHandler$1__Lorg_scalajs_dom_Event__Lrx_core_Rx__V(e, rx$1)
+    })
+  })(this, rx));
+  var this$9 = ScalaJS.m.Lscalatags_JsDom$all();
+  var evidence$2 = new ScalaJS.c.sjsr_AnonFunction1().init___sjs_js_Function1((function(f$2) {
+    var f = ScalaJS.as.F1(f$2);
+    return (function(f$1) {
+      return (function(arg1) {
+        return f$1.apply__O__O(arg1)
+      })
+    })(f)
+  }));
+  var ev$5 = new ScalaJS.c.Lscalatags_LowPriorityImplicits$$anon$1().init___Lscalatags_LowPriorityImplicits__F1(this$9, evidence$2);
+  var jsx$1 = new ScalaJS.c.Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$10, v$2, ev$5);
+  var this$12 = new ScalaJS.c.Lscalatags_generic_Attr().init___T("oninput");
+  var v$3 = new ScalaJS.c.sjsr_AnonFunction1().init___sjs_js_Function1((function(arg$outer$1, rx$1$1) {
+    return (function(e$2$1) {
+      var e$1 = e$2$1;
+      arg$outer$1.talk$FixedOrProportionalDemo$$anonfun$$anonfun$$changeHandler$1__Lorg_scalajs_dom_Event__Lrx_core_Rx__V(e$1, rx$1$1)
+    })
+  })(this, rx));
+  var this$11 = ScalaJS.m.Lscalatags_JsDom$all();
+  var evidence$2$1 = new ScalaJS.c.sjsr_AnonFunction1().init___sjs_js_Function1((function(f$2$1) {
+    var f$3 = ScalaJS.as.F1(f$2$1);
+    return (function(f$4) {
+      return (function(arg1$1) {
+        return f$4.apply__O__O(arg1$1)
+      })
+    })(f$3)
+  }));
+  var ev$6 = new ScalaJS.c.Lscalatags_LowPriorityImplicits$$anon$1().init___Lscalatags_LowPriorityImplicits__F1(this$11, evidence$2$1);
+  return jsx$13.apply__sc_Seq__Lscalatags_JsDom$TypedTag(jsx$12.wrapRefArray__AO__scm_WrappedArray(ScalaJS.asArrayOf.O(ScalaJS.makeNativeArrayWrapper(ScalaJS.d.Lscalatags_generic_Modifier.getArrayOf(), [jsx$7, ScalaJS.as.Lscalatags_JsDom$TypedTag(jsx$6).apply__sc_Seq__Lscalatags_JsDom$TypedTag(jsx$5.wrapRefArray__AO__scm_WrappedArray(ScalaJS.asArrayOf.O(ScalaJS.makeNativeArrayWrapper(ScalaJS.d.Lscalatags_generic_Modifier.getArrayOf(), [jsx$4, jsx$3, jsx$2, jsx$1, new ScalaJS.c.Lscalatags_generic_AttrPair().init___Lscalatags_generic_Attr__O__Lscalatags_generic_AttrValue(this$12, v$3, ev$6)]), 1)))]), 1)))
+});
+ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$10$$anonfun$editor$1$1.prototype.talk$FixedOrProportionalDemo$$anonfun$$anonfun$$changeHandler$1__Lorg_scalajs_dom_Event__Lrx_core_Rx__V = (function(e, rx$1) {
+  ScalaJS.as.Lrx_core_Var(rx$1).update__F0__Lrx_core_Propagator__O(new ScalaJS.c.sjsr_AnonFunction0().init___sjs_js_Function0((function(e$1) {
+    return (function() {
+      var x1 = ScalaJS.i.sjsr_RuntimeString$class__trim__sjsr_RuntimeString__T(ScalaJS.as.T(e$1["srcElement"]["value"]));
+      return (ScalaJS.anyRefEqEq("", x1) ? ScalaJS.m.s_None() : new ScalaJS.c.s_Some().init___O(x1))
+    })
+  })(e)), ScalaJS.m.Lrx_core_Propagator$Immediate())
+});
+ScalaJS.is.Ltalk_FixedOrProportionalDemo$$anonfun$10$$anonfun$editor$1$1 = (function(obj) {
+  return (!(!((obj && obj.$classData) && obj.$classData.ancestors.Ltalk_FixedOrProportionalDemo$$anonfun$10$$anonfun$editor$1$1)))
+});
+ScalaJS.as.Ltalk_FixedOrProportionalDemo$$anonfun$10$$anonfun$editor$1$1 = (function(obj) {
+  return ((ScalaJS.is.Ltalk_FixedOrProportionalDemo$$anonfun$10$$anonfun$editor$1$1(obj) || (obj === null)) ? obj : ScalaJS.throwClassCastException(obj, "talk.FixedOrProportionalDemo$$anonfun$10$$anonfun$editor$1$1"))
+});
+ScalaJS.isArrayOf.Ltalk_FixedOrProportionalDemo$$anonfun$10$$anonfun$editor$1$1 = (function(obj, depth) {
+  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.Ltalk_FixedOrProportionalDemo$$anonfun$10$$anonfun$editor$1$1)))
+});
+ScalaJS.asArrayOf.Ltalk_FixedOrProportionalDemo$$anonfun$10$$anonfun$editor$1$1 = (function(obj, depth) {
+  return ((ScalaJS.isArrayOf.Ltalk_FixedOrProportionalDemo$$anonfun$10$$anonfun$editor$1$1(obj, depth) || (obj === null)) ? obj : ScalaJS.throwArrayCastException(obj, "Ltalk.FixedOrProportionalDemo$$anonfun$10$$anonfun$editor$1$1;", depth))
+});
+ScalaJS.d.Ltalk_FixedOrProportionalDemo$$anonfun$10$$anonfun$editor$1$1 = new ScalaJS.ClassTypeData({
+  Ltalk_FixedOrProportionalDemo$$anonfun$10$$anonfun$editor$1$1: 0
+}, false, "talk.FixedOrProportionalDemo$$anonfun$10$$anonfun$editor$1$1", ScalaJS.d.sr_AbstractFunction1, {
+  Ltalk_FixedOrProportionalDemo$$anonfun$10$$anonfun$editor$1$1: 1,
   s_Serializable: 1,
   Ljava_io_Serializable: 1,
   sr_AbstractFunction1: 1,
   F1: 1,
   O: 1
 });
-ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$2.prototype.$classData = ScalaJS.d.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$2;
+ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$10$$anonfun$editor$1$1.prototype.$classData = ScalaJS.d.Ltalk_FixedOrProportionalDemo$$anonfun$10$$anonfun$editor$1$1;
 /** @constructor */
-ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$2$$anonfun$apply$1 = (function() {
+ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$10$$anonfun$editor$1$1$$anonfun$apply$2 = (function() {
+  ScalaJS.c.sr_AbstractFunction1.call(this)
+});
+ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$10$$anonfun$editor$1$1$$anonfun$apply$2.prototype = new ScalaJS.h.sr_AbstractFunction1();
+ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$10$$anonfun$editor$1$1$$anonfun$apply$2.prototype.constructor = ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$10$$anonfun$editor$1$1$$anonfun$apply$2;
+/** @constructor */
+ScalaJS.h.Ltalk_FixedOrProportionalDemo$$anonfun$10$$anonfun$editor$1$1$$anonfun$apply$2 = (function() {
+  /*<skip>*/
+});
+ScalaJS.h.Ltalk_FixedOrProportionalDemo$$anonfun$10$$anonfun$editor$1$1$$anonfun$apply$2.prototype = ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$10$$anonfun$editor$1$1$$anonfun$apply$2.prototype;
+ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$10$$anonfun$editor$1$1$$anonfun$apply$2.prototype.apply__O__O = (function(v1) {
+  var x$6 = ScalaJS.as.s_Option(v1);
+  return ScalaJS.as.T((x$6.isEmpty__Z() ? "" : x$6.get__O()))
+});
+ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$10$$anonfun$editor$1$1$$anonfun$apply$2.prototype.init___Ltalk_FixedOrProportionalDemo$$anonfun$10$$anonfun$editor$1$1 = (function($$outer) {
+  return this
+});
+ScalaJS.is.Ltalk_FixedOrProportionalDemo$$anonfun$10$$anonfun$editor$1$1$$anonfun$apply$2 = (function(obj) {
+  return (!(!((obj && obj.$classData) && obj.$classData.ancestors.Ltalk_FixedOrProportionalDemo$$anonfun$10$$anonfun$editor$1$1$$anonfun$apply$2)))
+});
+ScalaJS.as.Ltalk_FixedOrProportionalDemo$$anonfun$10$$anonfun$editor$1$1$$anonfun$apply$2 = (function(obj) {
+  return ((ScalaJS.is.Ltalk_FixedOrProportionalDemo$$anonfun$10$$anonfun$editor$1$1$$anonfun$apply$2(obj) || (obj === null)) ? obj : ScalaJS.throwClassCastException(obj, "talk.FixedOrProportionalDemo$$anonfun$10$$anonfun$editor$1$1$$anonfun$apply$2"))
+});
+ScalaJS.isArrayOf.Ltalk_FixedOrProportionalDemo$$anonfun$10$$anonfun$editor$1$1$$anonfun$apply$2 = (function(obj, depth) {
+  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.Ltalk_FixedOrProportionalDemo$$anonfun$10$$anonfun$editor$1$1$$anonfun$apply$2)))
+});
+ScalaJS.asArrayOf.Ltalk_FixedOrProportionalDemo$$anonfun$10$$anonfun$editor$1$1$$anonfun$apply$2 = (function(obj, depth) {
+  return ((ScalaJS.isArrayOf.Ltalk_FixedOrProportionalDemo$$anonfun$10$$anonfun$editor$1$1$$anonfun$apply$2(obj, depth) || (obj === null)) ? obj : ScalaJS.throwArrayCastException(obj, "Ltalk.FixedOrProportionalDemo$$anonfun$10$$anonfun$editor$1$1$$anonfun$apply$2;", depth))
+});
+ScalaJS.d.Ltalk_FixedOrProportionalDemo$$anonfun$10$$anonfun$editor$1$1$$anonfun$apply$2 = new ScalaJS.ClassTypeData({
+  Ltalk_FixedOrProportionalDemo$$anonfun$10$$anonfun$editor$1$1$$anonfun$apply$2: 0
+}, false, "talk.FixedOrProportionalDemo$$anonfun$10$$anonfun$editor$1$1$$anonfun$apply$2", ScalaJS.d.sr_AbstractFunction1, {
+  Ltalk_FixedOrProportionalDemo$$anonfun$10$$anonfun$editor$1$1$$anonfun$apply$2: 1,
+  s_Serializable: 1,
+  Ljava_io_Serializable: 1,
+  sr_AbstractFunction1: 1,
+  F1: 1,
+  O: 1
+});
+ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$10$$anonfun$editor$1$1$$anonfun$apply$2.prototype.$classData = ScalaJS.d.Ltalk_FixedOrProportionalDemo$$anonfun$10$$anonfun$editor$1$1$$anonfun$apply$2;
+/** @constructor */
+ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$8 = (function() {
+  ScalaJS.c.sr_AbstractFunction0.call(this);
+  this.selectedGlyph$1$2 = null
+});
+ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$8.prototype = new ScalaJS.h.sr_AbstractFunction0();
+ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$8.prototype.constructor = ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$8;
+/** @constructor */
+ScalaJS.h.Ltalk_FixedOrProportionalDemo$$anonfun$8 = (function() {
+  /*<skip>*/
+});
+ScalaJS.h.Ltalk_FixedOrProportionalDemo$$anonfun$8.prototype = ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$8.prototype;
+ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$8.prototype.init___Lrx_core_Var = (function(selectedGlyph$1) {
+  this.selectedGlyph$1$2 = selectedGlyph$1;
+  return this
+});
+ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$8.prototype.apply__O = (function() {
+  var this$1 = this.selectedGlyph$1$2;
+  var this$2 = ScalaJS.as.s_Option(ScalaJS.i.Lrx_core_Rx$class__apply__Lrx_core_Rx__O(this$1));
+  if (this$2.isEmpty__Z()) {
+    var io = ScalaJS.m.s_None()
+  } else {
+    var g$2 = this$2.get__O();
+    var g = ScalaJS.as.Ltalk_GlyphFamily(g$2);
+    var inner = (ScalaJS.is.Ltalk_GlyphFamilyWithInnerLabel(g) ? new ScalaJS.c.s_Some().init___O(ScalaJS.as.Ltalk_GlyphFamilyWithInnerLabel(g).innerLabel__Lrx_core_Rx()) : ScalaJS.m.s_None());
+    var outer = (ScalaJS.is.Ltalk_GlyphFamilyWithOuterLabel(g) ? new ScalaJS.c.s_Some().init___O(ScalaJS.as.Ltalk_GlyphFamilyWithOuterLabel(g).outerLabel__Lrx_core_Rx()) : ScalaJS.m.s_None());
+    var io = new ScalaJS.c.s_Some().init___O(new ScalaJS.c.T2().init___O__O(inner, outer))
+  };
+  return ScalaJS.as.T2((io.isEmpty__Z() ? new ScalaJS.c.T2().init___O__O(ScalaJS.m.s_None(), ScalaJS.m.s_None()) : io.get__O()))
+});
+ScalaJS.is.Ltalk_FixedOrProportionalDemo$$anonfun$8 = (function(obj) {
+  return (!(!((obj && obj.$classData) && obj.$classData.ancestors.Ltalk_FixedOrProportionalDemo$$anonfun$8)))
+});
+ScalaJS.as.Ltalk_FixedOrProportionalDemo$$anonfun$8 = (function(obj) {
+  return ((ScalaJS.is.Ltalk_FixedOrProportionalDemo$$anonfun$8(obj) || (obj === null)) ? obj : ScalaJS.throwClassCastException(obj, "talk.FixedOrProportionalDemo$$anonfun$8"))
+});
+ScalaJS.isArrayOf.Ltalk_FixedOrProportionalDemo$$anonfun$8 = (function(obj, depth) {
+  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.Ltalk_FixedOrProportionalDemo$$anonfun$8)))
+});
+ScalaJS.asArrayOf.Ltalk_FixedOrProportionalDemo$$anonfun$8 = (function(obj, depth) {
+  return ((ScalaJS.isArrayOf.Ltalk_FixedOrProportionalDemo$$anonfun$8(obj, depth) || (obj === null)) ? obj : ScalaJS.throwArrayCastException(obj, "Ltalk.FixedOrProportionalDemo$$anonfun$8;", depth))
+});
+ScalaJS.d.Ltalk_FixedOrProportionalDemo$$anonfun$8 = new ScalaJS.ClassTypeData({
+  Ltalk_FixedOrProportionalDemo$$anonfun$8: 0
+}, false, "talk.FixedOrProportionalDemo$$anonfun$8", ScalaJS.d.sr_AbstractFunction0, {
+  Ltalk_FixedOrProportionalDemo$$anonfun$8: 1,
+  s_Serializable: 1,
+  Ljava_io_Serializable: 1,
+  sr_AbstractFunction0: 1,
+  F0: 1,
+  O: 1
+});
+ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$8.prototype.$classData = ScalaJS.d.Ltalk_FixedOrProportionalDemo$$anonfun$8;
+/** @constructor */
+ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$talk$FixedOrProportionalDemo$$addSelectHandler$1$1 = (function() {
+  ScalaJS.c.sr_AbstractFunction2.call(this);
+  this.selectedGlyph$1$f = null;
+  this.gf$1$2 = null
+});
+ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$talk$FixedOrProportionalDemo$$addSelectHandler$1$1.prototype = new ScalaJS.h.sr_AbstractFunction2();
+ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$talk$FixedOrProportionalDemo$$addSelectHandler$1$1.prototype.constructor = ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$talk$FixedOrProportionalDemo$$addSelectHandler$1$1;
+/** @constructor */
+ScalaJS.h.Ltalk_FixedOrProportionalDemo$$anonfun$talk$FixedOrProportionalDemo$$addSelectHandler$1$1 = (function() {
+  /*<skip>*/
+});
+ScalaJS.h.Ltalk_FixedOrProportionalDemo$$anonfun$talk$FixedOrProportionalDemo$$addSelectHandler$1$1.prototype = ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$talk$FixedOrProportionalDemo$$addSelectHandler$1$1.prototype;
+ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$talk$FixedOrProportionalDemo$$addSelectHandler$1$1.prototype.init___Lrx_core_Var__F2 = (function(selectedGlyph$1, gf$1) {
+  this.selectedGlyph$1$f = selectedGlyph$1;
+  this.gf$1$2 = gf$1;
+  return this
+});
+ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$talk$FixedOrProportionalDemo$$addSelectHandler$1$1.prototype.apply__O__O__O = (function(v1, v2) {
+  var w = ScalaJS.as.Lrx_core_Rx(v1);
+  var a = ScalaJS.as.Lrx_core_Rx(v2);
+  var g = ScalaJS.as.Ltalk_GlyphFamily(this.gf$1$2.apply__O__O__O(w, a));
+  g.glyph__Lorg_scalajs_dom_SVGGElement()["addEventListener"]("click", (function(f) {
+    return (function(arg1) {
+      return f.apply__O__O(arg1)
+    })
+  })(new ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$talk$FixedOrProportionalDemo$$addSelectHandler$1$1$$anonfun$apply$8().init___Ltalk_FixedOrProportionalDemo$$anonfun$talk$FixedOrProportionalDemo$$addSelectHandler$1$1__Ltalk_GlyphFamily(this, g)), true);
+  return g
+});
+ScalaJS.is.Ltalk_FixedOrProportionalDemo$$anonfun$talk$FixedOrProportionalDemo$$addSelectHandler$1$1 = (function(obj) {
+  return (!(!((obj && obj.$classData) && obj.$classData.ancestors.Ltalk_FixedOrProportionalDemo$$anonfun$talk$FixedOrProportionalDemo$$addSelectHandler$1$1)))
+});
+ScalaJS.as.Ltalk_FixedOrProportionalDemo$$anonfun$talk$FixedOrProportionalDemo$$addSelectHandler$1$1 = (function(obj) {
+  return ((ScalaJS.is.Ltalk_FixedOrProportionalDemo$$anonfun$talk$FixedOrProportionalDemo$$addSelectHandler$1$1(obj) || (obj === null)) ? obj : ScalaJS.throwClassCastException(obj, "talk.FixedOrProportionalDemo$$anonfun$talk$FixedOrProportionalDemo$$addSelectHandler$1$1"))
+});
+ScalaJS.isArrayOf.Ltalk_FixedOrProportionalDemo$$anonfun$talk$FixedOrProportionalDemo$$addSelectHandler$1$1 = (function(obj, depth) {
+  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.Ltalk_FixedOrProportionalDemo$$anonfun$talk$FixedOrProportionalDemo$$addSelectHandler$1$1)))
+});
+ScalaJS.asArrayOf.Ltalk_FixedOrProportionalDemo$$anonfun$talk$FixedOrProportionalDemo$$addSelectHandler$1$1 = (function(obj, depth) {
+  return ((ScalaJS.isArrayOf.Ltalk_FixedOrProportionalDemo$$anonfun$talk$FixedOrProportionalDemo$$addSelectHandler$1$1(obj, depth) || (obj === null)) ? obj : ScalaJS.throwArrayCastException(obj, "Ltalk.FixedOrProportionalDemo$$anonfun$talk$FixedOrProportionalDemo$$addSelectHandler$1$1;", depth))
+});
+ScalaJS.d.Ltalk_FixedOrProportionalDemo$$anonfun$talk$FixedOrProportionalDemo$$addSelectHandler$1$1 = new ScalaJS.ClassTypeData({
+  Ltalk_FixedOrProportionalDemo$$anonfun$talk$FixedOrProportionalDemo$$addSelectHandler$1$1: 0
+}, false, "talk.FixedOrProportionalDemo$$anonfun$talk$FixedOrProportionalDemo$$addSelectHandler$1$1", ScalaJS.d.sr_AbstractFunction2, {
+  Ltalk_FixedOrProportionalDemo$$anonfun$talk$FixedOrProportionalDemo$$addSelectHandler$1$1: 1,
+  s_Serializable: 1,
+  Ljava_io_Serializable: 1,
+  sr_AbstractFunction2: 1,
+  F2: 1,
+  O: 1
+});
+ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$talk$FixedOrProportionalDemo$$addSelectHandler$1$1.prototype.$classData = ScalaJS.d.Ltalk_FixedOrProportionalDemo$$anonfun$talk$FixedOrProportionalDemo$$addSelectHandler$1$1;
+/** @constructor */
+ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$talk$FixedOrProportionalDemo$$addSelectHandler$1$1$$anonfun$apply$8 = (function() {
+  ScalaJS.c.sr_AbstractFunction1.call(this);
+  this.$$outer$2 = null;
+  this.g$1$f = null
+});
+ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$talk$FixedOrProportionalDemo$$addSelectHandler$1$1$$anonfun$apply$8.prototype = new ScalaJS.h.sr_AbstractFunction1();
+ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$talk$FixedOrProportionalDemo$$addSelectHandler$1$1$$anonfun$apply$8.prototype.constructor = ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$talk$FixedOrProportionalDemo$$addSelectHandler$1$1$$anonfun$apply$8;
+/** @constructor */
+ScalaJS.h.Ltalk_FixedOrProportionalDemo$$anonfun$talk$FixedOrProportionalDemo$$addSelectHandler$1$1$$anonfun$apply$8 = (function() {
+  /*<skip>*/
+});
+ScalaJS.h.Ltalk_FixedOrProportionalDemo$$anonfun$talk$FixedOrProportionalDemo$$addSelectHandler$1$1$$anonfun$apply$8.prototype = ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$talk$FixedOrProportionalDemo$$addSelectHandler$1$1$$anonfun$apply$8.prototype;
+ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$talk$FixedOrProportionalDemo$$addSelectHandler$1$1$$anonfun$apply$8.prototype.apply__O__O = (function(v1) {
+  return (this.$$outer$2.selectedGlyph$1$f.update__F0__Lrx_core_Propagator__O(new ScalaJS.c.sjsr_AnonFunction0().init___sjs_js_Function0((function(arg$outer) {
+    return (function() {
+      return new ScalaJS.c.s_Some().init___O(arg$outer.g$1$f)
+    })
+  })(this)), ScalaJS.m.Lrx_core_Propagator$Immediate()), (void 0))
+});
+ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$talk$FixedOrProportionalDemo$$addSelectHandler$1$1$$anonfun$apply$8.prototype.init___Ltalk_FixedOrProportionalDemo$$anonfun$talk$FixedOrProportionalDemo$$addSelectHandler$1$1__Ltalk_GlyphFamily = (function($$outer, g$1) {
+  if (($$outer === null)) {
+    throw ScalaJS.unwrapJavaScriptException(null)
+  } else {
+    this.$$outer$2 = $$outer
+  };
+  this.g$1$f = g$1;
+  return this
+});
+ScalaJS.is.Ltalk_FixedOrProportionalDemo$$anonfun$talk$FixedOrProportionalDemo$$addSelectHandler$1$1$$anonfun$apply$8 = (function(obj) {
+  return (!(!((obj && obj.$classData) && obj.$classData.ancestors.Ltalk_FixedOrProportionalDemo$$anonfun$talk$FixedOrProportionalDemo$$addSelectHandler$1$1$$anonfun$apply$8)))
+});
+ScalaJS.as.Ltalk_FixedOrProportionalDemo$$anonfun$talk$FixedOrProportionalDemo$$addSelectHandler$1$1$$anonfun$apply$8 = (function(obj) {
+  return ((ScalaJS.is.Ltalk_FixedOrProportionalDemo$$anonfun$talk$FixedOrProportionalDemo$$addSelectHandler$1$1$$anonfun$apply$8(obj) || (obj === null)) ? obj : ScalaJS.throwClassCastException(obj, "talk.FixedOrProportionalDemo$$anonfun$talk$FixedOrProportionalDemo$$addSelectHandler$1$1$$anonfun$apply$8"))
+});
+ScalaJS.isArrayOf.Ltalk_FixedOrProportionalDemo$$anonfun$talk$FixedOrProportionalDemo$$addSelectHandler$1$1$$anonfun$apply$8 = (function(obj, depth) {
+  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.Ltalk_FixedOrProportionalDemo$$anonfun$talk$FixedOrProportionalDemo$$addSelectHandler$1$1$$anonfun$apply$8)))
+});
+ScalaJS.asArrayOf.Ltalk_FixedOrProportionalDemo$$anonfun$talk$FixedOrProportionalDemo$$addSelectHandler$1$1$$anonfun$apply$8 = (function(obj, depth) {
+  return ((ScalaJS.isArrayOf.Ltalk_FixedOrProportionalDemo$$anonfun$talk$FixedOrProportionalDemo$$addSelectHandler$1$1$$anonfun$apply$8(obj, depth) || (obj === null)) ? obj : ScalaJS.throwArrayCastException(obj, "Ltalk.FixedOrProportionalDemo$$anonfun$talk$FixedOrProportionalDemo$$addSelectHandler$1$1$$anonfun$apply$8;", depth))
+});
+ScalaJS.d.Ltalk_FixedOrProportionalDemo$$anonfun$talk$FixedOrProportionalDemo$$addSelectHandler$1$1$$anonfun$apply$8 = new ScalaJS.ClassTypeData({
+  Ltalk_FixedOrProportionalDemo$$anonfun$talk$FixedOrProportionalDemo$$addSelectHandler$1$1$$anonfun$apply$8: 0
+}, false, "talk.FixedOrProportionalDemo$$anonfun$talk$FixedOrProportionalDemo$$addSelectHandler$1$1$$anonfun$apply$8", ScalaJS.d.sr_AbstractFunction1, {
+  Ltalk_FixedOrProportionalDemo$$anonfun$talk$FixedOrProportionalDemo$$addSelectHandler$1$1$$anonfun$apply$8: 1,
+  s_Serializable: 1,
+  Ljava_io_Serializable: 1,
+  sr_AbstractFunction1: 1,
+  F1: 1,
+  O: 1
+});
+ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$talk$FixedOrProportionalDemo$$addSelectHandler$1$1$$anonfun$apply$8.prototype.$classData = ScalaJS.d.Ltalk_FixedOrProportionalDemo$$anonfun$talk$FixedOrProportionalDemo$$addSelectHandler$1$1$$anonfun$apply$8;
+/** @constructor */
+ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$2 = (function() {
+  ScalaJS.c.sr_AbstractFunction1.call(this);
+  this.glyphs$1$f = null;
+  this.selectedGlyph$1$f = null
+});
+ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$2.prototype = new ScalaJS.h.sr_AbstractFunction1();
+ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$2.prototype.constructor = ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$2;
+/** @constructor */
+ScalaJS.h.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$2 = (function() {
+  /*<skip>*/
+});
+ScalaJS.h.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$2.prototype = ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$2.prototype;
+ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$2.prototype.init___Lrx_core_Var__Lrx_core_Var = (function(glyphs$1, selectedGlyph$1) {
+  this.glyphs$1$f = glyphs$1;
+  this.selectedGlyph$1$f = selectedGlyph$1;
+  return this
+});
+ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$2.prototype.apply__O__O = (function(v1) {
+  var b = v1;
+  b["onclick"] = (function(f) {
+    return (function(arg1) {
+      return f.apply__O__O(arg1)
+    })
+  })(new ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$2$$anonfun$apply$10().init___Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$2__Lorg_scalajs_dom_HTMLButtonElement(this, b))
+});
+ScalaJS.is.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$2 = (function(obj) {
+  return (!(!((obj && obj.$classData) && obj.$classData.ancestors.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$2)))
+});
+ScalaJS.as.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$2 = (function(obj) {
+  return ((ScalaJS.is.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$2(obj) || (obj === null)) ? obj : ScalaJS.throwClassCastException(obj, "talk.FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$2"))
+});
+ScalaJS.isArrayOf.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$2 = (function(obj, depth) {
+  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$2)))
+});
+ScalaJS.asArrayOf.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$2 = (function(obj, depth) {
+  return ((ScalaJS.isArrayOf.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$2(obj, depth) || (obj === null)) ? obj : ScalaJS.throwArrayCastException(obj, "Ltalk.FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$2;", depth))
+});
+ScalaJS.d.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$2 = new ScalaJS.ClassTypeData({
+  Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$2: 0
+}, false, "talk.FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$2", ScalaJS.d.sr_AbstractFunction1, {
+  Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$2: 1,
+  s_Serializable: 1,
+  Ljava_io_Serializable: 1,
+  sr_AbstractFunction1: 1,
+  F1: 1,
+  O: 1
+});
+ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$2.prototype.$classData = ScalaJS.d.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$2;
+/** @constructor */
+ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$2$$anonfun$apply$10 = (function() {
   ScalaJS.c.sr_AbstractFunction1.call(this);
   this.$$outer$2 = null;
   this.b$1$2 = null
 });
-ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$2$$anonfun$apply$1.prototype = new ScalaJS.h.sr_AbstractFunction1();
-ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$2$$anonfun$apply$1.prototype.constructor = ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$2$$anonfun$apply$1;
+ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$2$$anonfun$apply$10.prototype = new ScalaJS.h.sr_AbstractFunction1();
+ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$2$$anonfun$apply$10.prototype.constructor = ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$2$$anonfun$apply$10;
 /** @constructor */
-ScalaJS.h.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$2$$anonfun$apply$1 = (function() {
+ScalaJS.h.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$2$$anonfun$apply$10 = (function() {
   /*<skip>*/
 });
-ScalaJS.h.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$2$$anonfun$apply$1.prototype = ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$2$$anonfun$apply$1.prototype;
-ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$2$$anonfun$apply$1.prototype.apply__O__O = (function(v1) {
+ScalaJS.h.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$2$$anonfun$apply$10.prototype = ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$2$$anonfun$apply$10.prototype;
+ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$2$$anonfun$apply$10.prototype.apply__O__O = (function(v1) {
   var x1 = ScalaJS.as.T(this.b$1$2["value"]);
   if (ScalaJS.anyRefEqEq("promoter_rightwards", x1)) {
     ScalaJS.asUnit(this.$$outer$2.glyphs$1$f.update__F0__Lrx_core_Propagator__O(new ScalaJS.c.sjsr_AnonFunction0().init___sjs_js_Function0((function(arg$outer) {
@@ -25126,100 +25767,116 @@ ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$2$$anonfun
         var jsx$2 = ScalaJS.i.Lrx_core_Rx$class__apply__Lrx_core_Rx__O(this$1);
         var direction = ScalaJS.m.Ltalk_Rightwards();
         var label = ScalaJS.m.s_None();
-        var jsx$1 = new ScalaJS.c.Ltalk_Promoter$$anonfun$fixedWidth$1().init___Ltalk_Direction__s_Option(direction, label);
-        var this$4 = ScalaJS.m.sc_Seq();
-        return ScalaJS.as.sc_Seq(ScalaJS.as.sc_SeqLike(jsx$2).$$colon$plus__O__scg_CanBuildFrom__O(jsx$1, this$4.ReusableCBFInstance$2))
+        var gf = new ScalaJS.c.Ltalk_Promoter$$anonfun$fixedWidth$1().init___Ltalk_Direction__s_Option(direction, label);
+        var selectedGlyph$1 = arg$outer.$$outer$2.selectedGlyph$1$f;
+        var jsx$1 = new ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$talk$FixedOrProportionalDemo$$addSelectHandler$1$1().init___Lrx_core_Var__F2(selectedGlyph$1, gf);
+        var this$5 = ScalaJS.m.sc_Seq();
+        return ScalaJS.as.sc_Seq(ScalaJS.as.sc_SeqLike(jsx$2).$$colon$plus__O__scg_CanBuildFrom__O(jsx$1, this$5.ReusableCBFInstance$2))
       })
     })(this)), ScalaJS.m.Lrx_core_Propagator$Immediate()))
   } else if (ScalaJS.anyRefEqEq("promoter_leftwards", x1)) {
     ScalaJS.asUnit(this.$$outer$2.glyphs$1$f.update__F0__Lrx_core_Propagator__O(new ScalaJS.c.sjsr_AnonFunction0().init___sjs_js_Function0((function(arg$outer$1) {
       return (function() {
-        var this$5 = arg$outer$1.$$outer$2.glyphs$1$f;
-        var jsx$4 = ScalaJS.i.Lrx_core_Rx$class__apply__Lrx_core_Rx__O(this$5);
+        var this$6 = arg$outer$1.$$outer$2.glyphs$1$f;
+        var jsx$4 = ScalaJS.i.Lrx_core_Rx$class__apply__Lrx_core_Rx__O(this$6);
         var direction$1 = ScalaJS.m.Ltalk_Leftwards();
         var label$1 = ScalaJS.m.s_None();
-        var jsx$3 = new ScalaJS.c.Ltalk_Promoter$$anonfun$fixedWidth$1().init___Ltalk_Direction__s_Option(direction$1, label$1);
-        var this$8 = ScalaJS.m.sc_Seq();
-        return ScalaJS.as.sc_Seq(ScalaJS.as.sc_SeqLike(jsx$4).$$colon$plus__O__scg_CanBuildFrom__O(jsx$3, this$8.ReusableCBFInstance$2))
+        var gf$1 = new ScalaJS.c.Ltalk_Promoter$$anonfun$fixedWidth$1().init___Ltalk_Direction__s_Option(direction$1, label$1);
+        var selectedGlyph$1$1 = arg$outer$1.$$outer$2.selectedGlyph$1$f;
+        var jsx$3 = new ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$talk$FixedOrProportionalDemo$$addSelectHandler$1$1().init___Lrx_core_Var__F2(selectedGlyph$1$1, gf$1);
+        var this$10 = ScalaJS.m.sc_Seq();
+        return ScalaJS.as.sc_Seq(ScalaJS.as.sc_SeqLike(jsx$4).$$colon$plus__O__scg_CanBuildFrom__O(jsx$3, this$10.ReusableCBFInstance$2))
       })
     })(this)), ScalaJS.m.Lrx_core_Propagator$Immediate()))
   } else if (ScalaJS.anyRefEqEq("cds_rightwards", x1)) {
     ScalaJS.asUnit(this.$$outer$2.glyphs$1$f.update__F0__Lrx_core_Propagator__O(new ScalaJS.c.sjsr_AnonFunction0().init___sjs_js_Function0((function(arg$outer$2) {
       return (function() {
-        var this$9 = arg$outer$2.$$outer$2.glyphs$1$f;
-        var jsx$6 = ScalaJS.i.Lrx_core_Rx$class__apply__Lrx_core_Rx__O(this$9);
+        var this$11 = arg$outer$2.$$outer$2.glyphs$1$f;
+        var jsx$6 = ScalaJS.i.Lrx_core_Rx$class__apply__Lrx_core_Rx__O(this$11);
         var direction$2 = ScalaJS.m.Ltalk_Rightwards();
         var label$2 = ScalaJS.m.s_None();
-        var jsx$5 = new ScalaJS.c.Ltalk_Cds$$anonfun$fixedWidth$1().init___Ltalk_Direction__s_Option(direction$2, label$2);
-        var this$12 = ScalaJS.m.sc_Seq();
-        return ScalaJS.as.sc_Seq(ScalaJS.as.sc_SeqLike(jsx$6).$$colon$plus__O__scg_CanBuildFrom__O(jsx$5, this$12.ReusableCBFInstance$2))
+        var gf$2 = new ScalaJS.c.Ltalk_Cds$$anonfun$fixedWidth$1().init___Ltalk_Direction__s_Option(direction$2, label$2);
+        var selectedGlyph$1$2 = arg$outer$2.$$outer$2.selectedGlyph$1$f;
+        var jsx$5 = new ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$talk$FixedOrProportionalDemo$$addSelectHandler$1$1().init___Lrx_core_Var__F2(selectedGlyph$1$2, gf$2);
+        var this$15 = ScalaJS.m.sc_Seq();
+        return ScalaJS.as.sc_Seq(ScalaJS.as.sc_SeqLike(jsx$6).$$colon$plus__O__scg_CanBuildFrom__O(jsx$5, this$15.ReusableCBFInstance$2))
       })
     })(this)), ScalaJS.m.Lrx_core_Propagator$Immediate()))
   } else if (ScalaJS.anyRefEqEq("cds_leftwards", x1)) {
     ScalaJS.asUnit(this.$$outer$2.glyphs$1$f.update__F0__Lrx_core_Propagator__O(new ScalaJS.c.sjsr_AnonFunction0().init___sjs_js_Function0((function(arg$outer$3) {
       return (function() {
-        var this$13 = arg$outer$3.$$outer$2.glyphs$1$f;
-        var jsx$8 = ScalaJS.i.Lrx_core_Rx$class__apply__Lrx_core_Rx__O(this$13);
+        var this$16 = arg$outer$3.$$outer$2.glyphs$1$f;
+        var jsx$8 = ScalaJS.i.Lrx_core_Rx$class__apply__Lrx_core_Rx__O(this$16);
         var direction$3 = ScalaJS.m.Ltalk_Leftwards();
         var label$3 = ScalaJS.m.s_None();
-        var jsx$7 = new ScalaJS.c.Ltalk_Cds$$anonfun$fixedWidth$1().init___Ltalk_Direction__s_Option(direction$3, label$3);
-        var this$16 = ScalaJS.m.sc_Seq();
-        return ScalaJS.as.sc_Seq(ScalaJS.as.sc_SeqLike(jsx$8).$$colon$plus__O__scg_CanBuildFrom__O(jsx$7, this$16.ReusableCBFInstance$2))
+        var gf$3 = new ScalaJS.c.Ltalk_Cds$$anonfun$fixedWidth$1().init___Ltalk_Direction__s_Option(direction$3, label$3);
+        var selectedGlyph$1$3 = arg$outer$3.$$outer$2.selectedGlyph$1$f;
+        var jsx$7 = new ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$talk$FixedOrProportionalDemo$$addSelectHandler$1$1().init___Lrx_core_Var__F2(selectedGlyph$1$3, gf$3);
+        var this$20 = ScalaJS.m.sc_Seq();
+        return ScalaJS.as.sc_Seq(ScalaJS.as.sc_SeqLike(jsx$8).$$colon$plus__O__scg_CanBuildFrom__O(jsx$7, this$20.ReusableCBFInstance$2))
       })
     })(this)), ScalaJS.m.Lrx_core_Propagator$Immediate()))
   } else if (ScalaJS.anyRefEqEq("res_rightwards", x1)) {
     ScalaJS.asUnit(this.$$outer$2.glyphs$1$f.update__F0__Lrx_core_Propagator__O(new ScalaJS.c.sjsr_AnonFunction0().init___sjs_js_Function0((function(arg$outer$4) {
       return (function() {
-        var this$17 = arg$outer$4.$$outer$2.glyphs$1$f;
-        var jsx$10 = ScalaJS.i.Lrx_core_Rx$class__apply__Lrx_core_Rx__O(this$17);
+        var this$21 = arg$outer$4.$$outer$2.glyphs$1$f;
+        var jsx$10 = ScalaJS.i.Lrx_core_Rx$class__apply__Lrx_core_Rx__O(this$21);
         var direction$4 = ScalaJS.m.Ltalk_Rightwards();
         var label$4 = ScalaJS.m.s_None();
-        var jsx$9 = new ScalaJS.c.Ltalk_RibosomeEntrySite$$anonfun$fixedWidth$1().init___Ltalk_Direction__s_Option(direction$4, label$4);
-        var this$20 = ScalaJS.m.sc_Seq();
-        return ScalaJS.as.sc_Seq(ScalaJS.as.sc_SeqLike(jsx$10).$$colon$plus__O__scg_CanBuildFrom__O(jsx$9, this$20.ReusableCBFInstance$2))
+        var gf$4 = new ScalaJS.c.Ltalk_RibosomeEntrySite$$anonfun$fixedWidth$1().init___Ltalk_Direction__s_Option(direction$4, label$4);
+        var selectedGlyph$1$4 = arg$outer$4.$$outer$2.selectedGlyph$1$f;
+        var jsx$9 = new ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$talk$FixedOrProportionalDemo$$addSelectHandler$1$1().init___Lrx_core_Var__F2(selectedGlyph$1$4, gf$4);
+        var this$25 = ScalaJS.m.sc_Seq();
+        return ScalaJS.as.sc_Seq(ScalaJS.as.sc_SeqLike(jsx$10).$$colon$plus__O__scg_CanBuildFrom__O(jsx$9, this$25.ReusableCBFInstance$2))
       })
     })(this)), ScalaJS.m.Lrx_core_Propagator$Immediate()))
   } else if (ScalaJS.anyRefEqEq("res_leftwards", x1)) {
     ScalaJS.asUnit(this.$$outer$2.glyphs$1$f.update__F0__Lrx_core_Propagator__O(new ScalaJS.c.sjsr_AnonFunction0().init___sjs_js_Function0((function(arg$outer$5) {
       return (function() {
-        var this$21 = arg$outer$5.$$outer$2.glyphs$1$f;
-        var jsx$12 = ScalaJS.i.Lrx_core_Rx$class__apply__Lrx_core_Rx__O(this$21);
+        var this$26 = arg$outer$5.$$outer$2.glyphs$1$f;
+        var jsx$12 = ScalaJS.i.Lrx_core_Rx$class__apply__Lrx_core_Rx__O(this$26);
         var direction$5 = ScalaJS.m.Ltalk_Leftwards();
         var label$5 = ScalaJS.m.s_None();
-        var jsx$11 = new ScalaJS.c.Ltalk_RibosomeEntrySite$$anonfun$fixedWidth$1().init___Ltalk_Direction__s_Option(direction$5, label$5);
-        var this$24 = ScalaJS.m.sc_Seq();
-        return ScalaJS.as.sc_Seq(ScalaJS.as.sc_SeqLike(jsx$12).$$colon$plus__O__scg_CanBuildFrom__O(jsx$11, this$24.ReusableCBFInstance$2))
+        var gf$5 = new ScalaJS.c.Ltalk_RibosomeEntrySite$$anonfun$fixedWidth$1().init___Ltalk_Direction__s_Option(direction$5, label$5);
+        var selectedGlyph$1$5 = arg$outer$5.$$outer$2.selectedGlyph$1$f;
+        var jsx$11 = new ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$talk$FixedOrProportionalDemo$$addSelectHandler$1$1().init___Lrx_core_Var__F2(selectedGlyph$1$5, gf$5);
+        var this$30 = ScalaJS.m.sc_Seq();
+        return ScalaJS.as.sc_Seq(ScalaJS.as.sc_SeqLike(jsx$12).$$colon$plus__O__scg_CanBuildFrom__O(jsx$11, this$30.ReusableCBFInstance$2))
       })
     })(this)), ScalaJS.m.Lrx_core_Propagator$Immediate()))
   } else if (ScalaJS.anyRefEqEq("term_rightwards", x1)) {
     ScalaJS.asUnit(this.$$outer$2.glyphs$1$f.update__F0__Lrx_core_Propagator__O(new ScalaJS.c.sjsr_AnonFunction0().init___sjs_js_Function0((function(arg$outer$6) {
       return (function() {
-        var this$25 = arg$outer$6.$$outer$2.glyphs$1$f;
-        var jsx$14 = ScalaJS.i.Lrx_core_Rx$class__apply__Lrx_core_Rx__O(this$25);
+        var this$31 = arg$outer$6.$$outer$2.glyphs$1$f;
+        var jsx$14 = ScalaJS.i.Lrx_core_Rx$class__apply__Lrx_core_Rx__O(this$31);
         var direction$6 = ScalaJS.m.Ltalk_Rightwards();
         var label$6 = ScalaJS.m.s_None();
-        var jsx$13 = new ScalaJS.c.Ltalk_Terminator$$anonfun$fixedWidth$1().init___Ltalk_Direction__s_Option(direction$6, label$6);
-        var this$28 = ScalaJS.m.sc_Seq();
-        return ScalaJS.as.sc_Seq(ScalaJS.as.sc_SeqLike(jsx$14).$$colon$plus__O__scg_CanBuildFrom__O(jsx$13, this$28.ReusableCBFInstance$2))
+        var gf$6 = new ScalaJS.c.Ltalk_Terminator$$anonfun$fixedWidth$1().init___Ltalk_Direction__s_Option(direction$6, label$6);
+        var selectedGlyph$1$6 = arg$outer$6.$$outer$2.selectedGlyph$1$f;
+        var jsx$13 = new ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$talk$FixedOrProportionalDemo$$addSelectHandler$1$1().init___Lrx_core_Var__F2(selectedGlyph$1$6, gf$6);
+        var this$35 = ScalaJS.m.sc_Seq();
+        return ScalaJS.as.sc_Seq(ScalaJS.as.sc_SeqLike(jsx$14).$$colon$plus__O__scg_CanBuildFrom__O(jsx$13, this$35.ReusableCBFInstance$2))
       })
     })(this)), ScalaJS.m.Lrx_core_Propagator$Immediate()))
   } else if (ScalaJS.anyRefEqEq("term_leftwards", x1)) {
     ScalaJS.asUnit(this.$$outer$2.glyphs$1$f.update__F0__Lrx_core_Propagator__O(new ScalaJS.c.sjsr_AnonFunction0().init___sjs_js_Function0((function(arg$outer$7) {
       return (function() {
-        var this$29 = arg$outer$7.$$outer$2.glyphs$1$f;
-        var jsx$16 = ScalaJS.i.Lrx_core_Rx$class__apply__Lrx_core_Rx__O(this$29);
+        var this$36 = arg$outer$7.$$outer$2.glyphs$1$f;
+        var jsx$16 = ScalaJS.i.Lrx_core_Rx$class__apply__Lrx_core_Rx__O(this$36);
         var direction$7 = ScalaJS.m.Ltalk_Leftwards();
         var label$7 = ScalaJS.m.s_None();
-        var jsx$15 = new ScalaJS.c.Ltalk_Terminator$$anonfun$fixedWidth$1().init___Ltalk_Direction__s_Option(direction$7, label$7);
-        var this$32 = ScalaJS.m.sc_Seq();
-        return ScalaJS.as.sc_Seq(ScalaJS.as.sc_SeqLike(jsx$16).$$colon$plus__O__scg_CanBuildFrom__O(jsx$15, this$32.ReusableCBFInstance$2))
+        var gf$7 = new ScalaJS.c.Ltalk_Terminator$$anonfun$fixedWidth$1().init___Ltalk_Direction__s_Option(direction$7, label$7);
+        var selectedGlyph$1$7 = arg$outer$7.$$outer$2.selectedGlyph$1$f;
+        var jsx$15 = new ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$talk$FixedOrProportionalDemo$$addSelectHandler$1$1().init___Lrx_core_Var__F2(selectedGlyph$1$7, gf$7);
+        var this$40 = ScalaJS.m.sc_Seq();
+        return ScalaJS.as.sc_Seq(ScalaJS.as.sc_SeqLike(jsx$16).$$colon$plus__O__scg_CanBuildFrom__O(jsx$15, this$40.ReusableCBFInstance$2))
       })
     })(this)), ScalaJS.m.Lrx_core_Propagator$Immediate()))
   } else {
     throw new ScalaJS.c.s_MatchError().init___O(x1)
   }
 });
-ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$2$$anonfun$apply$1.prototype.init___Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$2__Lorg_scalajs_dom_HTMLButtonElement = (function($$outer, b$1) {
+ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$2$$anonfun$apply$10.prototype.init___Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$2__Lorg_scalajs_dom_HTMLButtonElement = (function($$outer, b$1) {
   if (($$outer === null)) {
     throw ScalaJS.unwrapJavaScriptException(null)
   } else {
@@ -25228,29 +25885,29 @@ ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$2$$anonfun
   this.b$1$2 = b$1;
   return this
 });
-ScalaJS.is.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$2$$anonfun$apply$1 = (function(obj) {
-  return (!(!((obj && obj.$classData) && obj.$classData.ancestors.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$2$$anonfun$apply$1)))
+ScalaJS.is.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$2$$anonfun$apply$10 = (function(obj) {
+  return (!(!((obj && obj.$classData) && obj.$classData.ancestors.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$2$$anonfun$apply$10)))
 });
-ScalaJS.as.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$2$$anonfun$apply$1 = (function(obj) {
-  return ((ScalaJS.is.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$2$$anonfun$apply$1(obj) || (obj === null)) ? obj : ScalaJS.throwClassCastException(obj, "talk.FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$2$$anonfun$apply$1"))
+ScalaJS.as.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$2$$anonfun$apply$10 = (function(obj) {
+  return ((ScalaJS.is.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$2$$anonfun$apply$10(obj) || (obj === null)) ? obj : ScalaJS.throwClassCastException(obj, "talk.FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$2$$anonfun$apply$10"))
 });
-ScalaJS.isArrayOf.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$2$$anonfun$apply$1 = (function(obj, depth) {
-  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$2$$anonfun$apply$1)))
+ScalaJS.isArrayOf.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$2$$anonfun$apply$10 = (function(obj, depth) {
+  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$2$$anonfun$apply$10)))
 });
-ScalaJS.asArrayOf.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$2$$anonfun$apply$1 = (function(obj, depth) {
-  return ((ScalaJS.isArrayOf.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$2$$anonfun$apply$1(obj, depth) || (obj === null)) ? obj : ScalaJS.throwArrayCastException(obj, "Ltalk.FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$2$$anonfun$apply$1;", depth))
+ScalaJS.asArrayOf.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$2$$anonfun$apply$10 = (function(obj, depth) {
+  return ((ScalaJS.isArrayOf.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$2$$anonfun$apply$10(obj, depth) || (obj === null)) ? obj : ScalaJS.throwArrayCastException(obj, "Ltalk.FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$2$$anonfun$apply$10;", depth))
 });
-ScalaJS.d.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$2$$anonfun$apply$1 = new ScalaJS.ClassTypeData({
-  Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$2$$anonfun$apply$1: 0
-}, false, "talk.FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$2$$anonfun$apply$1", ScalaJS.d.sr_AbstractFunction1, {
-  Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$2$$anonfun$apply$1: 1,
+ScalaJS.d.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$2$$anonfun$apply$10 = new ScalaJS.ClassTypeData({
+  Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$2$$anonfun$apply$10: 0
+}, false, "talk.FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$2$$anonfun$apply$10", ScalaJS.d.sr_AbstractFunction1, {
+  Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$2$$anonfun$apply$10: 1,
   s_Serializable: 1,
   Ljava_io_Serializable: 1,
   sr_AbstractFunction1: 1,
   F1: 1,
   O: 1
 });
-ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$2$$anonfun$apply$1.prototype.$classData = ScalaJS.d.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$2$$anonfun$apply$1;
+ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$2$$anonfun$apply$10.prototype.$classData = ScalaJS.d.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$2$$anonfun$apply$10;
 /** @constructor */
 ScalaJS.c.Ltalk_FixedWidth$$anonfun$2$$anonfun$apply$mcV$sp$2 = (function() {
   ScalaJS.c.sr_AbstractFunction1.call(this);
@@ -33970,24 +34627,24 @@ ScalaJS.d.Ltalk_CdsDemo$$anonfun$wireScaledExample$3 = new ScalaJS.ClassTypeData
 });
 ScalaJS.c.Ltalk_CdsDemo$$anonfun$wireScaledExample$3.prototype.$classData = ScalaJS.d.Ltalk_CdsDemo$$anonfun$wireScaledExample$3;
 /** @constructor */
-ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$1 = (function() {
+ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$1 = (function() {
   ScalaJS.c.sr_AbstractFunction0$mcV$sp.call(this);
   this.lengthSlider$1$f = null;
   this.lengthSpan$1$3 = null
 });
-ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$1.prototype = new ScalaJS.h.sr_AbstractFunction0$mcV$sp();
-ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$1.prototype.constructor = ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$1;
+ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$1.prototype = new ScalaJS.h.sr_AbstractFunction0$mcV$sp();
+ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$1.prototype.constructor = ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$1;
 /** @constructor */
-ScalaJS.h.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$1 = (function() {
+ScalaJS.h.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$1 = (function() {
   /*<skip>*/
 });
-ScalaJS.h.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$1.prototype = ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$1.prototype;
-ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$1.prototype.init___Ltalk_ReactiveSlider__sc_IndexedSeq = (function(lengthSlider$1, lengthSpan$1) {
+ScalaJS.h.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$1.prototype = ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$1.prototype;
+ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$1.prototype.init___Ltalk_ReactiveSlider__sc_IndexedSeq = (function(lengthSlider$1, lengthSpan$1) {
   this.lengthSlider$1$f = lengthSlider$1;
   this.lengthSpan$1$3 = lengthSpan$1;
   return this
 });
-ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$1.prototype.apply$mcV$sp__V = (function() {
+ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$1.prototype.apply$mcV$sp__V = (function() {
   this.lengthSpan$1$3.foreach__F1__V(new ScalaJS.c.sjsr_AnonFunction1().init___sjs_js_Function1((function(arg$outer) {
     return (function(x$4$2) {
       var x$4 = x$4$2;
@@ -33996,7 +34653,7 @@ ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$1.prototyp
     })
   })(this)))
 });
-ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$1.prototype.apply__O = (function() {
+ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$1.prototype.apply__O = (function() {
   return (this.lengthSpan$1$3.foreach__F1__V(new ScalaJS.c.sjsr_AnonFunction1().init___sjs_js_Function1((function(arg$outer) {
     return (function(x$4$2) {
       var x$4 = x$4$2;
@@ -34005,22 +34662,22 @@ ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$1.prototyp
     })
   })(this))), (void 0))
 });
-ScalaJS.is.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$1 = (function(obj) {
-  return (!(!((obj && obj.$classData) && obj.$classData.ancestors.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$1)))
+ScalaJS.is.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$1 = (function(obj) {
+  return (!(!((obj && obj.$classData) && obj.$classData.ancestors.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$1)))
 });
-ScalaJS.as.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$1 = (function(obj) {
-  return ((ScalaJS.is.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$1(obj) || (obj === null)) ? obj : ScalaJS.throwClassCastException(obj, "talk.FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$1"))
+ScalaJS.as.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$1 = (function(obj) {
+  return ((ScalaJS.is.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$1(obj) || (obj === null)) ? obj : ScalaJS.throwClassCastException(obj, "talk.FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$1"))
 });
-ScalaJS.isArrayOf.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$1 = (function(obj, depth) {
-  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$1)))
+ScalaJS.isArrayOf.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$1 = (function(obj, depth) {
+  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$1)))
 });
-ScalaJS.asArrayOf.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$1 = (function(obj, depth) {
-  return ((ScalaJS.isArrayOf.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$1(obj, depth) || (obj === null)) ? obj : ScalaJS.throwArrayCastException(obj, "Ltalk.FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$1;", depth))
+ScalaJS.asArrayOf.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$1 = (function(obj, depth) {
+  return ((ScalaJS.isArrayOf.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$1(obj, depth) || (obj === null)) ? obj : ScalaJS.throwArrayCastException(obj, "Ltalk.FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$1;", depth))
 });
-ScalaJS.d.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$1 = new ScalaJS.ClassTypeData({
-  Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$1: 0
-}, false, "talk.FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$1", ScalaJS.d.sr_AbstractFunction0$mcV$sp, {
-  Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$1: 1,
+ScalaJS.d.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$1 = new ScalaJS.ClassTypeData({
+  Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$1: 0
+}, false, "talk.FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$1", ScalaJS.d.sr_AbstractFunction0$mcV$sp, {
+  Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$1: 1,
   s_Serializable: 1,
   Ljava_io_Serializable: 1,
   sr_AbstractFunction0$mcV$sp: 1,
@@ -34029,7 +34686,7 @@ ScalaJS.d.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$1 = new Sc
   F0: 1,
   O: 1
 });
-ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$1.prototype.$classData = ScalaJS.d.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixdWidthExample$1;
+ScalaJS.c.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$1.prototype.$classData = ScalaJS.d.Ltalk_FixedOrProportionalDemo$$anonfun$wireFixedWidthExample$1;
 /** @constructor */
 ScalaJS.c.Ltalk_FixedWidth$$anonfun$2 = (function() {
   ScalaJS.c.sr_AbstractFunction0$mcV$sp.call(this);
