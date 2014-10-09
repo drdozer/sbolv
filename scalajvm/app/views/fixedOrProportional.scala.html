@@ -9,7 +9,8 @@
 
     <div id="fixed_width_example">
         <p>
-            This is a fixed-width SBOLv display. You can add new items by clicking on the buttons.
+            This is a fixed-width SBOLv display. You can add new items by clicking on the buttons. Then click a glyph
+            to edit its label(s).
         </p>
 
         <div>
@@ -20,23 +21,25 @@
 
             <div style="display: inline-block">
                 <div class="rightwards">
-                    <button value="promoter_rightwards">Promoter (&gt;)</button>
-                    <button value="res_rightwards">Ribosome Entry Site (&gt;)</button>
-                    <button value="cds_rightwards">CDS (&gt;)</button>
-                    <button value="term_rightwards">Terminator (&gt;)</button>
+                    <button value="promoter_rightwards">[promoter dir=">"/]</button>
+                    <button value="res_rightwards">[res dir=">"/]</button>
+                    <button value="cds_rightwards">[cds dir=">"/]</button>
+                    <button value="term_rightwards">[term dir=">"/]</button>
                 </div>
                 <div class="leftwards">
-                    <button value="promoter_leftwards">Promoter (&lt;)</button>
-                    <button value="res_leftwards">Ribosome Entry Site (&lt;)</button>
-                    <button value="cds_leftwards">CDS (&lt;)</button>
-                    <button value="term_leftwards">Terminator (&lt;)</button>
+                    <button value="promoter_leftwards">[promoter dir="<"/]</button>
+                    <button value="res_leftwards">[res dir="<"/]</button>
+                    <button value="cds_leftwards">[cds dir="<"/]</button>
+                    <button value="term_leftwards">[term dir="<"/]</button>
                 </div>
+                <script>SBOLv().shortcodes()</script>
             </div>
         </div>
         <div>
             <svg width = 600 height = 300 class="glyphs" style="background-color: whitesmoke">
                 <g class="track" transform="translate(0, 150)"></g>
             </svg>
+            <div class="label_editor"></div>
         </div>
     </div>
 
@@ -60,6 +63,6 @@
     </div>
 
     <script>
-    FixedOrProportionalDemo().wireFixdWidthExample("fixed_width_example");
+    FixedOrProportionalDemo().wireFixedWidthExample("fixed_width_example");
     </script>
 }

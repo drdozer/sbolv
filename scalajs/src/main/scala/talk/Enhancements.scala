@@ -40,6 +40,7 @@ object Enhancements {
       }
     }
     def hasChildNode(n: Node) = childElements.contains(n)
+    def removeChild(i: Int) = _node.removeChild(childNodes(i))
   }
 
   implicit class EnhancedElement[E <: Element](val _el: E) extends AnyVal {

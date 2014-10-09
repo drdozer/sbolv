@@ -19,7 +19,7 @@ case class Promoter(direction: Rx[Direction],
   import scalatags.JsDom.svgAttrs._
   import Framework._
 
-  override protected def offset = Rx {
+  override protected lazy val offset = Rx {
     if(transMetrics != null) {
       val m = transMetrics()
       m.vertical + m.arrowHeight

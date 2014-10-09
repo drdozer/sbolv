@@ -19,7 +19,7 @@ final case class Terminator(direction: Rx[Direction],
   import scalatags.JsDom.svgAttrs._
   import Framework._
 
-  override protected def offset = Rx {
+  override protected lazy val offset = Rx {
     (direction(), alignment()) match {
       case (Rightwards, AboveBackbone | CentredOnBackbone) | (Leftwards, AboveBackbone) =>
         -metrics().depth

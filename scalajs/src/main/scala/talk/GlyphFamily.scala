@@ -32,7 +32,6 @@ trait GlyphFamilyWithInnerLabel {
   private def tickInner() = innerLabelTick() = innerLabelTick() + 1
 
   private val innerLabelClean = Rx {
-    println("Updating label to : " + innerLabel())
     innerLabel() getOrElse ""
   }
 
@@ -43,13 +42,10 @@ trait GlyphFamilyWithInnerLabel {
       `class` := "sbolv_glyph_label",
       transform := (innerLabelText_transform : Rx[String]),
       DOMNodeInsertedIntoDocument := { (e: Event) =>
-        println("DOMNodeInsertedIntoDocument")
         tickInner() },
       DOMNodeInserted := { (e: Event) =>
-        println("DOMNodeInserted")
         tickInner() },
       DOMSubtreeModified := { (e: Event) =>
-        println("DOMSubtreeModified")
         tickInner() }
     )(innerLabelClean).render
 
@@ -57,14 +53,12 @@ trait GlyphFamilyWithInnerLabel {
     val textBox = Rx {
       innerLabelTick()
       innerLabelClean()
-      println(s"Recalculating box for $txt using ${Box(txt.getBBox())}")
       Box(txt.getBBox())
     }
 
     val innerLabelText_transform_obs = Obs(textBox) {
       val bounds = textBox()
       val centre = bounds.centre
-      println(s"Repositioning inner text for $txt to $centre")
       innerLabelText_transform() = s"translate(${-centre.x} ${-centre.y})"
     }
 
