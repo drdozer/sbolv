@@ -94,6 +94,7 @@ object FixedOrProportionalDemo {
         import Enhancements._
         def deleteHandler(e: Event): Unit = {
           for(gl <- selectedGlyph()) {
+            selectedGlyph() = None
             val holder = Dynamic(gl.glyph.parentNode).__sbolv_widget.asInstanceOf[FixedWidth.GlyphHolder]
             val indx = holder.index()
             val newGlyphs = glyphs().zipWithIndex.filter(_._2 != indx).unzip._1
@@ -116,20 +117,32 @@ object FixedOrProportionalDemo {
     }
 
     labelEditor.appendChild(span(selectionWidget).render)
+    labelEditor.setAttribute("style", "position: absolute; display: none")
+    Obs(selectedGlyph) {
+      labelEditor.setAttribute("style", "position: absolute; display: none")
+    }
 
     case class ClickAdder(gffw: GlyphFamily.FixedWidth) extends GlyphFamily.FixedWidth {
       override def apply(direction: Direction, label: Option[String]): (Rx[Double], Rx[BackboneAlignment]) => GlyphFamily = {
+        import scalajs.js.Dynamic
+
         val gf = gffw(direction, label)
 
         (w, d) => {
           val g = gf(w, d)
           g.glyph.addEventListener("click", (e: Event) => {
+            val me = e.asInstanceOf[MouseEvent]
+            e.stopPropagation()
             selectedGlyph() = Some(g)
+            labelEditor.setAttribute("style", s"position: absolute; left: ${Dynamic(me).pageX}px; top: ${Dynamic(me).pageY}px")
           }, true)
           g
         }
       }
     }
+
+    svg.addEventListener("click", (me: Event) => {
+      selectedGlyph() = None })
 
     for(b <- buttons) {
       b.onclick = (e: Event) => {
