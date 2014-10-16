@@ -112,7 +112,7 @@ object ApplicationBuild extends Build with UniversalKeys {
 
 object Versions {
   val app = "0.1.1-SNAPSHOT"
-  val scala = "2.11.1"
+  val scala = "2.11.2"
   val scalatags = "0.4.1"
   val scalajsDom = "0.6"
   val scalarx = "0.2.6"
