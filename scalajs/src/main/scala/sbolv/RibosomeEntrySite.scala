@@ -4,7 +4,7 @@ import org.scalajs.dom.Node
 import rx.core.{Rx, Var}
 
 
-case class RibosomeEntrySite(direction: Rx[HorizontalOrientation],
+case class RibosomeEntrySite(horizontalOrientation: Rx[HorizontalOrientation],
                alignment: Rx[BackboneAlignment],
                innerLabel: Rx[Option[String]],
                outerLabel: Rx[Option[String]],
@@ -21,7 +21,7 @@ case class RibosomeEntrySite(direction: Rx[HorizontalOrientation],
   import Framework._
 
   override protected lazy val offset = Rx {
-    (direction(), alignment()) match {
+    (horizontalOrientation(), alignment()) match {
       case (Rightwards, AboveBackbone | CentredOnBackbone) | (Leftwards, AboveBackbone) =>
         -metrics().depth
       case (Rightwards, BelowBackbone) | (Leftwards, CentredOnBackbone | BelowBackbone) =>
@@ -31,7 +31,7 @@ case class RibosomeEntrySite(direction: Rx[HorizontalOrientation],
 
   private val glyphPath_d = Rx {
     val m = metrics()
-    direction() match {
+    horizontalOrientation() match {
       case Rightwards => s"M${-m.l2} ${m.d2} L${m.l2} ${m.d2} A${m.l2} ${m.depth} 0 1 0 ${-m.l2} ${m.d2} Z"
       case Leftwards => s"M${-m.l2} ${-m.d2} L${m.l2} ${-m.d2} A${m.l2} ${m.depth} 0 1 1 ${-m.l2} ${-m.d2} Z"
     }

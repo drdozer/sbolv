@@ -4,7 +4,7 @@ import org.scalajs.dom.Node
 import rx.core.{Rx, Var}
 
 
-case class Promoter(direction: Rx[HorizontalOrientation],
+case class Promoter(horizontalOrientation: Rx[HorizontalOrientation],
                     alignment: Rx[BackboneAlignment],
                     outerLabel: Rx[Option[String]],
                     backboneWidth: Rx[Double],
@@ -31,28 +31,28 @@ case class Promoter(direction: Rx[HorizontalOrientation],
   private val transMetrics = Rx {
     val m = metrics()
 
-    val v = (direction(), alignment()) match {
+    val v = (horizontalOrientation(), alignment()) match {
       case (Rightwards, CentredOnBackbone | AboveBackbone) | (Leftwards, AboveBackbone) =>
         -m.vertical
       case (Rightwards, BelowBackbone) | (Leftwards, CentredOnBackbone | BelowBackbone) =>
         +m.vertical
     }
 
-    val h = direction() match {
+    val h = horizontalOrientation() match {
       case Rightwards =>
         +m.horizontal
       case Leftwards =>
         -m.horizontal
     }
 
-    val ah = (direction(), alignment()) match {
+    val ah = (horizontalOrientation(), alignment()) match {
       case (Rightwards, CentredOnBackbone | AboveBackbone) | (Leftwards, AboveBackbone) =>
         -m.arrowHeight
       case (Rightwards, BelowBackbone) | (Leftwards, CentredOnBackbone | BelowBackbone) =>
         +m.arrowHeight
     }
 
-    val aw = direction() match {
+    val aw = horizontalOrientation() match {
       case Rightwards =>
         +m.arrowWidth
       case Leftwards =>

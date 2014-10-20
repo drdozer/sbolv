@@ -55,7 +55,7 @@ object FixedOrProportionalDemo {
           case _ => None
         }
 
-        (inner, outer, Some(g.direction.asInstanceOf[Var[HorizontalOrientation]]))
+        (inner, outer, Some(g.horizontalOrientation.asInstanceOf[Var[HorizontalOrientation]]))
       }
 
       io.getOrElse((None, None, None))

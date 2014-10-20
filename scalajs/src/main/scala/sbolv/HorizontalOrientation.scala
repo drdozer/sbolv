@@ -1,7 +1,7 @@
 package sbolv
 
 /**
- * Horizontal directions extend rightwards or leftwards. In a circular coordinate system, rightwards maps to clockwise
+ * Horizontal orientations extend rightwards or leftwards. In a circular coordinate system, rightwards maps to clockwise
  * and leftwards to anti-clockwise.
  * 
  * @author Matthew Pocock

@@ -15,7 +15,7 @@ trait GlyphFamily {
   type Metrics
 
   def glyph: SVGGElement
-  def direction: Rx[HorizontalOrientation]
+  def horizontalOrientation: Rx[HorizontalOrientation]
   def alignment: Rx[BackboneAlignment]
   def metrics: Rx[Metrics]
 }
