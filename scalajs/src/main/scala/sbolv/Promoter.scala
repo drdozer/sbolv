@@ -4,7 +4,7 @@ import org.scalajs.dom.Node
 import rx.core.{Rx, Var}
 
 
-case class Promoter(direction: Rx[Direction],
+case class Promoter(direction: Rx[HorizontalOrientation],
                     alignment: Rx[BackboneAlignment],
                     outerLabel: Rx[Option[String]],
                     backboneWidth: Rx[Double],
@@ -88,7 +88,7 @@ case class Promoter(direction: Rx[Direction],
 object Promoter {
 
   object FixedWidth extends GlyphFamily.FixedWidth {
-    def apply(direction: Direction, label: Option[String] = None): (Rx[Double], Rx[BackboneAlignment]) => GlyphFamily = (width, alignment) =>
+    def apply(direction: HorizontalOrientation, label: Option[String] = None): (Rx[Double], Rx[BackboneAlignment]) => GlyphFamily = (width, alignment) =>
       Promoter(Var(direction), alignment, Var(label), Var(0), Rx {
         val w = width() * 0.9
         Metrics(w * 0.4, w * 0.4, w * 0.1, w * 0.1)

@@ -106,7 +106,7 @@ object FixedWidth {
   }
 }
 
-case class GlyphFactory(glyphFamily: GlyphFamily.FixedWidth, direction: Direction, label: Option[String] = None) {
+case class GlyphFactory(glyphFamily: GlyphFamily.FixedWidth, direction: HorizontalOrientation, label: Option[String] = None) {
   def apply() = glyphFamily(direction, label)
 }
 
@@ -117,8 +117,8 @@ object GlyphFactory {
 abstract class FixedWidthShorcodeContent extends RegexParsers {
   private val code = """[a-zA-Z]""".r ^^ { case c => Code(c) }
 
-  private val lt: Parser[Direction] = "<" ^^^ Leftwards
-  private val gt: Parser[Direction] = ">" ^^^ Rightwards
+  private val lt: Parser[HorizontalOrientation] = "<" ^^^ Leftwards
+  private val gt: Parser[HorizontalOrientation] = ">" ^^^ Rightwards
   private val dir = lt | gt
 
   private val qt: Parser[String] = "\""

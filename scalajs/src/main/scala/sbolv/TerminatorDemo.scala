@@ -101,7 +101,7 @@ object TerminatorDemo {
     val directionSpan = div.getElementsByClassName("direction").elements
     val exampleG = div.getElementsByClassName("term_on_backbone").elements.head
 
-    var direction = Var(Rightwards : Direction)
+    var direction = Var(Rightwards : HorizontalOrientation)
     for(i <- directionRadio) i.onclick = { (me: MouseEvent) =>
       direction() = i.value match {
         case "rightwards" => Rightwards

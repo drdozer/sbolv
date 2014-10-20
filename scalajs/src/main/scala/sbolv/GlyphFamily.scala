@@ -15,7 +15,7 @@ trait GlyphFamily {
   type Metrics
 
   def glyph: SVGGElement
-  def direction: Rx[Direction]
+  def direction: Rx[HorizontalOrientation]
   def alignment: Rx[BackboneAlignment]
   def metrics: Rx[Metrics]
 }
@@ -23,7 +23,7 @@ trait GlyphFamily {
 object GlyphFamily {
   private var ctr = 0
   trait FixedWidth {
-    def apply(direction: Direction, label: Option[String] = None): (Rx[Double], Rx[BackboneAlignment]) => GlyphFamily
+    def apply(direction: HorizontalOrientation, label: Option[String] = None): (Rx[Double], Rx[BackboneAlignment]) => GlyphFamily
     val uuid: Int = {
       val u = ctr
       ctr = ctr + 1

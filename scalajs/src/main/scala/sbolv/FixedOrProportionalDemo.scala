@@ -55,7 +55,7 @@ object FixedOrProportionalDemo {
           case _ => None
         }
 
-        (inner, outer, Some(g.direction.asInstanceOf[Var[Direction]]))
+        (inner, outer, Some(g.direction.asInstanceOf[Var[HorizontalOrientation]]))
       }
 
       io.getOrElse((None, None, None))
@@ -80,7 +80,7 @@ object FixedOrProportionalDemo {
         )
       }
 
-      def flipper(dO: Option[Var[Direction]]) = dO map { d =>
+      def flipper(dO: Option[Var[HorizontalOrientation]]) = dO map { d =>
         def flipHandler(e: Event) = d() = d().reverse
 
         span(`class` := "direction_editor")(
@@ -123,7 +123,7 @@ object FixedOrProportionalDemo {
     }
 
     case class ClickAdder(gffw: GlyphFamily.FixedWidth) extends GlyphFamily.FixedWidth {
-      override def apply(direction: Direction, label: Option[String]): (Rx[Double], Rx[BackboneAlignment]) => GlyphFamily = {
+      override def apply(direction: HorizontalOrientation, label: Option[String]): (Rx[Double], Rx[BackboneAlignment]) => GlyphFamily = {
         import scalajs.js.Dynamic
 
         val gf = gffw(direction, label)

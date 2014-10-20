@@ -4,7 +4,7 @@ import org.scalajs.dom.Node
 import rx.core.{Rx, Var}
 
 
-case class Cds(direction: Rx[Direction],
+case class Cds(direction: Rx[HorizontalOrientation],
                alignment: Rx[BackboneAlignment],
                innerLabel: Rx[Option[String]],
                outerLabel: Rx[Option[String]],
@@ -57,7 +57,7 @@ case class Cds(direction: Rx[Direction],
 
 object Cds {
   object FixedWidth extends GlyphFamily.FixedWidth {
-    def apply(direction: Direction, label: Option[String] = None): (Rx[Double], Rx[BackboneAlignment]) => GlyphFamily = (width, alignment) =>
+    def apply(direction: HorizontalOrientation, label: Option[String] = None): (Rx[Double], Rx[BackboneAlignment]) => GlyphFamily = (width, alignment) =>
       Cds(Var(direction), alignment, Var(label), Var(None), Var(0), Rx {
         val w = width() * 0.9
         new Metrics {

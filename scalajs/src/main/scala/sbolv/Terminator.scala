@@ -4,7 +4,7 @@ import org.scalajs.dom.Node
 import rx.core.{Rx, Var}
 
 
-final case class Terminator(direction: Rx[Direction],
+final case class Terminator(direction: Rx[HorizontalOrientation],
                alignment: Rx[BackboneAlignment],
                outerLabel: Rx[Option[String]],
                backboneWidth: Rx[Double],
@@ -56,7 +56,7 @@ final case class Terminator(direction: Rx[Direction],
 
 object Terminator {
   object FixedWidth extends GlyphFamily.FixedWidth {
-    def apply(direction: Direction, label: Option[String] = None): (Rx[Double], Rx[BackboneAlignment]) => GlyphFamily = (width, alignment) =>
+    def apply(direction: HorizontalOrientation, label: Option[String] = None): (Rx[Double], Rx[BackboneAlignment]) => GlyphFamily = (width, alignment) =>
       Terminator(Var(direction), alignment, Var(label), Var(0), Rx {
         val w = width() * 0.9
         new Metrics {

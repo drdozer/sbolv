@@ -105,7 +105,7 @@ object RibosomeEntrySiteDemo {
     val directionSpan = div.getElementsByClassName("direction").elements
     val exampleG = div.getElementsByClassName("res_on_backbone").elements.head
 
-    var direction = Var(Rightwards : Direction)
+    var direction = Var(Rightwards : HorizontalOrientation)
     for(i <- directionRadio) i.onclick = { (me: MouseEvent) =>
       direction() = i.value match {
         case "rightwards" => Rightwards
