@@ -21,10 +21,12 @@ import Framework._
 object PromoterDemo {
 
   @JSExport
-  def wireScaledExample(divId: String) {
-    val container = document.getElementById(divId).asInstanceOf[HTMLDivElement]
+  def wireScaledExample(scaled_example: String, shortcode_example: String) {
+    val container = document.getElementById(scaled_example).asInstanceOf[HTMLDivElement]
     val sliders = container.getElementsByClassName("sliders")(0).asInstanceOf[HTMLElement]
     val glyphs = container.getElementsByClassName("glyphs")(0).asInstanceOf[HTMLElement]
+    
+    val shortcodeExample = document.getElementById(shortcode_example).asInstanceOf[HTMLDivElement]
 
     def mkLabelledSlider(name: String, minV: Int, maxV: Int, valueV: Int, units: String, scale: Int => Double) = {
       val slider = input(
@@ -101,66 +103,24 @@ object PromoterDemo {
         td(`class` := "empty_cell"),
         td(`class` := "horizontal glyphGridLabel", colspan := 2, textAlign := "centre", "Downwards"),
         td(`class` := "empty_cell")))).render
+
+    shortcodeExample.modifyWith(
+      shortcodeText("promoter"),
+      div(borderColor := "black", borderStyle := "solid",
+        shortcodeText("promoter"),
+        script("SBOLv().shortcodes()")),
+      div("Shortcode processing is enabled within part of your document by including ",
+          code("SBOLv().shortcodes()"),
+          " in a &lt;script&gt; element. This will apply shortcodes to all of its siblings.")
+    ).render
   }
 
-//  @JSExport
-//  def wireAlignmentExample(divId: String): Unit = {
-//    import Enhancements._
-//
-//    val div = document.getElementById(divId).asInstanceOf[HTMLDivElement]
-//    val alignmentRadio = div.getElementsByTagName("input").elements.
-//      map(_.asInstanceOf[HTMLInputElement]).filter(_.name == "alignment")
-//    val alignmentSpan = div.getElementsByClassName("alignment").elements
-//    val directionRadio = div.getElementsByTagName("input").elements.
-//      map(_.asInstanceOf[HTMLInputElement]).filter(_.name == "direction")
-//    val directionSpan = div.getElementsByClassName("direction").elements
-//    val exampleG = div.getElementsByClassName("promoter_on_backbone").elements.head
-//
-//    val horizontalOrientation = Var(Rightwards : HorizontalOrientation)
-//    for(i <- directionRadio) i.onclick = { (me: MouseEvent) =>
-//      horizontalOrientation() = HorizontalOrientation.lowerCaseNames enumFor i.value
-//    }
-//    Obs(horizontalOrientation) {
-//      directionSpan.foreach(_.textContent = HorizontalOrientation.upperCaseNames nameFor horizontalOrientation())
-//    }
-//
-//    val verticalOrientation = Var(Upwards : VerticalOrientation)
-//    for(i <- alignmentRadio) i.onclick = { (me: MouseEvent) =>
-//      verticalOrientation() = VerticalOrientation.lowerCaseNames enumFor i.value
-//    }
-//    for(i <- alignmentRadio) if(i.checked) verticalOrientation() = VerticalOrientation.lowerCaseNames enumFor i.value
-//    Obs(verticalOrientation) {
-//      alignmentSpan.foreach(_.textContent = verticalOrientation().toString)
-//    }
-//
-//    val forwardStrand = "line".asSVGElement[SVGLineElement](
-//      "x1" -> "0",
-//      "y1" -> "-2",
-//      "x2" -> "100",
-//      "y2" -> "-2",
-//      "style" -> "stroke-dasharray: 6 2; stroke-width: 2; stroke: darkgrey;"
-//    )
-//    val reverseStrand = "line".asSVGElement[SVGLineElement](
-//      "x1" -> "0",
-//      "y1" -> "2",
-//      "x2" -> "100",
-//      "y2" -> "2",
-//      "style" -> "stroke-dasharray: 6 2; stroke-width: 2; stroke: darkgrey;"
-//    )
-//
-//    val backbone = "g".asSVGElement[SVGGElement](forwardStrand, reverseStrand)
-//
-//    val outer = Var(None: Option[String])
-//
-//    val promoter = Promoter(horizontalOrientation, verticalOrientation, Var(100), Var(100), Var(Promoter.Metrics(0.9, 0.9, 0.1, 0.1)))
-//
-//
-//    val placedCds = "g".asSVGElement[SVGGElement](
-//      "transform" -> s"translate(${100/2} 0)"
-//    ) apply(promoter.glyph)
-//
-//    exampleG(backbone, placedCds)
-//
-//    outer() = Some("Outer")
-//  }
+  def shortcodeText(glyphName: String) = div(
+    s"""You can embed $glyphName symbols directly into the flow of text by using SBOLv the $glyphName shortcode """,
+    code(s"""[$glyphName]fish[/$glyphName]"""),
+    s""" within normal text. If you don't need a label you can either use an empty shortcode ([$glyphName][/$glyphName])
+       or a self-closing shortcode ([$glyphName/]). The width of the symbol can be set manually as in
+       [$glyphName width="100"]looong[/$glyphName] and [$glyphName width="30"/] and the orientation with
+       [$glyphName dir="<"/] and [$glyphName dir=">"/]."""
+  )
 }

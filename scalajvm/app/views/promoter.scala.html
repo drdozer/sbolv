@@ -1,11 +1,13 @@
 @()
 
 @templates.main("Promoter") {
+    <h1>Promoter Glyph</h1>
     <p>
         The SBOL Promoter symbol is an arrow with a horizontal and vertical segment.
     </p>
 
     <div id="scaled_example">
+        <h2>Glyph Designer</h2>
         <p>
             The Promoter symbol has a variable vertical size, horizontal size, arrow height and arrow width.
         </p>
@@ -14,65 +16,9 @@
         <div class="glyphs"></div>
     </div>
 
-
-    @*<div id="alignment_example">*@
-        @*<p>*@
-            @*The Promoter symbol can be aligned to the backbone in three modes: backbone-centred,*@
-            @*above-strand and below-strand. The strand-centred CDS is centred on the backbone line.*@
-            @*For above-strand and below-strand, it is always placed that side. The outside*@
-            @*label is always placed furthest from the strand.*@
-        @*</p>*@
-
-        @*<div>*@
-            @*<div style="display: inline-block">*@
-                @*<svg width = 100 height = 150>*@
-                    @*<g class="promoter_on_backbone" transform="translate(0 75)"></g>*@
-                @*</svg>*@
-            @*</div>*@
-
-            @*<div style="display: inline-block">*@
-                @*<p>Direction:</p>*@
-                @*<p><span class="direction"></span></p>*@
-                @*<form>*@
-                    @*<div><input type="radio" name="direction" value="rightwards" checked="true">Forward</div>*@
-                    @*<div><input type="radio" name="direction" value="leftwards">Reverse</div>*@
-                @*</form>*@
-            @*</div>*@
-
-            @*<div style="display: inline-block">*@
-                @*<p>Alignment mode:</p>*@
-                @*<p><span class="alignment"></span></p>*@
-                @*<form>*@
-                    @*<div><input type="radio" name="alignment" value="above_backbone">Above</div>*@
-                    @*<div><input type="radio" name="alignment" value="centred_on_backbone" checked="true">Centred</div>*@
-                    @*<div><input type="radio" name="alignment" value="below_backbone">Below</div>*@
-                @*</form>*@
-            @*</div>*@
-        @*</div>*@
-    @*</div>*@
-
-    <div id="shortcode_example">
-        <p>You can embed promoter symbols directly into the flow of text by using SBOLv the promoter shortcode
-            <code>[promoter]fish[/promoter]</code> within normal text. If you don't need a label you can either use an empty
-            shortcode ([promoter][/promoter]) or a self-closing shortcode ([promoter/]). The width of the symbol can be set
-            manually as in [promoter width="100"]looong[/promoter] and [promoter width="30"/] and the orientation with
-            [promoter dir="<"/] and [promoter dir=">"/].</p>
-
-        <div style="border-color: black; border-style: solid;">
-            <p>You can embed promoter symbols directly into the flow of text by using SBOLv the promoter shortcode
-                <code>[promoter]fish[/promoter]</code> within normal text. If you don't need a label you can either use an empty
-                shortcode ([promoter][/promoter]) or a self-closing shortcode ([promoter/]). The width of the symbol can be set
-                manually as in [promoter width="100"]looong[/promoter] and [promoter width="30"/] and the orientation with
-                [promoter dir="<"/] and [promoter dir=">"/].</p>
-            <script>SBOLv().shortcodes()</script>
-        </div>
-
-        <p>Shortcode processing is enabled within part of your document by including <code>SBOLv().shortcodes()</code>
-            in a &lt;script&gt; element. This will apply shortcodes to all of its siblings</p>
-    </div>
+    <div id="shortcode_example"><H2>Shortcodes</H2></div>
 
     <script>
-    PromoterDemo().wireScaledExample("scaled_example");
-//    PromoterDemo().wireAlignmentExample("alignment_example");
+    PromoterDemo().wireScaledExample("scaled_example", "shortcode_example");
     </script>
 }
