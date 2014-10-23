@@ -86,6 +86,8 @@ object Box {
 
     def hOutline = copy(hPos = Outline)
     def vOutline = copy(vPos = Outline)
+
+    def positionedAt(hPos: Positioning, vPos: Positioning) = copy(hPos = hPos, vPos = vPos)
   }
 
   sealed trait Positioning { def apply(d: Double): Double }
@@ -104,7 +106,7 @@ object Box {
     right = rect.x + rect.width,
     bottom = rect.y + rect.height)
 
-  def empty(p: Point2): Box = Box(left = p.x, right = p.x, top = p.y, bottom = p.y)
+  def empty(p: Point2 = Point2(0.0, 0.0)): Box = Box(left = p.x, right = p.x, top = p.y, bottom = p.y)
 
   def union(ifEmpty: =>Box)(boxes: Seq[Box]): Box = if(boxes.isEmpty) ifEmpty else boxes.reduce(_ union _)
 
