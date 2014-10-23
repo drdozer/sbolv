@@ -2,6 +2,7 @@ package sbolv
 
 import org.scalajs.dom._
 import rx.core._
+import rx.ops._
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSExport
 
@@ -45,17 +46,17 @@ object CdsDemo {
     }
 
     val width = Rx {
-      length() + padding*2
+      length() + padding*2.0
     }
     val height = Rx {
-      depth() + padding*2
+      depth() + padding*2.0
 
     }
     val widthHeight = Rx {
       Math.max(width(), height())
     }
     val centre = Rx {
-      widthHeight() / 2
+      widthHeight() * 0.5
     }
 
     val cdsMetrics = Rx {
@@ -69,7 +70,7 @@ object CdsDemo {
             "height" -> s"${widthHeight()}")
       }
 
-      val cds = Cds(Var(Rightwards), Var(CentredOnBackbone), Var(None), Var(None), Var(0.0), cdsMetrics)
+      val cds = Cds(Var(Rightwards), Var(Upwards), width, height, cdsMetrics)
       val centred = "g".asSVGElement[SVGGElement](cds.glyph)
 
       Obs(centre) {
@@ -88,7 +89,7 @@ object CdsDemo {
             "height" -> s"${widthHeight()}")
       }
 
-      val cds = Cds(Var(Leftwards), Var(CentredOnBackbone), Var(None), Var(None), Var(0.0), cdsMetrics)
+      val cds = Cds(Var(Leftwards), Var(Upwards), width, height, cdsMetrics)
       val centred = "g".asSVGElement[SVGGElement](cds.glyph)
 
       Obs(centre) {
@@ -112,24 +113,21 @@ object CdsDemo {
     val directionSpan = div.getElementsByClassName("direction").elements
     val exampleG = div.getElementsByClassName("cds_on_backbone").elements.head
 
-    var direction = Var(Rightwards : HorizontalOrientation)
+    val horizontalOrientation = Var(Rightwards : HorizontalOrientation)
     for(i <- directionRadio) i.onclick = { (me: MouseEvent) =>
-      direction() = i.value match {
-        case "rightwards" => Rightwards
-        case "leftwards" => Leftwards
-      }
+      horizontalOrientation() = HorizontalOrientation.lowerCaseNames enumFor i.value
     }
-    Obs(direction) {
-      directionSpan.foreach(_.textContent = direction().toString)
+    Obs(horizontalOrientation) {
+      directionSpan.foreach(_.textContent = HorizontalOrientation.upperCaseNames nameFor horizontalOrientation())
     }
 
-    var alignment = Var(CentredOnBackbone : BackboneAlignment)
+    val verticalOrientation = Var(Upwards : VerticalOrientation)
     for(i <- alignmentRadio) i.onclick = { (me: MouseEvent) =>
-      alignment() = BackboneAlignment.parse(i.value)
+      verticalOrientation() = VerticalOrientation.lowerCaseNames enumFor i.value
     }
-    for(i <- alignmentRadio) if(i.checked) alignment() = BackboneAlignment.parse(i.value)
-    Obs(alignment) {
-      alignmentSpan.foreach(_.textContent = alignment().toString)
+    for(i <- alignmentRadio) if(i.checked) verticalOrientation() = VerticalOrientation.lowerCaseNames enumFor i.value
+    Obs(verticalOrientation) {
+      alignmentSpan.foreach(_.textContent = verticalOrientation().toString)
     }
 
     val forwardStrand = "line".asSVGElement[SVGLineElement](
@@ -152,7 +150,7 @@ object CdsDemo {
     val inner = Var(None: Option[String])
     val outer = Var(None: Option[String])
 
-    val cds = Cds(direction, alignment, inner, outer, Var(7.0), Var(Cds.Metrics(60, 20, 10)))
+    val cds = Cds(horizontalOrientation, verticalOrientation, Var(100), Var(100), Var(Cds.Metrics(0.6, 0.2, 0.1)))
 
 
     val placedCds = "g".asSVGElement[SVGGElement](

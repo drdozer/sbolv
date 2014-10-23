@@ -2,16 +2,18 @@ package sbolv
 
 import sbolv.SeqDiff._
 
+import scala.annotation.unchecked.uncheckedVariance
 import scala.collection.{SortedMap, mutable}
 import scala.scalajs.js.Dynamic
 import scalatags.JsDom.all._
 import scala.util.{Failure, Success, Random}
 import rx._
 import rx.core.{Propagator, Obs}
+import rx.ops._
 import org.scalajs.dom
 import org.scalajs.dom.{Event, Element, document}
 import scala.scalajs.js
-import scalatags.generic
+import scalatags.{JsDom, generic}
 import scalatags.generic.Attr
 
 
@@ -21,7 +23,13 @@ import scalatags.generic.Attr
 /**
  * A minimal binding between Scala.Rx and Scalatags and Scala-Js-Dom
  */
-object Framework extends DomL3 {
+object Framework extends Html5 with Webkit {
+
+  object Events extends NamedEventUtil with DomL3 with Events
+
+  val rowspan = "rowspan".attr
+  val colspan = "colspan".attr
+
 
   /**
    * Wraps reactive values in spans, so they can be referenced/replaced
@@ -88,14 +96,48 @@ object Framework extends DomL3 {
   }
 
   implicit def FuncEventValue: EventValue[Element, Event => Unit] = new EventValue[Element, Event => Unit] {
-    override def apply(t: Element, ne: NamedEvent, v: (Event) => Unit) =
+    override def apply(t: Element, ne: NamedEvent, v: (Event) => Unit) = {
+      println(s"Registering event for ${ne.name} on $t")
+      t.addEventListener(ne.name, (_: Event) => println(s"Event $ne.name was fired"))
       t.addEventListener(ne.name, v)
+    }
   }
 
   implicit def RxAttrValueFactory[T: AttrValue]: AttrValue[dom.Element => T] = new AttrValue[dom.Element => T] {
     override def apply(t: Element, a: generic.Attr, v: (Element) => T) = {
       implicitly[AttrValue[T]].apply(t, a, v(t))
     }
+  }
+
+  implicit class EnhancedElement[Output <: dom.Element](val elem: Output) extends AnyVal {
+    def modifyWith: ElementModifier[Output] = ElementModifier(elem, Nil)
+  }
+
+  case class ElementModifier[Output <: dom.Element](elem: Output,
+                                                    modifiers: List[Seq[Modifier]])
+    extends generic.TypedTag[dom.Element, Output, dom.Node]
+    with scalatags.jsdom.Frag
+  {
+    // unchecked because Scala 2.10.4 seems to not like this, even though
+    // 2.11.1 works just fine. I trust that 2.11.1 is more correct than 2.10.4
+    // and so just force this.
+    protected[this] type Self = ElementModifier[Output @uncheckedVariance]
+
+    def render: Output = {
+      build(elem)
+      elem
+    }
+
+    /**
+     * Trivial override, not strictly necessary, but it makes IntelliJ happy...
+     */
+    def apply(xs: Modifier*): Self = {
+      this.copy(modifiers = xs :: modifiers)
+    }
+
+    override def tag = elem.nodeName
+
+    override def toString = render.outerHTML
   }
 }
 

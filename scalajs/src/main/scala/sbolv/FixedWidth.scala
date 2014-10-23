@@ -37,9 +37,16 @@ case class FixedWidth(boxWidthHeight: Rx[Double],
 
   val glyphUpdater = new Updater[GlyphFactory] {
     override def onEntered(en: Entered[GlyphFactory]) = {
-      val gf = en.item.apply()(boxWidthHeight, alignment)
+      val vert: Var[VerticalOrientation] = Var(Upwards)
+      lazy val gf: GlyphFamily = en.item.apply()(boxWidthHeight, Rx {
+        (alignment(), gf.horizontalOrientation()) match {
+          case (AboveBackbone, _) | (CentredOnBackbone, Rightwards) => Upwards
+          case (BelowBackbone, _) | (CentredOnBackbone, Leftwards)  => Downwards
+        }
+      })
       val index = Var(en.at.index)
       val gh = FixedWidth.GlyphHolder(en.item, gf, index)
+
 
       val holder = g(transform := Rx {
         val x = boxWidthHeight() * index()

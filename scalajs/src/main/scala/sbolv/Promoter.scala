@@ -5,94 +5,62 @@ import rx.core.{Rx, Var}
 
 
 case class Promoter(horizontalOrientation: Rx[HorizontalOrientation],
-                    alignment: Rx[BackboneAlignment],
-                    outerLabel: Rx[Option[String]],
-                    backboneWidth: Rx[Double],
+                    verticalOrientation: Rx[VerticalOrientation],
+                    width: Rx[Double],
+                    height: Rx[Double],
                     metrics: Rx[Promoter.Metrics])
-  extends GlyphFamily with GlyphFamilyWithOuterLabel
+  extends GlyphFamily
 {
   override type Metrics = Promoter.Metrics
+  override type Geometry = Promoter.Geometry
 
-  import scalatags.JsDom.all.bindNode
-  import scalatags.JsDom.implicits._
-  import scalatags.JsDom.svgTags._
-  import scalatags.JsDom.svgAttrs._
-  import Framework._
 
-  override protected lazy val offset = Rx {
-    if(transMetrics != null) {
-      val m = transMetrics()
-      m.vertical + m.arrowHeight
-    } else {
-      0.0 // initialization order bug
-    }
+  override def metricsToGeometry(m: Metrics) = {
+    val w = width()
+    val w2 = w * 0.5
+    val h = height()
+    val h2 = h * 0.5
+
+    val hori = m.horizontal * w
+    val hori2 = hori * 0.5
+
+
+    val vert = m.vertical * h
+    val vert2 = vert * 0.5
+
+    val xSgn = horizontalOrientation().sgn
+    val ySgn = verticalOrientation().sgn
+
+    val top = h2 - ySgn * vert2
+    val bot = h2 + ySgn * vert2
+
+    val left = w2 - xSgn * hori2
+    val right = w2 + xSgn * hori2
+
+    val arrowW = right - xSgn * m.arrowWidth * w
+    val arrowHDelta = ySgn * m.arrowHeight * h
+    
+    Promoter.Geometry(top = top, bot = bot, left = left, right = right, arrowW = arrowW, arrowHDelta = arrowHDelta)
   }
 
-  private val transMetrics = Rx {
-    val m = metrics()
-
-    val v = (horizontalOrientation(), alignment()) match {
-      case (Rightwards, CentredOnBackbone | AboveBackbone) | (Leftwards, AboveBackbone) =>
-        -m.vertical
-      case (Rightwards, BelowBackbone) | (Leftwards, CentredOnBackbone | BelowBackbone) =>
-        +m.vertical
-    }
-
-    val h = horizontalOrientation() match {
-      case Rightwards =>
-        +m.horizontal
-      case Leftwards =>
-        -m.horizontal
-    }
-
-    val ah = (horizontalOrientation(), alignment()) match {
-      case (Rightwards, CentredOnBackbone | AboveBackbone) | (Leftwards, AboveBackbone) =>
-        -m.arrowHeight
-      case (Rightwards, BelowBackbone) | (Leftwards, CentredOnBackbone | BelowBackbone) =>
-        +m.arrowHeight
-    }
-
-    val aw = horizontalOrientation() match {
-      case Rightwards =>
-        +m.arrowWidth
-      case Leftwards =>
-        -m.arrowWidth
-    }
-
-    Promoter.Metrics(v, h, ah, aw)
+  override protected def geometryToPath(g: Geometry) = {
+    import g._
+    s"M$left $bot L$left $top L$right $top M$arrowW ${top + arrowHDelta} L$right $top L$arrowW ${top - arrowHDelta}"
   }
 
-  private val path_d = Rx {
-    val m = transMetrics()
-    s"M0 0 V${m.vertical} H${m.horizontal} M${m.horizontal - m.arrowWidth} ${m.vertical - m.arrowHeight} L${m.horizontal} ${m.vertical} L${m.horizontal - m.arrowWidth} ${m.vertical + m.arrowHeight}"
-  }
+  /** Calculate the baseline from the geometry. This will be called within an Rx, so can rely upon other Rx variables.
+    * */
+  override def geometryToBaseline(g: Geometry) = g.bot
 
-  private val glyph_transform = Rx {
-    val offset = backboneWidth()
-    alignment() match {
-      case CentredOnBackbone => "translate(0 0)"
-      case AboveBackbone => s"translate(0 ${-offset})"
-      case BelowBackbone => s"translate(0 ${+offset})"
-    }
-  }
-
-  private val glyphPath = path(
-    `class` := "sbolv_glyph",
-    d := path_d)
-
-  val glyph = g(
-    `class` := "sbolv promoter",
-    transform := glyph_transform)(glyphPath, outerLabelText).render
+  override def cssClass = "promoter"
 }
 
 object Promoter {
 
   object FixedWidth extends GlyphFamily.FixedWidth {
-    def apply(direction: HorizontalOrientation, label: Option[String] = None): (Rx[Double], Rx[BackboneAlignment]) => GlyphFamily = (width, alignment) =>
-      Promoter(Var(direction), alignment, Var(label), Var(0), Rx {
-        val w = width() * 0.9
-        Metrics(w * 0.4, w * 0.4, w * 0.1, w * 0.1)
-      })
+    def apply(direction: HorizontalOrientation, label: Option[String] = None):
+    (Rx[Double], Rx[VerticalOrientation]) => GlyphFamily = (width, alignment) =>
+      Promoter(Var(direction), alignment, width, width, Var(Metrics(0.9, 0.9, 0.1, 0.1)))
   }
 
   trait Metrics {
@@ -109,6 +77,8 @@ object Promoter {
 
   case class MetricsImpl(vertical: Double, horizontal: Double, arrowHeight: Double, arrowWidth: Double) extends Metrics
 
+  case class Geometry(top: Double, bot: Double, left: Double, right: Double, arrowW: Double, arrowHDelta: Double)
+
   trait SCProvider extends ShortcodeProvider {
     import scalatags.JsDom.all.bindNode
     import scalatags.JsDom.implicits._
@@ -120,16 +90,9 @@ object Promoter {
         val attrsM = attrs.toMap
         val wdth = attrsM.get("width").map(_.toDouble).getOrElse(50.0)
         val dir = asDirection(attrsM.get("dir"))
-        val promoter = FixedWidth(dir, content).apply(Var(wdth), Var(AboveBackbone))
+        val promoter = FixedWidth(dir, content).apply(Var(wdth), Var(Upwards))
 
-        val hoff = 0.3 * (dir match {
-          case Rightwards => -1
-          case Leftwards => 1
-        })
-
-        svg(width := wdth, height := wdth * 0.5, `class` := "sbolv_inline")(
-          g(transform := s"translate(${wdth * (0.5 + hoff)} ${wdth * 0.47})")(promoter.glyph)
-        ).render
+        svg(width := wdth, height := wdth, `class` := "sbolv_inline")(promoter.glyph).render
     }
 
     abstract override def shortcodeHandlers(sc: Shortcode) = super.shortcodeHandlers(sc) orElse promoterHandler.lift(sc)

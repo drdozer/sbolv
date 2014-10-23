@@ -5,67 +5,62 @@ import rx.core.{Rx, Var}
 
 
 case class Cds(horizontalOrientation: Rx[HorizontalOrientation],
-               alignment: Rx[BackboneAlignment],
-               innerLabel: Rx[Option[String]],
-               outerLabel: Rx[Option[String]],
-               backboneWidth: Rx[Double],
+               verticalOrientation: Rx[VerticalOrientation],
+               width: Rx[Double],
+               height: Rx[Double],
                metrics: Rx[Cds.Metrics])
-  extends GlyphFamily with GlyphFamilyWithInnerLabel with GlyphFamilyWithOuterLabel
+  extends GlyphFamily
 {
   override type Metrics = Cds.Metrics
+  override type Geometry = Cds.Geometry
 
-  import scalatags.JsDom.all.bindNode
-  import scalatags.JsDom.implicits._
-  import scalatags.JsDom.svgTags._
-  import scalatags.JsDom.svgAttrs._
-  import Framework._
+  override protected def metricsToGeometry(m: Metrics) = {
+    val w = width()
+    val w2 = w * 0.5
+    val h = height()
 
-  override protected lazy val offset = Rx {
-    (horizontalOrientation(), alignment()) match {
-      case (Rightwards, AboveBackbone | CentredOnBackbone) | (Leftwards, AboveBackbone) =>
-        -metrics().depth
-      case (Rightwards, BelowBackbone) | (Leftwards, CentredOnBackbone | BelowBackbone) =>
-        +metrics().depth
-    }
+    val length = m.length * w
+    val l2 = length * 0.5
+    val depth = m.depth * h
+    val d2 = depth * 0.5
+    val head = w * m.head
+
+    val xSgn = verticalOrientation().sgn
+    val ySgn = horizontalOrientation().sgn
+
+    val mid = h * 0.5
+    val top = mid - ySgn * d2
+    val bot = mid + ySgn * d2
+
+    val start = w2 - xSgn * l2
+    val end = w2 + xSgn * l2
+    val arrow = end - xSgn * head
+
+    Cds.Geometry(top = top, mid = mid, bot = bot, start = start, arrow = arrow, end = end)
   }
 
-  private val glyphPath_d = Rx {
-    val m = metrics()
-    horizontalOrientation() match {
-      case Rightwards => s"M${ m.l2} 0 L${ m.l2h} ${-m.d2} H${-m.l2} v${ m.depth} H${ m.l2h} L${ m.l2} 0 Z"
-      case Leftwards => s"M${-m.l2} 0 L${-m.l2h} ${ m.d2} H${ m.l2} v${-m.depth} H${-m.l2h} L${-m.l2} 0 Z"
-    }
+
+  override protected def geometryToPath(g: Geometry) = {
+    import g._
+    s"M$end $mid L$top $arrow L$top $start L$bot $start L$bot $arrow L$end $mid Z"
   }
 
-  private val glyph_transform = Rx {
-    val m = metrics()
-    val offset = m.d2 + backboneWidth()
-    alignment() match {
-      case CentredOnBackbone => "translate(0 0)"
-      case AboveBackbone => s"translate(0 ${-offset})"
-      case BelowBackbone => s"translate(0 ${+offset})"
-    }
-  }
+  override def geometryToBaseline(g: Geometry) = g.mid
 
-  private val glyphPath = path(`class` := "sbolv_glyph", d := glyphPath_d)
-
-  val glyph = g(
-    `class` := "sbolv cds",
-    transform := glyph_transform
-  )(glyphPath, innerLabelText, outerLabelText).render
+  override val cssClass = "cds"
 }
 
 object Cds {
   object FixedWidth extends GlyphFamily.FixedWidth {
-    def apply(direction: HorizontalOrientation, label: Option[String] = None): (Rx[Double], Rx[BackboneAlignment]) => GlyphFamily = (width, alignment) =>
-      Cds(Var(direction), alignment, Var(label), Var(None), Var(0), Rx {
-        val w = width() * 0.9
+    def apply(horizontalDirection: HorizontalOrientation, label: Option[String] = None):
+    (Rx[Double], Rx[VerticalOrientation]) => GlyphFamily = (width, verticalOrientation) =>
+      Cds(Var(horizontalDirection), verticalOrientation, width, width, Var(
         new Metrics {
-          def length = w
-          def depth = w * 0.5
-          override def head = d2
+          def length = 0.9
+          def depth = length * 0.5
+          override def head = depth * 0.5
         }
-      })
+      ))
   }
 
   trait Metrics {
@@ -74,10 +69,6 @@ object Cds {
 
     def head: Double = length - body
     def body: Double = length - head
-
-    def l2 = length / 2.0
-    def d2 = depth / 2.0
-    def l2h = l2 - head
   }
 
   object Metrics {
@@ -85,6 +76,8 @@ object Cds {
   }
 
   case class MetricsImpl(length: Double, depth: Double, override val head: Double) extends Metrics
+
+  case class Geometry(top: Double, mid: Double, bot: Double, start: Double, arrow: Double, end: Double)
 
   trait SCProvider extends ShortcodeProvider {
     import scalatags.JsDom.all.bindNode
@@ -97,17 +90,15 @@ object Cds {
         val attrsM = attrs.toMap
         val wdth = attrsM.get("width").map(_.toDouble).getOrElse(50.0)
         val dir = asDirection(attrsM.get("dir"))
-        val cds = FixedWidth(dir, content).apply(Var(wdth), Var(AboveBackbone))
+        val cds = FixedWidth(dir, content).apply(Var(wdth), Var(Upwards))
 
-        svg(width := wdth, height := wdth * 0.5, `class` := "sbolv_inline")(
-          g(transform := s"translate(${wdth * 0.5} ${wdth * 0.47})")(cds.glyph)
-        ).render
-    }
-
-    abstract override def shortcodeHandlers(sc: Shortcode) = super.shortcodeHandlers(sc) orElse cdsHandler.lift(sc)
+        svg(width := wdth, height := wdth, `class` := "sbolv_inline")(cds.glyph).render
   }
 
-  trait FWSC extends FixedWidthShorcodeContent {
-    abstract override def Code(c: String) = if(c == "c") FixedWidth else super.Code(c)
-  }
+  abstract override def shortcodeHandlers(sc: Shortcode) = super.shortcodeHandlers(sc) orElse cdsHandler.lift(sc)
+}
+
+trait FWSC extends FixedWidthShorcodeContent {
+  abstract override def Code(c: String) = if(c == "c") FixedWidth else super.Code(c)
+}
 }

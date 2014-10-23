@@ -44,21 +44,21 @@ object FixedOrProportionalDemo {
       val io = for(
         g <- selectedGlyph()
       ) yield {
-        val inner = g match {
-          case i : GlyphFamilyWithInnerLabel =>
-            Some(i.innerLabel.asInstanceOf[Var[Option[String]]])
-          case _ => None
-        }
-        val outer = g match {
-          case o : GlyphFamilyWithOuterLabel =>
-            Some(o.outerLabel.asInstanceOf[Var[Option[String]]])
-          case _ => None
-        }
+//        val inner = g match {
+//          case i : GlyphFamilyWithInnerLabel =>
+//            Some(i.innerLabel.asInstanceOf[Var[Option[String]]])
+//          case _ => None
+//        }
+//        val outer = g match {
+//          case o : GlyphFamilyWithOuterLabel =>
+//            Some(o.outerLabel.asInstanceOf[Var[Option[String]]])
+//          case _ => None
+//        }
 
-        (inner, outer, Some(g.horizontalOrientation.asInstanceOf[Var[HorizontalOrientation]]))
+        (/* inner, outer, */ Some(g.horizontalOrientation.asInstanceOf[Var[HorizontalOrientation]]))
       }
 
-      io.getOrElse((None, None, None))
+      io.getOrElse((/* None, None,*/ None))
     }
 
     val selectionWidget = Rx {
@@ -106,13 +106,13 @@ object FixedOrProportionalDemo {
         }
       }
 
-      val (innerRxO, outerRxO, dO) = selectedGlyphVars()
+      val ( /* innerRxO, outerRxO, */ dO) = selectedGlyphVars()
       div(
         `class` := "glyph_editor")(
           deleter,
-          flipper(dO),
+          flipper(dO) /*,
           editor(innerRxO, "inner"),
-          editor(outerRxO, "outer")
+          editor(outerRxO, "outer") */
       )
     }
 
@@ -123,7 +123,8 @@ object FixedOrProportionalDemo {
     }
 
     case class ClickAdder(gffw: GlyphFamily.FixedWidth) extends GlyphFamily.FixedWidth {
-      override def apply(direction: HorizontalOrientation, label: Option[String]): (Rx[Double], Rx[BackboneAlignment]) => GlyphFamily = {
+      override def apply(direction: HorizontalOrientation, label: Option[String]):
+      (Rx[Double], Rx[VerticalOrientation]) => GlyphFamily = {
         import scalajs.js.Dynamic
 
         val gf = gffw(direction, label)

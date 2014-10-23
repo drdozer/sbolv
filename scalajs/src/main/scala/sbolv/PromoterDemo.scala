@@ -1,9 +1,16 @@
 package sbolv
 
-import org.scalajs.dom._
+
+import org.scalajs.dom.{onclick => _, _}
 import rx.core._
+import rx.ops._
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSExport
+import scala.util.Random
+import scalatags.JsDom.all._
+import scalatags.JsDom.svgTags._
+import scalatags.JsDom.svgAttrs
+import Framework._
 
 /**
  *
@@ -13,99 +20,93 @@ import scala.scalajs.js.annotation.JSExport
 @JSExport
 object PromoterDemo {
 
-  import Enhancements._
-
   @JSExport
   def wireScaledExample(divId: String) {
-    val div = document.getElementById(divId).asInstanceOf[HTMLDivElement]
-    val verticalSlider = ReactiveSlider(div.getElementsByClassName("vertical_slider").elements.head.asInstanceOf[HTMLInputElement])
-    val verticalSpan = div.getElementsByClassName("vertical").elements
-    val horizontalSlider = ReactiveSlider(div.getElementsByClassName("horizontal_slider").elements.head.asInstanceOf[HTMLInputElement])
-    val horizontalSpan = div.getElementsByClassName("horizontal").elements
-    val arrowWidthSlider = ReactiveSlider(div.getElementsByClassName("arrowWidth_slider").elements.head.asInstanceOf[HTMLInputElement])
-    val arrowWidthSpan = div.getElementsByClassName("arrowWidth").elements
-    val arrowHeightSlider = ReactiveSlider(div.getElementsByClassName("arrowHeight_slider").elements.head.asInstanceOf[HTMLInputElement])
-    val arrowHeightSpan = div.getElementsByClassName("arrowHeight").elements
-    val topPromoter = div.getElementsByClassName("scaled_promoter_top").elements.head.asInstanceOf[SVGGElement]
-    val bottomPromoter = div.getElementsByClassName("scaled_promoter_bottom").elements.head.asInstanceOf[SVGGElement]
+    val container = document.getElementById(divId).asInstanceOf[HTMLDivElement]
+    val sliders = container.getElementsByClassName("sliders")(0).asInstanceOf[HTMLElement]
+    val glyphs = container.getElementsByClassName("glyphs")(0).asInstanceOf[HTMLElement]
+
+    def mkLabelledSlider(name: String, minV: Int, maxV: Int, valueV: Int, units: String, scale: Int => Double) = {
+      val slider = input(
+        `class` := s"${name}_slider",
+        `type` := "range",
+        min := minV,
+        max := maxV,
+        value := valueV)
+      val rSlider = ReactiveSlider(slider)
+      val scaled = rSlider.valueAsNumber map scale
+
+      val label = span(
+        `class` := name)(
+          span(`class` := "value", scaled),
+          span(`class` := "units", units)
+        )
+
+      val sl = div(style := "display: inline-block")(
+        div(width := "100%", marginLeft := "auto", marginRight := "auto", label),
+        div(rSlider.slider))
+      (sl, scaled)
+    }
+
+    val maxWidth = 300
+    val maxHeight = 300
+
+    val (widthSlider, widthRx) = mkLabelledSlider("width", 10, maxWidth, 50, "px", _.toDouble)
+    val (heightSlider, heightRx) = mkLabelledSlider("height", 10, maxHeight, 50, "px", _.toDouble)
+    val (verticalSlider, verticalRx) = mkLabelledSlider("vertical", 0, 100, 40, "%", _.toDouble * 0.01)
+    val (horizontalSlider, horizontalRx) = mkLabelledSlider("horizontal", 0, 100, 60, "%", _.toDouble * 0.01)
+    val (arrowWidthSlider, arrowWidthRx) = mkLabelledSlider("arrowWidth", 0, 100, 10, "%", _.toDouble * 0.01)
+    val (arrowHeightSlider, arrowHeightRx) = mkLabelledSlider("arrowHeight", 0, 100, 10, "%", _.toDouble * 0.01)
+
+    sliders.modifyWith(
+      widthSlider,
+      heightSlider,
+      verticalSlider,
+      horizontalSlider,
+      arrowWidthSlider,
+      arrowHeightSlider).render
+
+    val promoterMetrics = Rx {
+      Promoter.Metrics(vertical = verticalRx(),
+                       horizontal = horizontalRx(),
+                       arrowHeight = arrowHeightRx(),
+                       arrowWidth = arrowWidthRx())
+    }
 
     val padding = 5
 
-    Obs(verticalSlider.valueAsNumber) {
-      verticalSpan.foreach(_.textContent = verticalSlider.valueAsNumber().toString)
-    }
-    Obs(horizontalSlider.valueAsNumber) {
-      horizontalSpan.foreach(_.textContent = horizontalSlider.valueAsNumber().toString)
-    }
-    Obs(arrowWidthSlider.valueAsNumber) {
-      arrowWidthSpan.foreach(_.textContent = arrowWidthSlider.valueAsNumber().toString)
-    }
-    Obs(arrowHeightSlider.valueAsNumber) {
-      arrowHeightSpan.foreach(_.textContent = arrowHeightSlider.valueAsNumber().toString)
+    def mkGlyph(leftRight: HorizontalOrientation, upDown: VerticalOrientation) = {
+      val promoter = Promoter(Var(leftRight), Var(upDown), widthRx, heightRx, promoterMetrics)
+
+      svg(width := widthRx map (_ + padding * 2.0), height := heightRx map (_ + padding * 2.0),
+        g(svgAttrs.transform := s"translate($padding $padding)",
+        rect(`class` := "glyphBox", svgAttrs.width := widthRx, svgAttrs.height := heightRx),
+        promoter.glyph))
     }
 
-    val width = Rx {
-      verticalSlider.valueAsNumber()*2 + arrowWidthSlider.valueAsNumber() + padding*2
-    }
-    val height = Rx {
-      horizontalSlider.valueAsNumber()*2 + arrowHeightSlider.valueAsNumber() + padding*2
-
-    }
-    val widthHeight = Rx {
-      Math.max(width(), height())
-    }
-    val centre = Rx {
-      widthHeight() / 2
-    }
-
-    val promoterMetrics = Rx {
-      Promoter.Metrics(vertical = verticalSlider.valueAsNumber(),
-                       horizontal = horizontalSlider.valueAsNumber(),
-                       arrowHeight = arrowHeightSlider.valueAsNumber(),
-                       arrowWidth = arrowWidthSlider.valueAsNumber())
-    }
-
-    {
-      val box = "rect".asSVGElement[SVGRectElement]("class" -> "glyphBox")
-      Obs(widthHeight) {
-        box("width" -> s"${widthHeight()}",
-            "height" -> s"${widthHeight()}")
-      }
-
-      val promoter = Promoter(Var(Rightwards), Var(CentredOnBackbone), Var(None), Var(0.0), promoterMetrics)
-      val centred = "g".asSVGElement[SVGGElement](promoter.glyph)
-
-      Obs(centre) {
-        centred.apply("transform" -> s"translate(${centre()} ${centre()})")
-      }
-
-      topPromoter(
-        "transform" -> s"translate($padding $padding)"
-      ).apply(box, centred)
-    }
-
-    {
-      val box = "rect".asSVGElement[SVGRectElement]("class" -> "glyphBox")
-      Obs(widthHeight) {
-        box("width" -> s"${widthHeight()}",
-            "height" -> s"${widthHeight()}")
-      }
-
-      val promoter = Promoter(Var(Leftwards), Var(CentredOnBackbone), Var(None), Var(0.0), promoterMetrics)
-      val centred = "g".asSVGElement[SVGGElement](promoter.glyph)
-
-      Obs(centre) {
-        centred.apply("transform" -> s"translate(${centre()} ${centre()})")
-      }
-
-      bottomPromoter(
-        "transform" -> s"translate($padding $padding)"
-      ).apply(box, centred)
-    }
+    glyphs.modifyWith(table(
+      tr(
+        td(`class` := "empty_cell"),
+        td(`class` := "horizontal glyphGridLabel", colspan := 2, textAlign := "centre", "Upwards"),
+        td(`class` := "empty_cell")),
+      tr(
+        td(`class` := "vertical glyphGridLabel", webkitTransform := "rotate(270deg)", rowspan := 2, "Leftwards"),
+        td(mkGlyph(Leftwards, Upwards)),
+        td(mkGlyph(Rightwards, Upwards)),
+        td(`class` := "vertical glyphGridLabel", webkitTransform := "rotate(90deg)", rowspan := 2, "Rightwards")),
+      tr(
+        td(mkGlyph(Leftwards, Downwards)),
+        td(mkGlyph(Rightwards, Downwards))),
+      tr(
+        td(`class` := "empty_cell"),
+        td(`class` := "horizontal glyphGridLabel", colspan := 2, textAlign := "centre", "Downwards"),
+        td(`class` := "empty_cell")))).render
   }
 
   @JSExport
   def wireAlignmentExample(divId: String): Unit = {
+    import Enhancements._
+
     val div = document.getElementById(divId).asInstanceOf[HTMLDivElement]
     val alignmentRadio = div.getElementsByTagName("input").elements.
       map(_.asInstanceOf[HTMLInputElement]).filter(_.name == "alignment")
@@ -115,26 +116,21 @@ object PromoterDemo {
     val directionSpan = div.getElementsByClassName("direction").elements
     val exampleG = div.getElementsByClassName("promoter_on_backbone").elements.head
 
-    var direction = Var(Rightwards : HorizontalOrientation)
+    val horizontalOrientation = Var(Rightwards : HorizontalOrientation)
     for(i <- directionRadio) i.onclick = { (me: MouseEvent) =>
-      direction() = i.value match {
-        case "rightwards" => Rightwards
-        case "leftwards" => Leftwards
-      }
+      horizontalOrientation() = HorizontalOrientation.lowerCaseNames enumFor i.value
     }
-    Obs(direction) {
-      directionSpan.foreach(_.textContent = direction().toString)
+    Obs(horizontalOrientation) {
+      directionSpan.foreach(_.textContent = HorizontalOrientation.upperCaseNames nameFor horizontalOrientation())
     }
 
-    var alignment = Var(CentredOnBackbone : BackboneAlignment)
-    for(i <- alignmentRadio) if(i.checked) alignment() = BackboneAlignment.parse(i.value)
-
+    val verticalOrientation = Var(Upwards : VerticalOrientation)
     for(i <- alignmentRadio) i.onclick = { (me: MouseEvent) =>
-      alignment() = BackboneAlignment.parse(i.value)
+      verticalOrientation() = VerticalOrientation.lowerCaseNames enumFor i.value
     }
-    for(i <- alignmentRadio) if(i.checked) alignment() = BackboneAlignment.parse(i.value)
-    Obs(alignment) {
-      alignmentSpan.foreach(_.textContent = alignment().toString)
+    for(i <- alignmentRadio) if(i.checked) verticalOrientation() = VerticalOrientation.lowerCaseNames enumFor i.value
+    Obs(verticalOrientation) {
+      alignmentSpan.foreach(_.textContent = verticalOrientation().toString)
     }
 
     val forwardStrand = "line".asSVGElement[SVGLineElement](
@@ -156,7 +152,7 @@ object PromoterDemo {
 
     val outer = Var(None: Option[String])
 
-    val promoter = Promoter(direction, alignment, outer, Var(7.0), Var(Promoter.Metrics(30, 30, 10, 10)))
+    val promoter = Promoter(horizontalOrientation, verticalOrientation, Var(100), Var(100), Var(Promoter.Metrics(0.9, 0.9, 0.1, 0.1)))
 
 
     val placedCds = "g".asSVGElement[SVGGElement](
