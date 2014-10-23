@@ -62,7 +62,7 @@ trait GlyphFamily {
   }
 
   /** The SVG element that this instance manages. */
-  final lazy val glyph: SVGElement = path(`class` := s"sbolv_glyph $cssClass", d := path_d).render
+  final lazy val glyph: SVGElement with SVGLocatable = path(`class` := s"sbolv_glyph $cssClass", d := path_d).render
 }
 
 object GlyphFamily {
