@@ -32,9 +32,7 @@ case class PositionedText(content: Rx[String],
   lazy val relativePosition = RelativePosition(relativeTo, boxOfTxt.boundingBox, hPos, vPos, hAt, vAt)
 
   lazy val translate = Rx {
-    println("Calculating translate")
     val at = relativePosition.at()
-    println(s"At $at")
     s"translate(${at.x} ${at.y})"
   }
 
@@ -65,14 +63,10 @@ case class RelativePosition(parentBox: Rx[Box],
 }
 
 case class BoxOfSVG(elem: SVGElement with SVGLocatable) {
-  println("Creating BoxOfSVG")
   var positionTick = Var(0)
   private def tickPosition() = positionTick() = positionTick() + 1
 
-  println("Created ticker")
-
   lazy val boundingBox = {
-    println("Initializing bounding box events")
     elem.modifyWith(
       Events.DOMNodeInsertedIntoDocument := { (e: Event) => tickPosition() },
       Events.DOMNodeInserted := { (e: Event) => tickPosition() },
@@ -80,11 +74,8 @@ case class BoxOfSVG(elem: SVGElement with SVGLocatable) {
     ).render
 
     Rx {
-      println("Calculating bounding box rx")
       positionTick() // for the dependency
-      println("bunding box rx ticked")
       val b = Box(elem.getBBox())
-      println(s"Calculated box as $b")
       b
     }
   }

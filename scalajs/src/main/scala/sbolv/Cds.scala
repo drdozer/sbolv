@@ -14,6 +14,7 @@ case class Cds(horizontalOrientation: Rx[HorizontalOrientation],
   override type Metrics = Cds.Metrics
   override type Geometry = Cds.Geometry
 
+
   override protected def metricsToGeometry(m: Metrics) = {
     val w = width()
     val w2 = w * 0.5
@@ -25,8 +26,8 @@ case class Cds(horizontalOrientation: Rx[HorizontalOrientation],
     val d2 = depth * 0.5
     val head = w * m.head
 
-    val xSgn = verticalOrientation().sgn
-    val ySgn = horizontalOrientation().sgn
+    val xSgn = horizontalOrientation().sgn
+    val ySgn = verticalOrientation().sgn
 
     val mid = h * 0.5
     val top = mid - ySgn * d2
@@ -42,7 +43,7 @@ case class Cds(horizontalOrientation: Rx[HorizontalOrientation],
 
   override protected def geometryToPath(g: Geometry) = {
     import g._
-    s"M$end $mid L$top $arrow L$top $start L$bot $start L$bot $arrow L$end $mid Z"
+    s"M$end $mid L$arrow $top L$start $top L$start $bot L$arrow $bot L$end $mid Z"
   }
 
   override def geometryToBaseline(g: Geometry) = g.mid
@@ -52,7 +53,7 @@ case class Cds(horizontalOrientation: Rx[HorizontalOrientation],
 
 object Cds {
   object FixedWidth extends GlyphFamily.FixedWidth {
-    def apply(horizontalDirection: HorizontalOrientation, label: Option[String] = None):
+    def apply(horizontalDirection: HorizontalOrientation):
     (Rx[Double], Rx[VerticalOrientation]) => GlyphFamily = (width, verticalOrientation) =>
       Cds(Var(horizontalDirection), verticalOrientation, width, width, Var(
         new Metrics {
@@ -79,23 +80,13 @@ object Cds {
 
   case class Geometry(top: Double, mid: Double, bot: Double, start: Double, arrow: Double, end: Double)
 
-  trait SCProvider extends ShortcodeProvider {
-    import scalatags.JsDom.all.bindNode
-    import scalatags.JsDom.implicits._
-    import scalatags.JsDom.svgTags._
-    import scalatags.JsDom.svgAttrs._
-
-    private val cdsHandler: PartialFunction[Shortcode, Node] = {
-      case Shortcode("cds", attrs, content) =>
-        val attrsM = attrs.toMap
-        val wdth = attrsM.get("width").map(_.toDouble).getOrElse(50.0)
-        val dir = asDirection(attrsM.get("dir"))
-        val cds = FixedWidth(dir, content).apply(Var(wdth), Var(Upwards))
-
-        svg(width := wdth, height := wdth, `class` := "sbolv_inline")(cds.glyph).render
+  trait SCProvider extends GlyphProvider {
+    private val cdsHandler: PartialFunction[Shortcode, GlyphFamily.FixedWidth] = {
+      case Shortcode("cds", _, _) =>
+        FixedWidth
   }
 
-  abstract override def shortcodeHandlers(sc: Shortcode) = super.shortcodeHandlers(sc) orElse cdsHandler.lift(sc)
+  abstract override def glyphHandler(sc: Shortcode) = super.glyphHandler(sc) orElse cdsHandler.lift(sc)
 }
 
 trait FWSC extends FixedWidthShorcodeContent {

@@ -123,11 +123,11 @@ object FixedOrProportionalDemo {
     }
 
     case class ClickAdder(gffw: GlyphFamily.FixedWidth) extends GlyphFamily.FixedWidth {
-      override def apply(direction: HorizontalOrientation, label: Option[String]):
+      override def apply(direction: HorizontalOrientation):
       (Rx[Double], Rx[VerticalOrientation]) => GlyphFamily = {
         import scalajs.js.Dynamic
 
-        val gf = gffw(direction, label)
+        val gf = gffw(direction)
 
         (w, d) => {
           val g = gf(w, d)

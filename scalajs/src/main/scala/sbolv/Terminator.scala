@@ -13,7 +13,7 @@ final case class Terminator(horizontalOrientation: Rx[HorizontalOrientation],
 {
   override protected def geometryToPath(g: Geometry) = {
     import g._
-    s"M$bot $xMid L$top $xMid M$top $start $top $end"
+    s"M$xMid $bot L$xMid $top M$start $top L$end $top"
   }
 
   override def cssClass = "terminator"
@@ -21,35 +21,22 @@ final case class Terminator(horizontalOrientation: Rx[HorizontalOrientation],
 
 object Terminator {
   object FixedWidth extends GlyphFamily.FixedWidth {
-    def apply(horizontalOrientation: HorizontalOrientation, label: Option[String] = None): (Rx[Double], Rx[VerticalOrientation]) => GlyphFamily = (width, verticalOrientation) =>
+    def apply(horizontalOrientation: HorizontalOrientation): (Rx[Double], Rx[VerticalOrientation]) => GlyphFamily = (width, verticalOrientation) =>
       Terminator(Var(horizontalOrientation), verticalOrientation, width, width, Rx {
-        val w = width()
         new BoxyGlyph.Metrics {
-          def length = w * 0.9
-          def depth = w * 0.6
+          def length = 0.6
+          def depth = 0.3
         }
       })
   }
 
-  trait SCProvider extends ShortcodeProvider {
-    import scalatags.JsDom.all.bindNode
-    import scalatags.JsDom.implicits._
-    import scalatags.JsDom.svgTags._
-    import scalatags.JsDom.svgAttrs._
-
-    private val termHandler: PartialFunction[Shortcode, Node] = {
-      case Shortcode("term", attrs, content) =>
-        val attrsM = attrs.toMap
-        val wdth = attrsM.get("width").map(_.toDouble).getOrElse(50.0)
-        val dir = asDirection(attrsM.get("dir"))
-        val term = FixedWidth(dir, content).apply(Var(wdth), Var(Upwards))
-
-        svg(width := wdth, height := wdth * 0.5, `class` := "sbolv_inline")(
-          g(transform := s"translate(${wdth * 0.5} ${wdth * 0.47})")(term.glyph)
-        ).render
+  trait SCProvider extends GlyphProvider {
+    private val termHandler: PartialFunction[Shortcode, GlyphFamily.FixedWidth] = {
+      case Shortcode("term", _, _) =>
+        FixedWidth
     }
 
-    abstract override def shortcodeHandlers(sc: Shortcode) = super.shortcodeHandlers(sc) orElse termHandler.lift(sc)
+    abstract override def glyphHandler(sc: Shortcode) = super.glyphHandler(sc) orElse termHandler.lift(sc)
   }
 
   trait FWSC extends FixedWidthShorcodeContent {

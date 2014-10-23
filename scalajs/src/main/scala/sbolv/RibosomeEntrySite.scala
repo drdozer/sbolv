@@ -21,7 +21,7 @@ case class RibosomeEntrySite(horizontalOrientation: Rx[HorizontalOrientation],
 
 object RibosomeEntrySite {
   object FixedWidth extends GlyphFamily.FixedWidth {
-    def apply(direction: HorizontalOrientation, label: Option[String] = None): (Rx[Double], Rx[VerticalOrientation]) => GlyphFamily = (width, verticalOrientation) =>
+    def apply(direction: HorizontalOrientation): (Rx[Double], Rx[VerticalOrientation]) => GlyphFamily = (width, verticalOrientation) =>
       RibosomeEntrySite(Var(direction), verticalOrientation, width, width, Rx {
         val w = 0.9
         new BoxyGlyph.Metrics {
@@ -31,25 +31,13 @@ object RibosomeEntrySite {
       })
   }
 
-  trait SCProvider extends ShortcodeProvider {
-    import scalatags.JsDom.all.bindNode
-    import scalatags.JsDom.implicits._
-    import scalatags.JsDom.svgTags._
-    import scalatags.JsDom.svgAttrs._
-
-    private val resHandler: PartialFunction[Shortcode, Node] = {
-      case Shortcode("res", attrs, content) =>
-        val attrsM = attrs.toMap
-        val wdth = attrsM.get("width").map(_.toDouble).getOrElse(50.0)
-        val dir = asDirection(attrsM.get("dir"))
-        val res = FixedWidth(dir, content).apply(Var(wdth), Var(Upwards))
-
-        svg(width := wdth, height := wdth * 0.5, `class` := "sbolv_inline")(
-          g(transform := s"translate(${wdth * 0.5} ${wdth * 0.47})")(res.glyph)
-        ).render
+  trait SCProvider extends GlyphProvider {
+    private val resHandler: PartialFunction[Shortcode, GlyphFamily.FixedWidth] = {
+      case Shortcode("res", _, _) =>
+        FixedWidth
     }
 
-    abstract override def shortcodeHandlers(sc: Shortcode) = super.shortcodeHandlers(sc) orElse resHandler.lift(sc)
+    abstract override def glyphHandler(sc: Shortcode) = super.glyphHandler(sc) orElse resHandler.lift(sc)
   }
 
   trait FWSC extends FixedWidthShorcodeContent {

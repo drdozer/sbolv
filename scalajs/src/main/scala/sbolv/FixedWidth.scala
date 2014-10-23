@@ -113,8 +113,8 @@ object FixedWidth {
   }
 }
 
-case class GlyphFactory(glyphFamily: GlyphFamily.FixedWidth, direction: HorizontalOrientation, label: Option[String] = None) {
-  def apply() = glyphFamily(direction, label)
+case class GlyphFactory(glyphFamily: GlyphFamily.FixedWidth, direction: HorizontalOrientation) {
+  def apply() = glyphFamily(direction)
 }
 
 object GlyphFactory {
@@ -133,7 +133,7 @@ abstract class FixedWidthShorcodeContent extends RegexParsers {
   private val qtStr = qt ~> notQt <~ qt
 
 
-  val entry = code ~ dir ~ qtStr.? ^^ { case c ~ d ~ l => GlyphFactory(c, d, l) }
+  val entry = code ~ dir ~ qtStr.? ^^ { case c ~ d ~ l => GlyphFactory(c, d) }
 
   def Code(c: String): GlyphFamily.FixedWidth =
     throw new IllegalArgumentException(s"Unknown code: $c")

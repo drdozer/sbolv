@@ -1,5 +1,8 @@
 package sbolv
 
+import rx.core.Var
+import sbolv.geom.Box
+
 import scala.scalajs.js.annotation.JSExport
 import scala.scalajs.js._
 import org.scalajs.dom._
@@ -100,6 +103,37 @@ abstract class ShortcodeProvider {
     }
     case _ => Rightwards
   }
+}
+
+trait GlyphProvider extends ShortcodeProvider {
+  def glyphHandler(sc: Shortcode): Option[GlyphFamily.FixedWidth] = None
+
+  private def handleGlyph(sc: Shortcode) = {
+    glyphHandler(sc) map { glyphFactory =>
+      import scalatags.JsDom.all.{bindNode, OptionFrag}
+      import scalatags.JsDom.implicits._
+      import scalatags.JsDom.{svgTags => st}
+      import scalatags.JsDom.{svgAttrs => sa}
+
+      val attrsM = sc.attrs.toMap
+      val wdth = attrsM.get("width").map(_.toDouble).getOrElse(50.0)
+      val dir = asDirection(attrsM.get("dir"))
+
+      val rendered = glyphFactory(dir)(Var(wdth), Var(Upwards)).glyph
+      val label = for(c <- sc.content) yield PositionedText(
+        Var(c),
+        BoxOfSVG(rendered).boundingBox,
+        Var(Box.Inline),
+        Var(Box.Inline),
+        Var(0.5),
+        Var(0.5)).positionedText
+
+      st.svg(sa.width := wdth, sa.height := wdth, sa.`class` := "sbolv_inline",
+        rendered, label).render
+    }
+  }
+
+  override abstract def shortcodeHandlers(sc: Shortcode) = super.shortcodeHandlers(sc) orElse handleGlyph(sc)
 }
 
 trait ShortcodeParser extends RegexParsers {

@@ -68,7 +68,7 @@ trait GlyphFamily {
 object GlyphFamily {
   private var ctr = 0
   trait FixedWidth {
-    def apply(direction: HorizontalOrientation, label: Option[String] = None):
+    def apply(direction: HorizontalOrientation):
     (Rx[Double], Rx[VerticalOrientation]) => GlyphFamily
     val uuid: Int = {
       val u = ctr
@@ -97,8 +97,8 @@ trait BoxyGlyph extends GlyphFamily {
     val depth = m.depth * h
     val d2 = depth * 0.5
 
-    val xSgn = verticalOrientation().sgn
-    val ySgn = horizontalOrientation().sgn
+    val xSgn = horizontalOrientation().sgn
+    val ySgn = verticalOrientation().sgn
 
     val top = h2 - ySgn * d2
     val bot = h2 + ySgn * d2

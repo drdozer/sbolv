@@ -1,121 +1,24 @@
 @()
 
 @templates.main("CDS") {
+    <h1>CDS Glyph</h1>
     <p>
         The SBOL CDS symbol is a rectangle with a triangular end.
     </p>
 
-    <div>
-        <div style="display: inline-block">
-            <div>Rightwards: represents a CDS on the forward/top strand.</div>
-            <svg width = 110 height = 110>
-                <rect x="5" y="5" width="100" height="100" fill="ivory" stroke = "darkgrey" stroke-dasharray="4 1"/>
-                <path d="M90 55 L70 35 H20 V75 H70 L90 55 Z" fill="aqua" stroke="black" stroke-width="3px" stroke-linejoin="round"></path>
-            </svg>
-        </div>
-
-        <div style="display: inline-block">
-            <div>Leftwards: represents a CDS on the backwards/reverse-complement/bottom strand.</div>
-            <svg width = 110 height = 110>
-                <rect x="5" y="5" width="100" height="100" fill="ivory" stroke = "darkgrey" stroke-dasharray="4 1"/>
-                <path d="M20 55 L40 35 H90 V75 H40 L20 55 Z" fill="aqua" stroke="black" stroke-width="3px" stroke-linejoin="round"></path>
-            </svg>
-        </div>
-    </div>
-
     <div id="scaled_example">
+        <h2>Glyph Designer</h2>
         <p>
-            The CDS symbol has a variable width, depth, arrow head size.
+            The CDS symbol has a variable width, depth, arrow head size
         </p>
 
-        <div>
-            <div style="display: inline-block">
-                <p>Length: <span class="length"></span></p>
-                <input type="range" name="length" min="20" max="300" value="100" class="length_slider">
-            </div>
-            <div style="display: inline-block">
-                <p>Depth: <span class="depth"></span></p>
-                <input type="range" name="depth" min="20" max="300" value="40" class="depth_slider">
-            </div>
-            <div style="display: inline-block">
-                <p>Head: <span class="head"></span></p>
-                <input type="range" name="head" min="1" max="100" value="20" class="head_slider">
-            </div>
-        </div>
-        <div>
-            <div style="display: inline-block">
-                <div>Top strand</div>
-                <svg width = 320 height = 320>
-                    <g class="scaled_cds_top"></g>
-                </svg>
-            </div>
-
-            <div style="display: inline-block">
-                <div>Bottom strand</div>
-                <svg width = 320 height = 320>
-                    <g class="scaled_cds_bottom"></g>
-                </svg>
-            </div>
-        </div>
+        <div class="sliders"></div>
+        <div class="glyphs"></div>
     </div>
 
-    <div id="alignment_example">
-        <p>
-            The CDS symbol can be aligned to the backbone in three modes: backbone-centred,
-            above-strand and below-strand. The strand-centred CDS is centred on the backbone line.
-            For above-strand and below-strand, it is always placed that side. The outside
-            label is always placed furthest from the strand.
-        </p>
-
-        <div>
-            <div style="display: inline-block">
-                <svg width = 100 height = 120>
-                    <g class="cds_on_backbone" transform="translate(0 50)"></g>
-                </svg>
-            </div>
-
-            <div style="display: inline-block">
-                <p>Horizontal Orientation:</p>
-                <p><span class="horizontalOrientation"></span></p>
-                <form>
-                    <div><input type="radio" name="orientation" value="rightwards" checked="true">Rightwards</div>
-                    <div><input type="radio" name="orientation" value="leftwards">Leftwards</div>
-                </form>
-            </div>
-
-            <div style="display: inline-block">
-                <p>Vertical Orientation:</p>
-                <p><span class="verticalOrientation"></span></p>
-                <form>
-                    <div><input type="radio" name="orientation" value="upwards">Upwards</div>
-                    <div><input type="radio" name="orientation" value="downwards">Downwards</div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <div id="shortcode_example">
-        <p>You can embed CDS symbols directly into the flow of text by using SBOLv the CDS shortcode
-            <code>[cds]fish[/cds]</code> within normal text. If you don't need a label you can either use an empty
-            shortcode ([cds][/cds]) or a self-closing shortcode ([cds/]). The width of the symbol can be set
-            manually as in [cds width="100"]looong[/cds] and [cds width="20"/] and the orientation with
-            [cds dir="<"/] and [cds dir=">"/].</p>
-
-        <div style="border-color: black; border-style: solid;">
-            <p>You can embed CDS symbols directly into the flow of text by using SBOLv the CDS shortcode
-                <code>[cds]fish[/cds]</code> within normal text. If you don't need a label you can either use an empty
-                shortcode ([cds][/cds]) or a self-closing shortcode ([cds/]). The width of the symbol can be set
-                manually as in [cds width="100"]looong[/cds] and [cds width="20"/] and the orientation with
-                [cds dir="<"/] and [cds dir=">"/].</p>
-            <script>SBOLv().shortcodes()</script>
-        </div>
-
-        <p>Shortcode processing is enabled within part of your document by including <code>SBOLv().shortcodes()</code>
-        in a &lt;script&gt; element. This will apply shortcodes to all of its siblings</p>
-    </div>
+    <div id="shortcode_example"><H2>Shortcodes</H2></div>
 
     <script>
-    CdsDemo().wireScaledExample("scaled_example");
-    CdsDemo().wireAlignmentExample("alignment_example");
+    CdsDemo().wireScaledExample("scaled_example", "shortcode_example");
     </script>
 }
