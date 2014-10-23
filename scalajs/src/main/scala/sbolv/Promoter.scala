@@ -2,6 +2,7 @@ package sbolv
 
 import org.scalajs.dom.Node
 import rx.core.{Rx, Var}
+import sbolv.geom.Box
 
 
 case class Promoter(horizontalOrientation: Rx[HorizontalOrientation],
@@ -60,7 +61,7 @@ object Promoter {
   object FixedWidth extends GlyphFamily.FixedWidth {
     def apply(direction: HorizontalOrientation, label: Option[String] = None):
     (Rx[Double], Rx[VerticalOrientation]) => GlyphFamily = (width, alignment) =>
-      Promoter(Var(direction), alignment, width, width, Var(Metrics(0.9, 0.9, 0.1, 0.1)))
+      Promoter(Var(direction), alignment, width, width, Var(Metrics(0.4, 0.7, 0.1, 0.1)))
   }
 
   trait Metrics {
@@ -80,10 +81,10 @@ object Promoter {
   case class Geometry(top: Double, bot: Double, left: Double, right: Double, arrowW: Double, arrowHDelta: Double)
 
   trait SCProvider extends ShortcodeProvider {
-    import scalatags.JsDom.all.bindNode
+    import scalatags.JsDom.all.{bindNode, OptionFrag}
     import scalatags.JsDom.implicits._
-    import scalatags.JsDom.svgTags._
-    import scalatags.JsDom.svgAttrs._
+    import scalatags.JsDom.{svgTags => st}
+    import scalatags.JsDom.{svgAttrs => sa}
 
     private val promoterHandler: PartialFunction[Shortcode, Node] = {
       case Shortcode("promoter", attrs, content) =>
@@ -92,7 +93,16 @@ object Promoter {
         val dir = asDirection(attrsM.get("dir"))
         val promoter = FixedWidth(dir, content).apply(Var(wdth), Var(Upwards))
 
-        svg(width := wdth, height := wdth, `class` := "sbolv_inline")(promoter.glyph).render
+        val label = for(c <- content) yield PositionedText(
+          Var(c),
+          BoxOfSVG(promoter.glyph).boundingBox,
+          Var(Box.Inline),
+          Var(Box.Inline),
+          Var(0.5),
+          Var(0.5)).positionedText
+
+        st.svg(sa.width := wdth, sa.height := wdth, sa.`class` := "sbolv_inline",
+          promoter.glyph, label).render
     }
 
     abstract override def shortcodeHandlers(sc: Shortcode) = super.shortcodeHandlers(sc) orElse promoterHandler.lift(sc)

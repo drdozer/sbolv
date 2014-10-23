@@ -103,64 +103,64 @@ object PromoterDemo {
         td(`class` := "empty_cell")))).render
   }
 
-  @JSExport
-  def wireAlignmentExample(divId: String): Unit = {
-    import Enhancements._
-
-    val div = document.getElementById(divId).asInstanceOf[HTMLDivElement]
-    val alignmentRadio = div.getElementsByTagName("input").elements.
-      map(_.asInstanceOf[HTMLInputElement]).filter(_.name == "alignment")
-    val alignmentSpan = div.getElementsByClassName("alignment").elements
-    val directionRadio = div.getElementsByTagName("input").elements.
-      map(_.asInstanceOf[HTMLInputElement]).filter(_.name == "direction")
-    val directionSpan = div.getElementsByClassName("direction").elements
-    val exampleG = div.getElementsByClassName("promoter_on_backbone").elements.head
-
-    val horizontalOrientation = Var(Rightwards : HorizontalOrientation)
-    for(i <- directionRadio) i.onclick = { (me: MouseEvent) =>
-      horizontalOrientation() = HorizontalOrientation.lowerCaseNames enumFor i.value
-    }
-    Obs(horizontalOrientation) {
-      directionSpan.foreach(_.textContent = HorizontalOrientation.upperCaseNames nameFor horizontalOrientation())
-    }
-
-    val verticalOrientation = Var(Upwards : VerticalOrientation)
-    for(i <- alignmentRadio) i.onclick = { (me: MouseEvent) =>
-      verticalOrientation() = VerticalOrientation.lowerCaseNames enumFor i.value
-    }
-    for(i <- alignmentRadio) if(i.checked) verticalOrientation() = VerticalOrientation.lowerCaseNames enumFor i.value
-    Obs(verticalOrientation) {
-      alignmentSpan.foreach(_.textContent = verticalOrientation().toString)
-    }
-
-    val forwardStrand = "line".asSVGElement[SVGLineElement](
-      "x1" -> "0",
-      "y1" -> "-2",
-      "x2" -> "100",
-      "y2" -> "-2",
-      "style" -> "stroke-dasharray: 6 2; stroke-width: 2; stroke: darkgrey;"
-    )
-    val reverseStrand = "line".asSVGElement[SVGLineElement](
-      "x1" -> "0",
-      "y1" -> "2",
-      "x2" -> "100",
-      "y2" -> "2",
-      "style" -> "stroke-dasharray: 6 2; stroke-width: 2; stroke: darkgrey;"
-    )
-
-    val backbone = "g".asSVGElement[SVGGElement](forwardStrand, reverseStrand)
-
-    val outer = Var(None: Option[String])
-
-    val promoter = Promoter(horizontalOrientation, verticalOrientation, Var(100), Var(100), Var(Promoter.Metrics(0.9, 0.9, 0.1, 0.1)))
-
-
-    val placedCds = "g".asSVGElement[SVGGElement](
-      "transform" -> s"translate(${100/2} 0)"
-    ) apply(promoter.glyph)
-
-    exampleG(backbone, placedCds)
-
-    outer() = Some("Outer")
-  }
+//  @JSExport
+//  def wireAlignmentExample(divId: String): Unit = {
+//    import Enhancements._
+//
+//    val div = document.getElementById(divId).asInstanceOf[HTMLDivElement]
+//    val alignmentRadio = div.getElementsByTagName("input").elements.
+//      map(_.asInstanceOf[HTMLInputElement]).filter(_.name == "alignment")
+//    val alignmentSpan = div.getElementsByClassName("alignment").elements
+//    val directionRadio = div.getElementsByTagName("input").elements.
+//      map(_.asInstanceOf[HTMLInputElement]).filter(_.name == "direction")
+//    val directionSpan = div.getElementsByClassName("direction").elements
+//    val exampleG = div.getElementsByClassName("promoter_on_backbone").elements.head
+//
+//    val horizontalOrientation = Var(Rightwards : HorizontalOrientation)
+//    for(i <- directionRadio) i.onclick = { (me: MouseEvent) =>
+//      horizontalOrientation() = HorizontalOrientation.lowerCaseNames enumFor i.value
+//    }
+//    Obs(horizontalOrientation) {
+//      directionSpan.foreach(_.textContent = HorizontalOrientation.upperCaseNames nameFor horizontalOrientation())
+//    }
+//
+//    val verticalOrientation = Var(Upwards : VerticalOrientation)
+//    for(i <- alignmentRadio) i.onclick = { (me: MouseEvent) =>
+//      verticalOrientation() = VerticalOrientation.lowerCaseNames enumFor i.value
+//    }
+//    for(i <- alignmentRadio) if(i.checked) verticalOrientation() = VerticalOrientation.lowerCaseNames enumFor i.value
+//    Obs(verticalOrientation) {
+//      alignmentSpan.foreach(_.textContent = verticalOrientation().toString)
+//    }
+//
+//    val forwardStrand = "line".asSVGElement[SVGLineElement](
+//      "x1" -> "0",
+//      "y1" -> "-2",
+//      "x2" -> "100",
+//      "y2" -> "-2",
+//      "style" -> "stroke-dasharray: 6 2; stroke-width: 2; stroke: darkgrey;"
+//    )
+//    val reverseStrand = "line".asSVGElement[SVGLineElement](
+//      "x1" -> "0",
+//      "y1" -> "2",
+//      "x2" -> "100",
+//      "y2" -> "2",
+//      "style" -> "stroke-dasharray: 6 2; stroke-width: 2; stroke: darkgrey;"
+//    )
+//
+//    val backbone = "g".asSVGElement[SVGGElement](forwardStrand, reverseStrand)
+//
+//    val outer = Var(None: Option[String])
+//
+//    val promoter = Promoter(horizontalOrientation, verticalOrientation, Var(100), Var(100), Var(Promoter.Metrics(0.9, 0.9, 0.1, 0.1)))
+//
+//
+//    val placedCds = "g".asSVGElement[SVGGElement](
+//      "transform" -> s"translate(${100/2} 0)"
+//    ) apply(promoter.glyph)
+//
+//    exampleG(backbone, placedCds)
+//
+//    outer() = Some("Outer")
+//  }
 }

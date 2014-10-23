@@ -1,13 +1,13 @@
-@()
+@(title: String, glyphName: String, demoClass: String)
 
-@templates.main("CDS") {
+@templates.main(title) {
     <p>
-        The SBOL CDS symbol is a rectangle with a triangular end.
+        The SBOL @glyphName symbol is a rectangle with a triangular end.
     </p>
 
     <div>
         <div style="display: inline-block">
-            <div>Rightwards: represents a CDS on the forward/top strand.</div>
+            <div>Rightwards: represents a @glyphName on the forward/top strand.</div>
             <svg width = 110 height = 110>
                 <rect x="5" y="5" width="100" height="100" fill="ivory" stroke = "darkgrey" stroke-dasharray="4 1"/>
                 <path d="M90 55 L70 35 H20 V75 H70 L90 55 Z" fill="aqua" stroke="black" stroke-width="3px" stroke-linejoin="round"></path>
@@ -25,7 +25,7 @@
 
     <div id="scaled_example">
         <p>
-            The CDS symbol has a variable width, depth, arrow head size.
+            The @glyphName symbol has a variable width, depth, arrow head size.
         </p>
 
         <div>
@@ -61,8 +61,8 @@
 
     <div id="alignment_example">
         <p>
-            The CDS symbol can be aligned to the backbone in three modes: backbone-centred,
-            above-strand and below-strand. The strand-centred CDS is centred on the backbone line.
+            The @glyphName symbol can be aligned to the backbone in three modes: backbone-centred,
+            above-strand and below-strand. The strand-centred @glyphName is centred on the backbone line.
             For above-strand and below-strand, it is always placed that side. The outside
             label is always placed furthest from the strand.
         </p>
@@ -70,7 +70,7 @@
         <div>
             <div style="display: inline-block">
                 <svg width = 100 height = 120>
-                    <g class="cds_on_backbone" transform="translate(0 50)"></g>
+                    <g class="on_backbone" transform="translate(0 50)"></g>
                 </svg>
             </div>
 
@@ -95,18 +95,18 @@
     </div>
 
     <div id="shortcode_example">
-        <p>You can embed CDS symbols directly into the flow of text by using SBOLv the CDS shortcode
-            <code>[cds]fish[/cds]</code> within normal text. If you don't need a label you can either use an empty
-            shortcode ([cds][/cds]) or a self-closing shortcode ([cds/]). The width of the symbol can be set
-            manually as in [cds width="100"]looong[/cds] and [cds width="20"/] and the orientation with
-            [cds dir="<"/] and [cds dir=">"/].</p>
+        <p>You can embed @glyphName symbols directly into the flow of text by using SBOLv the @glyphName shortcode
+            <code>[@glyphName]fish[/@glyphName]</code> within normal text. If you don't need a label you can either use
+            an empty shortcode ([@glyphName][/@glyphName]) or a self-closing shortcode ([@glyphName/]).
+            The width of the symbol can be set manually as in [@glyphName width="100"]looong[/cds] and
+            [@glyphName width="20"/] and the orientation with [@glyphName dir="<"/] and [@glyphName dir=">"/].</p>
 
         <div style="border-color: black; border-style: solid;">
-            <p>You can embed CDS symbols directly into the flow of text by using SBOLv the CDS shortcode
-                <code>[cds]fish[/cds]</code> within normal text. If you don't need a label you can either use an empty
-                shortcode ([cds][/cds]) or a self-closing shortcode ([cds/]). The width of the symbol can be set
-                manually as in [cds width="100"]looong[/cds] and [cds width="20"/] and the orientation with
-                [cds dir="<"/] and [cds dir=">"/].</p>
+            <p>You can embed @glyphName symbols directly into the flow of text by using SBOLv the @glyphName shortcode
+                <code>[@glyphName]fish[/@glyphName]</code> within normal text. If you don't need a label you can either use
+                an empty shortcode ([@glyphName][/@glyphName]) or a self-closing shortcode ([@glyphName/]).
+                The width of the symbol can be set manually as in [@glyphName width="100"]looong[/cds] and
+                [@glyphName width="20"/] and the orientation with [@glyphName dir="<"/] and [@glyphName dir=">"/].</p>
             <script>SBOLv().shortcodes()</script>
         </div>
 
@@ -115,7 +115,7 @@
     </div>
 
     <script>
-    CdsDemo().wireScaledExample("scaled_example");
-    CdsDemo().wireAlignmentExample("alignment_example");
+        @{demoClass}().wireScaledExample("scaled_example");
+        @{demoClass}().wireAlignmentExample("alignment_example");
     </script>
 }
