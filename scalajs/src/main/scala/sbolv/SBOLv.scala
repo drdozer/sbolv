@@ -7,6 +7,7 @@ import scala.scalajs.js.annotation.JSExport
 import scala.scalajs.js._
 import org.scalajs.dom._
 import scala.util.parsing.combinator._
+import scalatags.JsDom
 
 /**
  *
@@ -119,21 +120,40 @@ trait GlyphProvider extends ShortcodeProvider {
       val wdth = attrsM.get("width").map(_.toDouble).getOrElse(50.0)
       val dir = asDirection(attrsM.get("dir"))
 
-      val rendered = glyphFactory(dir)(Var(wdth), Var(Upwards)).glyph
-      val label = for(c <- sc.content) yield PositionedText(
-        Var(c),
-        BoxOfSVG(rendered).boundingBox,
-        Var(Box.Inline),
-        Var(Box.Inline),
-        Var(0.5),
-        Var(0.5)).positionedText
+      val glyph = glyphFactory(dir)(Var(wdth), Var(Upwards))
+      val labelled = LabelledGlyph.from(glyph, sc.content)
 
       st.svg(sa.width := wdth, sa.height := wdth, sa.`class` := "sbolv_inline",
-        rendered, label).render
+        labelled.svgElement).render
     }
   }
 
   override abstract def shortcodeHandlers(sc: Shortcode) = super.shortcodeHandlers(sc) orElse handleGlyph(sc)
+}
+
+case class LabelledGlyph(gf: GlyphFamily, label: Option[PositionedText]) {
+  import scalatags.JsDom.all.{bindNode, OptionFrag}
+  import JsDom.{svgTags => st}
+  val svgElement = {
+    import Enhancements.DynamicApply
+    val el = st.g(gf.glyph, label.map(_.positionedText)).render
+    Dynamic(el).__sbolv_widget = Dynamic(this)
+    el
+  }
+}
+
+object LabelledGlyph {
+  def from(gf: GlyphFamily, label: Option[String]): LabelledGlyph = {
+    val glyph = gf.glyph
+    val placed = for(c <- label) yield PositionedText(
+            Var(c),
+            BoxOfSVG(glyph).boundingBox,
+            Var(Box.Inline),
+            Var(Box.Inline),
+            Var(0.5),
+            Var(0.5))
+    LabelledGlyph(gf, placed)
+  }
 }
 
 trait ShortcodeParser extends RegexParsers {

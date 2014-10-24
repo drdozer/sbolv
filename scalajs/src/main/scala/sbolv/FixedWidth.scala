@@ -27,38 +27,48 @@ case class FixedWidth(boxWidthHeight: Rx[Double],
   import Framework._
   import Updater._
 
+  Obs(glyphs) {
+    println("glyphs changed")
+  }
+
 
   private val verticalCentre = Rx {
+    println("Setting vertical centre")
     boxWidthHeight() * 0.5
-  }
-  private val allGlyphs_transform = Rx {
-    s"translate(${boxWidthHeight() * 0.5} ${verticalCentre()})"
   }
 
   val glyphUpdater = new Updater[GlyphFactory] {
     override def onEntered(en: Entered[GlyphFactory]) = {
+      println(s"Handling entry for $en")
       val vert: Var[VerticalOrientation] = Var(Upwards)
-      lazy val gf: GlyphFamily = en.item.apply()(boxWidthHeight, Rx {
-        (alignment(), gf.horizontalOrientation()) match {
+      val gf: GlyphFamily = en.item.create()(boxWidthHeight, Rx {
+        println("Rx up/down")
+        (alignment(), en.item.direction) match {
           case (AboveBackbone, _) | (CentredOnBackbone, Rightwards) => Upwards
           case (BelowBackbone, _) | (CentredOnBackbone, Leftwards)  => Downwards
         }
       })
+      println("Remembering index")
       val index = Var(en.at.index)
+      println("Making holder")
       val gh = FixedWidth.GlyphHolder(en.item, gf, index)
 
+      val labelled = LabelledGlyph.from(gf, en.item.label)
 
+      println(s"Setting per-glyph transform")
       val holder = g(transform := Rx {
         val x = boxWidthHeight() * index()
         s"translate($x 0)"
-      }, gf.glyph).render
+      }, labelled.svgElement).render
 
       Dynamic(holder).updateDynamic("__sbolv_widget")(Dynamic(gh))
 
+      println("returning glyph")
       holder
     }
 
     override def onModified(mod: Modified[GlyphFactory], existing: Node): Option[Frag] = {
+      println(s"Handling modified for $mod")
       val holder = Dynamic(existing).selectDynamic("__sbolv_widget").asInstanceOf[GlyphHolder]
       holder.index() = mod.at._2.index
       None
@@ -67,7 +77,6 @@ case class FixedWidth(boxWidthHeight: Rx[Double],
 
   val allGlyphs = g(
     `class` := "sbolv fixed-width glyphs",
-    transform := allGlyphs_transform,
     glyphs updateWith glyphUpdater).render
 
   Dynamic(allGlyphs).updateDynamic("__sbolv_widget")(Dynamic(this))
@@ -91,9 +100,11 @@ object FixedWidth {
 
     private val sbolvHandler: PartialFunction[Shortcode, Node] = {
       case Shortcode("sbolv", attrs, content) =>
+        println("Handling sbolv shortcode")
         val attrsM = attrs.toMap
         val wdth = attrsM.get("width").map(_.toDouble).getOrElse(50.0)
 
+        println("Fetching glyphs")
         val glyphs = for {
           c <- content.to[IndexedSeq]
           g <- c.split("""\s+""")
@@ -101,11 +112,14 @@ object FixedWidth {
           FWSC.parseAll(FWSC.entry, g).get
         }
         val glyphsV = Var(IndexedSeq.empty[GlyphFactory])
+        println("Creating FixedWidth")
         val fixedWidth = FixedWidth(Var(wdth), Var(AboveBackbone), glyphsV)
+        println("Assigning glyphs")
         glyphsV() = glyphs
 
-        svg(width := wdth * glyphs.length, height := wdth * 0.5, `class` := "sbolv_inline")(
-          g(transform := s"translate(0 -1)")(fixedWidth.allGlyphs)
+        println("Rendering svg")
+        svg(width := wdth * glyphs.length, height := wdth, `class` := "sbolv_inline")(
+          fixedWidth.allGlyphs
         ).render
     }
 
@@ -113,8 +127,11 @@ object FixedWidth {
   }
 }
 
-case class GlyphFactory(glyphFamily: GlyphFamily.FixedWidth, direction: HorizontalOrientation) {
-  def apply() = glyphFamily(direction)
+case class GlyphFactory(glyphFamily: GlyphFamily.FixedWidth, direction: HorizontalOrientation, label: Option[String]) {
+  def create() = {
+    println(s"Creating glyph family $glyphFamily, with direction $direction")
+    glyphFamily(direction)
+  }
 }
 
 object GlyphFactory {
@@ -133,7 +150,7 @@ abstract class FixedWidthShorcodeContent extends RegexParsers {
   private val qtStr = qt ~> notQt <~ qt
 
 
-  val entry = code ~ dir ~ qtStr.? ^^ { case c ~ d ~ l => GlyphFactory(c, d) }
+  val entry = code ~ dir ~ qtStr.? ^^ { case c ~ d ~ l => GlyphFactory(c, d, l) }
 
   def Code(c: String): GlyphFamily.FixedWidth =
     throw new IllegalArgumentException(s"Unknown code: $c")
