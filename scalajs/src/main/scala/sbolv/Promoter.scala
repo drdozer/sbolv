@@ -1,6 +1,5 @@
 package sbolv
 
-import org.scalajs.dom.Node
 import rx.core.{Rx, Var}
 
 

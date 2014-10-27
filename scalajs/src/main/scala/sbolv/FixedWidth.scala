@@ -31,31 +31,20 @@ case class FixedWidth(boxWidthHeight: Rx[Double],
     println("glyphs changed")
   }
 
-
-  private val verticalCentre = Rx {
-    println("Setting vertical centre")
-    boxWidthHeight() * 0.5
-  }
-
   val glyphUpdater = new Updater[GlyphFactory] {
     override def onEntered(en: Entered[GlyphFactory]) = {
-      println(s"Handling entry for $en")
       val vert: Var[VerticalOrientation] = Var(Upwards)
       val gf: GlyphFamily = en.item.create()(boxWidthHeight, Rx {
-        println("Rx up/down")
         (alignment(), en.item.direction) match {
           case (AboveBackbone, _) | (CentredOnBackbone, Rightwards) => Upwards
           case (BelowBackbone, _) | (CentredOnBackbone, Leftwards)  => Downwards
         }
       })
-      println("Remembering index")
       val index = Var(en.at.index)
-      println("Making holder")
-      val gh = FixedWidth.GlyphHolder(en.item, gf, index)
 
       val labelled = LabelledGlyph.from(gf, en.item.label)
+      val gh = FixedWidth.GlyphHolder(en.item, labelled, index)
 
-      println(s"Setting per-glyph transform")
       val holder = g(transform := Rx {
         val x = boxWidthHeight() * index()
         s"translate($x 0)"
@@ -83,7 +72,7 @@ case class FixedWidth(boxWidthHeight: Rx[Double],
 }
 
 object FixedWidth {
-  case class GlyphHolder(gf: GlyphFactory, g: GlyphFamily, index: Var[Int])
+  case class GlyphHolder(gf: GlyphFactory, lab: LabelledGlyph, index: Var[Int])
 
   trait SCProvider extends ShortcodeProvider {
     import scalatags.JsDom.all.{bindNode}
