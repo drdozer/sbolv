@@ -41,11 +41,11 @@ object FixedOrProportionalDemo {
     import scalatags.JsDom.all._
     import Framework._
 
-    val selectedGlyph: Var[Option[GlyphFamily]] = Var(None)
+    val selectedGlyphHolder: Var[Option[FixedWidth.GlyphHolder]] = Var(None)
 
     val selectedGlyphVars = Rx {
       val io = for(
-        g <- selectedGlyph()
+        gh <- selectedGlyphHolder()
       ) yield {
 //        val inner = g match {
 //          case i : GlyphFamilyWithInnerLabel =>
@@ -58,7 +58,7 @@ object FixedOrProportionalDemo {
 //          case _ => None
 //        }
 
-        (/* inner, outer, */ Some(g.horizontalOrientation.asInstanceOf[Var[HorizontalOrientation]]))
+        (/* inner, outer, */ Some(gh.lab.gf.horizontalOrientation.asInstanceOf[Var[HorizontalOrientation]]))
       }
 
       io.getOrElse((/* None, None,*/ None))
@@ -96,10 +96,9 @@ object FixedOrProportionalDemo {
         import scalajs.js._
         import Enhancements._
         def deleteHandler(e: Event): Unit = {
-          for(gl <- selectedGlyph()) {
-            selectedGlyph() = None
-            val holder = Dynamic(gl.glyph.parentNode.parentNode).__sbolv_widget.asInstanceOf[FixedWidth.GlyphHolder]
-            val indx = holder.index()
+          for(gh <- selectedGlyphHolder()) {
+            selectedGlyphHolder() = None
+            val indx = gh.index()
             val newGlyphs = glyphs().zipWithIndex.filter(_._2 != indx).unzip._1
             glyphs() = newGlyphs
           }
@@ -122,7 +121,7 @@ object FixedOrProportionalDemo {
     val labelEditorPosition = Var(Point2(0,0))
     val labelEditor = div(
       position.absolute,
-      display := selectedGlyph map { g => if(g.isDefined) "block" else "none"},
+      display := selectedGlyphHolder map { g => if(g.isDefined) "block" else "none"},
       JsDom.all.left := labelEditorPosition map (_.x px),
       JsDom.all.top := labelEditorPosition map (_.y px),
       selectionWidget).render
@@ -138,9 +137,8 @@ object FixedOrProportionalDemo {
         (w, d) => {
           val g = gf(w, d)
           g.glyph.addEventListener("click", (e: Event) => {
-            val me = e.asInstanceOf[MouseEvent]
             e.stopPropagation()
-            selectedGlyph() = Some(g)
+            selectedGlyphHolder() = Some(Dynamic(g.glyph.parentNode.parentNode).__sbolv_widget.asInstanceOf[FixedWidth.GlyphHolder])
             labelEditorPosition() = Point2(Dynamic(e).pageX.asInstanceOf[Double], Dynamic(e).pageY.asInstanceOf[Double])
           }, true)
           g
@@ -149,7 +147,7 @@ object FixedOrProportionalDemo {
     }
 
     svg.modifyWith(
-      Events.click := {(me: Event) => selectedGlyph() = None }
+      Events.click := {(me: Event) => selectedGlyphHolder() = None }
     ).render
 
     for(b <- buttons) {

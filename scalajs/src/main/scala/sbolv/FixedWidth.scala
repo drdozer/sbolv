@@ -34,12 +34,14 @@ case class FixedWidth(boxWidthHeight: Rx[Double],
   val glyphUpdater = new Updater[GlyphFactory] {
     override def onEntered(en: Entered[GlyphFactory]) = {
       val vert: Var[VerticalOrientation] = Var(Upwards)
-      val gf: GlyphFamily = en.item.create()(boxWidthHeight, Rx {
-        (alignment(), en.item.direction) match {
-          case (AboveBackbone, _) | (CentredOnBackbone, Rightwards) => Upwards
-          case (BelowBackbone, _) | (CentredOnBackbone, Leftwards)  => Downwards
-        }
-      })
+      val gf: GlyphFamily = en.item.create()(boxWidthHeight, vert)
+      val vert2 = Rx {
+              (alignment(), gf.horizontalOrientation()) match {
+                case (AboveBackbone, _) | (CentredOnBackbone, Rightwards) => Upwards
+                case (BelowBackbone, _) | (CentredOnBackbone, Leftwards)  => Downwards
+              }
+            }
+      Obs(vert2) { vert() = vert2() } // initialization order hack
       val index = Var(en.at.index)
 
       val labelled = LabelledGlyph.from(gf, en.item.label)
@@ -89,11 +91,9 @@ object FixedWidth {
 
     private val sbolvHandler: PartialFunction[Shortcode, Node] = {
       case Shortcode("sbolv", attrs, content) =>
-        println("Handling sbolv shortcode")
         val attrsM = attrs.toMap
         val wdth = attrsM.get("width").map(_.toDouble).getOrElse(50.0)
 
-        println("Fetching glyphs")
         val glyphs = for {
           c <- content.to[IndexedSeq]
           g <- c.split("""\s+""")
@@ -101,12 +101,9 @@ object FixedWidth {
           FWSC.parseAll(FWSC.entry, g).get
         }
         val glyphsV = Var(IndexedSeq.empty[GlyphFactory])
-        println("Creating FixedWidth")
         val fixedWidth = FixedWidth(Var(wdth), Var(AboveBackbone), glyphsV)
-        println("Assigning glyphs")
         glyphsV() = glyphs
 
-        println("Rendering svg")
         svg(width := wdth * glyphs.length, height := wdth, `class` := "sbolv_inline")(
           fixedWidth.allGlyphs
         ).render
