@@ -5,6 +5,7 @@ import rx._
 import sbolv.geom.Box
 import sbolv.geom.Box.Positioning
 
+import scala.scalajs.js.Dynamic
 import scalatags.JsDom.all._
 import scalatags.JsDom.svgTags._
 import scalatags.JsDom.svgAttrs._
@@ -33,6 +34,7 @@ case class PositionedText(content: Rx[Option[String]],
 
   lazy val translate = Rx {
     val at = relativePosition.at()
+    println(s"Placing text at $at")
     s"translate(${at.x} ${at.y})"
   }
 
@@ -67,11 +69,8 @@ case class BoxOfSVG(elem: SVGElement with SVGLocatable) {
   private def tickPosition() = positionTick() = positionTick() + 1
 
   lazy val boundingBox = {
-    elem.modifyWith(
-      Events.DOMNodeInsertedIntoDocument := { (e: Event) => tickPosition() },
-      Events.DOMNodeInserted := { (e: Event) => tickPosition() },
-      Events.DOMSubtreeModified := { (e: Event) => tickPosition() }
-    ).render
+    // fixme: this is the only reliable way I can find to track the bounding box - looservile
+    Dynamic.global.window.setInterval({() => tickPosition()}, 1000 / 10)
 
     Rx {
       positionTick() // for the dependency

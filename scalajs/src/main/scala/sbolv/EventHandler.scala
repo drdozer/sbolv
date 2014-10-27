@@ -42,6 +42,10 @@ trait DomL3  {
 
   val DOMNodeInserted = "DOMNodeInserted".namedEvent
 
+  val DOMNodeRemoved = "DOMNodeRemoved".namedEvent
+
+  val DOMNodeRemovedFromDocument = "DOMNodeRemovedFromDocument".namedEvent
+
   val DOMSubtreeModified = "DOMSubtreeModified".namedEvent
 
   val DOMAttrModified = "DOMAttrModified".namedEvent
