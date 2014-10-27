@@ -47,21 +47,12 @@ object FixedOrProportionalDemo {
       val io = for(
         gh <- selectedGlyphHolder()
       ) yield {
-//        val inner = g match {
-//          case i : GlyphFamilyWithInnerLabel =>
-//            Some(i.innerLabel.asInstanceOf[Var[Option[String]]])
-//          case _ => None
-//        }
-//        val outer = g match {
-//          case o : GlyphFamilyWithOuterLabel =>
-//            Some(o.outerLabel.asInstanceOf[Var[Option[String]]])
-//          case _ => None
-//        }
+        val text = gh.lab.label.content.asInstanceOf[Var[Option[String]]]
 
-        (/* inner, outer, */ Some(gh.lab.gf.horizontalOrientation.asInstanceOf[Var[HorizontalOrientation]]))
+        (Some(text), Some(gh.lab.gf.horizontalOrientation.asInstanceOf[Var[HorizontalOrientation]]))
       }
 
-      io.getOrElse((/* None, None,*/ None))
+      io.getOrElse(None, None)
     }
 
     val selectionWidget = Rx {
@@ -108,13 +99,12 @@ object FixedOrProportionalDemo {
         }
       }
 
-      val ( /* innerRxO, outerRxO, */ dO) = selectedGlyphVars()
+      val (text, dO) = selectedGlyphVars()
       div(
         `class` := "glyph_editor")(
           deleter,
-          flipper(dO) /*,
-          editor(innerRxO, "inner"),
-          editor(outerRxO, "outer") */
+          flipper(dO),
+          editor(text, "label")
       )
     }
 

@@ -15,7 +15,7 @@ import Framework._
  *
  * @author Matthew Pocock
  */
-case class PositionedText(content: Rx[String], 
+case class PositionedText(content: Rx[Option[String]],
                           relativeTo: Rx[Box],
                           hPos: Rx[Positioning],
                           vPos: Rx[Positioning],

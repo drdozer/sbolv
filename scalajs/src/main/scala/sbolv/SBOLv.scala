@@ -131,12 +131,12 @@ trait GlyphProvider extends ShortcodeProvider {
   override abstract def shortcodeHandlers(sc: Shortcode) = super.shortcodeHandlers(sc) orElse handleGlyph(sc)
 }
 
-case class LabelledGlyph(gf: GlyphFamily, label: Option[PositionedText]) {
+case class LabelledGlyph(gf: GlyphFamily, label: PositionedText) {
   import scalatags.JsDom.all.{bindNode, OptionFrag}
   import JsDom.{svgTags => st}
   val svgElement = {
+    val el = st.g(gf.glyph, label.positionedText).render
     import Enhancements.DynamicApply
-    val el = st.g(gf.glyph, label.map(_.positionedText)).render
     Dynamic(el).__sbolv_widget = Dynamic(this)
     el
   }
@@ -145,8 +145,8 @@ case class LabelledGlyph(gf: GlyphFamily, label: Option[PositionedText]) {
 object LabelledGlyph {
   def from(gf: GlyphFamily, label: Option[String]): LabelledGlyph = {
     val glyph = gf.glyph
-    val placed = for(c <- label) yield PositionedText(
-            Var(c),
+    val placed = PositionedText(
+            Var(label),
             BoxOfSVG(glyph).boundingBox,
             Var(Box.Inline),
             Var(Box.Inline),

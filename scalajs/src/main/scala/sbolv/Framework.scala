@@ -91,6 +91,13 @@ trait Reactives {
   }
 
   /**
+   * Wrap a reactive string.
+   */
+  implicit def RxOStr[T](r: Rx[Option[String]]): Frag = {
+    RxStr(r map (_ getOrElse ""))
+  }
+
+  /**
    * Sticks some Rx into a Scalatags fragment, which means hooking up an Obs
    * to propagate changes into the DOM via the element's ID. Monkey-patches
    * the Obs onto the element itself so we have a reference to kill it when
