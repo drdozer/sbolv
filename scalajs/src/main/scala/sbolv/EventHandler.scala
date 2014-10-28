@@ -1,6 +1,6 @@
 package sbolv
 
-import scalatags.generic.{Util, Modifier}
+import scalatags.generic.Modifier
 
 
 case class NamedEvent(name: String) {
@@ -15,7 +15,7 @@ case class NamedEvent(name: String) {
  * Rather than adding an attribute or a child, an [[EventHandlerPair]] will call `addEventListner()` to register the
  * listener.
  *
- * @tparam Builder
+ * @tparam Builder  the builder type
  */
 case class EventHandlerPair[Builder, T](ne: NamedEvent, v: T, ev: EventValue[Builder, T]) extends Modifier[Builder] {
   override def applyTo(t: Builder): Unit = {
@@ -51,7 +51,7 @@ trait DomL3  {
   val DOMAttrModified = "DOMAttrModified".namedEvent
 }
 
-trait Events extends MouseEvents with KeyboardEvents with FrameEvents with FormEvents {
+trait Events extends MouseEvents with KeyboardEvents with FrameEvents with FormEvents with SVGAnimationEvents {
   self : NamedEventUtil =>
 }
 
@@ -135,7 +135,7 @@ trait FormEvents2 {
 
   val change = "change".namedEvent
 
-  val focus = "vocus".namedEvent
+  val focus = "focus".namedEvent
 
   val focusin = "focusin".namedEvent
 
@@ -160,4 +160,14 @@ trait FormEvents3 {
 
 trait FormEvents extends FormEvents2 with FormEvents3 {
   self : NamedEventUtil =>
+}
+
+trait SVGAnimationEvents {
+  self : NamedEventUtil =>
+
+  val beginEvent = "beginEvent".namedEvent
+
+  val endEvent = "endEvent".namedEvent
+
+  val repeatEvent = "repeatEvent".namedEvent
 }
