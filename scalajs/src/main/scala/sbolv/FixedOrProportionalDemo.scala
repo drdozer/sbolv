@@ -27,8 +27,8 @@ object FixedOrProportionalDemo {
     val lengthSlider = ReactiveSlider(exampleDiv.getElementsByClassName("length_slider").elements.head.asInstanceOf[HTMLInputElement])
     val lengthSpan = exampleDiv.getElementsByClassName("length").elements
     val buttons = exampleDiv.getElementsByTagName("button").elements.map(_.asInstanceOf[HTMLButtonElement])
-    val svg = exampleDiv.getElementsByClassName("glyphs").elements.map(_.asInstanceOf[SVGSVGElement]).head
-    val track = svg.getElementsByClassName("track").elements.map(_.asInstanceOf[SVGGElement]).head
+    val fixedWidthSvg = exampleDiv.getElementsByClassName("glyphs").elements.map(_.asInstanceOf[SVGSVGElement]).head
+    val track = fixedWidthSvg.getElementsByClassName("track").elements.map(_.asInstanceOf[SVGGElement]).head
 
     Obs(lengthSlider.valueAsNumber) {
       lengthSpan.foreach(_.textContent = lengthSlider.valueAsNumber().toString)
@@ -136,7 +136,7 @@ object FixedOrProportionalDemo {
       }
     }
 
-    svg.modifyWith(
+    fixedWidthSvg.modifyWith(
       Events.click := {(me: Event) => selectedGlyphHolder() = None }
     ).render
 
