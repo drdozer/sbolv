@@ -3,7 +3,6 @@ package sbolv
 import sbolv.SeqDiff._
 
 import scala.annotation.unchecked.uncheckedVariance
-import scala.scalajs.js.Dynamic
 import scalatags.JsDom.all._
 import scala.util.{Failure, Success}
 import rx._
@@ -11,7 +10,6 @@ import rx.core.Obs
 import rx.ops._
 import org.scalajs.dom
 import org.scalajs.dom.{Event, Element, document}
-import scala.scalajs.js
 import scalatags.{JsDom, generic}
 import scalatags.generic.Attr
 
@@ -64,6 +62,10 @@ object Framework extends Reactives with Html5 with Webkit {
     override def tag = elem.nodeName
 
     override def toString = render.outerHTML
+  }
+
+  def modifyWith(el: Element => Unit): Modifier = new generic.Modifier[dom.Element] {
+    override def applyTo(t: Element) = el(t)
   }
 }
 
@@ -146,113 +148,6 @@ trait Reactives {
   implicit def RxStyleValue[T](implicit tSty: StyleValue[T]): StyleValue[Rx[T]] = new StyleValue[Rx[T]]{
     def apply(t: Element, s: Style, r: Rx[T]): Unit = {
       Obs(r){ implicitly[StyleValue[T]].apply(t, s, r())}
-    }
-  }
-
-}
-
-trait Updater[T] {
-  def onEntered(en: Entered[T]): Frag
-  def onExited(ex: Exited[T], existing: dom.Node): Option[Frag] = None
-  def onModified(mod: Modified[T], existing: dom.Node): Option[Frag] = None
-  def onUnchanged(un: Unchanged[T], existing: dom.Node): Option[Frag] = None
-
-  def dataAttribute: String = "__rx_data"
-}
-
-object Updater {
-  import Enhancements.DynamicApply
-
-  implicit class RxEnhancer[T : Ordering](_rx: Rx[IndexedSeq[T]]) {
-
-    def updateWith(updater: Updater[T]): Modifier = new Modifier {
-
-      val diff = SeqDiff(_rx)
-      val Undefined = js.undefined
-
-      def advanceTo(n: dom.Node, t: T): dom.Node = {
-        n match {
-          case null | Undefined =>
-            n
-          case e: dom.Element =>
-            val da = Dynamic(e).selectDynamic(updater.dataAttribute)
-            if (implicitly[Ordering[T]].equiv(da.asInstanceOf[T], t)) {
-              e
-            } else {
-              advanceTo(n.nextSibling, t)
-            }
-          case _ => advanceTo(n.nextSibling, t)
-        }
-      }
-
-      override def applyTo(parent: Element) = Obs(diff.updates) {
-
-        def unwind(child: dom.Node, dss: List[Update[T]]): Unit = {
-
-          dss match {
-            case (u@Entered(_, _))::us =>
-              val fragR = updater.onEntered(u).render.asInstanceOf[dom.Element]
-              Dynamic(fragR).updateDynamic(updater.dataAttribute)(Dynamic(u.item))
-              parent.insertBefore(fragR, child)
-              unwind(child, us)
-            case (u@Exited(_, _))::us =>
-              val thisChild = advanceTo(child, u.item)
-              val nextChild = thisChild.nextSibling
-              updater.onExited(u, thisChild) match {
-                case Some(frag) =>
-                  val fragR = frag.render
-                  if(fragR eq thisChild) {
-                    Dynamic(child).updateDynamic(updater.dataAttribute)(js.undefined)
-                  } else {
-                    parent.insertBefore(fragR, thisChild)
-                    parent.removeChild(thisChild)
-                  }
-                case None =>
-                  parent.removeChild(thisChild)
-              }
-              unwind(nextChild, us)
-            case (u@Modified(_, _))::us =>
-              val thisChild = advanceTo(child, u.item._1)
-              val nextChild = thisChild.nextSibling
-              updater.onModified(u, child) match {
-                case Some(frag) =>
-                  val fragR = frag.render
-                  if(fragR eq thisChild) {
-                    Dynamic(thisChild).updateDynamic(updater.dataAttribute)(Dynamic(u.item._2))
-                  } else {
-                    Dynamic(thisChild).updateDynamic(updater.dataAttribute)(js.undefined)
-                    Dynamic(fragR).updateDynamic(updater.dataAttribute)(Dynamic(u.item._2))
-                    parent.insertBefore(fragR, child)
-                    parent.removeChild(child)
-                  }
-                case None =>
-                  Dynamic(thisChild).updateDynamic(updater.dataAttribute)(Dynamic(u.item._2))
-              }
-              unwind(nextChild, us)
-            case (u@Unchanged(_, _))::us =>
-              val thisChild = advanceTo(child, u.item._1)
-              val nextChild = thisChild.nextSibling
-              updater.onUnchanged(u, child) match {
-                case Some(fragR) =>
-                  val frag = fragR.render
-                  if(frag eq child) {
-                    Dynamic(thisChild).updateDynamic(updater.dataAttribute)(Dynamic(u.item._2))
-                  } else {
-                    Dynamic(child).updateDynamic(updater.dataAttribute)(Dynamic(u.item))
-                    parent.insertBefore(fragR.render, child)
-                    parent.removeChild(child)
-                  }
-                case None =>
-                  Dynamic(thisChild).updateDynamic(updater.dataAttribute)(Dynamic(u.item._2))
-              }
-              unwind(nextChild, us)
-            case Nil =>
-              // noop
-          }
-        }
-
-        unwind(parent.firstChild, diff.updates())
-      }
     }
   }
 
