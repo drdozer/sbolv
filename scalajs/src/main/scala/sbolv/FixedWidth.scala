@@ -98,29 +98,15 @@ case class FixedWidth(boxWidthHeight: Rx[Double],
 
     override def onExited(ex: Exited[GlyphFactory], existing: Node): Option[Frag] = {
       val holder = Dynamic(existing).selectDynamic("__sbolv_widget").asInstanceOf[GlyphHolder]
+
       Some(
         existing.asInstanceOf[Element].modifyWith(
-          animate(
-            attributeType := "CSS",
-            attributeName := "opacity",
-            from := 1.0,
-            to := 0.0,
-            dur := "0.2s",
-            begin := "indefinite",
-            fill := "freeze",
+          opacity := 1 to 0 dur 0.2.s withFill "freeze" modifyWith (
             Events.endEvent := {
               (e: Event) => {
                 existing.parentNode.removeChild(existing)
                 ()
               }
-            },
-            modifyWith { el =>
-              // we must schedule beginElement() for in the future, so that this animation element is fully attached
-              // to the dom. Otherwise the begin time pushed is global zero, rather than the begin time associated with
-              // 'now'
-              window.setTimeout({() =>
-                Dynamic(el).beginElement()
-              }, 1)
             }
           )
         )
