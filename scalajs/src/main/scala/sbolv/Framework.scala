@@ -20,7 +20,15 @@ import scalatags.generic.Attr
 /**
  * A minimal binding between Scala.Rx and Scalatags and Scala-Js-Dom
  */
-object Framework extends Reactives with Html5 with Webkit {
+object Framework extends Modifiable with Reactives with Html5 with Webkit with Animations {
+
+  implicit class EnhancedInt(val _int: Int) extends AnyVal {
+    def s: String = s"${_int}s"
+  }
+
+  implicit class EnhancedDouble(val _double: Double) extends AnyVal {
+    def s: String = s"${_double}s"
+  }
 
   object Events extends NamedEventUtil with DomL3 with Events
 
@@ -32,8 +40,11 @@ object Framework extends Reactives with Html5 with Webkit {
       t.addEventListener(ne.name, v)
     }
   }
+}
 
-  implicit class EnhancedElement[Output <: dom.Element](val elem: Output) extends AnyVal {
+trait Modifiable {
+
+  implicit class EnhancedElement[Output <: dom.Element](elem: Output) {
     def modifyWith: ElementModifier[Output] = ElementModifier(elem, Nil)
   }
 
