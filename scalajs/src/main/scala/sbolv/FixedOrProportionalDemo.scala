@@ -159,6 +159,10 @@ object FixedOrProportionalDemo {
             glyphs() = glyphs() :+ GlyphFactory(ClickAdder(Terminator.FixedWidth), Rightwards, None)
           case "term_leftwards" =>
             glyphs() = glyphs() :+ GlyphFactory(ClickAdder(Terminator.FixedWidth), Leftwards, None)
+          case "pbs_rightwards" =>
+            glyphs() = glyphs() :+ GlyphFactory(ClickAdder(PrimerBindingSite.FixedWidth), Rightwards, None)
+          case "pbs_leftwards" =>
+            glyphs() = glyphs() :+ GlyphFactory(ClickAdder(PrimerBindingSite.FixedWidth), Leftwards, None)
         }
       }
     }
