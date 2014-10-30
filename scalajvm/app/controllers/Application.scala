@@ -31,4 +31,8 @@ object Application extends Controller {
   def terminator = Action {
     Ok(views.html.terminator())
   }
+
+  def primerBindingSite = Action {
+    Ok(views.html.primerBindingSite())
+  }
 }
