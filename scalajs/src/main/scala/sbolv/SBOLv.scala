@@ -19,6 +19,7 @@ object SBOLv extends ShortcodeProvider with Cds.SCProvider
                                        with Promoter.SCProvider
                                        with RibosomeEntrySite.SCProvider
                                        with Terminator.SCProvider
+                                       with PrimerBindingSite.SCProvider
                                        with FixedWidth.SCProvider {
 
   import Enhancements._
