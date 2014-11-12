@@ -1,6 +1,7 @@
 package sbolv
 
 import org.scalajs.dom._
+import org.scalajs.dom.extensions._
 import rx.core._
 import rx.ops._
 import sbolv.geom.Point2
@@ -10,6 +11,8 @@ import scalatags.JsDom
 import scalatags.JsDom.GenericStyle
 import scalatags.generic.Attr
 import Framework._
+import scalatags.JsDom.all.{bindNode}
+
 
 /**
  *
@@ -19,16 +22,14 @@ import Framework._
 @JSExport
 object FixedOrProportionalDemo {
 
-  import Enhancements._
-
   @JSExport
   def wireFixedWidthExample(divId: String): Unit = {
     val exampleDiv = document.getElementById(divId).asInstanceOf[HTMLDivElement]
-    val lengthSlider = ReactiveSlider(exampleDiv.getElementsByClassName("length_slider").elements.head.asInstanceOf[HTMLInputElement])
-    val lengthSpan = exampleDiv.getElementsByClassName("length").elements
-    val buttons = exampleDiv.getElementsByTagName("button").elements.map(_.asInstanceOf[HTMLButtonElement])
-    val fixedWidthSvg = exampleDiv.getElementsByClassName("glyphs").elements.map(_.asInstanceOf[SVGSVGElement]).head
-    val track = fixedWidthSvg.getElementsByClassName("track").elements.map(_.asInstanceOf[SVGGElement]).head
+    val lengthSlider = ReactiveSlider(exampleDiv.getElementsByClassName("length_slider").head.asInstanceOf[HTMLInputElement])
+    val lengthSpan = exampleDiv.getElementsByClassName("length")
+    val buttons = exampleDiv.getElementsByTagName("button").map(_.asInstanceOf[HTMLButtonElement])
+    val fixedWidthSvg = exampleDiv.getElementsByClassName("glyphs").map(_.asInstanceOf[SVGSVGElement]).head
+    val track = fixedWidthSvg.getElementsByClassName("track").map(_.asInstanceOf[SVGGElement]).head
 
     Obs(lengthSlider.valueAsNumber) {
       lengthSpan.foreach(_.textContent = lengthSlider.valueAsNumber().toString)
@@ -36,10 +37,9 @@ object FixedOrProportionalDemo {
 
     val glyphs = Var(IndexedSeq.empty[GlyphFactory])
     val fw = FixedWidth(lengthSlider.valueAsNumber map (_.toDouble), Var(CentredOnBackbone : BackboneAlignment), glyphs)
-    track(fw.allGlyphs)
+    track.modifyWith(fw.allGlyphs).render
 
     import scalatags.JsDom.all._
-    import Framework._
 
     val selectedGlyphHolder: Var[Option[FixedWidth.GlyphHolder]] = Var(None)
 
@@ -84,8 +84,6 @@ object FixedOrProportionalDemo {
 
 
       def deleter = {
-        import scalajs.js._
-        import Enhancements._
         def deleteHandler(e: Event): Unit = {
           for(gh <- selectedGlyphHolder()) {
             selectedGlyphHolder() = None

@@ -3,6 +3,7 @@ package sbolv
 import sbolv.SeqDiff._
 
 import scala.annotation.unchecked.uncheckedVariance
+import scala.scalajs.js
 import scalatags.JsDom.all._
 import scala.util.{Failure, Success}
 import rx._
@@ -21,6 +22,11 @@ import scalatags.generic.Attr
  * A minimal binding between Scala.Rx and Scalatags and Scala-Js-Dom
  */
 object Framework extends Modifiable with Reactives with Html5 with Webkit with Animations {
+
+  implicit class DynamicApply(val _dynamic: js.Dynamic.type) extends AnyVal {
+    def apply(x: Any): js.Dynamic = x.asInstanceOf[js.Dynamic]
+  }
+
 
   implicit class EnhancedInt(val _int: Int) extends AnyVal {
     def s: String = s"${_int}s"

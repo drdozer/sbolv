@@ -10,6 +10,7 @@ import scala.scalajs.js
 import scala.scalajs.js.Dynamic
 import scalatags.JsDom.all._
 
+import Framework.DynamicApply
 
 trait Updater[T] {
   /**
@@ -37,7 +38,6 @@ trait Updater[T] {
 }
 
 object Updater {
-  import Enhancements.DynamicApply
 
   implicit class RxEnhancer[T : Ordering](_rx: Rx[IndexedSeq[T]]) {
 

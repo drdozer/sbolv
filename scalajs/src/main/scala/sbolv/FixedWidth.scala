@@ -17,8 +17,6 @@ import scalatags.JsDom.svgTags._
 import Framework._
 import Updater._
 
-import Enhancements.DynamicApply
-
 /**
  *
  *

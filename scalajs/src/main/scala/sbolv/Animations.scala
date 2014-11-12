@@ -9,7 +9,7 @@ import scalatags.generic.{Attr, AttrValue}
 import scalatags.JsDom.implicits._
 import scalatags.JsDom.svgTags._
 import scalatags.JsDom.svgAttrs.{SeqNode => _, _}
-import Enhancements.DynamicApply
+import Framework._
 
 /**
  *
