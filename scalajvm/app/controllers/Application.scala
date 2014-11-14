@@ -35,4 +35,8 @@ object Application extends Controller {
   def primerBindingSite = Action {
     Ok(views.html.primerBindingSite())
   }
+
+  def proteaseSite = Action {
+    Ok(views.html.proteaseSite())
+  }
 }

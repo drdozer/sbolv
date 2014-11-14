@@ -136,6 +136,8 @@ object FixedWidth {
         with RibosomeEntrySite.FWSC
         with Cds.FWSC
         with Terminator.FWSC
+        with ProteaseSite.FWSC
+        with PrimerBindingSite.FWSC
 
     private val sbolvHandler: PartialFunction[Shortcode, Node] = {
       case Shortcode("sbolv", attrs, content) =>

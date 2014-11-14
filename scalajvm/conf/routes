@@ -9,6 +9,7 @@ GET        /promoter.html        controllers.Application.promoter
 GET        /ribosomeEntrySite.html controllers.Application.ribosomeEntrySite
 GET         /terminator.html controllers.Application.terminator
 GET         /primerBindingSite.html controllers.Application.primerBindingSite
+GET         /proteaseSite.html controllers.Application.proteaseSite
 GET         /fixedOrProportional.html controllers.Application.fixedOrProportional
 
 GET        /public/*file         controllers.Assets.at(path="/public", file)
