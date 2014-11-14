@@ -10,7 +10,8 @@ import org.scalajs.dom.extensions._
 import scala.util.parsing.combinator._
 import scalatags.JsDom
 
-import Framework.DynamicApply
+import scalatags.ext._
+import scalatags.ext.SeqDiff._
 
 
 /**

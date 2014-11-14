@@ -10,8 +10,10 @@ import scala.scalajs.js.annotation.JSExport
 import scalatags.JsDom
 import scalatags.JsDom.GenericStyle
 import scalatags.generic.Attr
-import Framework._
 import scalatags.JsDom.all.{bindNode}
+
+import scalatags.ext._
+import Framework._
 
 
 /**

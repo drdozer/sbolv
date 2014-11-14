@@ -5,15 +5,16 @@ import org.scalajs.dom.extensions._
 import rx.core.{Rx, Var, Obs}
 import rx.ops._
 import sbolv.FixedWidth.GlyphHolder
-import sbolv.SeqDiff.{Modified, Exited, Entered}
 
 import scala.scalajs.js._
 import scala.util.parsing.combinator.RegexParsers
-import scalatags.jsdom.Frag
 import scalatags.JsDom.all.bindNode
 import scalatags.JsDom.implicits._
 import scalatags.JsDom.svgAttrs._
 import scalatags.JsDom.svgTags._
+
+import scalatags.ext._
+import SeqDiff._
 import Framework._
 import Updater._
 
@@ -31,7 +32,7 @@ case class FixedWidth(boxWidthHeight: Rx[Double],
   }
 
   val glyphUpdater = new Updater[GlyphFactory] {
-    override def onEntered(en: Entered[GlyphFactory]) = {
+    override def onEntered(en: Entered[GlyphFactory]): scalatags.JsDom.all.Frag = {
       val vert: Var[VerticalOrientation] = Var(Upwards)
       val gf: GlyphFamily = en.item.create()(boxWidthHeight, vert)
       val vert2 = Rx {
