@@ -4,7 +4,7 @@ import org.scalajs.dom.Node
 import rx.core.{Rx, Var}
 
 
-final case class ProteaseSite(horizontalOrientation: Rx[HorizontalOrientation],
+final case class RibonucleaseSite(horizontalOrientation: Rx[HorizontalOrientation],
                             verticalOrientation: Rx[VerticalOrientation],
                             width: Rx[Double],
                             height: Rx[Double],
@@ -16,13 +16,13 @@ final case class ProteaseSite(horizontalOrientation: Rx[HorizontalOrientation],
     s"M$xMid $bot L$xMid $stemTop M$start $top L$end $headBot M$end $top L$start $headBot"
   }
 
-  override def cssClass = "ProteaseSite"
+  override def cssClass = "RibonucleaseSite"
 }
 
-object ProteaseSite {
+object RibonucleaseSite {
   object FixedWidth extends GlyphFamily.FixedWidth {
     def apply(horizontalOrientation: HorizontalOrientation): (Rx[Double], Rx[VerticalOrientation]) => GlyphFamily = (width, verticalOrientation) =>
-      ProteaseSite(Var(horizontalOrientation), verticalOrientation, width, width, Rx {
+      RibonucleaseSite(Var(horizontalOrientation), verticalOrientation, width, width, Rx {
         new StemmyGlyph.Metrics {
           def length = 0.6
           def depth = 0.6

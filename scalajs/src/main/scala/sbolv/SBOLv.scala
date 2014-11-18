@@ -22,6 +22,8 @@ object SBOLv extends ShortcodeProvider with Cds.SCProvider
                                        with PrimerBindingSite.SCProvider
                                        with FixedWidth.SCProvider
                                        with ProteaseSite.SCProvider
+                                       with RibonucleaseSite.SCProvider
+                                       with ProteinStabilityElement.SCProvider
 {
 
   import Enhancements._

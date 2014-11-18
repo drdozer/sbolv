@@ -39,4 +39,16 @@ object Application extends Controller {
   def proteaseSite = Action {
     Ok(views.html.proteaseSite())
   }
+
+  def ribonucleaseSite = Action {
+    Ok(views.html.ribonucleaseSite())
+  }
+
+  def proteinStabilityElement = Action {
+    Ok(views.html.proteinStabilityElement())
+  }
+
+  def pigeonParser = Action {
+    Ok(views.html.pigeonParser())
+  }
 }

@@ -11,5 +11,8 @@ GET         /terminator.html controllers.Application.terminator
 GET         /primerBindingSite.html controllers.Application.primerBindingSite
 GET         /proteaseSite.html controllers.Application.proteaseSite
 GET         /fixedOrProportional.html controllers.Application.fixedOrProportional
+GET         /ribonucleaseSite.html controllers.Application.ribonucleaseSite
+GET         /proteinStabilityElement.html controllers.Application.proteinStabilityElement
+GET         /pigeonParser.html controllers.Application.pigeonParser
 
 GET        /public/*file         controllers.Assets.at(path="/public", file)
