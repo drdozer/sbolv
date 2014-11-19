@@ -64,7 +64,7 @@ object PigeonParserDemo {
                     case "terminator" => 
                         GlyphFactory(Terminator.FixedWidth, direction, None)
                     case "operator" => 
-                        GlyphFactory(Terminator.FixedWidth, direction, None)
+                        GlyphFactory(Operator.FixedWidth, direction, None)
                     case "cds" => 
                         GlyphFactory(Cds.FixedWidth, direction, None)
                     case "res" => 
@@ -76,7 +76,7 @@ object PigeonParserDemo {
 
                 }
 
-            }.toIndexedSeq
+        }.toIndexedSeq
     }
 }
 
