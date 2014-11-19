@@ -42,8 +42,6 @@ object PigeonParserDemo {
 
     Obs(pigeonBox.value) {
 
-        glyphs() = IndexedSeq.empty[GlyphFactory]
-
         val pigeon = pigeonBox.value().toString().asInstanceOf[String]
         val displayList = js.Dynamic.global.window.parsePigeon(pigeon)
         
@@ -51,11 +49,9 @@ object PigeonParserDemo {
 
         val segments = displayList.segments.asInstanceOf[js.Array[js.Dynamic]].toList
 
-        segments.foreach { segment =>
+        val sequence = segments.head.sequence.asInstanceOf[js.Array[js.Dynamic]].toList
 
-            val sequence = segment.sequence.asInstanceOf[js.Array[js.Dynamic]].toList
-
-            glyphs() = sequence.map { glyph =>
+        glyphs() = sequence.map { glyph =>
 
                 val direction = glyph.direction.asInstanceOf[String] match {
                     case "rightwards" =>
@@ -81,7 +77,6 @@ object PigeonParserDemo {
                 }
 
             }.toIndexedSeq
-        }
     }
 }
 
