@@ -39,7 +39,7 @@ object Operator {
     abstract override def glyphHandler(sc: Shortcode) = super.glyphHandler(sc) orElse termHandler.lift(sc)
   }
 
-  trait FWSC extends FixedWidthShorcodeContent {
+  trait FWSC extends FixedWidthShortcodeContent {
     abstract override def Code(c: String) = if(c == "o") FixedWidth else super.Code(c)
   }
 }

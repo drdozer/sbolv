@@ -87,7 +87,7 @@ object Promoter {
     override abstract def glyphHandler(sc: Shortcode) = super.glyphHandler(sc) orElse promoterHandler.lift(sc)
   }
 
-  trait FWSC extends FixedWidthShorcodeContent {
+  trait FWSC extends FixedWidthShortcodeContent {
     abstract override def Code(c: String) = if(c == "p") FixedWidth else super.Code(c)
   }
 }

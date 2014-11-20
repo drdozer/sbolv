@@ -131,7 +131,7 @@ object FixedWidth {
     import scalatags.JsDom.svgTags._
     import scalatags.JsDom.svgAttrs._
 
-    object FWSC extends FixedWidthShorcodeContent
+    object FWSC extends FixedWidthShortcodeContent
         with Promoter.FWSC
         with RibosomeEntrySite.FWSC
         with Cds.FWSC
@@ -174,7 +174,7 @@ object GlyphFactory {
   implicit val ordering: Ordering[GlyphFactory] = Ordering by (_.glyphFamily)
 }
 
-abstract class FixedWidthShorcodeContent extends RegexParsers {
+abstract class FixedWidthShortcodeContent extends RegexParsers {
   private val code = """[a-zA-Z]""".r ^^ { case c => Code(c) }
 
   private val lt: Parser[HorizontalOrientation] = "<" ^^^ Leftwards

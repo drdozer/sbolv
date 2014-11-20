@@ -40,7 +40,7 @@ object RibosomeEntrySite {
     abstract override def glyphHandler(sc: Shortcode) = super.glyphHandler(sc) orElse resHandler.lift(sc)
   }
 
-  trait FWSC extends FixedWidthShorcodeContent {
+  trait FWSC extends FixedWidthShortcodeContent {
     abstract override def Code(c: String) = if(c == "r") FixedWidth else super.Code(c)
   }
 }
