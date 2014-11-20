@@ -53,6 +53,7 @@ object PigeonParserDemo {
 
         glyphs() = sequence.map { glyph =>
 
+
                 val direction = glyph.direction.asInstanceOf[String] match {
                     case "rightwards" =>
                         Rightwards

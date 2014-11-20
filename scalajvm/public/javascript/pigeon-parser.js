@@ -112,13 +112,13 @@ function parsePigeon(input)
         }
 
         var glyph = {
-            direction: 'forward'
+            direction: 'rightwards'
         };
 
         var type = tokens[0];
 
         if(type[0] == '<') {
-            glyph.direction = 'backward';
+            glyph.direction = 'leftwards';
             type = type.slice(1);
         } else if(type[0] == '>') {
             type = type.slice(1);
@@ -163,7 +163,7 @@ function parsePigeon(input)
             if(glyph.name !== undefined) {
                 output.segments[1].sequence.push({
                     type: 'cds',
-                    direction: 'forward',
+                    direction: 'rightwards',
                     name: glyph.name
                 });
             }
@@ -181,7 +181,6 @@ function parsePigeon(input)
     return output;
 };
 
-exports.parsePigeon = parsePigeon;
 
 
 
