@@ -115,7 +115,7 @@ object Versions {
   val scala = "2.11.2"
   val scalatags = "0.4.1"
   val scalajsDom = "0.6"
-  val scalarx = "0.2.6"
+  val scalarx = "0.2.6.drdozer"
   val upickle = "0.2.0"
   val jquery = "1.9.0"
   val chebiWsClient = "2.2.1"
