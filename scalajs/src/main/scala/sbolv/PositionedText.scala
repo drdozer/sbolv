@@ -9,6 +9,8 @@ import scala.scalajs.js.Dynamic
 import scalatags.JsDom.all._
 import scalatags.JsDom.svgTags._
 import scalatags.JsDom.svgAttrs._
+
+import scalatags.ext._
 import Framework._
 
 /**

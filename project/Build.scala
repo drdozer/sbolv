@@ -98,6 +98,7 @@ object ApplicationBuild extends Build with UniversalKeys {
 
   lazy val scalajvmDependencies = Seq(
 //    "uk.ac.ebi.chebi.webapps.chebiWS.client" % "chebiWS-client" % Versions.chebiWsClient,
+    "uk.co.turingatemyhamster" %% "scalajs-ext" % Versions.scalajs_ext,
     "com.lihaoyi" %% "upickle" % Versions.upickle,
     "org.webjars" % "jquery" % Versions.jquery
   ) ++ sharedDependencies
@@ -106,6 +107,7 @@ object ApplicationBuild extends Build with UniversalKeys {
     "org.scala-lang" % "scala-reflect" % Versions.scala,
     "com.scalatags" %%%! "scalatags" % Versions.scalatags,
     "org.scala-lang.modules.scalajs" %%%! "scalajs-dom" % Versions.scalajsDom,
+    "uk.co.turingatemyhamster" %%%! "scalajs-ext_js" % Versions.scalajs_ext,
     "org.scala-lang.modules.scalajs" %% "scalajs-jasmine-test-framework" % scalaJSVersion % "test"
   ) ++ sharedDependencies
 }
@@ -120,5 +122,6 @@ object Versions {
   val jquery = "1.9.0"
   val chebiWsClient = "2.2.1"
   val parserCombinators = "1.0.2"
+  val scalajs_ext = "0.1-SNAPSHOT"
 }
 

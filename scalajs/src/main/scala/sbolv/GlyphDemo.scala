@@ -6,7 +6,9 @@ import rx.ops._
 
 import scalatags.JsDom
 import scalatags.JsDom.all._
-import Framework._
+
+import scalatags.ext._
+import scalatags.ext.Framework._
 
 import scalatags.JsDom.svgAttrs
 import scalatags.JsDom.svgTags._

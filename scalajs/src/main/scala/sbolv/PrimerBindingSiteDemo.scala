@@ -1,16 +1,10 @@
 package sbolv
 
-import org.scalajs.dom._
 import rx.core._
-import rx.ops._
-import sbolv.PromoterDemo._
-import scala.scalajs.js
 import scala.scalajs.js.annotation.JSExport
 
 @JSExport
 object PrimerBindingSiteDemo extends GlyphDemo {
-
-  import Enhancements._
 
   @JSExport
   def wireScaledExample(scaled_example: String, shortcode_example: String): Unit = {

@@ -2,10 +2,10 @@ package controllers
 
 import rx.core._
 import rx.ops._
-import sbolv.SeqDiff.Entered
-import sbolv._
 
 import scala.scalajs.js
+import scalatags.ext.SeqDiff
+import scalatags.ext.SeqDiff.Entered
 
 /**
  *

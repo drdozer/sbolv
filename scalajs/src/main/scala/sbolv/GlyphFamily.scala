@@ -6,6 +6,7 @@ import rx.core.Rx
 import scalatags.JsDom.implicits._
 import scalatags.JsDom.svgAttrs._
 import scalatags.JsDom.svgTags._
+import scalatags.ext._
 import Framework._
 
 

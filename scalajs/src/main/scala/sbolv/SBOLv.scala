@@ -6,8 +6,13 @@ import sbolv.geom.Box
 import scala.scalajs.js.annotation.JSExport
 import scala.scalajs.js._
 import org.scalajs.dom._
+import org.scalajs.dom.extensions._
 import scala.util.parsing.combinator._
 import scalatags.JsDom
+
+import scalatags.ext._
+import scalatags.ext.SeqDiff._
+
 
 /**
  *
@@ -26,8 +31,6 @@ object SBOLv extends ShortcodeProvider with Cds.SCProvider
                                        with ProteinStabilityElement.SCProvider
                                        with Operator.SCProvider
 {
-
-  import Enhancements._
 
   @JSExport
   def shortcodes(): Unit = {
@@ -54,7 +57,7 @@ object SBOLv extends ShortcodeProvider with Cds.SCProvider
             parent.insertBefore(n, nextNode)
         }
       case ELEMENT_NODE =>
-        for(n <- node.childNodes.nodes)
+        for(n <- node.childNodes)
           applyShortcodes(n)
     }
   }
@@ -142,7 +145,6 @@ case class LabelledGlyph(gf: GlyphFamily, label: PositionedText) {
   import JsDom.{svgTags => st}
   val svgElement = {
     val el = st.g(gf.glyph, label.positionedText).render
-    import Enhancements.DynamicApply
     Dynamic(el).__sbolv_widget = Dynamic(this)
     el
   }

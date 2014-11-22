@@ -4,6 +4,7 @@ import rx.ops._
 import rx.core._
 
 import scala.scalajs.js
+import scalatags.ext.SeqDiff
 
 /**
  *

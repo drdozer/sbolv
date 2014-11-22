@@ -4,7 +4,9 @@ import org.scalajs.dom.{Event, HTMLInputElement}
 import rx.core.Var
 
 import scalatags.JsDom.TypedTag
-import Framework._
+
+import scalatags.ext._
+import scalatags.ext.Framework._
 
 /**
  *
