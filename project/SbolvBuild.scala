@@ -1,21 +1,64 @@
 import sbt._
-import Keys._
-import play.Play._
+import sbt.Keys._
+import com.inthenow.sbt.scalajs._
+import com.inthenow.sbt.scalajs.SbtScalajs._
 import scala.scalajs.sbtplugin.ScalaJSPlugin._
 import ScalaJSKeys._
-import com.typesafe.sbt.packager.universal.UniversalKeys
-import com.typesafe.sbteclipse.core.EclipsePlugin.EclipseKeys
-import com.typesafe.sbt.web.SbtWeb.autoImport._
-import com.typesafe.sbt.less.Import.LessKeys
+import bintray.Plugin._
+import bintray.Keys._
+import org.eclipse.jgit.lib._
+import xerial.sbt.Pack._
+import spray.revolver.RevolverPlugin._
 
-object ApplicationBuild extends Build with UniversalKeys {
+object SbolvBuild extends Build {
 
-  val scalajsOutputDir = Def.settingKey[File]("directory for javascript files output by scalajs")
+  val logger = ConsoleLogger()
 
-  override def rootProject = Some(scalajvm)
+  val baseVersion = "0.1.2"
 
-  val sharedSrcDir = "scala"
+  val svUtil                  = XModule(id = "sbolv-util", defaultSettings = buildSettings, baseDir = "sbolv-util")
+  lazy val util               = svUtil.project(utilPlatformJvm, utilPlatformJs)
+  lazy val utilPlatformJvm    = svUtil.jvmProject(utilSharedJvm)
+  lazy val utilPlatformJs     = svUtil.jsProject(utilSharedJs)
+  lazy val utilSharedJvm      = svUtil.jvmShared()
+  lazy val utilSharedJs       = svUtil.jsShared(utilSharedJvm)
 
+  val svWidgets               = XModule(id = "sbolv-widgets", defaultSettings = buildSettings, baseDir = "sbolv-widgets")
+  lazy val widgets            = svWidgets.project(widgetsPlatformJvm, widgetsPlatformJs)
+  lazy val widgetsPlatformJvm = svWidgets.jvmProject(widgetsSharedJvm)
+  lazy val widgetsPlatformJs  = svWidgets.jsProject(widgetsSharedJs)
+  lazy val widgetsSharedJvm   = svWidgets.jvmShared()
+  lazy val widgetsSharedJs    = svWidgets.jsShared(widgetsSharedJvm)
+
+  val svExample               = XModule(id = "sbolv-example", defaultSettings = buildSettings, baseDir = "sbolv-examples")
+  lazy val example            = svExample.project(examplePlatformJvm, examplePlatformJs)
+  lazy val examplePlatformJvm = svExample.jvmProject(exampleSharedJvm)
+  lazy val examplePlatformJs  = svExample.jsProject(exampleSharedJs)
+  lazy val exampleSharedJvm   = svExample.jvmShared()
+  lazy val exampleSharedJs    = svExample.jsShared(exampleSharedJvm)
+
+  
+  lazy val buildSettings: Seq[Setting[_]] = bintrayPublishSettings ++ Seq(
+    organization := "uk.co.turingatemyhamster",
+    scalaVersion := "2.11.4",
+    crossScalaVersions := Seq("2.11.4", "2.10.4"),
+    scalacOptions ++= Seq("-deprecation", "-unchecked"),
+    version := makeVersion(baseVersion),
+    resolvers += Resolver.url(
+      "bintray-scalajs-releases",
+      url("http://dl.bintray.com/scala-js/scala-js-releases/"))(
+        Resolver.ivyStylePatterns),
+    resolvers ++= Seq("snapshots", "releases").map(Resolver.sonatypeRepo),
+    resolvers += "spray repo" at "http://repo.spray.io",
+    resolvers += "Scalaz Bintray Repo" at "http://dl.bintray.com/scalaz/releases",
+    resolvers += "drdozer Bintray Repo" at "http://dl.bintray.com/content/drdozer/maven",
+    publishMavenStyle := true,
+    repository in bintray := "maven",
+    bintrayOrganization in bintray := None,
+    licenses +=("Apache-2.0", url("http://www.apache.org/licenses/LICENSE-2.0.html"))
+  )
+
+/*
   lazy val scalajvm = Project(
     id = "scalajvm",
     base = file("scalajvm")
@@ -110,6 +153,38 @@ object ApplicationBuild extends Build with UniversalKeys {
     "uk.co.turingatemyhamster" %%%! "scalajs-ext_js" % Versions.scalajs_ext,
     "org.scala-lang.modules.scalajs" %% "scalajs-jasmine-test-framework" % scalaJSVersion % "test"
   ) ++ sharedDependencies
+
+*/
+
+  def fetchGitBranch(): String = {
+    val builder = new RepositoryBuilder()
+    builder.setGitDir(file(".git"))
+    val repo = builder.readEnvironment().findGitDir().build()
+    val gitBranch = repo.getBranch
+    logger.info(s"Git branch reported as: $gitBranch")
+    repo.close()
+    val travisBranch = Option(System.getenv("TRAVIS_BRANCH"))
+    logger.info(s"Travis branch reported as: $travisBranch")
+
+    travisBranch getOrElse gitBranch
+
+    val branch = (travisBranch getOrElse gitBranch) replaceAll ("/", "_")
+    logger.info(s"Computed branch is $branch")
+    branch
+  }
+
+  def makeVersion(baseVersion: String): String = {
+    val branch = fetchGitBranch()
+    if(branch == "master") {
+      baseVersion
+    } else {
+      val tjn = Option(System.getenv("TRAVIS_JOB_NUMBER"))
+      s"$branch-$baseVersion${
+        tjn.map("." + _) getOrElse ""
+      }"
+    }
+  }
+
 }
 
 object Versions {
