@@ -30,12 +30,12 @@ object SbolvBuild extends Build {
   lazy val widgetsSharedJvm   = svWidgets.jvmShared()
   lazy val widgetsSharedJs    = svWidgets.jsShared(widgetsSharedJvm)
 
-  val svExample               = XModule(id = "sbolv-example", defaultSettings = buildSettings, baseDir = "sbolv-examples")
-  lazy val example            = svExample.project(examplePlatformJvm, examplePlatformJs)
-  lazy val examplePlatformJvm = svExample.jvmProject(exampleSharedJvm)
-  lazy val examplePlatformJs  = svExample.jsProject(exampleSharedJs)
-  lazy val exampleSharedJvm   = svExample.jvmShared()
-  lazy val exampleSharedJs    = svExample.jsShared(exampleSharedJvm)
+  val svExample               = XModule(id = "sbolv-demo", defaultSettings = buildSettings, baseDir = "sbolv-demo")
+  lazy val demo            = svExample.project(demoPlatformJvm, demoPlatformJs)
+  lazy val demoPlatformJvm = svExample.jvmProject(demoSharedJvm)
+  lazy val demoPlatformJs  = svExample.jsProject(demoSharedJs)
+  lazy val demoSharedJvm   = svExample.jvmShared()
+  lazy val demoSharedJs    = svExample.jsShared(demoSharedJvm)
 
   
   lazy val buildSettings: Seq[Setting[_]] = bintrayPublishSettings ++ Seq(
