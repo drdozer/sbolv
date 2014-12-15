@@ -1,6 +1,8 @@
 //// REQUIRED SETUP
 
 // Setup bintray resolver - needed for many sbt plugins
+resolvers += Resolver.typesafeRepo("releases")
+
 resolvers += Resolver.url(
   "bintray-sbt-plugin-releases",
   url("http://dl.bintray.com/content/sbt/sbt-plugin-releases"))(
