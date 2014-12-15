@@ -18,16 +18,65 @@ object SbolvServer extends App with SimpleRoutingApp with Demos {
 
   startServer(interface = "localhost", port = 9200) {
     pathPrefix("sbolv")  {
-      path("cds.html") {
-        get {
-          respondWithMediaType(MediaTypes.`text/html`) {
-            complete {
-              cdsDemo.render
+      get {
+        respondWithMediaType(MediaTypes.`text/html`) {
+          (path("index.html") | pathSingleSlash) {
+            complete(
+              index.render
+            )
+          }  ~
+            path("pigeonParser.html") {
+              complete {
+                pigeonParser.render
+              }
+            } ~
+            path("fixedOrProportional.html") {
+              complete(
+                fixedOrProportional.render
+              )
+            } ~
+            path("cds.html") {
+              complete {
+                cds.render
+              }
+            } ~
+            path("primerBindingSite.html") {
+              complete {
+                primerBindingSite.render
+              }
+            } ~
+            path("promoter.html") {
+              complete {
+                promoter.render
+              }
+            } ~
+            path("proteaseSite.html") {
+              complete {
+                proteaseSite.render
+              }
+            } ~
+            path("proteinStabilityElement.html") {
+              complete {
+                proteinStabilityElement.render
+              }
+            } ~
+            path("ribonucleaseSite.html") {
+              complete {
+                ribonucleaseSite.render
+              }
+            } ~
+            path("rnaStabilityElement.html") {
+              complete {
+                rnaStabilityElement.render
+              }
+            } ~
+            path("terminator.html") {
+              complete {
+                terminator.render
+              }
             }
-          }
         }
       }
-
     } ~
       pathPrefix("public") {
         get {
