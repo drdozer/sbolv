@@ -4,6 +4,9 @@ import rx._
 
 case class PrimerBindingSite(horizontalOrientation: Rx[HorizontalOrientation],
                verticalOrientation: Rx[VerticalOrientation],
+               stroke: Rx[Option[String]],
+               fill: Rx[Option[String]],
+               cssClasses: Rx[Seq[String]],
                width: Rx[Double],
                height: Rx[Double],
                metrics: Rx[PrimerBindingSite.Metrics])
@@ -50,17 +53,30 @@ case class PrimerBindingSite(horizontalOrientation: Rx[HorizontalOrientation],
 }
 
 object PrimerBindingSite {
-  object FixedWidth extends GlyphFamily.FixedWidth {
+  object GlyphType extends GlyphFamily.GlyphType {
     def apply(boxWidthHeight: Rx[Double],
-                  horizontalOrientation: Rx[HorizontalOrientation],
-                  verticalOrientation: Rx[VerticalOrientation]): GlyphFamily =
-      PrimerBindingSite(horizontalOrientation, verticalOrientation, boxWidthHeight, boxWidthHeight, Var(
-        new Metrics {
-          def length = 0.9
-          def depth = length * 0.5
-          override def tick = -15
-        }
-      ))
+              horizontalOrientation: Rx[HorizontalOrientation],
+              verticalOrientation: Rx[VerticalOrientation],
+              stroke: Rx[Option[String]],
+              fill: Rx[Option[String]],
+              cssClasses: Rx[Seq[String]],
+              label: Rx[Option[String]]): GlyphFamily =
+      PrimerBindingSite(
+        horizontalOrientation,
+        verticalOrientation,
+        stroke,
+        fill,
+        cssClasses,
+        boxWidthHeight,
+        boxWidthHeight,
+        Var(
+          new Metrics {
+            def length = 0.9
+            def depth = length * 0.5
+            override def tick = -15
+          }
+        )
+      )
 
     val fixedWidthId = GlyphFamily.takeFixedWidthId()
   }
@@ -80,15 +96,15 @@ object PrimerBindingSite {
   case class Geometry(top: Double, mid: Double, bot: Double, start: Double, tick: Double, end: Double)
 
   trait SCProvider extends GlyphProvider {
-    private val pbsHandler: PartialFunction[Shortcode, GlyphFamily.FixedWidth] = {
+    private val pbsHandler: PartialFunction[Shortcode, GlyphFamily.GlyphType] = {
       case Shortcode("pbs", _, _) =>
-        FixedWidth
+        GlyphType
   }
 
   abstract override def glyphHandler(sc: Shortcode) = super.glyphHandler(sc) orElse pbsHandler.lift(sc)
 }
 
 trait FWSC extends FixedWidthShortcodeContent {
-  abstract override def Code(c: String) = if(c == "p") FixedWidth else super.Code(c)
+  abstract override def Code(c: String) = if(c == "p") GlyphType else super.Code(c)
 }
 }

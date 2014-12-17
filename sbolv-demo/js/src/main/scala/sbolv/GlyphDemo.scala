@@ -50,8 +50,8 @@ trait GlyphDemo {
                  widthRx: Rx[Double],
                  heightRx: Rx[Double],
                  metrics: Rx[M],
-                 glyphCstr: (Rx[HorizontalOrientation], Rx[VerticalOrientation], Rx[Double], Rx[Double], Rx[M]) => GlyphFamily) = {
-    val glyphFamily = glyphCstr(Var(leftRight), Var(upDown), widthRx, heightRx, metrics)
+                 glyphCstr: (Rx[HorizontalOrientation], Rx[VerticalOrientation], Rx[Option[String]], Rx[Option[String]], Rx[Seq[String]], Rx[Double], Rx[Double], Rx[M]) => GlyphFamily) = {
+    val glyphFamily = glyphCstr(Var(leftRight), Var(upDown), Var(None), Var(None), Var(Seq()), widthRx, heightRx, metrics)
 
     svg(width := widthRx map (_ + padding * 2.0), height := heightRx map (_ + padding * 2.0),
       g(svgAttrs.transform := s"translate($padding $padding)",

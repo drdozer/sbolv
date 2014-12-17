@@ -2,7 +2,7 @@ package sbolv
 
 import rx._
 import org.scalajs.dom._
-import scalatags.JsDom
+import scalatags.{generic, JsDom}
 import scalatags.ext._
 import JsDom.all._
 import JsDom.svgTags._
@@ -43,6 +43,9 @@ trait GlyphFamily {
   // reactive variables defining the glyph
   def horizontalOrientation: Rx[HorizontalOrientation]
   def verticalOrientation: Rx[VerticalOrientation]
+  def stroke: Rx[Option[String]]
+  def fill: Rx[Option[String]]
+  def cssClasses: Rx[Seq[String]]
   def width: Rx[Double]
   def height: Rx[Double]
   def metrics: Rx[Metrics]
@@ -58,8 +61,35 @@ trait GlyphFamily {
     geometryToBaseline(geometry())
   }
 
+  private final lazy val completeClasses = Rx {
+    "sbolv_glyph" +: cssClass +: cssClasses()
+  }
+
+  private final lazy val completeClassesStr = Rx {
+    completeClasses().mkString(" ")
+  }
+
+  // fixme: we should be using scalatags styles
+  private final lazy val completeStyle = Rx {
+    val sS = stroke() map (s => s"stroke: $s")
+    val fF = fill() map (f => s"fill: $f")
+    Seq(sS, fF).flatten.mkString(";")
+  }
+
   /** The SVG element that this instance manages. */
-  final lazy val glyph: SVGElement with SVGLocatable = path(`class` := s"sbolv_glyph $cssClass", d := path_d).render
+  final lazy val glyph: SVGElement with SVGLocatable = {
+    path(
+      `class` := completeClassesStr,
+      d := path_d,
+      JsDom.svgAttrs.style := completeStyle
+    ).render
+  }
+
+//  private implicit def OptionalAttrValue[T](implicit av: AttrValue[T]): AttrValue[Option[T]] = new JsDom.AttrValue[Option[T]] {
+//    override def apply(t: Element, a: generic.Attr, v: Option[T]) = for(vv <- v) {
+//      av.apply(t, a, vv)
+//    }
+//  }
 }
 
 object GlyphFamily {
@@ -69,15 +99,26 @@ object GlyphFamily {
     ctr += 1
     c
   }
-  trait FixedWidth {
+  trait GlyphType {
     def apply(boxWidthHeight: Rx[Double],
               horizontalOrientation: Rx[HorizontalOrientation],
-              verticalOrientation: Rx[VerticalOrientation]): GlyphFamily
+              verticalOrientation: Rx[VerticalOrientation],
+              stroke: Rx[Option[String]] = Var(None),
+              fill: Rx[Option[String]] = Var(None),
+              cssClasses: Rx[Seq[String]] = Var(Seq()),
+              label: Rx[Option[String]] = Var(None)): GlyphFamily
 
     def fixedWidthId: Int
 
     override def toString = super.toString + "#" + fixedWidthId
   }
 
+  case class GlyphSpec(glyphType: GlyphType,
+                       horizontalOrientation: HorizontalOrientation,
+                       verticalOrientation: Option[VerticalOrientation] = None,
+                       stroke: Option[String] = None,
+                       fill: Option[String] = None,
+                       cssClasses: Seq[String] = Seq(),
+                       label: Option[String] = None)
 }
 
