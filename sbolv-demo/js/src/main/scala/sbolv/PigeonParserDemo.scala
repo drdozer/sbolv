@@ -56,23 +56,20 @@ object PigeonParserDemo {
             Leftwards
         }
 
-        val label = Option(glyph.name.asInstanceOf[String]).filter(_.length > 0)
+        val label = Option(glyph.name).filter(_ != js.undefined).map(_.asInstanceOf[String]).filter(_.length > 0)
 
-        glyph.`type`.asInstanceOf[String] match {
-          case "terminator" =>
-            GlyphSpec(glyphType = Terminator.GlyphType, horizontalOrientation = direction, label = label)
-          case "operator" =>
-            GlyphSpec(glyphType = Operator.GlyphType, horizontalOrientation = direction, label = label)
-          case "cds" =>
-            GlyphSpec(glyphType = Cds.GlyphType, horizontalOrientation = direction, label = label)
-          case "res" =>
-            GlyphSpec(glyphType = RibosomeEntrySite.GlyphType, horizontalOrientation = direction, label = label)
-          case "promoter" =>
-            GlyphSpec(glyphType = Promoter.GlyphType, horizontalOrientation = direction, label = label)
-          case "v" =>
-            GlyphSpec(glyphType = Terminator.GlyphType, horizontalOrientation = direction, label = label)
+        val fill = Option(glyph.color).filter(_ != js.undefined).map(_.asInstanceOf[String]).filter(_.length > 0)
 
+        val glyphType = glyph.`type`.asInstanceOf[String] match {
+          case "terminator" => Terminator.GlyphType
+          case "operator" => Operator.GlyphType
+          case "cds" => Cds.GlyphType
+          case "res" => RibosomeEntrySite.GlyphType
+          case "promoter" => Promoter.GlyphType
+          case "v" => Terminator.GlyphType
         }
+
+        GlyphSpec(glyphType = glyphType, horizontalOrientation = direction, label = label, fill = fill)
 
       }.toIndexedSeq
     }
