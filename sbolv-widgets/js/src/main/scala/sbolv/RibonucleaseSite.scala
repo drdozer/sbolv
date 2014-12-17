@@ -19,14 +19,18 @@ final case class RibonucleaseSite(horizontalOrientation: Rx[HorizontalOrientatio
 
 object RibonucleaseSite {
   object FixedWidth extends GlyphFamily.FixedWidth {
-    def apply(horizontalOrientation: HorizontalOrientation): (Rx[Double], Rx[VerticalOrientation]) => GlyphFamily = (width, verticalOrientation) =>
-      RibonucleaseSite(Var(horizontalOrientation), verticalOrientation, width, width, Rx {
+    def apply(boxWidthHeight: Rx[Double],
+                  horizontalOrientation: Rx[HorizontalOrientation],
+                  verticalOrientation: Rx[VerticalOrientation]): GlyphFamily =
+      RibonucleaseSite(horizontalOrientation, verticalOrientation, boxWidthHeight, boxWidthHeight, Rx {
         new StemmyGlyph.Metrics {
           def length = 0.6
           def depth = 0.6
           def stemHeight = 0.4
         }
       })
+
+    val fixedWidthId = GlyphFamily.takeFixedWidthId()
   }
 
   trait SCProvider extends GlyphProvider {

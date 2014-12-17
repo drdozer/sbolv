@@ -56,9 +56,12 @@ case class Promoter(horizontalOrientation: Rx[HorizontalOrientation],
 object Promoter {
 
   object FixedWidth extends GlyphFamily.FixedWidth {
-    def apply(direction: HorizontalOrientation):
-    (Rx[Double], Rx[VerticalOrientation]) => GlyphFamily = (width, alignment) =>
-      Promoter(Var(direction), alignment, width, width, Var(Metrics(0.4, 0.7, 0.1, 0.1)))
+    def apply(boxWidthHeight: Rx[Double],
+                  horizontalOrientation: Rx[HorizontalOrientation],
+                  verticalOrientation: Rx[VerticalOrientation]): GlyphFamily =
+      Promoter(horizontalOrientation, verticalOrientation, boxWidthHeight, boxWidthHeight, Var(Metrics(0.4, 0.7, 0.1, 0.1)))
+
+    val fixedWidthId = GlyphFamily.takeFixedWidthId()
   }
 
   trait Metrics {

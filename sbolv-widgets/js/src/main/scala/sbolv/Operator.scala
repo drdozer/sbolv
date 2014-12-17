@@ -20,13 +20,17 @@ final case class Operator(horizontalOrientation: Rx[HorizontalOrientation],
 
 object Operator {
   object FixedWidth extends GlyphFamily.FixedWidth {
-    def apply(horizontalOrientation: HorizontalOrientation): (Rx[Double], Rx[VerticalOrientation]) => GlyphFamily = (width, verticalOrientation) =>
-      Operator(Var(horizontalOrientation), verticalOrientation, width, width, Rx {
+    def apply(boxWidthHeight: Rx[Double],
+                  horizontalOrientation: Rx[HorizontalOrientation],
+                  verticalOrientation: Rx[VerticalOrientation]): GlyphFamily =
+      Operator(horizontalOrientation, verticalOrientation, boxWidthHeight, boxWidthHeight, Rx {
         new BoxyGlyph.Metrics {
           def length = 0.5
           def depth = 0.5
         }
       })
+
+    val fixedWidthId = GlyphFamily.takeFixedWidthId()
   }
 
   trait SCProvider extends GlyphProvider {

@@ -115,22 +115,22 @@ object FixedOrProportionalDemo {
     exampleDiv.modifyWith(labelEditor).render
 
     case class ClickAdder(gffw: GlyphFamily.FixedWidth) extends GlyphFamily.FixedWidth {
-      override def apply(direction: HorizontalOrientation):
-      (Rx[Double], Rx[VerticalOrientation]) => GlyphFamily = {
+      def apply(boxWidthHeight: Rx[Double],
+                horizontalOrientation: Rx[HorizontalOrientation],
+                verticalOrientation: Rx[VerticalOrientation]): GlyphFamily = {
+
         import scala.scalajs.js.Dynamic
 
-        val gf = gffw(direction)
-
-        (w, d) => {
-          val g = gf(w, d)
-          g.glyph.addEventListener("click", (e: Event) => {
-            e.stopPropagation()
-            selectedGlyphHolder() = Some(Dynamic(g.glyph.parentNode.parentNode).__sbolv_widget.asInstanceOf[FixedWidth.GlyphHolder])
-            labelEditorPosition() = Point2(Dynamic(e).pageX.asInstanceOf[Double], Dynamic(e).pageY.asInstanceOf[Double])
-          }, true)
-          g
-        }
+        val g = gffw(boxWidthHeight, horizontalOrientation, verticalOrientation)
+        g.glyph.addEventListener("click", (e: Event) => {
+          e.stopPropagation()
+          selectedGlyphHolder() = Some(Dynamic(g.glyph.parentNode.parentNode).__sbolv_widget.asInstanceOf[FixedWidth.GlyphHolder])
+          labelEditorPosition() = Point2(Dynamic(e).pageX.asInstanceOf[Double], Dynamic(e).pageY.asInstanceOf[Double])
+        }, true)
+        g
       }
+
+      override def fixedWidthId = gffw.fixedWidthId
     }
 
     fixedWidthSvg.modifyWith(

@@ -25,6 +25,15 @@ sealed trait HorizontalOrientation {
 object HorizontalOrientation {
   val lowerCaseNames: EnumNames[HorizontalOrientation] = EnumNames(Rightwards -> "rightwards", Leftwards -> "leftwards")
   val upperCaseNames: EnumNames[HorizontalOrientation] = EnumNames(Rightwards -> "Rightwards", Leftwards -> "Leftwards")
+
+  implicit val ord: Ordering[HorizontalOrientation] = new Ordering[HorizontalOrientation] {
+    override def compare(x: HorizontalOrientation, y: HorizontalOrientation) = (x, y) match {
+      case (Leftwards, Leftwards) => 0
+      case (Leftwards, Rightwards) => -1
+      case (Rightwards, Leftwards) => +1
+      case (Rightwards, Rightwards) => 0
+    }
+  }
 }
 
 case object Rightwards extends HorizontalOrientation {

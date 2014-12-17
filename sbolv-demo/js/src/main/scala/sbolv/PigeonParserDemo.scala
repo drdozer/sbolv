@@ -55,21 +55,21 @@ object PigeonParserDemo {
                         Leftwards
                 }
 
-                val name = glyph.name.asInstanceOf[String]
+                val name = Option(glyph.name.asInstanceOf[String]).filter(_.length > 0)
 
                 glyph.`type`.asInstanceOf[String] match {
                     case "terminator" => 
-                        GlyphFactory(Terminator.FixedWidth, direction, Option(name))
+                        GlyphFactory(Terminator.FixedWidth, direction, name)
                     case "operator" => 
-                        GlyphFactory(Operator.FixedWidth, direction, Option(name))
+                        GlyphFactory(Operator.FixedWidth, direction, name)
                     case "cds" => 
-                        GlyphFactory(Cds.FixedWidth, direction, Option(name))
+                        GlyphFactory(Cds.FixedWidth, direction, name)
                     case "res" => 
-                        GlyphFactory(RibosomeEntrySite.FixedWidth, direction, Option(name))
+                        GlyphFactory(RibosomeEntrySite.FixedWidth, direction, name)
                     case "promoter" => 
-                        GlyphFactory(Promoter.FixedWidth, direction, Option(name))
+                        GlyphFactory(Promoter.FixedWidth, direction, name)
                     case "v" => 
-                        GlyphFactory(Terminator.FixedWidth, direction, Option(name))
+                        GlyphFactory(Terminator.FixedWidth, direction, name)
 
                 }
 

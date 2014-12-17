@@ -51,15 +51,18 @@ case class PrimerBindingSite(horizontalOrientation: Rx[HorizontalOrientation],
 
 object PrimerBindingSite {
   object FixedWidth extends GlyphFamily.FixedWidth {
-    def apply(horizontalDirection: HorizontalOrientation):
-    (Rx[Double], Rx[VerticalOrientation]) => GlyphFamily = (width, verticalOrientation) =>
-      PrimerBindingSite(Var(horizontalDirection), verticalOrientation, width, width, Var(
+    def apply(boxWidthHeight: Rx[Double],
+                  horizontalOrientation: Rx[HorizontalOrientation],
+                  verticalOrientation: Rx[VerticalOrientation]): GlyphFamily =
+      PrimerBindingSite(horizontalOrientation, verticalOrientation, boxWidthHeight, boxWidthHeight, Var(
         new Metrics {
           def length = 0.9
           def depth = length * 0.5
           override def tick = -15
         }
       ))
+
+    val fixedWidthId = GlyphFamily.takeFixedWidthId()
   }
 
   trait Metrics {

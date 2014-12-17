@@ -19,14 +19,18 @@ case class RibosomeEntrySite(horizontalOrientation: Rx[HorizontalOrientation],
 
 object RibosomeEntrySite {
   object FixedWidth extends GlyphFamily.FixedWidth {
-    def apply(direction: HorizontalOrientation): (Rx[Double], Rx[VerticalOrientation]) => GlyphFamily = (width, verticalOrientation) =>
-      RibosomeEntrySite(Var(direction), verticalOrientation, width, width, Rx {
+    def apply(boxWidthHeight: Rx[Double],
+                  horizontalOrientation: Rx[HorizontalOrientation],
+                  verticalOrientation: Rx[VerticalOrientation]): GlyphFamily =
+      RibosomeEntrySite(horizontalOrientation, verticalOrientation, boxWidthHeight, boxWidthHeight, Rx {
         val w = 0.9
         new BoxyGlyph.Metrics {
           def length = w
           def depth = w * 0.5
         }
       })
+        
+    val fixedWidthId = GlyphFamily.takeFixedWidthId()
   }
 
   trait SCProvider extends GlyphProvider {

@@ -125,8 +125,8 @@ trait GlyphProvider extends ShortcodeProvider {
       val wdth = attrsM.get("width").map(_.toDouble).getOrElse(50.0)
       val dir = asDirection(attrsM.get("dir"))
 
-      val glyph = glyphFactory(dir)(Var(wdth), Var(Upwards))
-      val labelled = LabelledGlyph.from(glyph, sc.content)
+      val glyph = glyphFactory(Var(wdth), Var(dir), Var(Upwards))
+      val labelled = LabelledGlyph.from(glyph, Var(sc.content))
 
       st.svg(sa.width := wdth, sa.height := wdth, sa.`class` := "sbolv_inline",
         labelled.svgElement).render
@@ -145,10 +145,10 @@ case class LabelledGlyph(gf: GlyphFamily, label: PositionedText) {
 }
 
 object LabelledGlyph {
-  def from(gf: GlyphFamily, label: Option[String]): LabelledGlyph = {
+  def from(gf: GlyphFamily, label: Rx[Option[String]]): LabelledGlyph = {
     val glyph = gf.glyph
     val placed = PositionedText(
-            Var(label),
+            label,
             BoxOfSVG(glyph).boundingBox,
             Var(Box.Inline),
             Var(Box.Inline),

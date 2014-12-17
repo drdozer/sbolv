@@ -64,18 +64,20 @@ trait GlyphFamily {
 
 object GlyphFamily {
   private var ctr = 0
+  def takeFixedWidthId(): Int = {
+    val c = ctr
+    ctr += 1
+    c
+  }
   trait FixedWidth {
-    def apply(direction: HorizontalOrientation):
-    (Rx[Double], Rx[VerticalOrientation]) => GlyphFamily
-    val uuid: Int = {
-      val u = ctr
-      ctr = ctr + 1
-      u
-    }
+    def apply(boxWidthHeight: Rx[Double],
+              horizontalOrientation: Rx[HorizontalOrientation],
+              verticalOrientation: Rx[VerticalOrientation]): GlyphFamily
+
+    def fixedWidthId: Int
+
+    override def toString = super.toString + "#" + fixedWidthId
   }
 
-  object FixedWidth {
-    implicit val ordering: Ordering[FixedWidth] = Ordering.by(_.uuid)
-  }
 }
 

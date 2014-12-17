@@ -24,14 +24,12 @@ case class FixedWidth(boxWidthHeight: Rx[Double],
                       alignment: Rx[BackboneAlignment],
                       glyphs: Rx[IndexedSeq[GlyphFactory]])
 {
-  Obs(glyphs) {
-    println("glyphs changed")
-  }
-
   val glyphUpdater = new Updater[GlyphFactory] {
     override def onEntered(en: SeqDiff.Entered[GlyphFactory]): scalatags.JsDom.all.Frag = {
+      println(s"New glyph factory: ${en.item}")
+      val hor: Var[HorizontalOrientation] = Var(en.item.direction)
       val vert: Var[VerticalOrientation] = Var(Upwards)
-      val gf: GlyphFamily = en.item.create()(boxWidthHeight, vert)
+      val gf: GlyphFamily = en.item.glyphFamily(boxWidthHeight, hor, vert)
       val vert2 = Rx {
               (alignment(), gf.horizontalOrientation()) match {
                 case (AboveBackbone, _) | (CentredOnBackbone, Rightwards) => Upwards
@@ -42,8 +40,9 @@ case class FixedWidth(boxWidthHeight: Rx[Double],
       val lastIndex = Var(en.at.index)
       val index = Var(en.at.index)
 
-      val labelled = LabelledGlyph.from(gf, en.item.label)
-      val gh = FixedWidth.GlyphHolder(en.item, labelled, lastIndex, index)
+      val labelVar = Var(en.item.label)
+      val labelled = LabelledGlyph.from(gf, labelVar)
+      val gh = FixedWidth.GlyphHolder(en.item, labelled, hor, labelVar, lastIndex, index)
 
       val lastTranslate = Rx {
         val x = boxWidthHeight() * lastIndex()
@@ -83,9 +82,12 @@ case class FixedWidth(boxWidthHeight: Rx[Double],
     }
 
     override def onModified(mod: SeqDiff.Modified[GlyphFactory], existing: Node): Option[Frag] = {
+      println(s"Modified glyph factory: ${mod.item}")
       val holder = Dynamic(existing).selectDynamic("__sbolv_widget").asInstanceOf[FixedWidth.GlyphHolder]
       holder.lastIndex() = mod.at._1.index
       holder.index() = mod.at._2.index
+      holder.label() = mod.item._2.label
+      holder.direction() = mod.item._2.direction
       for(n <- holder.lab.svgElement.parentNode.asInstanceOf[Element].getElementsByClassName("glyphMoveAnimation")) {
         Dynamic(n).beginElement()
       }
@@ -93,6 +95,7 @@ case class FixedWidth(boxWidthHeight: Rx[Double],
     }
 
     override def onExited(ex: SeqDiff.Exited[GlyphFactory], existing: Node): Option[Frag] = {
+      println(s"Exiting glyph factory: ${ex.item}")
       val holder = Dynamic(existing).selectDynamic("__sbolv_widget").asInstanceOf[FixedWidth.GlyphHolder]
 
       Some(
@@ -110,15 +113,49 @@ case class FixedWidth(boxWidthHeight: Rx[Double],
     }
   }
 
+  private implicit val gfScoreF = new ScoreFunction[GlyphFactory] {
+    override def indelCost(t: GlyphFactory) = - 4
+
+    override def matchCost(t1: GlyphFactory, t2: GlyphFactory) =
+      if(t1.glyphFamily != t2.glyphFamily) -9
+      else {
+        val d = if(t1.direction == t2.direction) 0 else -1
+        val l = if(t1.label == t2.label) 0 else -1
+        d + l
+      }
+  }
+
+  private implicit val gfamOrd: Ordering[GlyphFamily.FixedWidth] = Ordering.by(
+      (_: GlyphFamily.FixedWidth).fixedWidthId)
+  private implicit val gfOrd: Ordering[GlyphFactory] = Ordering.by(
+    (gf: GlyphFactory) => (gf.glyphFamily, gf.direction, gf.label))
+
+
   val allGlyphs = g(
     `class` := "sbolv fixed-width glyphs",
     glyphs updateWith glyphUpdater).render
 
   Dynamic(allGlyphs).updateDynamic("__sbolv_widget")(Dynamic(this))
+
+  Obs(glyphs) {
+    println(s"glyphs changed to: ${glyphs()}")
+  }
+
+  val glyphUpdates = SeqDiff(glyphs).updates
+
+  Obs(glyphUpdates) {
+    println(s"glyphs diffed by: ${glyphUpdates()}")
+  }
+
 }
 
 object FixedWidth {
-  case class GlyphHolder(gf: GlyphFactory, lab: LabelledGlyph, lastIndex: Var[Int], index: Var[Int])
+  case class GlyphHolder(gf: GlyphFactory,
+                         lab: LabelledGlyph,
+                         direction: Var[HorizontalOrientation],
+                         label: Var[Option[String]],
+                         lastIndex: Var[Int],
+                         index: Var[Int])
 
   trait SCProvider extends ShortcodeProvider {
 
@@ -154,16 +191,7 @@ object FixedWidth {
   }
 }
 
-case class GlyphFactory(glyphFamily: GlyphFamily.FixedWidth, direction: HorizontalOrientation, label: Option[String]) {
-  def create() = {
-    println(s"Creating glyph family $glyphFamily, with direction $direction")
-    glyphFamily(direction)
-  }
-}
-
-object GlyphFactory {
-  implicit val ordering: Ordering[GlyphFactory] = Ordering by (_.glyphFamily)
-}
+case class GlyphFactory(glyphFamily: GlyphFamily.FixedWidth, direction: HorizontalOrientation, label: Option[String])
 
 abstract class FixedWidthShortcodeContent extends RegexParsers {
   private val code = """[a-zA-Z]""".r ^^ { case c => Code(c) }
