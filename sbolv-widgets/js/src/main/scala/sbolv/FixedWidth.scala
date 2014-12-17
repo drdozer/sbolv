@@ -3,7 +3,7 @@ package sbolv
 import org.scalajs.dom._
 import org.scalajs.dom.extensions._
 import rx._
-import sbolv.GlyphFamily.GlyphSpec
+import sbolv.GlyphFamily.{GlyphType, GlyphSpec}
 
 import scala.scalajs.js._
 import scala.util.parsing.combinator.RegexParsers
@@ -27,7 +27,6 @@ case class FixedWidth(boxWidthHeight: Rx[Double],
 {
   val glyphUpdater = new Updater[GlyphSpec] {
     override def onEntered(en: SeqDiff.Entered[GlyphSpec]): scalatags.JsDom.all.Frag = {
-      println(s"New glyph factory: ${en.item}")
       val hor: Var[HorizontalOrientation] = Var(en.item.horizontalOrientation)
       val vert: Var[VerticalOrientation] = Var(Upwards)
       val stroke = Var(en.item.stroke)
@@ -82,17 +81,18 @@ case class FixedWidth(boxWidthHeight: Rx[Double],
 
       Dynamic(holder).updateDynamic("__sbolv_widget")(Dynamic(gh))
 
-      println("returning glyph")
       holder
     }
 
     override def onModified(mod: SeqDiff.Modified[GlyphSpec], existing: Node): Option[Frag] = {
-      println(s"Modified glyph factory: ${mod.item}")
       val holder = Dynamic(existing).selectDynamic("__sbolv_widget").asInstanceOf[FixedWidth.GlyphHolder]
       holder.lastIndex() = mod.at._1.index
       holder.index() = mod.at._2.index
       holder.label() = mod.item._2.label
       holder.horizontalOrientation() = mod.item._2.horizontalOrientation
+      holder.stroke() = mod.item._2.stroke
+      holder.fill() = mod.item._2.fill
+      holder.cssClasses() = mod.item._2.cssClasses
       for(n <- holder.lab.svgElement.parentNode.asInstanceOf[Element].getElementsByClassName("glyphMoveAnimation")) {
         Dynamic(n).beginElement()
       }
@@ -100,7 +100,6 @@ case class FixedWidth(boxWidthHeight: Rx[Double],
     }
 
     override def onExited(ex: SeqDiff.Exited[GlyphSpec], existing: Node): Option[Frag] = {
-      println(s"Exiting glyph factory: ${ex.item}")
       val holder = Dynamic(existing).selectDynamic("__sbolv_widget").asInstanceOf[FixedWidth.GlyphHolder]
 
       Some(
@@ -119,21 +118,26 @@ case class FixedWidth(boxWidthHeight: Rx[Double],
   }
 
   private implicit val gfScoreF = new ScoreFunction[GlyphSpec] {
-    override def indelCost(t: GlyphSpec) = - 4
+    override def indelCost(t: GlyphSpec) = - 7
 
     override def matchCost(t1: GlyphSpec, t2: GlyphSpec) =
-      if(t1.glyphType != t2.glyphType) -9
+      if(t1.glyphType != t2.glyphType) -15
       else {
-        val d = if(t1.horizontalOrientation == t2.horizontalOrientation) 0 else -1
+        val h = if(t1.horizontalOrientation == t2.horizontalOrientation) 0 else -1
+        val v = if(t1.verticalOrientation == t2.verticalOrientation) 0 else -1
+        val s = if(t1.stroke == t2.stroke) 0 else -1
+        val f = if(t1.fill == t2.fill) 0 else -1
+        val c = if(t1.cssClasses == t2.cssClasses) 0 else -1
         val l = if(t1.label == t2.label) 0 else -1
-        d + l
+        h + v + s + f + c + l
       }
   }
 
   private implicit val gfamOrd: Ordering[GlyphFamily.GlyphType] = Ordering.by(
       (_: GlyphFamily.GlyphType).fixedWidthId)
   private implicit val gfOrd: Ordering[GlyphSpec] = Ordering.by(
-    (gf: GlyphSpec) => (gf.glyphType, gf.horizontalOrientation, gf.label))
+    (gf: GlyphSpec) => (
+      gf.glyphType, gf.horizontalOrientation, gf.verticalOrientation, gf.fill, gf.stroke, gf.cssClasses.mkString(" "), gf.label))
 
 
   val allGlyphs = g(
@@ -142,15 +146,7 @@ case class FixedWidth(boxWidthHeight: Rx[Double],
 
   Dynamic(allGlyphs).updateDynamic("__sbolv_widget")(Dynamic(this))
 
-  Obs(glyphs) {
-    println(s"glyphs changed to: ${glyphs()}")
-  }
-
   val glyphUpdates = SeqDiff(glyphs).updates
-
-  Obs(glyphUpdates) {
-    println(s"glyphs diffed by: ${glyphUpdates()}")
-  }
 
 }
 

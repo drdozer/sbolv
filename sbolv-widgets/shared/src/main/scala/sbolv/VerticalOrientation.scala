@@ -25,6 +25,15 @@ sealed trait VerticalOrientation {
 object VerticalOrientation {
   val lowerCaseNames: EnumNames[VerticalOrientation] = EnumNames(Upwards -> "upwards", Downwards -> "downwards")
   val upperCaseNames: EnumNames[VerticalOrientation] = EnumNames(Upwards -> "Upwards", Downwards -> "Downwards")
+
+  implicit val ord: Ordering[VerticalOrientation] = new Ordering[VerticalOrientation] {
+    override def compare(x: VerticalOrientation, y: VerticalOrientation) = (x, y) match {
+      case (Upwards, Upwards) => 0
+      case (Upwards, Downwards) => -1
+      case (Downwards, Upwards) => +1
+      case (Downwards, Downwards) => 0
+    }
+  }
 }
 
 case object Upwards extends VerticalOrientation {

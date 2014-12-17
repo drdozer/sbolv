@@ -58,7 +58,7 @@ object PigeonParserDemo {
 
         val label = Option(glyph.name).filter(_ != js.undefined).map(_.asInstanceOf[String]).filter(_.length > 0)
 
-        val fill = Option(glyph.color).filter(_ != js.undefined).map(_.asInstanceOf[String]).filter(_.length > 0)
+        val stroke = Option(glyph.color).filter(_ != js.undefined).map(_.asInstanceOf[String]).filter(_.length > 0)
 
         val glyphType = glyph.`type`.asInstanceOf[String] match {
           case "terminator" => Terminator.GlyphType
@@ -69,7 +69,7 @@ object PigeonParserDemo {
           case "v" => Terminator.GlyphType
         }
 
-        GlyphSpec(glyphType = glyphType, horizontalOrientation = direction, label = label, fill = fill)
+        GlyphSpec(glyphType = glyphType, horizontalOrientation = direction, label = label, stroke = stroke)
 
       }.toIndexedSeq
     }
