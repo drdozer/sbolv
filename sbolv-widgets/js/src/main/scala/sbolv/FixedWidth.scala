@@ -30,7 +30,12 @@ case class FixedWidth(boxWidthHeight: Rx[Double],
       println(s"New glyph factory: ${en.item}")
       val hor: Var[HorizontalOrientation] = Var(en.item.horizontalOrientation)
       val vert: Var[VerticalOrientation] = Var(Upwards)
-      val gf: GlyphFamily = en.item.glyphType(boxWidthHeight, hor, vert)
+      val stroke = Var(en.item.stroke)
+      val fill = Var(en.item.fill)
+      val cssClasses = Var(en.item.cssClasses)
+      val label = Var(en.item.label)
+
+      val gf: GlyphFamily = en.item.glyphType(boxWidthHeight, hor, vert, stroke, fill, cssClasses, label)
       val vert2 = Rx {
               (alignment(), gf.horizontalOrientation()) match {
                 case (AboveBackbone, _) | (CentredOnBackbone, Rightwards) => Upwards
@@ -41,9 +46,8 @@ case class FixedWidth(boxWidthHeight: Rx[Double],
       val lastIndex = Var(en.at.index)
       val index = Var(en.at.index)
 
-      val labelVar = Var(en.item.label)
-      val labelled = LabelledGlyph.from(gf, labelVar)
-      val gh = FixedWidth.GlyphHolder(en.item, labelled, hor, labelVar, lastIndex, index)
+      val labelled = LabelledGlyph.from(gf, label)
+      val gh = FixedWidth.GlyphHolder(en.item, labelled, hor, vert, stroke, fill, cssClasses, label, lastIndex, index)
 
       val lastTranslate = Rx {
         val x = boxWidthHeight() * lastIndex()
@@ -88,7 +92,7 @@ case class FixedWidth(boxWidthHeight: Rx[Double],
       holder.lastIndex() = mod.at._1.index
       holder.index() = mod.at._2.index
       holder.label() = mod.item._2.label
-      holder.direction() = mod.item._2.horizontalOrientation
+      holder.horizontalOrientation() = mod.item._2.horizontalOrientation
       for(n <- holder.lab.svgElement.parentNode.asInstanceOf[Element].getElementsByClassName("glyphMoveAnimation")) {
         Dynamic(n).beginElement()
       }
@@ -153,7 +157,11 @@ case class FixedWidth(boxWidthHeight: Rx[Double],
 object FixedWidth {
   case class GlyphHolder(gf: GlyphSpec,
                          lab: LabelledGlyph,
-                         direction: Var[HorizontalOrientation],
+                         horizontalOrientation: Var[HorizontalOrientation],
+                         verticalOrientation: Var[VerticalOrientation],
+                         stroke: Var[Option[String]],
+                         fill: Var[Option[String]],
+                         cssClasses: Var[Seq[String]],
                          label: Var[Option[String]],
                          lastIndex: Var[Int],
                          index: Var[Int])

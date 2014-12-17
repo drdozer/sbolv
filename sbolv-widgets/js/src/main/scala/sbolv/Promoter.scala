@@ -4,6 +4,9 @@ import rx._
 
 case class Promoter(horizontalOrientation: Rx[HorizontalOrientation],
                     verticalOrientation: Rx[VerticalOrientation],
+                    stroke: Rx[Option[String]],
+                    fill: Rx[Option[String]],
+                    cssClasses: Rx[Seq[String]],
                     width: Rx[Double],
                     height: Rx[Double],
                     metrics: Rx[Promoter.Metrics])
@@ -57,9 +60,21 @@ object Promoter {
 
   object GlyphType extends GlyphFamily.GlyphType {
     def apply(boxWidthHeight: Rx[Double],
-                  horizontalOrientation: Rx[HorizontalOrientation],
-                  verticalOrientation: Rx[VerticalOrientation]): GlyphFamily =
-      Promoter(horizontalOrientation, verticalOrientation, boxWidthHeight, boxWidthHeight, Var(Metrics(0.4, 0.7, 0.1, 0.1)))
+              horizontalOrientation: Rx[HorizontalOrientation],
+              verticalOrientation: Rx[VerticalOrientation],
+              stroke: Rx[Option[String]],
+              fill: Rx[Option[String]],
+              cssClasses: Rx[Seq[String]],
+              label: Rx[Option[String]]): GlyphFamily =
+      Promoter(
+        horizontalOrientation,
+        verticalOrientation,
+        stroke,
+        fill,
+        cssClasses,
+        boxWidthHeight,
+        boxWidthHeight,
+        Var(Metrics(0.4, 0.7, 0.1, 0.1)))
 
     val fixedWidthId = GlyphFamily.takeFixedWidthId()
   }

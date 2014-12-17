@@ -4,6 +4,9 @@ import rx._
 
 case class PrimerBindingSite(horizontalOrientation: Rx[HorizontalOrientation],
                verticalOrientation: Rx[VerticalOrientation],
+               stroke: Rx[Option[String]],
+               fill: Rx[Option[String]],
+               cssClasses: Rx[Seq[String]],
                width: Rx[Double],
                height: Rx[Double],
                metrics: Rx[PrimerBindingSite.Metrics])
@@ -52,15 +55,28 @@ case class PrimerBindingSite(horizontalOrientation: Rx[HorizontalOrientation],
 object PrimerBindingSite {
   object GlyphType extends GlyphFamily.GlyphType {
     def apply(boxWidthHeight: Rx[Double],
-                  horizontalOrientation: Rx[HorizontalOrientation],
-                  verticalOrientation: Rx[VerticalOrientation]): GlyphFamily =
-      PrimerBindingSite(horizontalOrientation, verticalOrientation, boxWidthHeight, boxWidthHeight, Var(
-        new Metrics {
-          def length = 0.9
-          def depth = length * 0.5
-          override def tick = -15
-        }
-      ))
+              horizontalOrientation: Rx[HorizontalOrientation],
+              verticalOrientation: Rx[VerticalOrientation],
+              stroke: Rx[Option[String]],
+              fill: Rx[Option[String]],
+              cssClasses: Rx[Seq[String]],
+              label: Rx[Option[String]]): GlyphFamily =
+      PrimerBindingSite(
+        horizontalOrientation,
+        verticalOrientation,
+        stroke,
+        fill,
+        cssClasses,
+        boxWidthHeight,
+        boxWidthHeight,
+        Var(
+          new Metrics {
+            def length = 0.9
+            def depth = length * 0.5
+            override def tick = -15
+          }
+        )
+      )
 
     val fixedWidthId = GlyphFamily.takeFixedWidthId()
   }

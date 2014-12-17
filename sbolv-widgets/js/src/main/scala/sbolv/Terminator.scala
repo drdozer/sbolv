@@ -4,6 +4,9 @@ import rx._
 
 final case class Terminator(horizontalOrientation: Rx[HorizontalOrientation],
                             verticalOrientation: Rx[VerticalOrientation],
+                            stroke: Rx[Option[String]],
+                            fill: Rx[Option[String]],
+                            cssClasses: Rx[Seq[String]],
                             width: Rx[Double],
                             height: Rx[Double],
                             metrics: Rx[BoxyGlyph.Metrics])
@@ -20,14 +23,27 @@ final case class Terminator(horizontalOrientation: Rx[HorizontalOrientation],
 object Terminator {
   object GlyphType extends GlyphFamily.GlyphType {
     def apply(boxWidthHeight: Rx[Double],
-                  horizontalOrientation: Rx[HorizontalOrientation],
-                  verticalOrientation: Rx[VerticalOrientation]): GlyphFamily =
-      Terminator(horizontalOrientation, verticalOrientation, boxWidthHeight, boxWidthHeight, Rx {
-        new BoxyGlyph.Metrics {
-          def length = 0.6
-          def depth = 0.3
-        }
-      })
+              horizontalOrientation: Rx[HorizontalOrientation],
+              verticalOrientation: Rx[VerticalOrientation],
+              stroke: Rx[Option[String]],
+              fill: Rx[Option[String]],
+              cssClasses: Rx[Seq[String]],
+              label: Rx[Option[String]]): GlyphFamily =
+      Terminator(
+        horizontalOrientation,
+        verticalOrientation,
+        stroke,
+        fill,
+        cssClasses,
+        boxWidthHeight,
+        boxWidthHeight,
+        Var(
+          new BoxyGlyph.Metrics {
+            def length = 0.6
+            def depth = 0.3
+          }
+        )
+      )
 
     val fixedWidthId = GlyphFamily.takeFixedWidthId()
   }

@@ -192,11 +192,15 @@ object FixedOrProportionalDemo {
     case class ClickAdder(gffw: GlyphFamily.GlyphType) extends GlyphFamily.GlyphType {
       def apply(boxWidthHeight: Rx[Double],
                 horizontalOrientation: Rx[HorizontalOrientation],
-                verticalOrientation: Rx[VerticalOrientation]): GlyphFamily = {
-
+                verticalOrientation: Rx[VerticalOrientation],
+                stroke: Rx[Option[String]],
+                fill: Rx[Option[String]],
+                cssClasses: Rx[Seq[String]],
+                label: Rx[Option[String]]): GlyphFamily =
+      {
         import scala.scalajs.js.Dynamic
 
-        val g = gffw(boxWidthHeight, horizontalOrientation, verticalOrientation)
+        val g = gffw(boxWidthHeight, horizontalOrientation, verticalOrientation, stroke, fill, cssClasses, label)
         g.glyph.addEventListener("click", (e: Event) => {
           e.stopPropagation()
           selectedGlyphHolder() = Some(Dynamic(g.glyph.parentNode.parentNode).__sbolv_widget.asInstanceOf[FixedWidth.GlyphHolder])

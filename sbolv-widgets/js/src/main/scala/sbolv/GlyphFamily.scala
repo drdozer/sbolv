@@ -73,7 +73,11 @@ object GlyphFamily {
   trait GlyphType {
     def apply(boxWidthHeight: Rx[Double],
               horizontalOrientation: Rx[HorizontalOrientation],
-              verticalOrientation: Rx[VerticalOrientation]): GlyphFamily
+              verticalOrientation: Rx[VerticalOrientation],
+              stroke: Rx[Option[String]] = Var(None),
+              fill: Rx[Option[String]] = Var(None),
+              cssClasses: Rx[Seq[String]] = Var(Seq()),
+              label: Rx[Option[String]] = Var(None)): GlyphFamily
 
     def fixedWidthId: Int
 
@@ -85,7 +89,7 @@ object GlyphFamily {
                        verticalOrientation: Option[VerticalOrientation] = None,
                        stroke: Option[String] = None,
                        fill: Option[String] = None,
-                       cssClasses: Option[Seq[String]] = None,
+                       cssClasses: Seq[String] = Seq(),
                        label: Option[String] = None)
 }
 

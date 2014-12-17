@@ -4,6 +4,9 @@ import rx._
 
 final case class ProteinStabilityElement(horizontalOrientation: Rx[HorizontalOrientation],
                             verticalOrientation: Rx[VerticalOrientation],
+                            stroke: Rx[Option[String]],
+                            fill: Rx[Option[String]],
+                            cssClasses: Rx[Seq[String]],
                             width: Rx[Double],
                             height: Rx[Double],
                             metrics: Rx[StemmyGlyph.Metrics])
@@ -18,17 +21,30 @@ final case class ProteinStabilityElement(horizontalOrientation: Rx[HorizontalOri
 }
 
 object ProteinStabilityElement {
-  object GlyphType$$ extends GlyphFamily.GlyphType {
+  object GlyphType extends GlyphFamily.GlyphType {
     def apply(boxWidthHeight: Rx[Double],
-                  horizontalOrientation: Rx[HorizontalOrientation],
-                  verticalOrientation: Rx[VerticalOrientation]): GlyphFamily =
-      ProteinStabilityElement(horizontalOrientation, verticalOrientation, boxWidthHeight, boxWidthHeight, Rx {
-        new StemmyGlyph.Metrics {
-          def length = 0.6
-          def depth = 0.6
-          def stemHeight = 0.4
+              horizontalOrientation: Rx[HorizontalOrientation],
+              verticalOrientation: Rx[VerticalOrientation],
+              stroke: Rx[Option[String]],
+              fill: Rx[Option[String]],
+              cssClasses: Rx[Seq[String]],
+              label: Rx[Option[String]]): GlyphFamily =
+      ProteinStabilityElement(
+        horizontalOrientation,
+        verticalOrientation,
+        stroke,
+        fill,
+        cssClasses,
+        boxWidthHeight,
+        boxWidthHeight,
+        Rx {
+          new StemmyGlyph.Metrics {
+            def length = 0.6
+            def depth = 0.6
+            def stemHeight = 0.4
+          }
         }
-      })
+      )
 
     val fixedWidthId = GlyphFamily.takeFixedWidthId()
   }
@@ -36,13 +52,13 @@ object ProteinStabilityElement {
   trait SCProvider extends GlyphProvider {
     private val ptsHandler: PartialFunction[Shortcode, GlyphFamily.GlyphType] = {
       case Shortcode("pts", _, _) =>
-        GlyphType$$
+        GlyphType
     }
 
     abstract override def glyphHandler(sc: Shortcode) = super.glyphHandler(sc) orElse ptsHandler.lift(sc)
   }
 
   trait FWSC extends FixedWidthShortcodeContent {
-    abstract override def Code(c: String) = if(c == "p") GlyphType$$ else super.Code(c)
+    abstract override def Code(c: String) = if(c == "p") GlyphType else super.Code(c)
   }
 }

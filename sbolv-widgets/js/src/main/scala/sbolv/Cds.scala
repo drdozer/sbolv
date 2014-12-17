@@ -4,6 +4,9 @@ import rx._
 
 case class Cds(horizontalOrientation: Rx[HorizontalOrientation],
                verticalOrientation: Rx[VerticalOrientation],
+               stroke: Rx[Option[String]],
+               fill: Rx[Option[String]],
+               cssClasses: Rx[Seq[String]],
                width: Rx[Double],
                height: Rx[Double],
                metrics: Rx[Cds.Metrics])
@@ -52,15 +55,28 @@ case class Cds(horizontalOrientation: Rx[HorizontalOrientation],
 object Cds {
   object GlyphType extends GlyphFamily.GlyphType {
     def apply(boxWidthHeight: Rx[Double],
-                  horizontalOrientation: Rx[HorizontalOrientation],
-                  verticalOrientation: Rx[VerticalOrientation]): GlyphFamily =
-      Cds(horizontalOrientation, verticalOrientation, boxWidthHeight, boxWidthHeight, Var(
-        new Metrics {
-          def length = 0.9
-          def depth = length * 0.5
-          override def head = depth * 0.5
-        }
-      ))
+              horizontalOrientation: Rx[HorizontalOrientation],
+              verticalOrientation: Rx[VerticalOrientation],
+              stroke: Rx[Option[String]],
+              fill: Rx[Option[String]],
+              cssClasses: Rx[Seq[String]],
+              label: Rx[Option[String]]): GlyphFamily =
+      Cds(
+        horizontalOrientation,
+        verticalOrientation,
+        stroke,
+        fill,
+        cssClasses,
+        boxWidthHeight,
+        boxWidthHeight,
+        Var(
+          new Metrics {
+            def length = 0.9
+            def depth = length * 0.5
+            override def head = depth * 0.5
+          }
+        )
+      )
 
     val fixedWidthId = GlyphFamily.takeFixedWidthId()
   }

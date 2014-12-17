@@ -4,6 +4,9 @@ import rx._
 
 case class RibosomeEntrySite(horizontalOrientation: Rx[HorizontalOrientation],
                              verticalOrientation: Rx[VerticalOrientation],
+                             stroke: Rx[Option[String]],
+                             fill: Rx[Option[String]],
+                             cssClasses: Rx[Seq[String]],
                              width: Rx[Double],
                              height: Rx[Double],
                              metrics: Rx[BoxyGlyph.Metrics])
@@ -20,9 +23,21 @@ case class RibosomeEntrySite(horizontalOrientation: Rx[HorizontalOrientation],
 object RibosomeEntrySite {
   object GlyphType extends GlyphFamily.GlyphType {
     def apply(boxWidthHeight: Rx[Double],
-                  horizontalOrientation: Rx[HorizontalOrientation],
-                  verticalOrientation: Rx[VerticalOrientation]): GlyphFamily =
-      RibosomeEntrySite(horizontalOrientation, verticalOrientation, boxWidthHeight, boxWidthHeight, Rx {
+              horizontalOrientation: Rx[HorizontalOrientation],
+              verticalOrientation: Rx[VerticalOrientation],
+              stroke: Rx[Option[String]],
+              fill: Rx[Option[String]],
+              cssClasses: Rx[Seq[String]],
+              label: Rx[Option[String]]): GlyphFamily =
+      RibosomeEntrySite(
+        horizontalOrientation,
+        verticalOrientation,
+        stroke,
+        fill,
+        cssClasses,
+        boxWidthHeight,
+        boxWidthHeight,
+        Rx {
         val w = 0.9
         new BoxyGlyph.Metrics {
           def length = w
