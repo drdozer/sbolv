@@ -18,7 +18,7 @@ final case class ProteinStabilityElement(horizontalOrientation: Rx[HorizontalOri
 }
 
 object ProteinStabilityElement {
-  object FixedWidth extends GlyphFamily.FixedWidth {
+  object GlyphType$$ extends GlyphFamily.GlyphType {
     def apply(boxWidthHeight: Rx[Double],
                   horizontalOrientation: Rx[HorizontalOrientation],
                   verticalOrientation: Rx[VerticalOrientation]): GlyphFamily =
@@ -34,15 +34,15 @@ object ProteinStabilityElement {
   }
 
   trait SCProvider extends GlyphProvider {
-    private val ptsHandler: PartialFunction[Shortcode, GlyphFamily.FixedWidth] = {
+    private val ptsHandler: PartialFunction[Shortcode, GlyphFamily.GlyphType] = {
       case Shortcode("pts", _, _) =>
-        FixedWidth
+        GlyphType$$
     }
 
     abstract override def glyphHandler(sc: Shortcode) = super.glyphHandler(sc) orElse ptsHandler.lift(sc)
   }
 
   trait FWSC extends FixedWidthShortcodeContent {
-    abstract override def Code(c: String) = if(c == "p") FixedWidth else super.Code(c)
+    abstract override def Code(c: String) = if(c == "p") GlyphType$$ else super.Code(c)
   }
 }

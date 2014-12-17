@@ -116,7 +116,7 @@ abstract class ShortcodeProvider {
 }
 
 trait GlyphProvider extends ShortcodeProvider {
-  def glyphHandler(sc: Shortcode): Option[GlyphFamily.FixedWidth] = None
+  def glyphHandler(sc: Shortcode): Option[GlyphFamily.GlyphType] = None
 
   private def handleGlyph(sc: Shortcode) = {
     glyphHandler(sc) map { glyphFactory =>

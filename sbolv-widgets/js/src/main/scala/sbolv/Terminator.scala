@@ -18,7 +18,7 @@ final case class Terminator(horizontalOrientation: Rx[HorizontalOrientation],
 }
 
 object Terminator {
-  object FixedWidth extends GlyphFamily.FixedWidth {
+  object GlyphType extends GlyphFamily.GlyphType {
     def apply(boxWidthHeight: Rx[Double],
                   horizontalOrientation: Rx[HorizontalOrientation],
                   verticalOrientation: Rx[VerticalOrientation]): GlyphFamily =
@@ -33,15 +33,15 @@ object Terminator {
   }
 
   trait SCProvider extends GlyphProvider {
-    private val termHandler: PartialFunction[Shortcode, GlyphFamily.FixedWidth] = {
+    private val termHandler: PartialFunction[Shortcode, GlyphFamily.GlyphType] = {
       case Shortcode("term", _, _) =>
-        FixedWidth
+        GlyphType
     }
 
     abstract override def glyphHandler(sc: Shortcode) = super.glyphHandler(sc) orElse termHandler.lift(sc)
   }
 
   trait FWSC extends FixedWidthShortcodeContent {
-    abstract override def Code(c: String) = if(c == "t") FixedWidth else super.Code(c)
+    abstract override def Code(c: String) = if(c == "t") GlyphType else super.Code(c)
   }
 }

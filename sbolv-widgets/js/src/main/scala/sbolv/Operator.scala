@@ -19,7 +19,7 @@ final case class Operator(horizontalOrientation: Rx[HorizontalOrientation],
 }
 
 object Operator {
-  object FixedWidth extends GlyphFamily.FixedWidth {
+  object GlyphType extends GlyphFamily.GlyphType {
     def apply(boxWidthHeight: Rx[Double],
                   horizontalOrientation: Rx[HorizontalOrientation],
                   verticalOrientation: Rx[VerticalOrientation]): GlyphFamily =
@@ -34,15 +34,15 @@ object Operator {
   }
 
   trait SCProvider extends GlyphProvider {
-    private val termHandler: PartialFunction[Shortcode, GlyphFamily.FixedWidth] = {
+    private val termHandler: PartialFunction[Shortcode, GlyphFamily.GlyphType] = {
       case Shortcode("term", _, _) =>
-        FixedWidth
+        GlyphType
     }
 
     abstract override def glyphHandler(sc: Shortcode) = super.glyphHandler(sc) orElse termHandler.lift(sc)
   }
 
   trait FWSC extends FixedWidthShortcodeContent {
-    abstract override def Code(c: String) = if(c == "o") FixedWidth else super.Code(c)
+    abstract override def Code(c: String) = if(c == "o") GlyphType else super.Code(c)
   }
 }

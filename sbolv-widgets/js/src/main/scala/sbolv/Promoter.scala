@@ -55,7 +55,7 @@ case class Promoter(horizontalOrientation: Rx[HorizontalOrientation],
 
 object Promoter {
 
-  object FixedWidth extends GlyphFamily.FixedWidth {
+  object GlyphType extends GlyphFamily.GlyphType {
     def apply(boxWidthHeight: Rx[Double],
                   horizontalOrientation: Rx[HorizontalOrientation],
                   verticalOrientation: Rx[VerticalOrientation]): GlyphFamily =
@@ -81,15 +81,15 @@ object Promoter {
   case class Geometry(top: Double, bot: Double, left: Double, right: Double, arrowW: Double, arrowHDelta: Double)
 
   trait SCProvider extends GlyphProvider {
-    private val promoterHandler: PartialFunction[Shortcode, GlyphFamily.FixedWidth] = {
+    private val promoterHandler: PartialFunction[Shortcode, GlyphFamily.GlyphType] = {
       case Shortcode("promoter", _, _) =>
-        FixedWidth
+        GlyphType
     }
 
     override abstract def glyphHandler(sc: Shortcode) = super.glyphHandler(sc) orElse promoterHandler.lift(sc)
   }
 
   trait FWSC extends FixedWidthShortcodeContent {
-    abstract override def Code(c: String) = if(c == "p") FixedWidth else super.Code(c)
+    abstract override def Code(c: String) = if(c == "p") GlyphType else super.Code(c)
   }
 }

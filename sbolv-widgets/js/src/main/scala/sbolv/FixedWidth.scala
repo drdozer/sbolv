@@ -3,6 +3,7 @@ package sbolv
 import org.scalajs.dom._
 import org.scalajs.dom.extensions._
 import rx._
+import sbolv.GlyphFamily.GlyphSpec
 
 import scala.scalajs.js._
 import scala.util.parsing.combinator.RegexParsers
@@ -22,14 +23,14 @@ import scalatags.ext.Updater._
  */
 case class FixedWidth(boxWidthHeight: Rx[Double],
                       alignment: Rx[BackboneAlignment],
-                      glyphs: Rx[IndexedSeq[GlyphFactory]])
+                      glyphs: Rx[IndexedSeq[GlyphSpec]])
 {
-  val glyphUpdater = new Updater[GlyphFactory] {
-    override def onEntered(en: SeqDiff.Entered[GlyphFactory]): scalatags.JsDom.all.Frag = {
+  val glyphUpdater = new Updater[GlyphSpec] {
+    override def onEntered(en: SeqDiff.Entered[GlyphSpec]): scalatags.JsDom.all.Frag = {
       println(s"New glyph factory: ${en.item}")
-      val hor: Var[HorizontalOrientation] = Var(en.item.direction)
+      val hor: Var[HorizontalOrientation] = Var(en.item.horizontalOrientation)
       val vert: Var[VerticalOrientation] = Var(Upwards)
-      val gf: GlyphFamily = en.item.glyphFamily(boxWidthHeight, hor, vert)
+      val gf: GlyphFamily = en.item.glyphType(boxWidthHeight, hor, vert)
       val vert2 = Rx {
               (alignment(), gf.horizontalOrientation()) match {
                 case (AboveBackbone, _) | (CentredOnBackbone, Rightwards) => Upwards
@@ -81,20 +82,20 @@ case class FixedWidth(boxWidthHeight: Rx[Double],
       holder
     }
 
-    override def onModified(mod: SeqDiff.Modified[GlyphFactory], existing: Node): Option[Frag] = {
+    override def onModified(mod: SeqDiff.Modified[GlyphSpec], existing: Node): Option[Frag] = {
       println(s"Modified glyph factory: ${mod.item}")
       val holder = Dynamic(existing).selectDynamic("__sbolv_widget").asInstanceOf[FixedWidth.GlyphHolder]
       holder.lastIndex() = mod.at._1.index
       holder.index() = mod.at._2.index
       holder.label() = mod.item._2.label
-      holder.direction() = mod.item._2.direction
+      holder.direction() = mod.item._2.horizontalOrientation
       for(n <- holder.lab.svgElement.parentNode.asInstanceOf[Element].getElementsByClassName("glyphMoveAnimation")) {
         Dynamic(n).beginElement()
       }
       None
     }
 
-    override def onExited(ex: SeqDiff.Exited[GlyphFactory], existing: Node): Option[Frag] = {
+    override def onExited(ex: SeqDiff.Exited[GlyphSpec], existing: Node): Option[Frag] = {
       println(s"Exiting glyph factory: ${ex.item}")
       val holder = Dynamic(existing).selectDynamic("__sbolv_widget").asInstanceOf[FixedWidth.GlyphHolder]
 
@@ -113,22 +114,22 @@ case class FixedWidth(boxWidthHeight: Rx[Double],
     }
   }
 
-  private implicit val gfScoreF = new ScoreFunction[GlyphFactory] {
-    override def indelCost(t: GlyphFactory) = - 4
+  private implicit val gfScoreF = new ScoreFunction[GlyphSpec] {
+    override def indelCost(t: GlyphSpec) = - 4
 
-    override def matchCost(t1: GlyphFactory, t2: GlyphFactory) =
-      if(t1.glyphFamily != t2.glyphFamily) -9
+    override def matchCost(t1: GlyphSpec, t2: GlyphSpec) =
+      if(t1.glyphType != t2.glyphType) -9
       else {
-        val d = if(t1.direction == t2.direction) 0 else -1
+        val d = if(t1.horizontalOrientation == t2.horizontalOrientation) 0 else -1
         val l = if(t1.label == t2.label) 0 else -1
         d + l
       }
   }
 
-  private implicit val gfamOrd: Ordering[GlyphFamily.FixedWidth] = Ordering.by(
-      (_: GlyphFamily.FixedWidth).fixedWidthId)
-  private implicit val gfOrd: Ordering[GlyphFactory] = Ordering.by(
-    (gf: GlyphFactory) => (gf.glyphFamily, gf.direction, gf.label))
+  private implicit val gfamOrd: Ordering[GlyphFamily.GlyphType] = Ordering.by(
+      (_: GlyphFamily.GlyphType).fixedWidthId)
+  private implicit val gfOrd: Ordering[GlyphSpec] = Ordering.by(
+    (gf: GlyphSpec) => (gf.glyphType, gf.horizontalOrientation, gf.label))
 
 
   val allGlyphs = g(
@@ -150,7 +151,7 @@ case class FixedWidth(boxWidthHeight: Rx[Double],
 }
 
 object FixedWidth {
-  case class GlyphHolder(gf: GlyphFactory,
+  case class GlyphHolder(gf: GlyphSpec,
                          lab: LabelledGlyph,
                          direction: Var[HorizontalOrientation],
                          label: Var[Option[String]],
@@ -174,11 +175,11 @@ object FixedWidth {
 
         val glyphs = for {
           c <- content.to[IndexedSeq]
-          g <- c.split("""\s+""")
+          g <- c.split("""\s+""").to[IndexedSeq]
         } yield {
           FWSC.parseAll(FWSC.entry, g).get
         }
-        val glyphsV = Var(IndexedSeq.empty[GlyphFactory])
+        val glyphsV = Var(IndexedSeq.empty[GlyphSpec])
         val fixedWidth = FixedWidth(Var(wdth), Var(AboveBackbone), glyphsV)
         glyphsV() = glyphs
 
@@ -190,8 +191,6 @@ object FixedWidth {
     abstract override def shortcodeHandlers(sc: Shortcode) = super.shortcodeHandlers(sc) orElse sbolvHandler.lift(sc)
   }
 }
-
-case class GlyphFactory(glyphFamily: GlyphFamily.FixedWidth, direction: HorizontalOrientation, label: Option[String])
 
 abstract class FixedWidthShortcodeContent extends RegexParsers {
   private val code = """[a-zA-Z]""".r ^^ { case c => Code(c) }
@@ -205,8 +204,12 @@ abstract class FixedWidthShortcodeContent extends RegexParsers {
   private val qtStr = qt ~> notQt <~ qt
 
 
-  val entry = code ~ dir ~ qtStr.? ^^ { case c ~ d ~ l => GlyphFactory(c, d, l) }
+  val entry = code ~ dir ~ qtStr.? ^^ { case c ~ d ~ l => GlyphSpec(
+    glyphType = c,
+    horizontalOrientation = d,
+    label = l)
+  }
 
-  def Code(c: String): GlyphFamily.FixedWidth =
+  def Code(c: String): GlyphFamily.GlyphType =
     throw new IllegalArgumentException(s"Unknown code: $c")
 }

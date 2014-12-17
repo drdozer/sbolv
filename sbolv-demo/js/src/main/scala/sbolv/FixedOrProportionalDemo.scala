@@ -1,5 +1,6 @@
 package sbolv
 
+import sbolv.GlyphFamily.GlyphSpec
 import sbolv.geom._
 
 import org.scalajs.dom._
@@ -36,7 +37,7 @@ object FixedOrProportionalDemo {
       lengthSpan.foreach(_.textContent = lengthSlider.valueAsNumber().toString)
     }
 
-    val glyphs = Var(IndexedSeq.empty[GlyphFactory])
+    val glyphs = Var(IndexedSeq.empty[GlyphSpec])
     val fw = FixedWidth(lengthSlider.valueAsNumber map (_.toDouble), Var(CentredOnBackbone : BackboneAlignment), glyphs)
     track.modifyWith(fw.allGlyphs).render
 
@@ -114,7 +115,7 @@ object FixedOrProportionalDemo {
       selectionWidget).render
     exampleDiv.modifyWith(labelEditor).render
 
-    case class ClickAdder(gffw: GlyphFamily.FixedWidth) extends GlyphFamily.FixedWidth {
+    case class ClickAdder(gffw: GlyphFamily.GlyphType) extends GlyphFamily.GlyphType {
       def apply(boxWidthHeight: Rx[Double],
                 horizontalOrientation: Rx[HorizontalOrientation],
                 verticalOrientation: Rx[VerticalOrientation]): GlyphFamily = {
@@ -141,25 +142,25 @@ object FixedOrProportionalDemo {
       b.onclick = (e: Event) => {
         b.value match {
           case "promoter_rightwards" =>
-            glyphs() = glyphs() :+ GlyphFactory(ClickAdder(Promoter.FixedWidth), Rightwards, None)
+            glyphs() = glyphs() :+ GlyphSpec(ClickAdder(Promoter.GlyphType), Rightwards)
           case "promoter_leftwards" =>
-            glyphs() = glyphs() :+ GlyphFactory(ClickAdder(Promoter.FixedWidth), Leftwards, None)
+            glyphs() = glyphs() :+ GlyphSpec(ClickAdder(Promoter.GlyphType), Leftwards)
           case "cds_rightwards" =>
-            glyphs() = glyphs() :+ GlyphFactory(ClickAdder(Cds.FixedWidth), Rightwards, None)
+            glyphs() = glyphs() :+ GlyphSpec(ClickAdder(Cds.GlyphType), Rightwards)
           case "cds_leftwards" =>
-            glyphs() = glyphs() :+ GlyphFactory(ClickAdder(Cds.FixedWidth), Leftwards, None)
+            glyphs() = glyphs() :+ GlyphSpec(ClickAdder(Cds.GlyphType), Leftwards)
           case "res_rightwards" =>
-            glyphs() = glyphs() :+ GlyphFactory(ClickAdder(RibosomeEntrySite.FixedWidth), Rightwards, None)
+            glyphs() = glyphs() :+ GlyphSpec(ClickAdder(RibosomeEntrySite.GlyphType), Rightwards)
           case "res_leftwards" =>
-            glyphs() = glyphs() :+ GlyphFactory(ClickAdder(RibosomeEntrySite.FixedWidth), Leftwards, None)
+            glyphs() = glyphs() :+ GlyphSpec(ClickAdder(RibosomeEntrySite.GlyphType), Leftwards)
           case "term_rightwards" =>
-            glyphs() = glyphs() :+ GlyphFactory(ClickAdder(Terminator.FixedWidth), Rightwards, None)
+            glyphs() = glyphs() :+ GlyphSpec(ClickAdder(Terminator.GlyphType), Rightwards)
           case "term_leftwards" =>
-            glyphs() = glyphs() :+ GlyphFactory(ClickAdder(Terminator.FixedWidth), Leftwards, None)
+            glyphs() = glyphs() :+ GlyphSpec(ClickAdder(Terminator.GlyphType), Leftwards)
           case "pbs_rightwards" =>
-            glyphs() = glyphs() :+ GlyphFactory(ClickAdder(PrimerBindingSite.FixedWidth), Rightwards, None)
+            glyphs() = glyphs() :+ GlyphSpec(ClickAdder(PrimerBindingSite.GlyphType), Rightwards)
           case "pbs_leftwards" =>
-            glyphs() = glyphs() :+ GlyphFactory(ClickAdder(PrimerBindingSite.FixedWidth), Leftwards, None)
+            glyphs() = glyphs() :+ GlyphSpec(ClickAdder(PrimerBindingSite.GlyphType), Leftwards)
         }
       }
     }

@@ -2,6 +2,7 @@ package sbolv
 
 import rx._
 import org.scalajs.dom._
+import scala.Predef.String
 import scalatags.JsDom
 import scalatags.ext._
 import JsDom.all._
@@ -69,7 +70,7 @@ object GlyphFamily {
     ctr += 1
     c
   }
-  trait FixedWidth {
+  trait GlyphType {
     def apply(boxWidthHeight: Rx[Double],
               horizontalOrientation: Rx[HorizontalOrientation],
               verticalOrientation: Rx[VerticalOrientation]): GlyphFamily
@@ -79,5 +80,12 @@ object GlyphFamily {
     override def toString = super.toString + "#" + fixedWidthId
   }
 
+  case class GlyphSpec(glyphType: GlyphType,
+                       horizontalOrientation: HorizontalOrientation,
+                       verticalOrientation: Option[VerticalOrientation] = None,
+                       stroke: Option[String] = None,
+                       fill: Option[String] = None,
+                       cssClasses: Option[Seq[String]] = None,
+                       label: Option[String] = None)
 }
 

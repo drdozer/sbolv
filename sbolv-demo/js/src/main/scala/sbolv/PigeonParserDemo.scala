@@ -5,6 +5,7 @@ import org.scalajs.dom.extensions._
 
 import rx._
 import rx.ops._
+import sbolv.GlyphFamily.GlyphSpec
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSExport
@@ -27,7 +28,7 @@ object PigeonParserDemo {
       lengthSpan.foreach(_.textContent = lengthSlider.valueAsNumber().toString)
     }
 
-    val glyphs = Var(IndexedSeq.empty[GlyphFactory])
+    val glyphs = Var(IndexedSeq.empty[GlyphSpec])
     val fw = FixedWidth(lengthSlider.valueAsNumber map (_.toDouble), Var(CentredOnBackbone : BackboneAlignment), glyphs)
     track.modifyWith(fw.allGlyphs).render
 
@@ -36,46 +37,46 @@ object PigeonParserDemo {
 
     Obs(pigeonBox.value) {
 
-        val pigeon = pigeonBox.value().toString().asInstanceOf[String]
-        val displayList = js.Dynamic.global.window.parsePigeon(pigeon)
-        
-        jsonBox.value = js.Dynamic.global.JSON.stringify(displayList, null, 4).asInstanceOf[String]
+      val pigeon = pigeonBox.value().toString().asInstanceOf[String]
+      val displayList = js.Dynamic.global.window.parsePigeon(pigeon)
 
-        val segments = displayList.segments.asInstanceOf[js.Array[js.Dynamic]].toList
+      jsonBox.value = js.Dynamic.global.JSON.stringify(displayList, null, 4).asInstanceOf[String]
 
-        val sequence = segments.head.sequence.asInstanceOf[js.Array[js.Dynamic]].toList
+      val segments = displayList.segments.asInstanceOf[js.Array[js.Dynamic]].toList
 
-        glyphs() = sequence.map { glyph =>
+      val sequence = segments.head.sequence.asInstanceOf[js.Array[js.Dynamic]].toList
+
+      glyphs() = sequence.map { glyph =>
 
 
-                val direction = glyph.direction.asInstanceOf[String] match {
-                    case "rightwards" =>
-                        Rightwards
-                    case "leftwards" =>
-                        Leftwards
-                }
+        val direction = glyph.direction.asInstanceOf[String] match {
+          case "rightwards" =>
+            Rightwards
+          case "leftwards" =>
+            Leftwards
+        }
 
-                val name = Option(glyph.name.asInstanceOf[String]).filter(_.length > 0)
+        val label = Option(glyph.name.asInstanceOf[String]).filter(_.length > 0)
 
-                glyph.`type`.asInstanceOf[String] match {
-                    case "terminator" => 
-                        GlyphFactory(Terminator.FixedWidth, direction, name)
-                    case "operator" => 
-                        GlyphFactory(Operator.FixedWidth, direction, name)
-                    case "cds" => 
-                        GlyphFactory(Cds.FixedWidth, direction, name)
-                    case "res" => 
-                        GlyphFactory(RibosomeEntrySite.FixedWidth, direction, name)
-                    case "promoter" => 
-                        GlyphFactory(Promoter.FixedWidth, direction, name)
-                    case "v" => 
-                        GlyphFactory(Terminator.FixedWidth, direction, name)
+        glyph.`type`.asInstanceOf[String] match {
+          case "terminator" =>
+            GlyphSpec(glyphType = Terminator.GlyphType, horizontalOrientation = direction, label = label)
+          case "operator" =>
+            GlyphSpec(glyphType = Operator.GlyphType, horizontalOrientation = direction, label = label)
+          case "cds" =>
+            GlyphSpec(glyphType = Cds.GlyphType, horizontalOrientation = direction, label = label)
+          case "res" =>
+            GlyphSpec(glyphType = RibosomeEntrySite.GlyphType, horizontalOrientation = direction, label = label)
+          case "promoter" =>
+            GlyphSpec(glyphType = Promoter.GlyphType, horizontalOrientation = direction, label = label)
+          case "v" =>
+            GlyphSpec(glyphType = Terminator.GlyphType, horizontalOrientation = direction, label = label)
 
-                }
+        }
 
-        }.toIndexedSeq
+      }.toIndexedSeq
     }
-}
+  }
 
 
 
