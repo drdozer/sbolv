@@ -17,7 +17,7 @@ object SbolvBuild extends Build {
 
   val logger = ConsoleLogger()
 
-  val baseVersion = "0.1.2"
+  val baseVersion = "0.1.3"
 
   val svUtil                  = XModule(id = "sbolv-util", defaultSettings = buildSettings, baseDir = "sbolv-util")
   lazy val util               = svUtil.project(utilPlatformJvm, utilPlatformJs)
@@ -65,7 +65,7 @@ object SbolvBuild extends Build {
 
   lazy val utilPlatformJsSettings = Seq(
     libraryDependencies ++= Seq(
-      "uk.co.turingatemyhamster" %%% "scalatags-ext" % "0.1.1",
+      "uk.co.turingatemyhamster" %%% "scalatags-ext" % "0.1.2",
       "com.scalatags" %%% "scalatags" % "0.4.2",
       "com.scalarx" %%% "scalarx" % "0.2.6",
       "org.scala-lang.modules.scalajs" %%% "scalajs-dom" % "0.6"
