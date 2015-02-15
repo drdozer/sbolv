@@ -4,3 +4,4 @@ target/
 **/target/
 *.log
 projectFilesBackup
+nano.save
